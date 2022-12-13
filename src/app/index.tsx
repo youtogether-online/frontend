@@ -1,12 +1,15 @@
 import {withProviders} from "./providers";
-import {Routing} from "../pages";
-import {Header} from "../widgets/header";
+import {Routing} from "@/pages";
+import {Header} from "@/widgets/header";
+import {Layout} from "antd";
+
+import '@/shared/config/i18n'
 
 const App = () => {
-    return <div className='App'>
+    return <Layout>
         <Header/>
         <Routing/>
-    </div>
+    </Layout>
 }
 
 export default withProviders(App)

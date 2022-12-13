@@ -1,0 +1,23 @@
+.root {
+  background: #fff !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 7px;
+
+  svg {
+    height: 100%;
+    max-width: fit-content;
+  }
+
+  &Title {
+    font-size: 20px;
+    color: black;
+  }
+}

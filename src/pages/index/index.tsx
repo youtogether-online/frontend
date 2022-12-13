@@ -1,7 +1,11 @@
+import {useTranslation} from "react-i18next";
+
 const IndexPage = () => {
+    const {t} = useTranslation()
+
     return (
         <section>
-            Main page
+            {t('welcome')}
         </section>
     )
 }
