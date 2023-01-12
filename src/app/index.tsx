@@ -1,16 +1,12 @@
-import {withProviders} from "./providers";
-import {Routing} from "@/pages";
-import {Header} from "@/widgets/header";
-import {Layout} from "antd";
-
+import { Routing } from '@/pages'
+import { Header } from '@/widgets/header'
+import { withProviders } from './providers'
+import './styles.css'
 import '@/shared/config/i18n'
 
-const App = () => {
-    return <Layout>
-        <Header/>
-        <Routing/>
-    </Layout>
-}
+const App = () => <div>
+	<Header/>
+	<Routing/>
+</div>
 
 export default withProviders(App)
-

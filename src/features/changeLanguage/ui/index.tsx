@@ -1,23 +1,22 @@
-import {useTranslation} from 'react-i18next'
-import {Button, Tooltip} from "antd";
-import {BsTranslate} from "react-icons/all";
-import {useMemo} from "react";
+import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { BsTranslate } from 'react-icons/all'
 
 export const ChangeLanguage = () => {
-    const {t, i18n} = useTranslation()
+  const { i18n } = useTranslation()
 
-    const availableLanguages = useMemo(() => i18n.languages, [])
-    const currentLanguage = i18n.language
+  const availableLanguages = useMemo(() => i18n.languages, [])
+  const currentLanguage = i18n.language
 
-    const switchLanguage = () => {
-        const inactiveLanguage = availableLanguages.filter(language => language !== currentLanguage)
+  const switchLanguage = () => {
+    const inactiveLanguage = availableLanguages.filter(language => language !== currentLanguage)
 
-        i18n.changeLanguage(inactiveLanguage[0])
-    }
+    i18n.changeLanguage(inactiveLanguage[0])
+  }
 
-    const tooltipMessage = `${availableLanguages[0].toUpperCase()} / ${availableLanguages[1].toUpperCase()}`
+  const tooltipMessage = `${availableLanguages[0].toUpperCase()} / ${availableLanguages[1].toUpperCase()}`
 
-    return <Tooltip title={tooltipMessage}>
-        <Button onClick={switchLanguage} icon={<BsTranslate/>} />
-    </Tooltip>
+  return <div className='w-'>
+		<button onClick={switchLanguage}><BsTranslate/></button>
+	</div>
 }
