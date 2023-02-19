@@ -1,9 +1,12 @@
-import { lazy } from 'react'
-import { Route, Routes } from 'react-router'
+import { Route, Routes } from "react-router";
+import { lazy } from "react";
 
-const IndexPage = lazy(async () => await import('./index/index'))
-export const Routing = () => (
-	<Routes>
-		<Route path='/' element={<IndexPage/>}></Route>
-	</Routes>
-)
+const IndexPage = lazy(() => import("./index/index"));
+const RoomPage = lazy(() => import("./room/index"));
+
+export const Routing = () => {
+  return <Routes>
+    <Route path="/" element={<IndexPage />} />
+    <Route path="/room" element={<RoomPage />} />
+  </Routes>;
+};

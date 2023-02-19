@@ -1,12 +1,37 @@
-import { Routing } from '@/pages'
-import { Header } from '@/widgets/header'
-import { withProviders } from './providers'
-import './styles.css'
-import '@/shared/config/i18n'
+import { Routing } from "@/pages";
+import { Header } from "@/widgets/header";
+import { Suspense } from "react";
+import "@/shared/config/i18n";
+import { Footer } from "@/widgets/footer";
+import { globalStyles } from "@/app/globalStyles";
+import { styled } from "@/shared/config/stitches/stitches.config";
+import { Provider } from "@/app/providers/provider";
 
-const App = () => <div>
-	<Header/>
-	<Routing/>
-</div>
+export const App = () => {
+  globalStyles();
 
-export default withProviders(App)
+  return <Provider>
+    <Root>
+      <Header />
+      <Suspense fallback={<div>Loading</div>}>
+        <Main>
+          <Routing />
+        </Main>
+      </Suspense>
+      <Footer />
+    </Root>
+  </Provider>;
+};
+
+const Root = styled("div", {
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  overflowX: "hidden"
+});
+
+const Main = styled("main", {
+  flex: "1",
+  paddingBottom: "48px",
+  paddingTop: "32px"
+});

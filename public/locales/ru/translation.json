@@ -1,3 +1,20 @@
 {
-  "welcome": "Привет, юзернейм"
+  "email": "Почта",
+  "header.room.title": "Комнаты",
+  "header.mainPage.title": "Главная",
+  "header.catalog.title": "Каталог",
+  "header.search.placeholder": "Название фильма...",
+  "signIn": "Войти",
+  "signInOrSignUp": "Войти или зарегистрироваться",
+  "message": "Сообщение",
+  "getCode": "Получить код",
+  "field.required": "Это обязательное поле",
+  "field.email": "Это поле должно содержать email в формате <имя>@<доменное имя>",
+  "password": "Пароль",
+  "signInWithPassword": "Войти с паролем",
+  "signInWithEmail": "Войти по почте",
+  "field.min": "Это поле должно содержать минимум {{min}} символов",
+  "field.max": "Это поле не должно содержать более {{max}} символов",
+  "enterCodeFromEmail": "Введите код из e-mail",
+  "send": "Отправить"
 }

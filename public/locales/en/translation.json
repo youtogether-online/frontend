@@ -1,3 +1,20 @@
 {
-  "welcome": "Welcome, username"
+  "email": "Email",
+  "header.room.title": "Rooms",
+  "header.mainPage.title": "Home",
+  "header.catalog.title": "Catalog",
+  "header.search.placeholder": "Movie title...",
+  "signIn": "Sign in",
+  "signInOrSignUp": "Sign in or sign up",
+  "message": "Message",
+  "getCode": "Get code",
+  "field.required": "This is required field",
+  "field.email": "This field should contain email in <name>@<domain> format",
+  "password": "Password",
+  "signInWithPassword": "Sign in with password",
+  "signInWithEmail": "Sign in with email",
+  "field.min": "This field must contain at least {{min}} symbols",
+  "field.max": "This field must contain no more than {{max}} characters",
+  "enterCodeFromEmail": "Enter code from e-mail",
+  "send": "Send"
 }
