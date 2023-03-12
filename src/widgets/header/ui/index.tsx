@@ -1,58 +1,124 @@
-import { ReactComponent as Logo } from "@/shared/assets/small-logo.svg";
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import { SignIn } from "@/widgets/signIn";
-import { Text } from "@/shared/ui/text";
-import { styled } from "@/shared/config/stitches/stitches.config";
-import { SearchBar } from "@/features/searchBar/ui";
-import { NavLink } from "@/shared/ui/navlink";
+import { useUnit } from 'effector-react'
+import { useTranslation } from 'react-i18next'
+import { $isAuthenticated, $session } from '@/entities/session'
+import { SearchBar } from '@/features/search-bar'
+import { styled } from '@/shared/config/stitches/stitches.config'
+import { routes } from '@/shared/routes'
+import { Avatar, Button, NavLink } from '@/shared/ui'
+import { SignIn } from '@/widgets/sign-in'
+import { UserMenu } from '@/widgets/user-menu'
+import { ReactComponent as Logo } from './horizontal-logo.svg'
+import { Navbar } from './navbar'
+import { Subheader } from './subheader'
 
-export const Header = () => {
-  const { t } = useTranslation();
+interface HeaderProps {
+  subheader?: boolean
+  navbar?: boolean
+  search?: boolean
+  user?: boolean
+  centerLogo?: boolean
+}
 
-  return <Root>
-    <Link to="/" className="flex items-center flex-col">
-      <Logo className="text-black" />
-    </Link>
-    <Nav className="flex flex-1 gap-2">
-      <Ul className="flex gap-4 items-center">
-        <li>
-          <NavLink to="/"><Text variant="body1">{t("header.mainPage.title")}</Text></NavLink>
-        </li>
-        <li>
-          <NavLink to="/catalog"><Text variant="body1">{t("header.catalog.title")}</Text></NavLink>
-        </li>
-        <li>
-          {/*TODO rework to dropdown menu*/}
-          <NavLink to="/room" className="flex items-center">
-            <Text variant="body1">{t("header.room.title")}</Text>
-            {/*<MdKeyboardArrowDown />*/}
-          </NavLink>
-        </li>
-      </Ul>
-      <SearchBar />
-      <SignIn />
-    </Nav>
-  </Root>;
-};
+export const Header = ({
+  subheader,
+  navbar,
+  search,
+  user,
+  centerLogo,
+}: HeaderProps) => {
+  const { t } = useTranslation()
 
-const Root = styled("header", {
-  backgroundColor: "$backgroundHeader",
-  boxShadow: "$shadowHeader",
-  display: "flex",
-  alignItems: "center",
-  gap: "8px",
-  padding: "8px 32px"
-});
+  const [isAuthenticated, session] = useUnit([$isAuthenticated, $session])
 
-const Nav = styled("nav", {
-  display: "flex",
-  flex: "1",
-  gap: "16px"
-});
+  return (
+    <Root>
+      {subheader && <Subheader />}
+      <Main>
+        <LinkLogo to={routes.home} centerLogo={centerLogo}>
+          <Logo />
+        </LinkLogo>
+        {search && (
+          <SearchBarContainer>
+            <SearchBar />
+          </SearchBarContainer>
+        )}
+        {user && (
+          <User>
+            {!isAuthenticated && <Button variant="text">{t('signIn')}</Button>}
+            {isAuthenticated && session && (
+              <Avatar
+                url={session.avatar}
+                alt={session.username}
+                fallback={session.username.slice(0, 2)}
+              />
+            )}
+            <HoverMenu>
+              {!isAuthenticated && <SignIn />}
+              {isAuthenticated && <UserMenu />}
+            </HoverMenu>
+          </User>
+        )}
+      </Main>
+      {navbar && <Navbar />}
+    </Root>
+  )
+}
 
-const Ul = styled("ul", {
-  display: "flex",
-  gap: "6px",
-  alignItems: "center"
-});
+const Main = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  padding: '12px 0',
+  height: '65px',
+})
+
+const SearchBarContainer = styled('div', {
+  marginRight: '28px',
+  height: '100%',
+  width: '100%',
+  maxWidth: '400px',
+})
+
+const Root = styled('header', {
+  maxWidth: '$containerLg',
+  width: '100%',
+  margin: '0 auto',
+})
+
+const LinkLogo = styled(NavLink, {
+  margin: '0 auto 0 0',
+
+  variants: {
+    centerLogo: {
+      true: {
+        margin: '0 auto',
+      },
+    },
+  },
+})
+
+const HoverMenu = styled('div', {
+  display: 'flex',
+  position: 'absolute',
+  zIndex: 100,
+  top: '-13px',
+  right: '-13px',
+  opacity: 0,
+  padding: '12px',
+  backgroundColor: '$backgroundContainer',
+  minWidth: '280px',
+  borderRadius: '$tertiary',
+  boxShadow: '1px 2px 10px rgba(0, 0, 0, 0.1)',
+  transform: 'scale(0)',
+  transformOrigin: '90% 10%',
+  transition: 'opacity 0.3s, transform 0.3s',
+})
+
+const User = styled('div', {
+  position: 'relative',
+
+  [`&:hover ${HoverMenu}`]: {
+    opacity: 1,
+    transform: 'scale(1)',
+    transition: 'opacity 0.3s, transform 0.3s',
+  },
+})

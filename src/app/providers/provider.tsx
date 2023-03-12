@@ -1,9 +1,7 @@
-import { ReactNode } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { RouterProvider } from 'atomic-router-react'
+import { ReactNode } from 'react'
+import { router } from '../router'
 
 export const Provider = ({ children }: { children: ReactNode }) => {
-  return <BrowserRouter>
-    {children}
-  </BrowserRouter>;
-};
-
+  return <RouterProvider router={router}>{children}</RouterProvider>
+}

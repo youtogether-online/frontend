@@ -1,0 +1,33 @@
+import { RouteParams } from 'atomic-router'
+import { type LinkProps, Link } from 'atomic-router-react'
+import { ReactNode } from 'react'
+import { css, styled } from '@/shared/config/stitches/stitches.config'
+
+const navLinkStyles = css({
+  'color': '$textPrimary',
+  'textDecoration': 'none',
+  'transition': 'color 0.1s',
+
+  '&:hover': {
+    color: '$primaryTextHover',
+  },
+})
+
+type NavLinkProps = LinkProps<RouteParams> & {
+  children: ReactNode
+}
+
+export const NavLink = ({ children, ...LinkProps }: NavLinkProps) => {
+  return (
+    <>
+      {/* TODO: Change styling way (Stitches doesn't has method for creating static css classes)*/}
+      <Link className={navLinkStyles().className} {...LinkProps}>
+        <Text>{children}</Text>
+      </Link>
+    </>
+  )
+}
+
+const Text = styled('span', {
+  fontSize: '$link',
+})
