@@ -20,33 +20,6 @@ import { routes } from '@/shared/routes'
 import { MainLayout } from '@/widgets/layouts/main-layout'
 import { SignInLayout } from '@/widgets/layouts/sign-in-layout'
 
-export const routesMap = [
-  {
-    path: '/',
-    route: routes.home,
-  },
-  {
-    path: '/catalog',
-    route: routes.catalog,
-  },
-  {
-    path: '/settings',
-    route: routes.settings,
-  },
-  {
-    path: '/sign-in',
-    route: routes.signIn,
-  },
-  {
-    path: '/:username',
-    route: routes.profile,
-  },
-  {
-    path: '/:username/friends',
-    route: routes.friends,
-  },
-]
-
 const chainAuthorized = <Params extends RouteParams>(
   route: RouteInstance<Params>
 ) => {
@@ -62,6 +35,7 @@ const chainAuthorized = <Params extends RouteParams>(
     filter: not($isAuthenticated),
     target: redirect({
       route: routes.signIn,
+      replace: true,
     }),
   })
 
@@ -72,23 +46,62 @@ const chainAuthorized = <Params extends RouteParams>(
   })
 }
 
+export const routesMap = [
+  {
+    path: '/',
+    route: routes.home,
+  },
+  {
+    path: '/catalog',
+    route: routes.catalog,
+  },
+  {
+    path: '/settings',
+    route: chainAuthorized(routes.settings),
+  },
+  {
+    path: '/sign-in',
+    route: routes.signIn,
+  },
+  {
+    path: '/:username',
+    route: routes.profile,
+  },
+  {
+    path: '/:username/friends',
+    route: routes.friends,
+  },
+]
+
 export const Pages = createRoutesView({
   routes: [
-    { route: routes.home, view: HomePage, layout: MainLayout },
-    { route: routes.catalog, view: CatalogPage, layout: MainLayout },
+    {
+      route: routes.home,
+      view: HomePage,
+      layout: MainLayout,
+    },
+    {
+      route: routes.catalog,
+      view: CatalogPage,
+      layout: MainLayout,
+    },
     {
       route: chainAuthorized(routes.settings),
       view: SettingsPage,
       layout: MainLayout,
     },
-    { route: routes.signIn, view: SignInPage, layout: SignInLayout },
     {
-      route: chainAuthorized(routes.profile),
+      route: routes.signIn,
+      view: SignInPage,
+      layout: SignInLayout,
+    },
+    {
+      route: routes.profile,
       view: ProfilePage,
       layout: MainLayout,
     },
     {
-      route: chainAuthorized(routes.friends),
+      route: routes.friends,
       view: FriendsPage,
       layout: MainLayout,
     },
