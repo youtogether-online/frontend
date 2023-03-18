@@ -1,12 +1,4 @@
-import {
-  chainRoute,
-  createRoute,
-  RouteInstance,
-  RouteParams,
-  RouteParamsAndQuery,
-} from 'atomic-router'
-import { createEvent, sample } from 'effector'
-import { $isAuthenticated } from '@/entities/session'
+import { createRoute } from 'atomic-router'
 
 export const routes = {
   home: createRoute(),

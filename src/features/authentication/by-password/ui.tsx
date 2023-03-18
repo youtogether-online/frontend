@@ -25,7 +25,6 @@ export const SignInByPassword = () => {
         autoComplete="email"
         onChange={(event) => fields.email.onChange(event.target.value)}
         invalid={fields.email.hasError()}
-        errorMessage={t(fields.email.errorText())}
       />
       <Input
         placeholder={t('password')}
@@ -35,9 +34,6 @@ export const SignInByPassword = () => {
         value={fields.password.value}
         onChange={(event) => fields.password.onChange(event.target.value)}
         invalid={fields.password.hasError()}
-        errorMessage={t(fields.password.errorText(), {
-          min: passwordValidation.min,
-        })}
       />
       <Button type="submit" theme="primary">
         {t('signIn')}

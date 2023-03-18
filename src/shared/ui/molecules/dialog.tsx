@@ -35,7 +35,7 @@ export const Dialog = ({
           </DialogPrimitive.Description>
           {children}
           <DialogPrimitive.Close asChild>
-            <Button align="topRight" variant="icon" icon={<Cross />} />
+            {/*<Button align="topRight" variant="icon" icon={<Cross />} />*/}
           </DialogPrimitive.Close>
         </DialogContent>
       </DialogPrimitive.Portal>
