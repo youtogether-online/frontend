@@ -4,14 +4,13 @@ import { ChangeEvent, FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { sendCodeForm, sendCodeFx } from '@/features/authentication/by-email'
 import { styled } from '@/shared/config/stitches/stitches.config'
-import { emailValidation } from '@/shared/config/validation'
+import { Form, Input } from '@/shared/ui'
 import { Button } from '@/shared/ui/atoms/button'
-import { Input } from '@/shared/ui/atoms/input'
 
 export const SendCode = () => {
   const { t } = useTranslation()
 
-  const { submit, fields } = useForm(sendCodeForm)
+  const { submit, fields, errorText } = useForm(sendCodeForm)
 
   const isLoading = useUnit(sendCodeFx.pending)
 
@@ -26,23 +25,18 @@ export const SendCode = () => {
 
   return (
     <Form onSubmit={handleFormSubmit} noValidate>
-      <Input
-        placeholder={t('email')}
-        id="email"
-        value={fields.email.value}
-        onChange={handleInputChange}
-        invalid={fields.email.hasError()}
-        errorMessage={t(fields.email.errorText(), { max: emailValidation.max })}
-      />
+      <Form.Item error={errorText('email')}>
+        <Input
+          placeholder={t('email')}
+          id="email"
+          value={fields.email.value}
+          onChange={handleInputChange}
+          invalid={fields.email.hasError()}
+        />
+      </Form.Item>
       <Button type="submit" theme="primary" loading={isLoading}>
         {t('getCode')}
       </Button>
     </Form>
   )
 }
-
-const Form = styled('form', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '10px',
-})

@@ -2,7 +2,6 @@ import { AxiosError } from 'axios'
 import { createEffect, createEvent, createStore, sample } from 'effector'
 import { empty, not } from 'patronum'
 import { DetailedUser } from '@/entities/user/types'
-import { internalApi } from '@/shared/api'
 
 export const appMounted = createEvent()
 export const signOutClicked = createEvent()

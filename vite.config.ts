@@ -9,7 +9,14 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  plugins: [svgr(), react()],
+  plugins: [
+    svgr(),
+    react({
+      babel: {
+        plugins: ['effector/babel-plugin'],
+      },
+    }),
+  ],
   server: {
     hmr: {
       overlay: false,

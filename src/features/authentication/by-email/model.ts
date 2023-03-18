@@ -1,4 +1,4 @@
-import { AxiosError, AxiosPromise } from 'axios'
+import { AxiosError } from 'axios'
 import { createEffect, createEvent, createStore, sample } from 'effector'
 import { createForm } from 'effector-forms'
 import * as yup from 'yup'
@@ -16,10 +16,11 @@ export const sendCodeForm = createForm({
       rules: [
         createRule<string>({
           name: 'email',
-          schema: yup.string(),
-          // .required('field.required')
-          // .email('field.email')
-          // .max(emailValidation.max, 'field.max'),
+          schema: yup
+            .string()
+            .required('field.required')
+            .email('field.email')
+            .max(emailValidation.max, 'field.max'),
         }),
       ],
     },

@@ -14,10 +14,10 @@ export const SearchBar = () => {
 }
 
 const Label = styled('label', {
-  'display': 'flex',
-  'height': '100%',
-  'borderRadius': '$secondary',
-  'position': 'relative',
+  display: 'flex',
+  height: '100%',
+  borderRadius: '$secondary',
+  position: 'relative',
 
   '& svg': {
     width: '24px',
@@ -32,14 +32,14 @@ const Label = styled('label', {
 })
 
 const Input = styled('input', {
-  'outline': '0px',
-  'width': '100%',
-  'border': 'none',
-  'backgroundColor': 'inherit',
-  'borderRadius': '8px',
-  'padding': '4px 16px',
-  'fontWeight': '400',
-  'background': '$backgroundContainerDark',
+  outline: '0px',
+  width: '100%',
+  border: 'none',
+  backgroundColor: 'inherit',
+  borderRadius: '8px',
+  padding: '4px 16px',
+  fontWeight: '400',
+  background: '$backgroundContainerDark',
 
   '&::placeholder': {
     color: '$textTertiary',

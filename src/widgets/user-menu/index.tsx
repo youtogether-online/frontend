@@ -91,9 +91,9 @@ const Actions = styled('ul', {
 })
 
 const Action = styled('li', {
-  'width': '100%',
-  'display': 'flex',
-  'gap': '5px',
+  width: '100%',
+  display: 'flex',
+  gap: '5px',
 
   '& span:hover': {
     color: '$primaryText',

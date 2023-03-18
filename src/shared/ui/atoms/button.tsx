@@ -1,39 +1,25 @@
-import { CSS } from '@stitches/react'
 import { ButtonHTMLAttributes, forwardRef, ReactNode } from 'react'
 import { styled } from '@/shared/config/stitches/stitches.config'
 import { Loader } from './loader'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'solid' | 'text' | 'outlined' | 'icon' | 'link'
-  theme?: 'primary' | 'danger' | 'success'
+  theme?: 'primary' | 'danger' | 'success' | 'warning'
   icon?: ReactNode
-  align?: 'bottomRight' | 'bottomLeft' | 'topRight' | 'topLeft'
   loading?: boolean
-  css?: CSS
   children?: ReactNode
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    {
-      variant = 'solid',
-      loading,
-      theme,
-      icon,
-      children,
-      align,
-      css,
-      ...buttonProps
-    },
+    { variant = 'solid', loading, theme, icon, children, ...buttonProps },
     ref
   ) => {
     return (
       <ButtonStyled
         ref={ref}
         variant={variant}
-        css={css}
         theme={theme}
-        align={align}
         loading={loading}
         disabled={loading}
         {...buttonProps}
@@ -47,12 +33,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 )
 
 const ButtonStyled = styled('button', {
-  'transition': 'background 200ms',
-  'outline': 'none',
-  'border': 'none',
-  'background': 'none',
-  'cursor': 'pointer',
-  'height': '36px',
+  transition: 'background 200ms',
+  outline: 'none',
+  border: 'none',
+  background: 'none',
+  cursor: 'pointer',
+  height: '36px',
 
   '& svg': {
     display: 'block',
@@ -62,7 +48,7 @@ const ButtonStyled = styled('button', {
     fontSize: '$button',
   },
 
-  'variants': {
+  variants: {
     variant: {
       solid: {
         padding: '8px 16px',
@@ -73,17 +59,17 @@ const ButtonStyled = styled('button', {
         padding: 0,
       },
       icon: {
-        'padding': '2px',
-        'borderRadius': '$full',
+        padding: '2px',
+        borderRadius: '$full',
 
         '&:hover': {
           backgroundColor: '$backgroundTextHover',
         },
       },
       text: {
-        'background': 'none',
-        'padding': '8px',
-        'borderRadius': '$tertiary',
+        background: 'none',
+        padding: '8px',
+        borderRadius: '$tertiary',
 
         '&:hover': {
           backgroundColor: '$backgroundTextHover',
@@ -112,215 +98,18 @@ const ButtonStyled = styled('button', {
       danger: {},
       success: {},
       warning: {},
-      info: {},
-    },
-    align: {
-      bottomLeft: {
-        position: 'absolute',
-        bottom: '10px',
-        left: '10px',
-      },
-      bottomRight: {
-        position: 'absolute',
-        bottom: '10px',
-        right: '10px',
-      },
-      topLeft: {
-        position: 'absolute',
-        left: '10px',
-        top: '10px',
-      },
-      topRight: {
-        position: 'absolute',
-        top: '10px',
-        right: '10px',
-      },
     },
   },
 
-  'compoundVariants': [
+  compoundVariants: [
     {
       variant: 'solid',
       theme: 'primary',
       css: {
-        'backgroundColor': '$primary',
-
+        backgroundColor: '$primary',
+        color: '$textWhite',
         '&:hover': {
           backgroundColor: '$primaryHover',
-        },
-      },
-    },
-    {
-      variant: 'solid',
-      theme: 'danger',
-      css: {
-        'backgroundColor': '$error',
-
-        '&:hover': {
-          backgroundColor: '$errorHover',
-        },
-      },
-    },
-    {
-      variant: 'solid',
-      theme: 'warning',
-      css: {
-        'backgroundColor': '$warning',
-
-        '&:hover': {
-          backgroundColor: '$warningHover',
-        },
-      },
-    },
-    {
-      variant: 'solid',
-      theme: 'success',
-      css: {
-        'backgroundColor': '$success',
-
-        '&:hover': {
-          backgroundColor: '$successHover',
-        },
-      },
-    },
-    {
-      variant: 'solid',
-      theme: 'info',
-      css: {
-        'background': '$info',
-
-        '&:hover': {
-          backgroundColor: '$infoHover',
-        },
-      },
-    },
-    {
-      variant: 'outlined',
-      theme: 'primary',
-      css: {
-        'border': '$primaryBorder',
-        'color': '$primaryText',
-        'background': '$primaryBackground',
-
-        '&:hover': {
-          backgroundColor: '$primaryBackgroundHover',
-          border: '$primaryBorderHover',
-          background: '$primaryBackgroundHover',
-        },
-      },
-    },
-    {
-      variant: 'outlined',
-      theme: 'danger',
-      css: {
-        'border': '$dangerBorder',
-        'color': '$dangerText',
-        'background': '$dangerBackground',
-
-        '&:hover': {
-          backgroundColor: '$dangerBackgroundHover',
-          border: '$dangerBorderHover',
-          background: '$dangerBackgroundHover',
-        },
-      },
-    },
-    {
-      variant: 'outlined',
-      theme: 'warning',
-      css: {
-        'border': '$warningBorder',
-        'color': '$warningText',
-        'background': '$warningBackground',
-
-        '&:hover': {
-          backgroundColor: '$warningBackgroundHover',
-          border: '$warningBorderHover',
-          background: '$warningBackgroundHover',
-        },
-      },
-    },
-    {
-      variant: 'outlined',
-      theme: 'info',
-      css: {
-        'border': '$infoBorder',
-        'color': '$infoText',
-        'background': '$infoBackground',
-
-        '&:hover': {
-          backgroundColor: '$infoBackgroundHover',
-          border: '$infoBorderHover',
-          background: '$infoBackgroundHover',
-        },
-      },
-    },
-    {
-      variant: 'outlined',
-      theme: 'success',
-      css: {
-        'border': '$successBorder',
-        'color': '$successText',
-        'background': '$successBackground',
-
-        '&:hover': {
-          backgroundColor: '$successBackgroundHover',
-          border: '$successBorderHover',
-          background: '$successBackgroundHover',
-        },
-      },
-    },
-    {
-      variant: 'text',
-      theme: 'primary',
-      css: {
-        'color': '$primaryText',
-
-        '&:hover': {
-          color: '$primaryTextHover',
-        },
-      },
-    },
-    {
-      variant: 'text',
-      theme: 'danger',
-      css: {
-        'color': '$dangerText',
-
-        '&:hover': {
-          color: '$dangerTextHover',
-        },
-      },
-    },
-    {
-      variant: 'text',
-      theme: 'success',
-      css: {
-        'color': '$successText',
-
-        '&:hover': {
-          color: '$successTextHover',
-        },
-      },
-    },
-    {
-      variant: 'text',
-      theme: 'info',
-      css: {
-        'color': '$infoText',
-
-        '&:hover': {
-          color: '$infoTextHover',
-        },
-      },
-    },
-    {
-      variant: 'text',
-      theme: 'warning',
-      css: {
-        'color': '$warningText',
-
-        '&:hover': {
-          color: '$warningTextHover',
         },
       },
     },

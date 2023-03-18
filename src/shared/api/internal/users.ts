@@ -5,5 +5,5 @@ import { apiInstance } from './base'
 const BASE_URL = '/users'
 
 export const getSessionData = (): AxiosPromise<DetailedUser> => {
-  return apiInstance.get(`${BASE_URL}/1`)
+  return apiInstance.get(`${BASE_URL}/`)
 }

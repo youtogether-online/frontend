@@ -6,19 +6,19 @@ export const globalStyles = globalCss({
     padding: 0,
     boxSizing: 'inherit',
   },
-  'html': {
+  html: {
     boxSizing: 'border-box',
   },
-  'body': {
+  body: {
     fontWeight: 400,
     fontFamily: '$openSans',
     background: 'linear-gradient(180deg, #fff 6.1%, $backgroundLayout 68.7%);',
     color: '$textPrimary',
   },
-  'ul': {
+  ul: {
     listStyle: 'none',
   },
-  'button': {
+  button: {
     outline: 'none',
     background: 'none',
     border: 'none',

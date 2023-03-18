@@ -1,6 +1,6 @@
 import { useUnit } from 'effector-react'
 import { useTranslation } from 'react-i18next'
-import { $isAuthenticated, $session } from '@/entities/session'
+import { $isAuthenticated, $session, signOutClicked } from '@/entities/session'
 import { SearchBar } from '@/features/search-bar'
 import { styled } from '@/shared/config/stitches/stitches.config'
 import { routes } from '@/shared/routes'
@@ -28,7 +28,11 @@ export const Header = ({
 }: HeaderProps) => {
   const { t } = useTranslation()
 
-  const [isAuthenticated, session] = useUnit([$isAuthenticated, $session])
+  const [isAuthenticated, session, clickSignOut] = useUnit([
+    $isAuthenticated,
+    $session,
+    signOutClicked,
+  ])
 
   return (
     <Root>
@@ -111,6 +115,12 @@ const HoverMenu = styled('div', {
   transform: 'scale(0)',
   transformOrigin: '90% 10%',
   transition: 'opacity 0.3s, transform 0.3s',
+
+  '&:focus-within': {
+    opacity: 1,
+    transform: 'scale(1)',
+    transition: 'opacity 0.3s, transform 0.3s',
+  },
 })
 
 const User = styled('div', {

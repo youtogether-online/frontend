@@ -8,9 +8,8 @@ import {
   returnToPrevStepClicked,
 } from '@/features/authentication/by-email'
 import { styled } from '@/shared/config/stitches/stitches.config'
-import { Button } from '@/shared/ui/atoms/button'
-import { Input } from '@/shared/ui/atoms/input'
-import { ReactComponent as ArrowLeft } from '@/shared/ui/icons/arrowLeft.svg'
+import { IconArrowLeft, Input } from '@/shared/ui'
+import { Button } from '@/shared/ui/atoms'
 
 export const CheckCode = () => {
   const { t } = useTranslation()
@@ -34,14 +33,13 @@ export const CheckCode = () => {
         <Button
           variant="icon"
           onClick={returnToPreviousStep}
-          icon={<ArrowLeft />}
+          icon={<IconArrowLeft />}
         />
         <Form onSubmit={handleFormSubmit} noValidate>
           <Input
             placeholder={t('enterCodeFromEmail')}
             id="verification-code"
             onChange={handleInputChange}
-            errorMessage={t(fields.code.errorText())}
             invalid={fields.code.hasError()}
           />
         </Form>

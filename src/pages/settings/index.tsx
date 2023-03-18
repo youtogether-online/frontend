@@ -2,8 +2,7 @@ import { useUnit } from 'effector-react'
 import { useTranslation } from 'react-i18next'
 import { $session } from '@/entities/session'
 import { styled } from '@/shared/config/stitches/stitches.config'
-import { Input } from '@/shared/ui/atoms/input'
-import { Text } from '@/shared/ui/atoms/text'
+import { Input, Text } from '@/shared/ui'
 
 export const SettingsPage = () => {
   const { t } = useTranslation()
