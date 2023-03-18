@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  backend:
+    image: wtkeqrf0/you_together-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+      - postgres
+  postgres:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Ubythfkbcbvec2
+      - POSTGRES_DB=you_together
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis/redis-stack
+    ports:
+      - "6379:6379"
+  proxy:
+    image: frkam/you-together-proxy
+    ports:
+      - "80:80"

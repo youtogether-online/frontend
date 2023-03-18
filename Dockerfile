@@ -1,8 +1,10 @@
-FROM node:16-alpine
-WORKDIR /app
+FROM node
+
+WORKDIR /frontend
+
+COPY package.json .
+RUN npm i
+
 COPY . .
-RUN npm ci
-RUN npm run build
-ENV NODE_ENV production
 EXPOSE 5173
-CMD ["npx", "serve", "build"]
+CMD ["npm", "run", "dev"]
