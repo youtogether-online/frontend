@@ -1,15 +1,34 @@
 const {
-    configure,
-    presets
+  configure,
+  presets
 } = require("eslint-kit");
 
 module.exports = configure({
-    presets: [
-        presets.imports(),
-        presets.node(),
-        presets.prettier(),
-        presets.typescript(),
-        presets.react(),
-        presets.effector()
-    ]
+  presets: [
+    presets.imports({
+        alias:
+          {
+            root: "./src",
+            paths: {
+              "@": "./"
+            }
+          }
+      }
+    ),
+    presets.node(),
+    presets.prettier({
+      semi: false,
+      singleQuote: true,
+      tabWidth: 2,
+      quoteProps: "consistent"
+    }),
+    presets.typescript(),
+    presets.react({
+      version: "detect",
+      newJSXTransform: true
+    }),
+    presets.effector({
+      future: true
+    })
+  ]
 });
