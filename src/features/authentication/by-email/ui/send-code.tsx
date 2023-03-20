@@ -1,5 +1,5 @@
 import { useForm } from 'effector-forms'
-import { useUnit } from 'effector-react/effector-react.umd'
+import { useUnit } from 'effector-react'
 import { ChangeEvent, FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { sendCodeForm, sendCodeFx } from '@/features/authentication/by-email'

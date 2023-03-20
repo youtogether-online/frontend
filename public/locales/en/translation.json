@@ -16,7 +16,7 @@
   "password": "Password",
   "signInWithPassword": "Sign in with password",
   "signInWithEmail": "Sign in with email",
-  "field.min": "This field must contain at least {{min}} symbols",
+  "field.min": "This field must contain at least {{min}} characters",
   "field.max": "This field must contain no more than {{max}} characters",
   "enterCodeFromEmail": "Code from email",
   "send": "Send",

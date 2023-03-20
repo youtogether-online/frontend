@@ -23,13 +23,13 @@ export const InternalInput = ({
 }
 
 const InputStyled = styled('input', {
-  outline: '0px',
-  height: '36px',
-  border: '0px',
-  padding: '6px 12px',
-  borderRadius: 'inherit',
-  width: '100%',
-  backgroundColor: 'inherit',
+  'outline': '0px',
+  'height': '36px',
+  'border': '0px',
+  'padding': '6px 12px',
+  'borderRadius': 'inherit',
+  'width': '100%',
+  'backgroundColor': 'inherit',
 
   '&:placeholder': {
     color: '$textSecondary',
@@ -37,21 +37,21 @@ const InputStyled = styled('input', {
 })
 
 const Root = styled('span', {
-  border: '1px solid $borderSecondary',
-  backgroundColor: '$backgroundInput',
-  borderRadius: '$tertiary',
-  display: 'flex',
+  'border': '1px solid $borderSecondary',
+  'backgroundColor': '$backgroundInput',
+  'borderRadius': '$tertiary',
+  'display': 'flex',
 
   '&:focus-within': {
     borderColor: '$primaryBorder',
   },
 
-  variants: {
+  'variants': {
     invalid: {
       true: {
-        background: '$errorBackground',
-        borderColor: '$errorBorder',
-        color: '$errorText',
+        'background': '$errorBackground',
+        'borderColor': '$errorBorder',
+        'color': '$errorText',
 
         '&:focus-within': {
           borderColor: '$errorBorder',

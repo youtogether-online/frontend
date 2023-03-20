@@ -33,12 +33,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 )
 
 const ButtonStyled = styled('button', {
-  transition: 'background 200ms',
-  outline: 'none',
-  border: 'none',
-  background: 'none',
-  cursor: 'pointer',
-  height: '36px',
+  'transition': 'background 200ms',
+  'outline': 'none',
+  'border': 'none',
+  'background': 'none',
+  'cursor': 'pointer',
+  'height': '36px',
 
   '& svg': {
     display: 'block',
@@ -48,7 +48,7 @@ const ButtonStyled = styled('button', {
     fontSize: '$button',
   },
 
-  variants: {
+  'variants': {
     variant: {
       solid: {
         padding: '8px 16px',
@@ -59,17 +59,17 @@ const ButtonStyled = styled('button', {
         padding: 0,
       },
       icon: {
-        padding: '2px',
-        borderRadius: '$full',
+        'padding': '2px',
+        'borderRadius': '$full',
 
         '&:hover': {
           backgroundColor: '$backgroundTextHover',
         },
       },
       text: {
-        background: 'none',
-        padding: '8px',
-        borderRadius: '$tertiary',
+        'background': 'none',
+        'padding': '8px',
+        'borderRadius': '$tertiary',
 
         '&:hover': {
           backgroundColor: '$backgroundTextHover',
@@ -101,13 +101,13 @@ const ButtonStyled = styled('button', {
     },
   },
 
-  compoundVariants: [
+  'compoundVariants': [
     {
       variant: 'solid',
       theme: 'primary',
       css: {
-        backgroundColor: '$primary',
-        color: '$textWhite',
+        'backgroundColor': '$primary',
+        'color': '$textWhite',
         '&:hover': {
           backgroundColor: '$primaryHover',
         },

@@ -1,6 +1,5 @@
-import { createRoute } from 'atomic-router'
 import { styled } from '@/shared/config/stitches/stitches.config'
-import { Text } from '@/shared/ui/atoms/text'
+import { Text } from '@/shared/ui'
 
 export const HomePage = () => {
   return (
