@@ -4,8 +4,6 @@ import { useEffect } from 'react'
 import { appMounted } from '@/entities/session'
 import { Pages } from '@/pages'
 import { styled } from '@/shared/config/stitches/stitches.config'
-import { Footer } from '@/widgets/footer'
-import { Header } from '@/widgets/header'
 import { globalStyles } from './global-styles'
 import { Provider } from './providers'
 

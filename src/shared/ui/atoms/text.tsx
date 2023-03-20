@@ -117,7 +117,6 @@ const TextStyled = styled('p', {
       caption: {
         fontSize: '$caption',
         fontWeight: '$normal',
-        color: '$textSecondary',
       },
       subtitle1: {
         fontSize: '$subtitle1',

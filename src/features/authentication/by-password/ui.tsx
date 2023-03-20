@@ -3,9 +3,7 @@ import { FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { signInByPasswordForm } from '@/features/authentication/by-password'
 import { styled } from '@/shared/config/stitches/stitches.config'
-import { passwordValidation } from '@/shared/config/validation'
-import { Button } from '@/shared/ui/atoms/button'
-import { Input } from '@/shared/ui/atoms/input'
+import { Button, Input } from '@/shared/ui'
 
 export const SignInByPassword = () => {
   const { t } = useTranslation()

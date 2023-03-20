@@ -3,9 +3,9 @@ import { ReactNode } from 'react'
 import { css, styled } from '@/shared/config/stitches/stitches.config'
 
 const navLinkStyles = css({
-  color: '$textPrimary',
-  textDecoration: 'none',
-  transition: 'color 0.1s',
+  'color': '$textPrimary',
+  'textDecoration': 'none',
+  'transition': 'color 0.1s',
 
   '&:hover': {
     color: '$primaryTextHover',

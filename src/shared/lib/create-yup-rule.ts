@@ -1,5 +1,17 @@
 import { Rule } from 'effector-forms'
+import i18next from 'i18next'
 import * as yup from 'yup'
+
+interface ValidationMessage {
+  key: string
+  values: {
+    [key: string]: number
+  }
+}
+
+interface ValidationError {
+  message: ValidationMessage
+}
 
 export function createRule<V, T = any>({
   schema,
@@ -18,10 +30,12 @@ export function createRule<V, T = any>({
           value: v,
         }
       } catch (error) {
+        const { message } = error as ValidationError
+
         return {
           isValid: false,
           value: v,
-          errorText: (error as Error).message,
+          errorText: i18next.t(message.key, message.values),
         }
       }
     },

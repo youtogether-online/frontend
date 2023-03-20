@@ -5,7 +5,6 @@ import * as yup from 'yup'
 import { signInClicked } from '@/entities/session/model/sign-in'
 import { internalApi } from '@/shared/api'
 import { sendCode } from '@/shared/api/internal/auth'
-import { emailValidation } from '@/shared/config/validation'
 import { createRule } from '@/shared/lib/create-yup-rule'
 
 export const sendCodeForm = createForm({
@@ -18,9 +17,8 @@ export const sendCodeForm = createForm({
           name: 'email',
           schema: yup
             .string()
-            .required('field.required')
-            .email('field.email')
-            .max(emailValidation.max, 'field.max'),
+            .email({ key: 'field.email' })
+            .required({ key: 'field.required' }),
         }),
       ],
     },
