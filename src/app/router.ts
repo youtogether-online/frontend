@@ -1,10 +1,11 @@
 import { createHistoryRouter } from 'atomic-router'
 import { createBrowserHistory } from 'history'
 import { routesMap } from '@/pages'
+import { controls } from '@/shared/routes'
 
-export const history = createBrowserHistory()
 export const router = createHistoryRouter({
+  controls,
   routes: routesMap,
 })
 
-router.setHistory(history)
+router.setHistory(createBrowserHistory())

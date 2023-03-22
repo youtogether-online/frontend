@@ -1,11 +1,11 @@
 import { styled } from '@/shared/config/stitches/stitches.config'
-import { ReactComponent as Logo } from '@/widgets/footer/ui/vertical-logo.svg'
+import { IconLogoVertical } from '@/shared/ui'
 
 export const Footer = () => {
   return (
     <InnerRoot>
       <Root>
-        <Logo />
+        <IconLogoVertical color="#fff" />
       </Root>
     </InnerRoot>
   )

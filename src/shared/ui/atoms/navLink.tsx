@@ -1,3 +1,4 @@
+import { RouteParams } from 'atomic-router'
 import { type LinkProps, Link } from 'atomic-router-react'
 import { ReactNode } from 'react'
 import { css, styled } from '@/shared/config/stitches/stitches.config'

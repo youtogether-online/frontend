@@ -1,4 +1,4 @@
-import { createRoute } from 'atomic-router'
+import { createRoute, createRouterControls } from 'atomic-router'
 
 export const routes = {
   home: createRoute(),
@@ -8,3 +8,5 @@ export const routes = {
   signIn: createRoute(),
   settings: createRoute(),
 }
+
+export const controls = createRouterControls()

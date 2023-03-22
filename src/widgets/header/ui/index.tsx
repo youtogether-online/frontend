@@ -1,13 +1,12 @@
 import { useUnit } from 'effector-react'
 import { useTranslation } from 'react-i18next'
-import { $isAuthenticated, $session, signOutClicked } from '@/entities/session'
+import { $isAuthorized, $session, signOutClicked } from '@/entities/session'
 import { SearchBar } from '@/features/search-bar'
 import { styled } from '@/shared/config/stitches/stitches.config'
 import { routes } from '@/shared/routes'
-import { Avatar, Button, NavLink } from '@/shared/ui'
+import { Avatar, Button, IconLogoHorizontal, NavLink } from '@/shared/ui'
 import { SignIn } from '@/widgets/sign-in'
 import { UserMenu } from '@/widgets/user-menu'
-import { ReactComponent as Logo } from './horizontal-logo.svg'
 import { Navbar } from './navbar'
 import { Subheader } from './subheader'
 
@@ -28,8 +27,8 @@ export const Header = ({
 }: HeaderProps) => {
   const { t } = useTranslation()
 
-  const [isAuthenticated, session, clickSignOut] = useUnit([
-    $isAuthenticated,
+  const [isAuthorized, session] = useUnit([
+    $isAuthorized,
     $session,
     signOutClicked,
   ])
@@ -39,7 +38,7 @@ export const Header = ({
       {subheader && <Subheader />}
       <Main>
         <LinkLogo to={routes.home} centerLogo={centerLogo}>
-          <Logo />
+          <IconLogoHorizontal />
         </LinkLogo>
         {search && (
           <SearchBarContainer>
@@ -48,17 +47,17 @@ export const Header = ({
         )}
         {user && (
           <User>
-            {!isAuthenticated && <Button variant="text">{t('signIn')}</Button>}
-            {isAuthenticated && session && (
+            {!isAuthorized && <Button variant="text">{t('signIn')}</Button>}
+            {isAuthorized && session && (
               <Avatar
                 url={session.avatar}
-                alt={session.username}
+                alt={session.username.slice(0, 2)}
                 fallback={session.username.slice(0, 2)}
               />
             )}
             <HoverMenu>
-              {!isAuthenticated && <SignIn />}
-              {isAuthenticated && <UserMenu />}
+              {!isAuthorized && <SignIn />}
+              {isAuthorized && <UserMenu />}
             </HoverMenu>
           </User>
         )}

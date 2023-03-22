@@ -1,7 +1,7 @@
 import '@/shared/config/i18n'
 import { useUnit } from 'effector-react'
 import { useEffect } from 'react'
-import { appMounted } from '@/entities/session'
+import { appStarted } from '@/entities/session'
 import { Pages } from '@/pages'
 import { styled } from '@/shared/config/stitches/stitches.config'
 import { globalStyles } from './global-styles'
@@ -10,10 +10,10 @@ import { Provider } from './providers'
 export const App = () => {
   globalStyles()
 
-  const handleAppMount = useUnit(appMounted)
+  const startApp = useUnit(appStarted)
 
   useEffect(() => {
-    handleAppMount()
+    startApp()
   }, [])
 
   return (

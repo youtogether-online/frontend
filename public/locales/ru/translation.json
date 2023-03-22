@@ -15,7 +15,7 @@
   "field.email": "Это поле должно содержать email в формате <имя>@<доменное имя>",
   "password": "Пароль",
   "signInWithPassword": "Войти с паролем",
-  "signInWithEmail": "Войти по почте",
+  "signInByEmail": "Войти по почте",
   "field.min": "Это поле должно содержать минимум {{min}} символов",
   "field.max": "Это поле не должно содержать более {{max}} символов",
   "enterCodeFromEmail": "Код из письма",
@@ -30,5 +30,6 @@
   "language": "Язык",
   "username": "Имя пользователя",
   "firstName": "Имя",
-  "lastName": "Фамилия"
+  "lastName": "Фамилия",
+  "or": "или"
 }

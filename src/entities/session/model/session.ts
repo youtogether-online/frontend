@@ -1,33 +1,37 @@
 import { AxiosError } from 'axios'
 import { createEffect, createEvent, createStore, sample } from 'effector'
-import { empty, not } from 'patronum'
-import { DetailedUser } from '@/entities/user/types'
+import { and, debug, empty, not, or } from 'patronum'
+import { DetailedUser } from '@/entities/user'
+import { internalApi } from '@/shared/api'
+import { signOutFx } from './sign-out'
 
-export const appMounted = createEvent()
-export const signOutClicked = createEvent()
-
-export const getSessionFx = createEffect<void, DetailedUser, AxiosError>()
-// async () => {
-//   return {
-//     username: 'frkam',
-//     biography: 'Cookie`s lover',
-//     userRole: 'USER',
-//     email: 'g**p@gmail.com',
-//     language: 'EN',
-//     theme: 'SYSTEM',
-//   }
-// }
-export const $session = createStore<DetailedUser | null>(null).reset(
-  signOutClicked
+export const appStarted = createEvent()
+export const getSessionFx = createEffect<void, DetailedUser, AxiosError>(
+  async () => {
+    const { data } = await internalApi.users.getSessionData()
+    return data
+  }
 )
-export const $isAuthenticated = not(empty($session))
+
+export const $session = createStore<DetailedUser | null>(null).reset(
+  signOutFx.done
+)
+export const $isAuthorized = not(empty($session))
+export const $sessionLoaded = createStore(false)
 
 sample({
-  clock: appMounted,
+  clock: appStarted,
+  filter: and(not(getSessionFx.pending), not($sessionLoaded)),
   target: getSessionFx,
 })
 
 sample({
   clock: getSessionFx.doneData,
   target: $session,
+})
+
+sample({
+  clock: getSessionFx.finally,
+  fn: () => true,
+  target: $sessionLoaded,
 })

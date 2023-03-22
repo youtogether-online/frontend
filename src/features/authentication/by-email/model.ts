@@ -4,8 +4,8 @@ import { createForm } from 'effector-forms'
 import * as yup from 'yup'
 import { signInClicked } from '@/entities/session/model/sign-in'
 import { internalApi } from '@/shared/api'
-import { sendCode } from '@/shared/api/internal/auth'
 import { createRule } from '@/shared/lib/create-yup-rule'
+import { controls, routes } from '@/shared/routes'
 
 export const sendCodeForm = createForm({
   validateOn: ['submit'],
@@ -45,8 +45,8 @@ type SignInSteps = 'sendCode' | 'checkCode'
 export const returnToPrevStepClicked = createEvent()
 
 export const sendCodeFx = createEffect<{ email: string }, void, AxiosError>(
-  async ({ email }: { email: string }) => {
-    await internalApi.auth.sendCode({ email })
+  async ({ email }) => {
+    await internalApi.auth.signInSendCode({ email })
   }
 )
 
@@ -54,8 +54,8 @@ export const checkCodeFx = createEffect<
   { email: string; code: string },
   void,
   AxiosError
->(async ({ email, code }: { email: string; code: string }) => {
-  await internalApi.auth.checkCode({ email, code })
+>(async ({ email, code }) => {
+  await internalApi.auth.signInCheckCode({ email, code, device: 'Microsoft' })
 })
 
 export const $currentSignInStep = createStore<SignInSteps>('sendCode')
@@ -79,4 +79,10 @@ sample({
 sample({
   clock: checkCodeFx.done,
   target: signInClicked,
+})
+
+sample({
+  clock: checkCodeFx.done,
+  filter: routes.signIn.$isOpened,
+  target: controls.back,
 })

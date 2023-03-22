@@ -3,9 +3,7 @@ import { useUnit } from 'effector-react'
 import { ChangeEvent, FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { sendCodeForm, sendCodeFx } from '@/features/authentication/by-email'
-import { styled } from '@/shared/config/stitches/stitches.config'
-import { Form, Input } from '@/shared/ui'
-import { Button } from '@/shared/ui/atoms/button'
+import { Button, Form, Input } from '@/shared/ui'
 
 export const SendCode = () => {
   const { t } = useTranslation()

@@ -19,7 +19,7 @@ export const {
       textWhite: '#fff',
       borderPrimary: 'rgba(0, 0, 0, 8%)',
       textQuaternary: '#ffffff',
-      backgroundLayout: '#f7f7f7',
+      backgroundLayout: 'rgba(190, 190, 190, 20%)',
       backgroundInput: '#F6f6f6',
       backgroundContainer: '#ffffff',
       backgroundContainerDark: 'rgba(0, 0, 0, 8%)',
@@ -100,7 +100,9 @@ export const {
       extraBold: 800,
       strong: 900,
     },
-    shadows: {},
+    shadows: {
+      container: '0px 0px 4px rgba(0, 0, 0, 0.08)',
+    },
     radii: {
       tertiary: '8px',
       secondary: '10px',

@@ -1,14 +1,5 @@
-import {
-  chainRoute,
-  redirect,
-  RouteInstance,
-  RouteParams,
-  RouteParamsAndQuery,
-} from 'atomic-router'
 import { createRoutesView } from 'atomic-router-react'
-import { createEvent, sample } from 'effector'
-import { not } from 'patronum'
-import { $isAuthenticated } from '@/entities/session'
+import { chainAnonymous, chainAuthorized } from '@/entities/session'
 import { CatalogPage } from '@/pages/catalog'
 import { FriendsPage } from '@/pages/friends'
 import { HomePage } from '@/pages/home'
@@ -19,32 +10,6 @@ import { SignInPage } from '@/pages/sign-in'
 import { routes } from '@/shared/routes'
 import { MainLayout } from '@/widgets/layouts/main-layout'
 import { SignInLayout } from '@/widgets/layouts/sign-in-layout'
-
-const chainAuthorized = <Params extends RouteParams>(
-  route: RouteInstance<Params>
-) => {
-  const sessionCheckStarted = createEvent<RouteParamsAndQuery<Params>>()
-
-  const alreadyAuthorized = sample({
-    clock: sessionCheckStarted,
-    filter: $isAuthenticated,
-  })
-
-  sample({
-    clock: sessionCheckStarted,
-    filter: not($isAuthenticated),
-    target: redirect({
-      route: routes.signIn,
-      replace: true,
-    }),
-  })
-
-  return chainRoute({
-    route,
-    beforeOpen: sessionCheckStarted,
-    openOn: alreadyAuthorized,
-  })
-}
 
 export const routesMap = [
   {
@@ -57,7 +22,7 @@ export const routesMap = [
   },
   {
     path: '/settings',
-    route: chainAuthorized(routes.settings),
+    route: routes.settings,
   },
   {
     path: '/sign-in',
@@ -86,12 +51,15 @@ export const Pages = createRoutesView({
       layout: MainLayout,
     },
     {
-      route: chainAuthorized(routes.settings),
+      route: chainAuthorized({
+        route: routes.settings,
+        replaceWith: routes.signIn,
+      }),
       view: SettingsPage,
       layout: MainLayout,
     },
     {
-      route: routes.signIn,
+      route: chainAnonymous(routes.signIn),
       view: SignInPage,
       layout: SignInLayout,
     },

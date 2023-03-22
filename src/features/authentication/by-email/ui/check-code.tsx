@@ -8,13 +8,13 @@ import {
   returnToPrevStepClicked,
 } from '@/features/authentication/by-email'
 import { styled } from '@/shared/config/stitches/stitches.config'
-import { IconArrowLeft, Input } from '@/shared/ui'
+import { Form, IconArrowLeft, Input } from '@/shared/ui'
 import { Button } from '@/shared/ui/atoms'
 
 export const CheckCode = () => {
   const { t } = useTranslation()
 
-  const { submit, fields } = useForm(checkCodeForm)
+  const { submit, fields, errorText } = useForm(checkCodeForm)
   const returnToPreviousStep = useUnit(returnToPrevStepClicked)
   const [isLoading] = useUnit([checkCodeFx.pending])
 
@@ -36,12 +36,14 @@ export const CheckCode = () => {
           icon={<IconArrowLeft />}
         />
         <Form onSubmit={handleFormSubmit} noValidate>
-          <Input
-            placeholder={t('enterCodeFromEmail')}
-            id="verification-code"
-            onChange={handleInputChange}
-            invalid={fields.code.hasError()}
-          />
+          <Form.Item error={errorText('code')}>
+            <Input
+              placeholder={t('enterCodeFromEmail')}
+              id="verification-code"
+              onChange={handleInputChange}
+              invalid={fields.code.hasError()}
+            />
+          </Form.Item>
         </Form>
       </InputContainer>
       <Button
@@ -56,14 +58,14 @@ export const CheckCode = () => {
   )
 }
 
-const Form = styled('form', {
-  width: '100%',
-})
-
 const Root = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '10px',
+  'display': 'flex',
+  'flexDirection': 'column',
+  'gap': '10px',
+
+  '& form': {
+    flex: 1,
+  },
 })
 
 const InputContainer = styled('div', {

@@ -14,6 +14,8 @@ type TypographyVariant =
   | 'body2'
   | 'caption'
   | 'keyboard'
+  | 'button'
+  | 'link'
 
 type TextHTMLElements =
   | 'h1'
@@ -112,6 +114,14 @@ const TextStyled = styled('p', {
       },
       body2: {
         fontSize: '$body2',
+        fontWeight: '$normal',
+      },
+      button: {
+        fontSize: '$button',
+        fontWeight: '$normal',
+      },
+      link: {
+        fontSize: '$link',
         fontWeight: '$normal',
       },
       caption: {

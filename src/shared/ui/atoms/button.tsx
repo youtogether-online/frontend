@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes, forwardRef, ReactNode } from 'react'
 import { styled } from '@/shared/config/stitches/stitches.config'
+import { Text } from '@/shared/ui'
 import { Loader } from './loader'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -25,7 +26,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...buttonProps}
       >
         {!loading && icon}
-        {!loading && children && <span>{children}</span>}
+        {!loading && children && <Text variant="button">{children}</Text>}
         {loading && <Loader />}
       </ButtonStyled>
     )
@@ -39,10 +40,7 @@ const ButtonStyled = styled('button', {
   'background': 'none',
   'cursor': 'pointer',
   'height': '36px',
-
-  '& svg': {
-    display: 'block',
-  },
+  'position': 'relative',
 
   '& span': {
     fontSize: '$button',
@@ -76,8 +74,20 @@ const ButtonStyled = styled('button', {
         },
       },
       outlined: {
-        borderRadius: '$tertiary',
-        border: '1px solid $borderPrimary',
+        'borderRadius': '$tertiary',
+        'border': '1px solid $borderPrimary',
+
+        '&:hover': {
+          backgroundColor: '$backgroundInput',
+        },
+
+        '& svg': {
+          display: 'block',
+          position: 'absolute',
+          left: '10px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+        },
       },
     },
     disabled: {

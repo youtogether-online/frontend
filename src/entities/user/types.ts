@@ -5,6 +5,7 @@ export interface DetailedUser {
   biography?: string
   avatar?: string
   userRole: 'USER' | 'ADMIN'
+  isEmailVerifies: boolean
   email?: string
   language?: 'EN' | 'RU'
   theme?: themes

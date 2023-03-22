@@ -15,7 +15,7 @@
   "field.email": "This field should contain email in <name>@<domain> format",
   "password": "Password",
   "signInWithPassword": "Sign in with password",
-  "signInWithEmail": "Sign in with email",
+  "signInByEmail": "Sign in by email",
   "field.min": "This field must contain at least {{min}} characters",
   "field.max": "This field must contain no more than {{max}} characters",
   "enterCodeFromEmail": "Code from email",
@@ -30,5 +30,6 @@
   "language": "Language",
   "username": "Username",
   "firstName": "First name",
-  "lastName": "Last name"
+  "lastName": "Last name",
+  "or": "or"
 }
