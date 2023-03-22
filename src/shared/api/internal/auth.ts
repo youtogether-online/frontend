@@ -22,9 +22,7 @@ interface SignInCheckCodeParams {
 export const signInCheckCode = (
   params: SignInCheckCodeParams
 ): AxiosPromise<void> => {
-  return apiInstance.post(`${BASE_URL}/sign-in-check-code`, {
-    params,
-  })
+  return apiInstance.post(`${BASE_URL}/sign-in-check-code`, params)
 }
 
 interface SignInWithPasswordParams {
@@ -36,9 +34,7 @@ interface SignInWithPasswordParams {
 export const signInWithPassword = (
   params: SignInWithPasswordParams
 ): AxiosPromise<void> => {
-  return apiInstance.post(`${BASE_URL}/sign-in-with-password`, {
-    ...params,
-  })
+  return apiInstance.post(`${BASE_URL}/sign-in-with-password`, params)
 }
 
 export const signOut = (): AxiosPromise<void> => {

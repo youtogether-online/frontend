@@ -1,13 +1,17 @@
+import { allSettled, fork, sample } from 'effector'
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+import ReactDOM, { createRoot } from 'react-dom/client'
+import { getSessionFx } from '@/entities/session'
 import { App } from './app'
 
-const root = document.querySelector('#root')
+const root = createRoot(document.querySelector('#root')!)
 
-if (root !== null) {
-  ReactDOM.createRoot(root).render(
+const scope = fork()
+
+allSettled(getSessionFx, { scope }).then(() =>
+  root.render(
     <React.StrictMode>
       <App />
     </React.StrictMode>
   )
-}
+)

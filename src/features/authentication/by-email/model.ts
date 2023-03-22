@@ -5,6 +5,7 @@ import * as yup from 'yup'
 import { signInClicked } from '@/entities/session/model/sign-in'
 import { internalApi } from '@/shared/api'
 import { createRule } from '@/shared/lib/create-yup-rule'
+import { getUserDeviceData } from '@/shared/lib/get-user-device-data'
 import { controls, routes } from '@/shared/routes'
 
 export const sendCodeForm = createForm({
@@ -55,7 +56,11 @@ export const checkCodeFx = createEffect<
   void,
   AxiosError
 >(async ({ email, code }) => {
-  await internalApi.auth.signInCheckCode({ email, code, device: 'Microsoft' })
+  await internalApi.auth.signInCheckCode({
+    email,
+    code,
+    device: getUserDeviceData(),
+  })
 })
 
 export const $currentSignInStep = createStore<SignInSteps>('sendCode')
@@ -79,10 +84,4 @@ sample({
 sample({
   clock: checkCodeFx.done,
   target: signInClicked,
-})
-
-sample({
-  clock: checkCodeFx.done,
-  filter: routes.signIn.$isOpened,
-  target: controls.back,
 })

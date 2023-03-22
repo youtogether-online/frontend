@@ -6,23 +6,41 @@ import {
   RouteParamsAndQuery,
 } from 'atomic-router'
 import { createEvent, sample } from 'effector'
-import { not } from 'patronum'
-import { $isAuthorized } from '@/entities/session'
+import { and, debug, not } from 'patronum'
+import { $isAuthorized, $sessionLoaded, getSessionFx } from '@/entities/session'
+import { controls } from '@/shared/routes'
 
 export const chainAnonymous = <Params extends RouteParams>(
-  route: RouteInstance<Params>,
-  replaceWith?: RouteInstance<Params>
+  route: RouteInstance<Params>
 ) => {
   const sessionCheckStarted = createEvent<RouteParamsAndQuery<Params>>()
 
+  sample({
+    clock: sessionCheckStarted,
+    filter: and(not(getSessionFx.pending), not($sessionLoaded)),
+    target: getSessionFx,
+  })
+
+  sample({
+    clock: sessionCheckStarted,
+    filter: and($isAuthorized, $sessionLoaded),
+    target: controls.back,
+  })
+
   const alreadyAnonymous = sample({
     clock: sessionCheckStarted,
-    filter: not($isAuthorized),
+    filter: and(not($isAuthorized), not(getSessionFx.pending)),
+  })
+
+  sample({
+    clock: getSessionFx.done,
+    filter: route.$isOpened,
+    target: controls.back,
   })
 
   return chainRoute({
     route,
     beforeOpen: sessionCheckStarted,
-    openOn: alreadyAnonymous,
+    openOn: [alreadyAnonymous, getSessionFx.fail],
   })
 }

@@ -41,7 +41,7 @@ export const chainAuthorized = <Params extends RouteParams>({
 
     sample({
       clock: getSessionFx.fail,
-      filter: and(route.$isOpened),
+      filter: route.$isOpened,
       target: redirect({
         route: routes.signIn,
       }),
