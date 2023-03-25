@@ -1,13 +1,23 @@
+import { modelView } from 'effector-factorio'
 import { useForm } from 'effector-forms'
-import { FormEvent } from 'react'
+import { useUnit } from 'effector-react/effector-react.umd'
+import { FormEvent, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { signInByPasswordForm } from '@/features/authentication/by-password'
 import { Button, Form, Input } from '@/shared/ui'
+import { createByPasswordModel } from './model'
 
-export const SignInByPassword = () => {
+export const SignInByPassword = modelView(createByPasswordModel, () => {
   const { t } = useTranslation()
 
-  const { submit, fields, errorText } = useForm(signInByPasswordForm)
+  const byPasswordModel = createByPasswordModel.useModel()
+
+  const { submit, fields, errorText } = useForm(
+    byPasswordModel.signInByPasswordForm
+  )
+  const formStatusError = useUnit(
+    byPasswordModel.$signInByPasswordFormStatusError
+  )
+  const isLoading = useUnit(byPasswordModel.signInByPasswordFx.pending)
 
   const handleGetCode = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -15,7 +25,8 @@ export const SignInByPassword = () => {
   }
 
   return (
-    <Form onSubmit={handleGetCode} noValidate>
+    <Form onSubmit={handleGetCode}>
+      {formStatusError && <Form.Status error={formStatusError} />}
       <Form.Item error={errorText('email')}>
         <Input
           placeholder={t('email')}
@@ -23,23 +34,20 @@ export const SignInByPassword = () => {
           value={fields.email.value}
           autoComplete="email"
           onChange={(event) => fields.email.onChange(event.target.value)}
-          invalid={fields.email.hasError()}
+          invalid={fields.email.hasError() || Boolean(formStatusError)}
         />
       </Form.Item>
-      <Form.Item error={errorText('email')}>
-        <Input
+      <Form.Item error={errorText('password')}>
+        <Input.Password
           placeholder={t('password')}
-          type="password"
-          id="current-password"
-          autoComplete="current-password"
           value={fields.password.value}
           onChange={(event) => fields.password.onChange(event.target.value)}
-          invalid={fields.password.hasError()}
+          invalid={fields.password.hasError() || Boolean(formStatusError)}
         />
       </Form.Item>
-      <Button type="submit" theme="primary">
+      <Button type="submit" theme="primary" loading={isLoading}>
         {t('signIn')}
       </Button>
     </Form>
   )
-}
+})

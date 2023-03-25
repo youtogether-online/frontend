@@ -8,4 +8,6 @@ export const router = createHistoryRouter({
   routes: routesMap,
 })
 
-router.setHistory(createBrowserHistory())
+const history = createBrowserHistory()
+
+router.setHistory(history)

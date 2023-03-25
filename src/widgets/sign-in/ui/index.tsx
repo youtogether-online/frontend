@@ -1,56 +1,69 @@
+import { modelView } from 'effector-factorio'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SignInByEmail, SignInByPassword } from '@/features/authentication'
 import { styled } from '@/shared/config/stitches/stitches.config'
 import { Button, IconKey, IconLogoVertical, IconMail, Text } from '@/shared/ui'
+import { createSignInModel } from '@/widgets/sign-in/model'
 
 type SignInModes = 'signInByEmail' | 'signInWithPassword'
 
-export const SignIn = () => {
-  const { t } = useTranslation()
-  const [currentSignInMode, setCurrentSignInMode] =
-    useState<SignInModes>('signInByEmail')
-
-  return (
-    <Root>
-      <Text variant="h4" centered>
-        {t('signInOrSignUp')}
-      </Text>
-      {currentSignInMode === 'signInByEmail' ? (
-        <SignInContainer>
-          <SignInByEmail />
-          <Text variant="body1" secondary centered>
-            {t('or')}
-          </Text>
-          <Button
-            variant="outlined"
-            onClick={() => setCurrentSignInMode('signInWithPassword')}
-            icon={<IconKey />}
-          >
-            {t('signInWithPassword')}
-          </Button>
-        </SignInContainer>
-      ) : (
-        <SignInContainer>
-          <SignInByPassword />
-          <Text variant="body2" secondary centered>
-            {t('or')}
-          </Text>
-          <Button
-            variant="outlined"
-            onClick={() => setCurrentSignInMode('signInByEmail')}
-            icon={<IconMail />}
-          >
-            {t('signInByEmail')}
-          </Button>
-        </SignInContainer>
-      )}
-      <Center>
-        <IconLogoVertical color="rgba(0, 0, 0, 80%)" />
-      </Center>
-    </Root>
-  )
+interface SignInProps {
+  logo?: boolean
 }
+
+export const SignIn = modelView(
+  createSignInModel,
+  ({ logo = false }: SignInProps) => {
+    const { t } = useTranslation()
+    const [currentSignInMode, setCurrentSignInMode] =
+      useState<SignInModes>('signInByEmail')
+
+    const signInModel = createSignInModel.useModel()
+
+    return (
+      <Root>
+        <Text variant="h4" centered>
+          {t('signInOrSignUp')}
+        </Text>
+        {currentSignInMode === 'signInByEmail' ? (
+          <SignInContainer>
+            <SignInByEmail model={signInModel.byEmailModel} />
+            <Text variant="body1" secondary centered>
+              {t('or')}
+            </Text>
+            <Button
+              variant="outlined"
+              onClick={() => setCurrentSignInMode('signInWithPassword')}
+              icon={<IconKey />}
+            >
+              {t('signInWithPassword')}
+            </Button>
+          </SignInContainer>
+        ) : (
+          <SignInContainer>
+            <SignInByPassword model={signInModel.byPasswordModel} />
+            <Text variant="body2" secondary centered>
+              {t('or')}
+            </Text>
+            <Button
+              variant="outlined"
+              onClick={() => setCurrentSignInMode('signInByEmail')}
+              icon={<IconMail />}
+            >
+              {t('signInByEmail')}
+            </Button>
+          </SignInContainer>
+        )}
+        {logo && (
+          <Logo>
+            <IconLogoVertical color="rgba(0, 0, 0, 80%)" />
+          </Logo>
+        )}
+      </Root>
+    )
+  }
+)
 
 const Root = styled('div', {
   display: 'flex',
@@ -63,10 +76,10 @@ const SignInContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '10px',
-  marginBottom: '20px',
   marginTop: '15px',
 })
 
-const Center = styled('div', {
+const Logo = styled('div', {
   margin: 'auto',
+  marginTop: '20px',
 })

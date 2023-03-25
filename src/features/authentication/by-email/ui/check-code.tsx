@@ -2,11 +2,7 @@ import { useForm } from 'effector-forms'
 import { useUnit } from 'effector-react'
 import { ChangeEvent, FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import {
-  checkCodeForm,
-  checkCodeFx,
-  returnToPrevStepClicked,
-} from '@/features/authentication/by-email'
+import { createByEmailModel } from '@/features/authentication/by-email'
 import { styled } from '@/shared/config/stitches/stitches.config'
 import { Form, IconArrowLeft, Input } from '@/shared/ui'
 import { Button } from '@/shared/ui/atoms'
@@ -14,9 +10,11 @@ import { Button } from '@/shared/ui/atoms'
 export const CheckCode = () => {
   const { t } = useTranslation()
 
-  const { submit, fields, errorText } = useForm(checkCodeForm)
-  const returnToPreviousStep = useUnit(returnToPrevStepClicked)
-  const [isLoading] = useUnit([checkCodeFx.pending])
+  const byEmailModel = createByEmailModel.useModel()
+
+  const { submit, fields, errorText } = useForm(byEmailModel.checkCodeForm)
+  const returnToPreviousStep = useUnit(byEmailModel.returnToPrevStepClicked)
+  const isLoading = useUnit(byEmailModel.checkCodeFx.pending)
 
   const handleFormSubmit = (event: FormEvent) => {
     event.preventDefault()

@@ -12,7 +12,7 @@ export const Item = ({ label, error, children }: FormItemProps) => {
   return (
     <Root>
       {children}
-      <Error variant="caption">{error}</Error>
+      {error && <Error variant="caption">{error}</Error>}
     </Root>
   )
 }

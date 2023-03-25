@@ -1,3 +1,4 @@
+import { Link } from 'atomic-router-react'
 import { useUnit } from 'effector-react'
 import { useTranslation } from 'react-i18next'
 import { $isAuthorized, $session, signOutClicked } from '@/entities/session'
@@ -6,6 +7,7 @@ import { styled } from '@/shared/config/stitches/stitches.config'
 import { routes } from '@/shared/routes'
 import { Avatar, Button, IconLogoHorizontal, NavLink } from '@/shared/ui'
 import { SignIn } from '@/widgets/sign-in'
+import { createSignInModel } from '@/widgets/sign-in/model'
 import { UserMenu } from '@/widgets/user-menu'
 import { Navbar } from './navbar'
 import { Subheader } from './subheader'
@@ -33,6 +35,8 @@ export const Header = ({
     signOutClicked,
   ])
 
+  const signInModel = createSignInModel.createModel()
+
   return (
     <Root>
       {subheader && <Subheader />}
@@ -56,7 +60,7 @@ export const Header = ({
               />
             )}
             <HoverMenu>
-              {!isAuthorized && <SignIn />}
+              {!isAuthorized && <SignIn model={signInModel} />}
               {isAuthorized && <UserMenu />}
             </HoverMenu>
           </User>

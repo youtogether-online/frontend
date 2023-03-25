@@ -2,15 +2,16 @@ import { useForm } from 'effector-forms'
 import { useUnit } from 'effector-react'
 import { ChangeEvent, FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import { sendCodeForm, sendCodeFx } from '@/features/authentication/by-email'
+import { createByEmailModel } from '@/features/authentication/by-email'
 import { Button, Form, Input } from '@/shared/ui'
 
 export const SendCode = () => {
   const { t } = useTranslation()
 
-  const { submit, fields, errorText } = useForm(sendCodeForm)
+  const byEmailModel = createByEmailModel.useModel()
 
-  const isLoading = useUnit(sendCodeFx.pending)
+  const { submit, fields, errorText } = useForm(byEmailModel.sendCodeForm)
+  const isLoading = useUnit(byEmailModel.sendCodeFx.pending)
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     fields.email.onChange(event.target.value)

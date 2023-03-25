@@ -1,14 +1,14 @@
 import { InputHTMLAttributes, ReactNode } from 'react'
 import { styled } from '@/shared/config/stitches/stitches.config'
 
-type InternalInputProps = InputHTMLAttributes<HTMLInputElement> & {
+export type InternalInputProps = InputHTMLAttributes<HTMLInputElement> & {
   invalid?: boolean
   prefix?: ReactNode
   postfix?: ReactNode
 }
 
 export const InternalInput = ({
-  invalid,
+  invalid = false,
   prefix,
   postfix,
   ...inputProps
