@@ -1,3 +1,3 @@
 # you-together-frontend
 
-YouTogether - project that allows you to view YouTube together
+YouTogether - project that allows you to view movies together
