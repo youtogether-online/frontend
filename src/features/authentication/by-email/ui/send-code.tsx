@@ -12,6 +12,7 @@ export const SendCode = () => {
 
   const { submit, fields, errorText } = useForm(byEmailModel.sendCodeForm)
   const isLoading = useUnit(byEmailModel.sendCodeFx.pending)
+  const formStatus = useUnit(byEmailModel.$sendCodeStatus)
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     fields.email.onChange(event.target.value)
@@ -24,6 +25,7 @@ export const SendCode = () => {
 
   return (
     <Form onSubmit={handleFormSubmit} noValidate>
+      {formStatus && <Form.Status status={formStatus} />}
       <Form.Item error={errorText('email')}>
         <Input
           placeholder={t('email')}

@@ -15,6 +15,7 @@ export const CheckCode = () => {
   const { submit, fields, errorText } = useForm(byEmailModel.checkCodeForm)
   const returnToPreviousStep = useUnit(byEmailModel.returnToPrevStepClicked)
   const isLoading = useUnit(byEmailModel.checkCodeFx.pending)
+  const formStatus = useUnit(byEmailModel.$checkCodeStatus)
 
   const handleFormSubmit = (event: FormEvent) => {
     event.preventDefault()
@@ -27,23 +28,23 @@ export const CheckCode = () => {
 
   return (
     <Root>
-      <InputContainer>
-        <Button
-          variant="icon"
-          onClick={returnToPreviousStep}
-          icon={<IconArrowLeft />}
-        />
-        <Form onSubmit={handleFormSubmit} noValidate>
-          <Form.Item error={errorText('code')}>
-            <Input
-              placeholder={t('enterCodeFromEmail')}
-              id="verification-code"
-              onChange={handleInputChange}
-              invalid={fields.code.hasError()}
-            />
-          </Form.Item>
-        </Form>
-      </InputContainer>
+      <Form onSubmit={handleFormSubmit} noValidate>
+        {formStatus && <Form.Status status={formStatus} />}
+        <Form.Item error={errorText('code')}>
+          <Button
+            variant="icon"
+            onClick={returnToPreviousStep}
+            icon={<IconArrowLeft />}
+            type="button"
+          />
+          <Input
+            placeholder={t('enterCodeFromEmail')}
+            id="verification-code"
+            onChange={handleInputChange}
+            invalid={fields.code.hasError()}
+          />
+        </Form.Item>
+      </Form>
       <Button
         type="submit"
         onClick={handleFormSubmit}
@@ -61,12 +62,7 @@ const Root = styled('div', {
   'flexDirection': 'column',
   'gap': '10px',
 
-  '& form': {
+  '& input': {
     flex: 1,
   },
-})
-
-const InputContainer = styled('div', {
-  display: 'flex',
-  gap: '5px',
 })

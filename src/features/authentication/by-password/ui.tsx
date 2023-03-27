@@ -11,13 +11,9 @@ export const SignInByPassword = modelView(createByPasswordModel, () => {
 
   const byPasswordModel = createByPasswordModel.useModel()
 
-  const { submit, fields, errorText } = useForm(
-    byPasswordModel.signInByPasswordForm
-  )
-  const formStatusError = useUnit(
-    byPasswordModel.$signInByPasswordFormStatusError
-  )
-  const isLoading = useUnit(byPasswordModel.signInByPasswordFx.pending)
+  const { submit, fields, errorText } = useForm(byPasswordModel.byPasswordForm)
+  const formStatus = useUnit(byPasswordModel.$byPasswordFormStatus)
+  const isLoading = useUnit(byPasswordModel.byPasswordFx.pending)
 
   const handleGetCode = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -26,7 +22,7 @@ export const SignInByPassword = modelView(createByPasswordModel, () => {
 
   return (
     <Form onSubmit={handleGetCode}>
-      {formStatusError && <Form.Status error={formStatusError} />}
+      {formStatus && <Form.Status status={formStatus} />}
       <Form.Item error={errorText('email')}>
         <Input
           placeholder={t('email')}
@@ -34,7 +30,7 @@ export const SignInByPassword = modelView(createByPasswordModel, () => {
           value={fields.email.value}
           autoComplete="email"
           onChange={(event) => fields.email.onChange(event.target.value)}
-          invalid={fields.email.hasError() || Boolean(formStatusError)}
+          invalid={fields.email.hasError() || Boolean(formStatus)}
         />
       </Form.Item>
       <Form.Item error={errorText('password')}>
@@ -42,7 +38,7 @@ export const SignInByPassword = modelView(createByPasswordModel, () => {
           placeholder={t('password')}
           value={fields.password.value}
           onChange={(event) => fields.password.onChange(event.target.value)}
-          invalid={fields.password.hasError() || Boolean(formStatusError)}
+          invalid={fields.password.hasError() || Boolean(formStatus)}
         />
       </Form.Item>
       <Button type="submit" theme="primary" loading={isLoading}>

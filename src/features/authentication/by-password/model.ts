@@ -10,7 +10,7 @@ import { createRule } from '@/shared/lib/create-yup-rule'
 import { getUserDeviceData } from '@/shared/lib/get-user-device-data'
 
 export const createByPasswordModel = modelFactory(() => {
-  const signInByPasswordForm = createForm({
+  const byPasswordForm = createForm({
     validateOn: ['submit'],
     fields: {
       email: {
@@ -37,7 +37,7 @@ export const createByPasswordModel = modelFactory(() => {
     },
   })
 
-  const signInByPasswordFx = createEffect<
+  const byPasswordFx = createEffect<
     { email: string; password: string },
     void,
     AxiosError<InternalApiError>
@@ -49,29 +49,27 @@ export const createByPasswordModel = modelFactory(() => {
     })
   })
 
-  const $signInByPasswordFormStatusError = createStore<InternalApiError | null>(
-    null
-  )
+  const $byPasswordFormStatus = createStore<InternalApiError | null>(null)
 
   sample({
-    clock: signInByPasswordFx.failData,
+    clock: byPasswordFx.failData,
     fn: (error) => (error.response?.data ? error.response.data : null),
-    target: $signInByPasswordFormStatusError,
+    target: $byPasswordFormStatus,
   })
 
   sample({
-    clock: signInByPasswordForm.formValidated,
-    target: signInByPasswordFx,
+    clock: byPasswordForm.formValidated,
+    target: byPasswordFx,
   })
 
   sample({
-    clock: signInByPasswordFx.done,
+    clock: byPasswordFx.done,
     target: signInClicked,
   })
 
   return {
-    signInByPasswordFx,
-    signInByPasswordForm,
-    $signInByPasswordFormStatusError,
+    byPasswordFx,
+    byPasswordForm,
+    $byPasswordFormStatus,
   }
 })

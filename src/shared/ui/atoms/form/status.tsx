@@ -3,14 +3,14 @@ import { styled } from '@/shared/config/stitches/stitches.config'
 import { Text } from '@/shared/ui'
 
 interface StatusProps {
-  error: InternalApiError
+  status: InternalApiError
 }
 
-export const Status = ({ error }: StatusProps) => {
+export const Status = ({ status }: StatusProps) => {
   return (
     <Error>
-      <Text variant="body1">{error.error}</Text>
-      {error.advice && <Text variant="body2">{error.advice}</Text>}
+      <Text variant="body1">{status.error}</Text>
+      {status.advice && <Text variant="body2">{status.advice}</Text>}
     </Error>
   )
 }

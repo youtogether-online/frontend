@@ -11,13 +11,23 @@ interface FormItemProps {
 export const Item = ({ label, error, children }: FormItemProps) => {
   return (
     <Root>
-      {children}
+      <Children>{children}</Children>
       {error && <Error variant="caption">{error}</Error>}
     </Root>
   )
 }
 
 const Root = styled('div', {})
+
+// TODO: Delete children component and change way of styling
+const Children = styled('div', {
+  'display': 'flex',
+  'gap': '5px',
+
+  '& span': {
+    flex: '1',
+  },
+})
 
 const Error = styled(Text, {
   color: '$errorText',

@@ -5,6 +5,7 @@ import { createForm } from 'effector-forms'
 import * as yup from 'yup'
 import { signInClicked } from '@/entities/session/model/sign-in'
 import { internalApi } from '@/shared/api'
+import { InternalApiError } from '@/shared/api/internal'
 import { createRule } from '@/shared/lib/create-yup-rule'
 import { getUserDeviceData } from '@/shared/lib/get-user-device-data'
 
@@ -46,16 +47,18 @@ export const createByEmailModel = modelFactory(() => {
 
   const returnToPrevStepClicked = createEvent()
 
-  const sendCodeFx = createEffect<{ email: string }, void, AxiosError>(
-    async ({ email }) => {
-      await internalApi.auth.signInSendCode({ email })
-    }
-  )
+  const sendCodeFx = createEffect<
+    { email: string },
+    void,
+    AxiosError<InternalApiError>
+  >(async ({ email }) => {
+    await internalApi.auth.signInSendCode({ email })
+  })
 
   const checkCodeFx = createEffect<
     { email: string; code: string },
     void,
-    AxiosError
+    AxiosError<InternalApiError>
   >(async ({ email, code }) => {
     await internalApi.auth.signInCheckCode({
       email,
@@ -64,9 +67,29 @@ export const createByEmailModel = modelFactory(() => {
     })
   })
 
+  const $checkCodeStatus = createStore<InternalApiError | null>(null).reset([
+    checkCodeFx.done,
+    returnToPrevStepClicked,
+  ])
+  const $sendCodeStatus = createStore<InternalApiError | null>(null).reset(
+    sendCodeFx.done
+  )
+
   const $currentSignInStep = createStore<SignInSteps>('sendCode')
     .on(sendCodeFx.done, () => 'checkCode')
     .on(returnToPrevStepClicked, () => 'sendCode')
+
+  sample({
+    clock: sendCodeFx.failData,
+    fn: (error) => (error.response?.data ? error.response.data : null),
+    target: $sendCodeStatus,
+  })
+
+  sample({
+    clock: checkCodeFx.failData,
+    fn: (error) => (error.response?.data ? error.response.data : null),
+    target: $checkCodeStatus,
+  })
 
   sample({
     clock: sendCodeForm.formValidated,
@@ -94,5 +117,7 @@ export const createByEmailModel = modelFactory(() => {
     sendCodeFx,
     checkCodeFx,
     returnToPrevStepClicked,
+    $checkCodeStatus,
+    $sendCodeStatus,
   }
 })
