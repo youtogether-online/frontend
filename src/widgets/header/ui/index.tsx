@@ -1,7 +1,6 @@
-import { Link } from 'atomic-router-react'
 import { useUnit } from 'effector-react'
 import { useTranslation } from 'react-i18next'
-import { $isAuthorized, $session, signOutClicked } from '@/entities/session'
+import { $isAuthorized, getSessionQuery } from '@/entities/session'
 import { SearchBar } from '@/features/search-bar'
 import { styled } from '@/shared/config/stitches/stitches.config'
 import { routes } from '@/shared/routes'
@@ -27,13 +26,10 @@ export const Header = ({
   user,
   centerLogo,
 }: HeaderProps) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
-  const [isAuthorized, session] = useUnit([
-    $isAuthorized,
-    $session,
-    signOutClicked,
-  ])
+  const isAuthorized = useUnit($isAuthorized)
+  const { data: session } = useUnit(getSessionQuery)
 
   const signInModel = createSignInModel.createModel()
 
@@ -61,7 +57,7 @@ export const Header = ({
             )}
             <HoverMenu>
               {!isAuthorized && <SignIn model={signInModel} />}
-              {isAuthorized && <UserMenu />}
+              {session && <UserMenu />}
             </HoverMenu>
           </User>
         )}

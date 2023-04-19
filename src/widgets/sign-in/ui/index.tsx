@@ -35,6 +35,7 @@ export const SignIn = modelView(
             <Button
               variant="outlined"
               onClick={() => setCurrentSignInMode('signInWithPassword')}
+              size="full"
               icon={<IconKey />}
             >
               {t('signInWithPassword')}
@@ -48,6 +49,7 @@ export const SignIn = modelView(
             </Text>
             <Button
               variant="outlined"
+              size="full"
               onClick={() => setCurrentSignInMode('signInByEmail')}
               icon={<IconMail />}
             >

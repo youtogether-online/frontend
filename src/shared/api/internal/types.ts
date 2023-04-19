@@ -1,6 +1,6 @@
-export interface InternalApiError {
-  advice?: string
+export interface ServerErrorResponse {
   error: string
+  advice?: string
   fields?: {
     [field: string]: string
   }

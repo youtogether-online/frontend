@@ -5,9 +5,15 @@ export const globalStyles = globalCss({
     margin: 0,
     padding: 0,
     boxSizing: 'inherit',
+    fontFamily: '$openSans',
   },
   'html': {
     boxSizing: 'border-box',
+  },
+  'input::placeholder': {
+    fontFamily: '$openSans',
+    fontWeight: 400,
+    fontSize: '13px',
   },
   'body': {
     fontWeight: 400,

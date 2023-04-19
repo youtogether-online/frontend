@@ -1,13 +1,19 @@
-import { AxiosError } from 'axios'
-import { createEffect, createEvent, createStore, sample } from 'effector'
+import {
+  createJsonMutation,
+  declareParams,
+  unknownContract,
+} from '@farfetched/core'
+import { createEvent, createStore, sample } from 'effector'
 import { modelFactory } from 'effector-factorio'
 import { createForm } from 'effector-forms'
-import * as yup from 'yup'
-import { signInClicked } from '@/entities/session/model/sign-in'
-import { internalApi } from '@/shared/api'
-import { InternalApiError } from '@/shared/api/internal'
-import { createRule } from '@/shared/lib/create-yup-rule'
-import { getUserDeviceData } from '@/shared/lib/get-user-device-data'
+import { z } from 'zod'
+import { signInClicked } from '@/entities/session'
+import {
+  checkCodeUrl,
+  sendCodeUrl,
+} from '@/features/authentication/by-email/api'
+import { ServerErrorResponse } from '@/shared/api'
+import { createRule } from '@/shared/lib/create-zod-rule'
 
 type SignInSteps = 'sendCode' | 'checkCode'
 
@@ -20,10 +26,7 @@ export const createByEmailModel = modelFactory(() => {
         rules: [
           createRule<string>({
             name: 'email',
-            schema: yup
-              .string()
-              .email({ key: 'field.email' })
-              .required({ key: 'field.required' }),
+            schema: z.string().email(),
           }),
         ],
       },
@@ -38,62 +41,55 @@ export const createByEmailModel = modelFactory(() => {
         rules: [
           createRule<string>({
             name: 'code',
-            schema: yup.string().required('field.required'),
+            schema: z.string(),
           }),
         ],
       },
     },
   })
 
+  const sendCodeMutation = createJsonMutation({
+    params: declareParams<{ email: string }>(),
+    request: {
+      method: 'POST',
+      url: sendCodeUrl,
+      body: (params) => params,
+    },
+    response: {
+      contract: unknownContract,
+      status: { expected: 200 },
+    },
+  })
+
+  const checkCodeMutation = createJsonMutation({
+    params: declareParams<{ email: string; code: string; device: string }>(),
+    request: {
+      method: 'POST',
+      url: checkCodeUrl,
+      body: (params) => params,
+    },
+    response: {
+      contract: unknownContract,
+      status: {
+        expected: 200,
+      },
+    },
+  })
+
+  const $sendCodeFormError = createStore<ServerErrorResponse | null>(null)
+  const $checkCodeFormError = createStore<ServerErrorResponse | null>(null)
+
   const returnToPrevStepClicked = createEvent()
 
-  const sendCodeFx = createEffect<
-    { email: string },
-    void,
-    AxiosError<InternalApiError>
-  >(async ({ email }) => {
-    await internalApi.auth.signInSendCode({ email })
-  })
-
-  const checkCodeFx = createEffect<
-    { email: string; code: string },
-    void,
-    AxiosError<InternalApiError>
-  >(async ({ email, code }) => {
-    await internalApi.auth.signInCheckCode({
-      email,
-      code,
-      device: getUserDeviceData(),
-    })
-  })
-
-  const $checkCodeStatus = createStore<InternalApiError | null>(null).reset([
-    checkCodeFx.done,
-    returnToPrevStepClicked,
-  ])
-  const $sendCodeStatus = createStore<InternalApiError | null>(null).reset(
-    sendCodeFx.done
-  )
-
   const $currentSignInStep = createStore<SignInSteps>('sendCode')
-    .on(sendCodeFx.done, () => 'checkCode')
+    .on(sendCodeMutation.finished.success, () => 'checkCode')
     .on(returnToPrevStepClicked, () => 'sendCode')
 
-  sample({
-    clock: sendCodeFx.failData,
-    fn: (error) => (error.response?.data ? error.response.data : null),
-    target: $sendCodeStatus,
-  })
-
-  sample({
-    clock: checkCodeFx.failData,
-    fn: (error) => (error.response?.data ? error.response.data : null),
-    target: $checkCodeStatus,
-  })
+  const $userDevice = createStore<string>('Unknown')
 
   sample({
     clock: sendCodeForm.formValidated,
-    target: sendCodeFx,
+    target: sendCodeMutation.start,
   })
 
   sample({
@@ -101,23 +97,49 @@ export const createByEmailModel = modelFactory(() => {
     source: {
       email: sendCodeForm.fields.email.$value,
       code: checkCodeForm.fields.code.$value,
+      device: $userDevice,
     },
-    target: checkCodeFx,
+    target: checkCodeMutation.start,
   })
 
   sample({
-    clock: checkCodeFx.done,
+    clock: checkCodeMutation.finished.success,
     target: signInClicked,
   })
 
+  sample({
+    clock: checkCodeMutation.finished.failure,
+    fn: (failData) => {
+      if (failData.error.errorType === 'HTTP') {
+        return failData.error.response as unknown as ServerErrorResponse
+      }
+      return null
+    },
+    target: $checkCodeFormError,
+  })
+
+  sample({
+    clock: sendCodeMutation.finished.failure,
+    fn: (failData) => {
+      if (failData.error.errorType === 'HTTP') {
+        return failData.error.response as unknown as ServerErrorResponse
+      }
+      return null
+    },
+    target: $sendCodeFormError,
+  })
+
+  $sendCodeFormError.reset(sendCodeForm.$values.updates)
+  $checkCodeFormError.reset(checkCodeForm.$values.updates)
+
   return {
     $currentSignInStep,
+    $sendCodeFormError,
+    $checkCodeFormError,
     checkCodeForm,
     sendCodeForm,
-    sendCodeFx,
-    checkCodeFx,
+    sendCodeMutation,
+    checkCodeMutation,
     returnToPrevStepClicked,
-    $checkCodeStatus,
-    $sendCodeStatus,
   }
 })

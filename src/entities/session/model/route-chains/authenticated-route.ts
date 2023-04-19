@@ -5,9 +5,13 @@ import {
   RouteParams,
   RouteParamsAndQuery,
 } from 'atomic-router'
-import { createEvent, createStore, sample } from 'effector'
-import { and, debug, not } from 'patronum'
-import { $isAuthorized, $sessionLoaded, getSessionFx } from '@/entities/session'
+import { createEvent, sample } from 'effector'
+import { and, not } from 'patronum'
+import {
+  $isAuthorized,
+  $sessionLoaded,
+  getSessionQuery,
+} from '@/entities/session'
 import { routes } from '@/shared/routes'
 
 export const chainAuthorized = <Params extends RouteParams>({
@@ -21,8 +25,8 @@ export const chainAuthorized = <Params extends RouteParams>({
 
   sample({
     clock: sessionCheckStarted,
-    filter: and(not(getSessionFx.pending), not($sessionLoaded)),
-    target: getSessionFx,
+    filter: and(not(getSessionQuery.$pending), not($sessionLoaded)),
+    target: getSessionQuery.start,
   })
 
   const alreadyAuthorized = sample({
@@ -40,7 +44,7 @@ export const chainAuthorized = <Params extends RouteParams>({
     })
 
     sample({
-      clock: getSessionFx.fail,
+      clock: getSessionQuery.finished.failure,
       filter: route.$isOpened,
       target: redirect({
         route: routes.signIn,
@@ -51,6 +55,6 @@ export const chainAuthorized = <Params extends RouteParams>({
   return chainRoute({
     route,
     beforeOpen: sessionCheckStarted,
-    openOn: [alreadyAuthorized, getSessionFx.done],
+    openOn: [alreadyAuthorized, getSessionQuery.finished.success],
   })
 }

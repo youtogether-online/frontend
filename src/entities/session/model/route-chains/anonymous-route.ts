@@ -1,13 +1,16 @@
 import {
   chainRoute,
-  redirect,
   RouteInstance,
   RouteParams,
   RouteParamsAndQuery,
 } from 'atomic-router'
 import { createEvent, sample } from 'effector'
-import { and, debug, not } from 'patronum'
-import { $isAuthorized, $sessionLoaded, getSessionFx } from '@/entities/session'
+import { and, not } from 'patronum'
+import {
+  $isAuthorized,
+  $sessionLoaded,
+  getSessionQuery,
+} from '@/entities/session'
 import { controls } from '@/shared/routes'
 
 export const chainAnonymous = <Params extends RouteParams>(
@@ -17,8 +20,8 @@ export const chainAnonymous = <Params extends RouteParams>(
 
   sample({
     clock: sessionCheckStarted,
-    filter: and(not(getSessionFx.pending), not($sessionLoaded)),
-    target: getSessionFx,
+    filter: and(not(getSessionQuery.$pending), not($sessionLoaded)),
+    target: getSessionQuery.start,
   })
 
   sample({
@@ -29,11 +32,11 @@ export const chainAnonymous = <Params extends RouteParams>(
 
   const alreadyAnonymous = sample({
     clock: sessionCheckStarted,
-    filter: and(not($isAuthorized), not(getSessionFx.pending)),
+    filter: and(not($isAuthorized), not(getSessionQuery.$pending)),
   })
 
   sample({
-    clock: getSessionFx.done,
+    clock: getSessionQuery.finished.success,
     filter: route.$isOpened,
     target: controls.back,
   })
@@ -41,6 +44,6 @@ export const chainAnonymous = <Params extends RouteParams>(
   return chainRoute({
     route,
     beforeOpen: sessionCheckStarted,
-    openOn: [alreadyAnonymous, getSessionFx.fail],
+    openOn: [alreadyAnonymous, getSessionQuery.finished.failure],
   })
 }

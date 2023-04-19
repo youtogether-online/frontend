@@ -11,13 +11,9 @@
   "signInOrSignUp": "Sign in or sign up",
   "message": "Message",
   "getCode": "Get code",
-  "field.required": "This is required field",
-  "field.email": "This field should contain email in <name>@<domain> format",
   "password": "Password",
   "signInWithPassword": "Sign in with password",
   "signInByEmail": "Sign in by email",
-  "field.min": "This field must contain at least {{min}} characters",
-  "field.max": "This field must contain no more than {{max}} characters",
   "enterCodeFromEmail": "Code from email",
   "send": "Send",
   "notifications": "Notifications",
@@ -31,5 +27,12 @@
   "username": "Username",
   "firstName": "First name",
   "lastName": "Last name",
-  "or": "or"
+  "or": "or",
+  "invalid_type": "Error: expected {{expected}}, received {{received}}",
+  "required": "This field is required",
+  "invalid_email": "This field should contain email in <name>@<domain> format",
+  "too_small": "This field must contain at least {{minimum}} characters",
+  "too_big": "This field must contain no more than {{maximum}} characters",
+  "validation": {
+  }
 }

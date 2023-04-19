@@ -1,41 +1,33 @@
 import { Rule } from 'effector-forms'
 import i18next from 'i18next'
-import * as yup from 'yup'
-
-interface ValidationMessage {
-  key: string
-  values: {
-    [key: string]: number
-  }
-}
-
-interface ValidationError {
-  message: ValidationMessage
-}
+import { z, ZodError } from 'zod'
 
 export function createRule<V, T = any>({
   schema,
   name,
 }: {
-  schema: yup.SchemaOf<T>
+  schema: z.Schema<any, any, V>
   name: string
 }): Rule<V> {
   return {
     name,
     validator: (v: V) => {
       try {
-        schema.validateSync(v)
+        schema.parse(v)
         return {
           isValid: true,
           value: v,
         }
       } catch (error) {
-        const { message } = error as ValidationError
+        const { code, ...options } = (error as ZodError).errors[0]
 
         return {
           isValid: false,
           value: v,
-          errorText: i18next.t(message.key, message.values),
+          errorText: i18next.t(code, {
+            ns: 'validation',
+            ...options,
+          }),
         }
       }
     },

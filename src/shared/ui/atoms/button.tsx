@@ -6,14 +6,23 @@ import { Loader } from './loader'
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'solid' | 'text' | 'outlined' | 'icon' | 'link'
   theme?: 'primary' | 'danger' | 'success' | 'warning'
+  size?: 'small' | 'medium' | 'large' | 'full'
   icon?: ReactNode
-  loading?: boolean
+  pending?: boolean
   children?: ReactNode
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { variant = 'solid', loading, theme, icon, children, ...buttonProps },
+    {
+      variant = 'solid',
+      pending,
+      theme = 'primary',
+      size = 'medium',
+      icon,
+      children,
+      ...buttonProps
+    },
     ref
   ) => {
     return (
@@ -21,13 +30,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         variant={variant}
         theme={theme}
-        loading={loading}
-        disabled={loading}
+        pending={pending}
+        disabled={pending}
+        size={size}
         {...buttonProps}
       >
-        {!loading && icon}
-        {!loading && children && <Text variant="button">{children}</Text>}
-        {loading && <Loader />}
+        {!pending && icon}
+        {!pending && children && <Text variant="button">{children}</Text>}
+        {pending && <Loader />}
       </ButtonStyled>
     )
   }
@@ -55,10 +65,12 @@ const ButtonStyled = styled('button', {
       link: {
         height: 'auto',
         padding: 0,
+        width: 'fit-content',
       },
       icon: {
         'padding': '2px',
         'borderRadius': '$full',
+        'width': 'min-content',
 
         '&:hover': {
           backgroundColor: '$backgroundTextHover',
@@ -80,7 +92,6 @@ const ButtonStyled = styled('button', {
         '&:hover': {
           backgroundColor: '$backgroundInput',
         },
-
         '& svg': {
           display: 'block',
           position: 'absolute',
@@ -95,7 +106,21 @@ const ButtonStyled = styled('button', {
         background: '$backgroundDisabled',
       },
     },
-    loading: {
+    size: {
+      small: {
+        width: '77px',
+      },
+      medium: {
+        width: '80px',
+      },
+      large: {
+        width: '93px',
+      },
+      full: {
+        width: '100%',
+      },
+    },
+    pending: {
       true: {
         background: '$backgroundDisabled',
         display: 'flex',

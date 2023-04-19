@@ -1,13 +1,16 @@
-import { AxiosError } from 'axios'
-import { createEffect, createStore, sample } from 'effector'
+import {
+  createJsonMutation,
+  declareParams,
+  unknownContract,
+} from '@farfetched/core'
+import { createStore, sample } from 'effector'
 import { modelFactory } from 'effector-factorio'
 import { createForm } from 'effector-forms'
-import * as yup from 'yup'
+import { z } from 'zod'
 import { signInClicked } from '@/entities/session'
-import { internalApi } from '@/shared/api'
-import { InternalApiError } from '@/shared/api/internal/types'
-import { createRule } from '@/shared/lib/create-yup-rule'
-import { getUserDeviceData } from '@/shared/lib/get-user-device-data'
+import { signInByPasswordUrl } from '@/features/authentication/by-password/api'
+import { ServerErrorResponse } from '@/shared/api'
+import { createRule } from '@/shared/lib/create-zod-rule'
 
 export const createByPasswordModel = modelFactory(() => {
   const byPasswordForm = createForm({
@@ -18,10 +21,7 @@ export const createByPasswordModel = modelFactory(() => {
         rules: [
           createRule<string>({
             name: 'email',
-            schema: yup
-              .string()
-              .required({ key: 'field.required' })
-              .email({ key: 'field.email' }),
+            schema: z.string(),
           }),
         ],
       },
@@ -30,46 +30,67 @@ export const createByPasswordModel = modelFactory(() => {
         rules: [
           createRule<string>({
             name: 'password',
-            schema: yup.string().required({ key: 'field.required' }),
+            schema: z.string(),
           }),
         ],
       },
     },
   })
 
-  const byPasswordFx = createEffect<
-    { email: string; password: string },
-    void,
-    AxiosError<InternalApiError>
-  >(async ({ email, password }) => {
-    await internalApi.auth.signInWithPassword({
-      email,
-      password,
-      device: getUserDeviceData(),
-    })
+  const signInByPasswordMutation = createJsonMutation({
+    params: declareParams<{
+      email: string
+      password: string
+      device: string
+    }>(),
+    request: {
+      method: 'POST',
+      url: signInByPasswordUrl,
+      body: (params) => params,
+    },
+    response: {
+      contract: unknownContract,
+      status: {
+        expected: 200,
+      },
+    },
   })
 
-  const $byPasswordFormStatus = createStore<InternalApiError | null>(null)
+  const $formError = createStore<ServerErrorResponse | null>(null)
 
-  sample({
-    clock: byPasswordFx.failData,
-    fn: (error) => (error.response?.data ? error.response.data : null),
-    target: $byPasswordFormStatus,
-  })
+  const $userDevice = createStore<string>('Unknown')
 
   sample({
     clock: byPasswordForm.formValidated,
-    target: byPasswordFx,
+    source: {
+      email: byPasswordForm.fields.email.$value,
+      password: byPasswordForm.fields.password.$value,
+      device: $userDevice,
+    },
+    target: signInByPasswordMutation.start,
   })
 
   sample({
-    clock: byPasswordFx.done,
+    clock: signInByPasswordMutation.finished.success,
     target: signInClicked,
   })
 
+  sample({
+    clock: signInByPasswordMutation.finished.failure,
+    fn: (failData) => {
+      if (failData.error.errorType === 'HTTP') {
+        return failData.error.response as unknown as ServerErrorResponse
+      }
+      return null
+    },
+    target: $formError,
+  })
+
+  $formError.reset(byPasswordForm.$values.updates)
+
   return {
-    byPasswordFx,
+    signInByPasswordMutation,
     byPasswordForm,
-    $byPasswordFormStatus,
+    $formError,
   }
 })

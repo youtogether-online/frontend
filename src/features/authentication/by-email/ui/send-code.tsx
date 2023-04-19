@@ -11,8 +11,8 @@ export const SendCode = () => {
   const byEmailModel = createByEmailModel.useModel()
 
   const { submit, fields, errorText } = useForm(byEmailModel.sendCodeForm)
-  const isLoading = useUnit(byEmailModel.sendCodeFx.pending)
-  const formStatus = useUnit(byEmailModel.$sendCodeStatus)
+  const { pending } = useUnit(byEmailModel.sendCodeMutation)
+  const formError = useUnit(byEmailModel.$sendCodeFormError)
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     fields.email.onChange(event.target.value)
@@ -25,7 +25,9 @@ export const SendCode = () => {
 
   return (
     <Form onSubmit={handleFormSubmit} noValidate>
-      {formStatus && <Form.Status status={formStatus} />}
+      {formError && (
+        <Form.Error error={formError.error} advice={formError.advice} />
+      )}
       <Form.Item error={errorText('email')}>
         <Input
           placeholder={t('email')}
@@ -35,7 +37,7 @@ export const SendCode = () => {
           invalid={fields.email.hasError()}
         />
       </Form.Item>
-      <Button type="submit" theme="primary" loading={isLoading}>
+      <Button type="submit" theme="primary" pending={pending} size="full">
         {t('getCode')}
       </Button>
     </Form>

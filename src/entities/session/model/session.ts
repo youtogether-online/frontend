@@ -1,37 +1,38 @@
-import { AxiosError } from 'axios'
-import { createEffect, createEvent, createStore, sample } from 'effector'
-import { and, debug, empty, not, or } from 'patronum'
-import { DetailedUser } from '@/entities/user'
-import { internalApi } from '@/shared/api'
-import { signOutFx } from './sign-out'
+import { createJsonQuery } from '@farfetched/core'
+import { createEvent, createStore, sample } from 'effector'
+import { and, debug, empty, not } from 'patronum'
+import { getSessionUrl } from '@/entities/session/model/api'
+import { UserDetailedContract } from './contract'
+import { signOutMutation } from './sign-out'
 
 export const appStarted = createEvent()
-export const getSessionFx = createEffect<void, DetailedUser, AxiosError>(
-  async () => {
-    const { data } = await internalApi.users.getSessionData()
-    return data
-  }
-)
-
-export const $session = createStore<DetailedUser | null>(null).reset(
-  signOutFx.done
-)
-export const $isAuthorized = not(empty($session))
+export const getSessionQuery = createJsonQuery({
+  request: {
+    method: 'GET',
+    url: getSessionUrl,
+  },
+  response: {
+    contract: UserDetailedContract,
+  },
+})
+export const $isAuthorized = not(empty(getSessionQuery.$data))
 export const $sessionLoaded = createStore(false)
 
 sample({
+  clock: signOutMutation.start,
+  target: getSessionQuery.reset,
+})
+
+sample({
   clock: appStarted,
-  filter: and(not(getSessionFx.pending), not($sessionLoaded)),
-  target: getSessionFx,
+  filter: and(not(getSessionQuery.$pending), not($sessionLoaded)),
+  target: getSessionQuery.start,
 })
 
 sample({
-  clock: getSessionFx.doneData,
-  target: $session,
-})
-
-sample({
-  clock: getSessionFx.finally,
+  clock: getSessionQuery.finished.finally,
   fn: () => true,
   target: $sessionLoaded,
 })
+
+debug(getSessionQuery.finished.failure)

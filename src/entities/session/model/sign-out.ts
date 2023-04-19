@@ -1,18 +1,27 @@
+import { createJsonMutation, unknownContract } from '@farfetched/core'
 import { redirect } from 'atomic-router'
-import { AxiosError } from 'axios'
-import { createEffect, createEvent, sample } from 'effector'
-import { internalApi } from '@/shared/api'
+import { createEvent, sample } from 'effector'
 import { routes } from '@/shared/routes'
+import { signOutUrl } from './api'
 
-export const signOutFx = createEffect<void, void, AxiosError>(async () => {
-  await internalApi.auth.signOut()
+export const signOutMutation = createJsonMutation({
+  request: {
+    method: 'POST',
+    url: signOutUrl,
+  },
+  response: {
+    contract: unknownContract,
+    status: {
+      expected: 201,
+    },
+  },
 })
 
 export const signOutClicked = createEvent()
 
 sample({
   clock: signOutClicked,
-  target: signOutFx,
+  target: signOutMutation.start,
 })
 
 sample({
