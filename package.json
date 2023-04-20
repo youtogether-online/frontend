@@ -8,7 +8,7 @@
     "lint": "eslint --fix \"./src/**/**.{ts,tsx,js,jsx,json}\"",
     "format": "prettier --write \"./src/**/**.{ts,tsx,js,jsx,json}\"",
     "start:dev": "vite --host",
-    "start:prod": "NODE_ENV=production node build/",
+    "start:prod": "vite NODE_ENV=production --host",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "release": "standard-version",
