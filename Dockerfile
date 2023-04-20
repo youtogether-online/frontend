@@ -3,10 +3,12 @@ FROM node:18.7.0-alpine3.16 as build
 
 WORKDIR /app
 
+RUN npm i -g pnpm
+
 COPY package.json pnpm-lock.yaml ./
-RUN npm install
+RUN pnpm install
 COPY . .
-RUN npm run build
+RUN pnpm run build
 
 # RELEASE
 FROM nginx:stable-alpine
