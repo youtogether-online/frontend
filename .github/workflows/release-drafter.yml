@@ -1,0 +1,36 @@
+name: Release Drafter
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update_release_draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    version-resolver:
+      major:
+        labels:
+          - 'BREAKING CHANGE'
+      minor:
+        labels:
+          - 'feat'
+      patch:
+        labels:
+          - 'fix'
+      default: patch
+    categories:
+      - title: 'Features'
+        label: 'feat'
+      - title: 'Bug fixes'
+        label: 'fix'
+      - title: 'BREAKING CHANGE'
+        label: 'Breaking Change'
+    template: |
+      ## Changes
+
+      $CHANGES
