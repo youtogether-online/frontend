@@ -2,7 +2,7 @@
   "name": "youtogether-frontend",
   "license": "MIT",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "lint": "eslint --fix \"./src/**/**.{ts,tsx,js,jsx,json}\"",
