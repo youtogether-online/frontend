@@ -1,11 +1,14 @@
-import { ServerErrorResponse } from '@/shared/api'
+import { useTranslation } from 'react-i18next'
+import { ServerErrorResponse } from '@/shared/api/internal/types'
 import { styled } from '@/shared/config/stitches/stitches.config'
 import { Text } from '@/shared/ui'
 
 export const Error = ({ error, advice }: ServerErrorResponse) => {
+  const { t } = useTranslation()
+
   return (
     <ErrorStyled>
-      <Text variant="body1">{error}</Text>
+      <Text variant="body1">{error ? error : t('unknownError')}</Text>
       {advice && <Text variant="body2">{advice}</Text>}
     </ErrorStyled>
   )

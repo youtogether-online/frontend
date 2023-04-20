@@ -6,18 +6,19 @@ export const SearchBar = () => {
   const { t } = useTranslation()
 
   return (
-    <Label>
+    <Root>
       <Input placeholder={t('header.search.placeholder')} />
       <IconSearch />
-    </Label>
+    </Root>
   )
 }
 
-const Label = styled('label', {
+const Root = styled('label', {
   'display': 'flex',
   'height': '100%',
-  'borderRadius': '$secondary',
+  'borderRadius': '$tertiary',
   'position': 'relative',
+  'border': '$borderSecondary',
 
   '& svg': {
     width: '24px',
@@ -34,12 +35,12 @@ const Label = styled('label', {
 const Input = styled('input', {
   'outline': '0px',
   'width': '100%',
-  'border': 'none',
+  'border': '$borderSecondary',
   'backgroundColor': 'inherit',
-  'borderRadius': '8px',
+  'borderRadius': '$tertiary',
   'padding': '4px 16px',
   'fontWeight': '400',
-  'background': '$backgroundContainerDark',
+  'background': '#fff',
 
   '&::placeholder': {
     color: '$textTertiary',

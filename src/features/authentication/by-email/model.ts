@@ -12,7 +12,7 @@ import {
   checkCodeUrl,
   sendCodeUrl,
 } from '@/features/authentication/by-email/api'
-import { ServerErrorResponse } from '@/shared/api'
+import { ServerErrorResponse } from '@/shared/api/internal/types'
 import { createRule } from '@/shared/lib/create-zod-rule'
 
 type SignInSteps = 'sendCode' | 'checkCode'
@@ -62,7 +62,7 @@ export const createByEmailModel = modelFactory(() => {
   })
 
   const checkCodeMutation = createJsonMutation({
-    params: declareParams<{ email: string; code: string; device: string }>(),
+    params: declareParams<{ email: string; code: string }>(),
     request: {
       method: 'POST',
       url: checkCodeUrl,
@@ -85,8 +85,6 @@ export const createByEmailModel = modelFactory(() => {
     .on(sendCodeMutation.finished.success, () => 'checkCode')
     .on(returnToPrevStepClicked, () => 'sendCode')
 
-  const $userDevice = createStore<string>('Unknown')
-
   sample({
     clock: sendCodeForm.formValidated,
     target: sendCodeMutation.start,
@@ -97,7 +95,6 @@ export const createByEmailModel = modelFactory(() => {
     source: {
       email: sendCodeForm.fields.email.$value,
       code: checkCodeForm.fields.code.$value,
-      device: $userDevice,
     },
     target: checkCodeMutation.start,
   })

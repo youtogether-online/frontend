@@ -8,91 +8,91 @@ import { NavLink } from '@/shared/ui/atoms/navLink'
 import { Text } from '@/shared/ui/atoms/text'
 
 export const UserMenu = () => {
-    const signOut = useUnit(signOutClicked)
-    const { data: session } = useUnit(getSessionQuery)
+  const signOut = useUnit(signOutClicked)
+  const { data: session } = useUnit(getSessionQuery)
 
-    const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
 
-    if (!session) {
-        return null
-    }
+  if (!session) {
+    return null
+  }
 
-    return (
-        <Root>
-            <Notifications>
-                <Text variant="h5">{t('notifications')}</Text>
-    </Notifications>
-    <UserActions>
-    <Username variant="h5">{session.username}</Username>
-    <Actions>
-    <Action>
-        <NavLink
-            to={routes.profile}
-    params={{ username: session.username }}
->
-    {t('yourProfile')}
-    </NavLink>
-    </Action>
-    <Action>
-    <NavLink
-        to={routes.friends}
-    params={{ username: session.username }}
->
-    {t('friends')}
-    </NavLink>
-    </Action>
-    <Action>
-    <NavLink to={routes.home}>{t('favorites')}</NavLink>
-    </Action>
-    <Action>
-    <NavLink to={routes.settings}>{t('settings')}</NavLink>
-    </Action>
-    <Action>
-    <Button variant="link" size="fitContent" onClick={signOut}>
-        {t('exit')}
-    </Button>
-    </Action>
-    </Actions>
-    </UserActions>
+  return (
+    <Root>
+      <Notifications>
+        <Text variant="h5">{t('notifications')}</Text>
+      </Notifications>
+      <UserActions>
+        <Username variant="h5">{session.username}</Username>
+        <Actions>
+          <Action>
+            <NavLink
+              to={routes.profile}
+              params={{ username: session.username }}
+            >
+              {t('yourProfile')}
+            </NavLink>
+          </Action>
+          <Action>
+            <NavLink
+              to={routes.friends}
+              params={{ username: session.username }}
+            >
+              {t('friends')}
+            </NavLink>
+          </Action>
+          <Action>
+            <NavLink to={routes.home}>{t('favorites')}</NavLink>
+          </Action>
+          <Action>
+            <NavLink to={routes.settings}>{t('settings')}</NavLink>
+          </Action>
+          <Action>
+            <Button variant="link" size="fitContent" onClick={signOut}>
+              {t('exit')}
+            </Button>
+          </Action>
+        </Actions>
+      </UserActions>
     </Root>
-)
+  )
 }
 
 const Root = styled('div', {
-    minHeight: '330px',
-    display: 'flex',
+  minHeight: '330px',
+  display: 'flex',
 })
 
 const Notifications = styled('div', {
-    backgroundColor: '$backgroundLayout',
-    padding: '16px',
-    minWidth: '240px',
-    borderRadius: '$tertiary',
+  backgroundColor: '$backgroundLayout',
+  padding: '16px',
+  minWidth: '240px',
+  borderRadius: '$tertiary',
 })
 
 const UserActions = styled('div', {
-    backgroundColor: '$backgroundContainer',
-    padding: '16px 64px 16px 16px',
-    width: 'max-content',
+  backgroundColor: '$backgroundContainer',
+  padding: '16px 64px 16px 16px',
+  width: 'max-content',
 })
 
 const Actions = styled('ul', {
-    display: 'flex',
-    flexDirection: 'column',
-    paddingTop: '10px',
-    gap: '6px',
+  display: 'flex',
+  flexDirection: 'column',
+  paddingTop: '10px',
+  gap: '6px',
 })
 
 const Action = styled('li', {
-    'width': '100%',
-    'display': 'flex',
-    'gap': '5px',
+  'width': '100%',
+  'display': 'flex',
+  'gap': '5px',
 
-    '& span:hover': {
-        color: '$primaryText',
-    },
+  '& span:hover': {
+    color: '$primaryText',
+  },
 })
 
 const Username = styled(Text, {
-    textTransform: 'capitalize',
+  textTransform: 'capitalize',
 })

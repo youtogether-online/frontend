@@ -28,11 +28,6 @@
   "firstName": "First name",
   "lastName": "Last name",
   "or": "or",
-  "invalid_type": "Error: expected {{expected}}, received {{received}}",
-  "required": "This field is required",
-  "invalid_email": "This field should contain email in <name>@<domain> format",
-  "too_small": "This field must contain at least {{minimum}} characters",
-  "too_big": "This field must contain no more than {{maximum}} characters",
-  "validation": {
-  }
+  "unknownError": "Unknown error",
+  "tryAgainLater": "Try again later"
 }

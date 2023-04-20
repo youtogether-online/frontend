@@ -27,5 +27,7 @@
   "username": "Имя пользователя",
   "firstName": "Имя",
   "lastName": "Фамилия",
-  "or": "или"
+  "or": "или",
+  "unknownError": "Неизвестная ошибка",
+  "tryAgainLater": "Попробуйте позже"
 }

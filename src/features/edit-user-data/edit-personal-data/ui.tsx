@@ -1,7 +1,7 @@
 import { useForm } from 'effector-forms'
 import { FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import { editPersonalDataForm } from '@/features/edit-session-personal-data/edit-personal-data/model'
+import { editPersonalDataForm } from '@/features/edit-user-data/edit-personal-data/model'
 import { Button, Form, Input } from '@/shared/ui'
 
 export const EditPersonalData = () => {

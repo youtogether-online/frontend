@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { styled } from '@/shared/config/stitches/stitches.config'
-import { Text } from '@/shared/ui'
+import { Text } from '../text'
 
 interface FormItemProps {
   label?: string
@@ -11,6 +11,7 @@ interface FormItemProps {
 export const Item = ({ label, error, children }: FormItemProps) => {
   return (
     <Root>
+      {label && <Label variant="caption">{label}</Label>}
       <Children>{children}</Children>
       {error && <Error variant="caption">{error}</Error>}
     </Root>
@@ -23,6 +24,7 @@ const Root = styled('div', {})
 const Children = styled('div', {
   'display': 'flex',
   'gap': '5px',
+  'marginTop': '4px',
 
   '& span': {
     flex: '1',
@@ -31,4 +33,8 @@ const Children = styled('div', {
 
 const Error = styled(Text, {
   color: '$errorText',
+})
+
+const Label = styled(Text, {
+  color: '$textSecondary',
 })

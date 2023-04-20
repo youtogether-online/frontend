@@ -1,5 +1,4 @@
 import { FormHTMLAttributes, ReactNode } from 'react'
-import { InternalApiError } from '@/shared/api/internal'
 import { styled } from '@/shared/config/stitches/stitches.config'
 
 type InternalFormProps = FormHTMLAttributes<HTMLFormElement> & {

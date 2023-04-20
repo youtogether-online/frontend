@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import { EditPersonalData } from '@/features/user-edit/edit-personal-data'
+import { EditEmail } from '@/features/edit-user-data/edit-email'
+import { EditPassword } from '@/features/edit-user-data/edit-password'
+import { EditPersonalData } from '@/features/edit-user-data/edit-personal-data'
 import { styled } from '@/shared/config/stitches/stitches.config'
 import { Text } from '@/shared/ui'
 
@@ -11,6 +13,8 @@ export const SettingsPage = () => {
       <Text variant="h1">{t('settings')}</Text>
       <EditUserData>
         <EditPersonalData />
+        <EditPassword />
+        <EditEmail />
       </EditUserData>
     </Section>
   )

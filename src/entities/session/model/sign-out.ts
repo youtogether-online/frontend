@@ -21,13 +21,11 @@ export const signOutClicked = createEvent()
 
 sample({
   clock: signOutClicked,
-  target: signOutMutation.start,
-})
-
-sample({
-  clock: signOutClicked,
-  target: redirect({
-    route: routes.home,
-    replace: true,
-  }),
+  target: [
+    signOutMutation.start,
+    redirect({
+      route: routes.home,
+      replace: true,
+    }),
+  ],
 })

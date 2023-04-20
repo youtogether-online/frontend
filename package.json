@@ -1,15 +1,21 @@
 {
   "name": "youtogether-frontend",
+  "license": "MIT",
   "private": true,
   "version": "0.0.0",
   "scripts": {
     "lint": "eslint --fix \"./src/**/**.{ts,tsx,js,jsx,json}\"",
     "format": "prettier --write \"./src/**/**.{ts,tsx,js,jsx,json}\"",
-    "dev": "vite --host",
+    "start:dev": "vite --host",
+    "start:prod": "NODE_ENV=production node build/",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "release": "standard-version",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
     "@farfetched/core": "^0.8.3",
     "@farfetched/zod": "^0.8.3",
     "@fontsource/roboto": "^4.5.8",
@@ -44,6 +50,8 @@
     "@vitejs/plugin-react": "^2.2.0",
     "eslint": "^8.34.0",
     "eslint-kit": "^6.11.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
     "typescript": "^4.9.5",
     "vite": "^3.2.3"
   }

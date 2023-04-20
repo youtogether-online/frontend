@@ -6,7 +6,7 @@ import { Loader } from './loader'
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'solid' | 'text' | 'outlined' | 'icon' | 'link'
   theme?: 'primary' | 'danger' | 'success' | 'warning'
-  size?: 'small' | 'medium' | 'large' | 'full'
+  size?: 'small' | 'medium' | 'large' | 'full' | 'fitContent'
   icon?: ReactNode
   pending?: boolean
   children?: ReactNode
@@ -65,7 +65,6 @@ const ButtonStyled = styled('button', {
       link: {
         height: 'auto',
         padding: 0,
-        width: 'fit-content',
       },
       icon: {
         'padding': '2px',
@@ -80,6 +79,7 @@ const ButtonStyled = styled('button', {
         'background': 'none',
         'padding': '8px',
         'borderRadius': '$tertiary',
+        'width': 'fit-content',
 
         '&:hover': {
           backgroundColor: '$backgroundTextHover',
@@ -107,6 +107,9 @@ const ButtonStyled = styled('button', {
       },
     },
     size: {
+      fitContent: {
+        width: 'fit-content',
+      },
       small: {
         width: '77px',
       },

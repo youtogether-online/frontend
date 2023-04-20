@@ -4,8 +4,7 @@ import { ChangeEvent, FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { createByEmailModel } from '@/features/authentication/by-email'
 import { styled } from '@/shared/config/stitches/stitches.config'
-import { Form, IconArrowLeft, Input } from '@/shared/ui'
-import { Button } from '@/shared/ui/atoms'
+import { Button, Form, IconArrowLeft, Input } from '@/shared/ui'
 
 export const CheckCode = () => {
   const { t } = useTranslation()
@@ -14,8 +13,8 @@ export const CheckCode = () => {
 
   const { submit, fields, errorText } = useForm(byEmailModel.checkCodeForm)
   const returnToPreviousStep = useUnit(byEmailModel.returnToPrevStepClicked)
-  const isLoading = useUnit(byEmailModel.checkCodeFx.pending)
-  const formStatus = useUnit(byEmailModel.$checkCodeStatus)
+  const isLoading = useUnit(byEmailModel.checkCodeMutation.$pending)
+  const formError = useUnit(byEmailModel.$checkCodeFormError)
 
   const handleFormSubmit = (event: FormEvent) => {
     event.preventDefault()
@@ -29,7 +28,9 @@ export const CheckCode = () => {
   return (
     <Root>
       <Form onSubmit={handleFormSubmit} noValidate>
-        {formStatus && <Form.Status status={formStatus} />}
+        {formError && (
+          <Form.Error error={formError.error} advice={formError.advice} />
+        )}
         <Form.Item error={errorText('code')}>
           <Button
             variant="icon"
@@ -47,9 +48,10 @@ export const CheckCode = () => {
       </Form>
       <Button
         type="submit"
+        size="full"
         onClick={handleFormSubmit}
         theme="primary"
-        loading={isLoading}
+        pending={isLoading}
       >
         {t('send')}
       </Button>

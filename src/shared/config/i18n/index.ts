@@ -9,7 +9,7 @@ export const i18nInstance = i18n
   .use(initReactI18next)
   .init({
     fallbackLng: ['en', 'ru'],
-    ns: ['translation'],
+    ns: ['translation', 'validation'],
     defaultNS: 'translation',
     debug: false,
     interpolation: {

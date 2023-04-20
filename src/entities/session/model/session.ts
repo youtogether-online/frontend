@@ -1,8 +1,8 @@
 import { createJsonQuery } from '@farfetched/core'
 import { createEvent, createStore, sample } from 'effector'
-import { and, debug, empty, not } from 'patronum'
+import { and, empty, not } from 'patronum'
 import { getSessionUrl } from '@/entities/session/model/api'
-import { UserDetailedContract } from './contract'
+import { UserDetailedContract } from './api/contract'
 import { signOutMutation } from './sign-out'
 
 export const appStarted = createEvent()
@@ -34,5 +34,3 @@ sample({
   fn: () => true,
   target: $sessionLoaded,
 })
-
-debug(getSessionQuery.finished.failure)
