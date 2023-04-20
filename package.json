@@ -11,12 +11,9 @@
     "start:prod": "vite NODE_ENV=production --host",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "release": "standard-version",
     "prepare": "husky install"
   },
   "dependencies": {
-    "@commitlint/cli": "^17.6.1",
-    "@commitlint/config-conventional": "^17.6.1",
     "@farfetched/core": "^0.8.3",
     "@farfetched/zod": "^0.8.3",
     "@fontsource/roboto": "^4.5.8",
@@ -26,12 +23,10 @@
     "@stitches/react": "^1.2.8",
     "atomic-router": "^0.8.0",
     "atomic-router-react": "^0.8.1",
-    "bowser": "^2.11.0",
     "effector": "^22.5.0",
     "effector-factorio": "^1.1.0",
     "effector-forms": "^0.0.24",
     "effector-react": "^22.4.0",
-    "eslint-plugin-effector": "^0.10.3",
     "history": "^5.3.0",
     "i18next": "^22.4.3",
     "i18next-browser-languagedetector": "^7.0.1",
@@ -44,6 +39,8 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
     "@types/compose-function": "^0.0.30",
     "@types/node": "^18.11.11",
     "@types/react": "^18.0.24",
@@ -51,6 +48,7 @@
     "@vitejs/plugin-react": "^2.2.0",
     "eslint": "^8.34.0",
     "eslint-kit": "^6.11.0",
+    "eslint-plugin-effector": "^0.10.3",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",
     "typescript": "^4.9.5",

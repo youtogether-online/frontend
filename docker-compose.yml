@@ -1,25 +1,30 @@
 version: '3.9'
-
 services:
   backend:
-    image: wtkeqrf0/you_together-app
+    image: wtkeqrf0/you-together-app:latest
     ports:
       - "3000:3000"
     depends_on:
-      - redis
-      - postgres
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
   postgres:
     image: postgres:alpine
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Ubythfkbcbvec2
-      - POSTGRES_DB=you_together
+      POSTGRES_DB: you-together
+      POSTGRES_PASSWORD: Ubythfkbcbvec2
     ports:
       - "5432:5432"
+    healthcheck:
+      test: pg_isready -U postgres
   redis:
-    image: redis/redis-stack
+    image: redis:7.0.9-alpine3.17
     ports:
       - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli","ping" ]
   proxy:
     image: frkam/you-together-proxy
     ports:
