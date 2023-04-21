@@ -5,14 +5,13 @@ on:
     branches:
       - main
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Create Env File
         run: |
-          echo "${{ secrets.API_URL }}" > .env.production
+          echo "${{ secrets.VITE_API_URL }}" > .env.production
       - name: Checkout
         uses: actions/checkout@v3
       - name: Login to Docker Hub
