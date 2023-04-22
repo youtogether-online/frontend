@@ -1,9 +1,6 @@
 import { modelFactory } from 'effector-factorio'
-import { createFactory } from 'react'
-import {
-  createByEmailModel,
-  createByPasswordModel,
-} from '@/features/authentication'
+import { createByEmailModel } from '@/features/authentication/by-email'
+import { createByPasswordModel } from '@/features/authentication/by-password'
 
 export const createSignInModel = modelFactory(() => {
   const byPasswordModel = createByPasswordModel.createModel()
