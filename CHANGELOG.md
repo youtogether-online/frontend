@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/youtogether-online/frontend/compare/v1.0.0...v1.0.1) (2023-04-26)
+
+
+### Bug Fixes
+
+* change imports to actual ([2ecf606](https://github.com/youtogether-online/frontend/commit/2ecf606140155b2b5b076283907480ea2f926f89))
+
 ## 1.0.0 (2023-04-20)
 
 
