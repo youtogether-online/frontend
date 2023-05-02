@@ -7,8 +7,6 @@ import { routes } from '@/shared/routes'
 import { Avatar, Button, IconLogoHorizontal, NavLink } from '@/shared/ui'
 import { SignIn } from '@/widgets/sign-in'
 import { createSignInModel } from '@/widgets/sign-in/model'
-import { Navbar } from './navbar'
-import { Subheader } from './subheader'
 
 interface HeaderProps {
   subheader?: boolean
@@ -25,7 +23,7 @@ export const Header = ({
   user,
   centerLogo,
 }: HeaderProps) => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   const isAuthorized = useUnit($isAuthorized)
   const { data: session } = useUnit(getSessionQuery)
@@ -34,7 +32,6 @@ export const Header = ({
 
   return (
     <Root>
-      {subheader && <Subheader />}
       <Main>
         <LinkLogo to={routes.home} centerLogo={centerLogo}>
           <IconLogoHorizontal />
@@ -61,7 +58,6 @@ export const Header = ({
           </User>
         )}
       </Main>
-      {navbar && <Navbar />}
     </Root>
   )
 }
@@ -69,25 +65,29 @@ export const Header = ({
 const Main = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  padding: '12px 0',
-  height: '65px',
 })
 
 const SearchBarContainer = styled('div', {
-  marginRight: '28px',
+  marginRight: '$4',
   height: '100%',
   width: '100%',
   maxWidth: '400px',
 })
 
 const Root = styled('header', {
-  maxWidth: '$containerLg',
   width: '100%',
   margin: '0 auto',
+  backgroundColor: '$headerBg',
+  color: '$headerText',
+  padding: '$3',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '$3',
 })
 
 const LinkLogo = styled(NavLink, {
   margin: '0 auto 0 0',
+  color: '$headerLogo',
 
   variants: {
     centerLogo: {
@@ -101,15 +101,14 @@ const LinkLogo = styled(NavLink, {
 const HoverMenu = styled('div', {
   'display': 'flex',
   'position': 'absolute',
-  'zIndex': 100,
-  'top': '-13px',
-  'right': '-13px',
+  'zIndex': '$30',
+  'top': '$3',
+  'right': '$3',
   'opacity': 0,
-  'padding': '12px',
-  'backgroundColor': '$backgroundContainer',
+  'padding': '$3',
+  'backgroundColor': '$canvasInset',
   'minWidth': '280px',
   'borderRadius': '$tertiary',
-  'boxShadow': '1px 2px 10px rgba(0, 0, 0, 0.1)',
   'transform': 'scale(0)',
   'transformOrigin': '90% 10%',
   'transition': 'opacity 0.3s, transform 0.3s',

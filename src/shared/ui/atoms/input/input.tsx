@@ -24,41 +24,35 @@ export const InternalInput = ({
 
 const InputStyled = styled('input', {
   'outline': '0px',
-  'height': '36px',
+  'height': '32px',
   'border': '0px',
-  'padding': '6px 12px',
+  'padding': '$1 $2',
   'borderRadius': 'inherit',
   'width': '100%',
   'backgroundColor': 'inherit',
+  'color': '$fgDefault',
+  'fontSize': '$body2',
 
   '&:placeholder': {
-    color: '$textSecondary',
+    color: '$fgMuted',
+    fontWeight: '$semiBold',
   },
 })
 
 const Root = styled('span', {
-  'border': '1px solid $borderSecondary',
-  'backgroundColor': '$backgroundInput',
-  'borderRadius': '$tertiary',
-  'display': 'flex',
+  border: '1px solid $borderDefault',
+  backgroundColor: 'inherit',
+  borderRadius: '$2',
+  display: 'flex',
+  width: '100%',
 
-  '&:focus-within': {
-    borderColor: '$primaryBorder',
-  },
-
-  'variants': {
+  variants: {
     invalid: {
       true: {
-        'background': '$errorBackground',
-        'borderColor': '$errorBorder',
-        'color': '$errorText',
+        'borderColor': '$dangerEmphasis',
 
         '&:focus-within': {
-          borderColor: '$errorBorder',
-        },
-
-        '&::placeholder': {
-          color: '$errorText',
+          borderColor: '$dangerEmphasis',
         },
       },
     },
@@ -69,5 +63,5 @@ const Prefix = styled('span', {})
 
 const Postfix = styled('span', {
   display: 'flex',
-  marginRight: '10px',
+  margin: '$1',
 })

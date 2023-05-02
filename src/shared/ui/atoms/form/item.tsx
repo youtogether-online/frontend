@@ -5,15 +5,28 @@ import { Text } from '../text'
 interface FormItemProps {
   label?: string
   error?: string
+  caption?: string
+  required?: boolean
   children: ReactNode
 }
 
-export const Item = ({ label, error, children }: FormItemProps) => {
+export const Item = ({
+  label,
+  error,
+  caption,
+  required = false,
+  children,
+}: FormItemProps) => {
   return (
     <Root>
       {label && <Label variant="caption">{label}</Label>}
       <Children>{children}</Children>
       {error && <Error variant="caption">{error}</Error>}
+      {caption && (
+        <Text variant="caption" secondary>
+          {caption}
+        </Text>
+      )}
     </Root>
   )
 }

@@ -7,9 +7,6 @@ dependencies:
   '@farfetched/zod':
     specifier: ^0.8.10
     version: 0.8.10(@farfetched/core@0.8.10)(zod@3.21.4)
-  '@fontsource/roboto':
-    specifier: ^4.5.8
-    version: 4.5.8
   '@radix-ui/react-avatar':
     specifier: ^1.0.2
     version: 1.0.2(react-dom@18.2.0)(react@18.2.0)
@@ -64,6 +61,9 @@ dependencies:
   react-i18next:
     specifier: ^12.2.2
     version: 12.2.2(i18next@22.4.15)(react-dom@18.2.0)(react@18.2.0)
+  stitches-normalize-css:
+    specifier: ^1.2.0
+    version: 1.2.0
   vite-plugin-svgr:
     specifier: ^2.4.0
     version: 2.4.0(vite@4.3.1)
@@ -863,10 +863,6 @@ packages:
       use-isomorphic-layout-effect: 1.1.2(@types/react@18.0.38)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
-    dev: false
-
-  /@fontsource/roboto@4.5.8:
-    resolution: {integrity: sha512-CnD7zLItIzt86q4Sj3kZUiLcBk1dSk81qcqgMGaZe7SQ1P8hFNxhMl5AZthK1zrDM5m74VVhaOpuMGIL4gagaA==}
     dev: false
 
   /@humanwhocodes/config-array@0.11.8:
@@ -4673,6 +4669,10 @@ packages:
     dependencies:
       readable-stream: 3.6.2
     dev: true
+
+  /stitches-normalize-css@1.2.0:
+    resolution: {integrity: sha512-X0AmvKQcK2gXSCwmYzMQSqXA+9Yz+Nl7UUjuQ/Dkx3c77B9KyzGUFYNIiZ4ZW1SGRInDA/vI1HTUQk3ezkXDpA==}
+    dev: false
 
   /string-argv@0.3.1:
     resolution: {integrity: sha512-a1uQGz7IyVy9YwhqjZIZu1c8JO8dNIe20xBmSS6qu9kv++k3JGzCVmprbNN5Kn+BgzD5E7YYwg1CcjuJMRNsvg==}

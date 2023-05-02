@@ -3,7 +3,7 @@ import { useUnit } from 'effector-react'
 import { useEffect } from 'react'
 import { appStarted } from '@/entities/session'
 import { Pages } from '@/pages'
-import { styled } from '@/shared/config/stitches/stitches.config'
+import { darkTheme, styled } from '@/shared/config/stitches/stitches.config'
 import { globalStyles } from './global-styles'
 import { Provider } from './providers'
 
@@ -18,7 +18,7 @@ export const App = () => {
 
   return (
     <Provider>
-      <Root>
+      <Root className={darkTheme}>
         <Pages />
       </Root>
     </Provider>
@@ -30,4 +30,5 @@ const Root = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   overflowX: 'hidden',
+  backgroundColor: '$canvasDefault',
 })

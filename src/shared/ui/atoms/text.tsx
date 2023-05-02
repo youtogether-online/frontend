@@ -82,6 +82,8 @@ export const Text = ({
 }
 
 const TextStyled = styled('p', {
+  color: '$fgDefault',
+
   variants: {
     variant: {
       h1: {
@@ -139,16 +141,17 @@ const TextStyled = styled('p', {
       keyboard: {
         fontSize: '$keyboard',
         fontWeight: '$normal',
-        border: '1px solid rgba(100,100,100, 0.2)',
+        border: '1px solid $neutralMuted',
+        verticalAlign: 'middle',
         borderRadius: '3px',
-        background: 'rgba(150, 150, 150, 0.06)',
-        padding: '0px 4px',
-        borderBottomWidth: '3px',
+        background: 'inherit',
+        padding: '$1',
+        fontFamily: '$mono',
       },
     },
     strong: {
       true: {
-        fontWeight: '$semiBold',
+        fontWeight: '$bold',
       },
     },
     centered: {
@@ -158,7 +161,7 @@ const TextStyled = styled('p', {
     },
     secondary: {
       true: {
-        color: '$textSecondary',
+        color: '$fgMuted',
       },
     },
   },
