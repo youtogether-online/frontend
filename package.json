@@ -2,7 +2,7 @@
   "name": "youtogether-frontend",
   "license": "MIT",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "lint": "eslint --fix \"./src/**/**.{ts,tsx,js,jsx,json}\"",
@@ -52,6 +52,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",
     "typescript": "^4.9.5",
-    "vite": "^4.3.1"
+    "vite": "^4.3.1",
+    "vite-plugin-mkcert": "^1.15.0"
   }
 }
