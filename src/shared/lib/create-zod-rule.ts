@@ -19,15 +19,12 @@ export function createRule<V, T = any>({
           value: v,
         }
       } catch (error) {
-        const { code, ...options } = (error as ZodError).errors[0]
+        const { message } = error as ZodError
 
         return {
           isValid: false,
           value: v,
-          errorText: i18next.t(code, {
-            ns: 'validation',
-            ...options,
-          }),
+          errorText: message,
         }
       }
     },
