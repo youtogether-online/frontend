@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { getSessionQuery, signOutClicked } from '@/entities/session'
 import { styled } from '@/shared/config/stitches/stitches.config'
 import { routes } from '@/shared/routes'
-import { Button } from '@/shared/ui/atoms/button'
+import { Button } from '@/shared/ui/atoms/button/button'
 import { NavLink } from '@/shared/ui/atoms/navLink'
 import { Text } from '@/shared/ui/atoms/text'
 

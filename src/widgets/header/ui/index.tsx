@@ -43,7 +43,7 @@ export const Header = ({
         )}
         {user && (
           <User>
-            {!isAuthorized && <Button variant="text">{t('signIn')}</Button>}
+            {!isAuthorized && <Button>{t('signIn')}</Button>}
             {isAuthorized && session && (
               <Avatar
                 url={session.avatar}
