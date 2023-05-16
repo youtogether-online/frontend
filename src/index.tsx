@@ -1,11 +1,12 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import { App } from './app'
+import React from "react";
+import { createRoot } from "react-dom/client";
 
-const root = createRoot(document.querySelector('#root')!)
+import { App } from "./app";
+
+const root = createRoot(document.querySelector("#root")!);
 
 root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
-)
+  </React.StrictMode>,
+);

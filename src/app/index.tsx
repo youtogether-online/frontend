@@ -1,20 +1,24 @@
-import '@/shared/config/i18n'
-import { useUnit } from 'effector-react'
-import { useEffect } from 'react'
-import { appStarted } from '@/entities/session'
-import { Pages } from '@/pages'
-import { styled } from '@/shared/config/stitches/stitches.config'
-import { globalStyles } from './global-styles'
-import { Provider } from './providers'
+import { useUnit } from "effector-react";
+import { useEffect } from "react";
+
+import { Pages } from "@/pages";
+
+import { appStarted } from "@/entities/session";
+
+import "@/shared/config/i18n";
+import { styled } from "@/shared/config/stitches/stitches.config";
+
+import { globalStyles } from "./global-styles";
+import { Provider } from "./providers";
 
 export const App = () => {
-  globalStyles()
+  globalStyles();
 
-  const startApp = useUnit(appStarted)
+  const startApp = useUnit(appStarted);
 
   useEffect(() => {
-    startApp()
-  }, [startApp])
+    startApp();
+  }, [startApp]);
 
   return (
     <Provider>
@@ -22,12 +26,12 @@ export const App = () => {
         <Pages />
       </Root>
     </Provider>
-  )
-}
+  );
+};
 
-const Root = styled('div', {
-  minHeight: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  overflowX: 'hidden',
-})
+const Root = styled("div", {
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  overflowX: "hidden",
+});

@@ -1,12 +1,14 @@
-import { createJsonMutation, unknownContract } from '@farfetched/core'
-import { redirect } from 'atomic-router'
-import { createEvent, sample } from 'effector'
-import { routes } from '@/shared/routes'
-import { signOutUrl } from './api'
+import { createJsonMutation, unknownContract } from "@farfetched/core";
+import { redirect } from "atomic-router";
+import { createEvent, sample } from "effector";
+
+import { routes } from "@/shared/routes";
+
+import { signOutUrl } from "./api";
 
 export const signOutMutation = createJsonMutation({
   request: {
-    method: 'POST',
+    method: "POST",
     url: signOutUrl,
   },
   response: {
@@ -15,9 +17,9 @@ export const signOutMutation = createJsonMutation({
       expected: 201,
     },
   },
-})
+});
 
-export const signOutClicked = createEvent()
+export const signOutClicked = createEvent();
 
 sample({
   clock: signOutClicked,
@@ -28,4 +30,4 @@ sample({
       replace: true,
     }),
   ],
-})
+});

@@ -1,10 +1,11 @@
-import * as AvatarPrimitive from '@radix-ui/react-avatar'
-import { styled } from '@/shared/config/stitches/stitches.config'
+import * as AvatarPrimitive from "@radix-ui/react-avatar";
+
+import { styled } from "@/shared/config/stitches/stitches.config";
 
 interface AvatarProps {
-  url?: string
-  fallback: string
-  alt: string
+  url?: string;
+  fallback: string;
+  alt: string;
 }
 
 export const Avatar = ({ url, fallback, alt }: AvatarProps) => {
@@ -13,29 +14,29 @@ export const Avatar = ({ url, fallback, alt }: AvatarProps) => {
       <Image src={url} alt={alt} />
       <Fallback>{fallback}</Fallback>
     </Root>
-  )
-}
+  );
+};
 
 const Image = styled(AvatarPrimitive.Image, {
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  borderRadius: 'inherit',
-})
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  borderRadius: "inherit",
+});
 
 const Root = styled(AvatarPrimitive.Root, {
-  width: '38px',
-  height: '38px',
-  borderRadius: '$full',
-  cursor: 'pointer',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: '$backgroundContainerDark',
+  width: "38px",
+  height: "38px",
+  borderRadius: "$full",
+  cursor: "pointer",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "$backgroundContainerDark",
   zIndex: 110,
-  position: 'relative',
-})
+  position: "relative",
+});
 
 const Fallback = styled(AvatarPrimitive.AvatarFallback, {
-  textTransform: 'capitalize',
-})
+  textTransform: "capitalize",
+});

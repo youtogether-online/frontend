@@ -1,19 +1,20 @@
-import { FormHTMLAttributes, ReactNode } from 'react'
-import { styled } from '@/shared/config/stitches/stitches.config'
+import { type FormHTMLAttributes, type ReactNode } from "react";
+
+import { styled } from "@/shared/config/stitches/stitches.config";
 
 type InternalFormProps = FormHTMLAttributes<HTMLFormElement> & {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 export const InternalForm = ({ children, ...formProps }: InternalFormProps) => {
   return (
     <FormStyled {...formProps} noValidate>
       {children}
     </FormStyled>
-  )
-}
+  );
+};
 
-const FormStyled = styled('form', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '10px',
-})
+const FormStyled = styled("form", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "10px",
+});

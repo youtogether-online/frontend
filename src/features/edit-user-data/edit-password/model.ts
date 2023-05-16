@@ -1,1 +1,1 @@
-export const kek = 'kek'
+export const kek = "kek";

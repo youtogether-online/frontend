@@ -1,13 +1,13 @@
-import { keyframes, styled } from '@/shared/config/stitches/stitches.config'
-import { ReactComponent as LoaderIcon } from '@/shared/ui/icons/loader.svg'
+import { keyframes, styled } from "@/shared/config/stitches/stitches.config";
+import { ReactComponent as LoaderIcon } from "@/shared/ui/icons/loader.svg";
 
 const spin = keyframes({
-  from: { transform: 'rotate(0deg)' },
-  to: { transform: 'rotate(360deg)' },
-})
+  from: { transform: "rotate(0deg)" },
+  to: { transform: "rotate(360deg)" },
+});
 
 export const Loader = styled(LoaderIcon, {
   animation: `${spin} 1s cubic-bezier(0, 0, 0.2, 1) infinite`,
-  width: '20px',
-  height: '20px',
-})
+  width: "20px",
+  height: "20px",
+});

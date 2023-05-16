@@ -1,19 +1,21 @@
-import { useState } from 'react'
-import { IconEyeNone, IconEyeOpen } from '@/shared/ui'
-import { InternalInput, InternalInputProps } from './input'
+import { useState } from "react";
 
-type PasswordProps = Omit<InternalInputProps, 'postfix'>
+import { IconEyeNone, IconEyeOpen } from "@/shared/ui";
+
+import { InternalInput, type InternalInputProps } from "./input";
+
+type PasswordProps = Omit<InternalInputProps, "postfix">;
 
 export const Password = ({ ...inputProps }: PasswordProps) => {
-  const [isPasswordShown, setIsPasswordShown] = useState(false)
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   const handleChangePasswordShownMode = () => {
-    setIsPasswordShown((prevState) => !prevState)
-  }
+    setIsPasswordShown((prevState) => !prevState);
+  };
 
   return (
     <InternalInput
-      type={isPasswordShown ? 'text' : 'password'}
+      type={isPasswordShown ? "text" : "password"}
       id="current-password"
       autoComplete="current-password"
       {...inputProps}
@@ -23,5 +25,5 @@ export const Password = ({ ...inputProps }: PasswordProps) => {
         </button>
       }
     />
-  )
-}
+  );
+};

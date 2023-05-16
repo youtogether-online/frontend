@@ -1,29 +1,31 @@
-import { ButtonHTMLAttributes, forwardRef, ReactNode } from 'react'
-import { styled } from '@/shared/config/stitches/stitches.config'
-import { Text } from '@/shared/ui'
-import { Loader } from './loader'
+import { type ButtonHTMLAttributes, forwardRef, type ReactNode } from "react";
+
+import { styled } from "@/shared/config/stitches/stitches.config";
+import { Text } from "@/shared/ui";
+
+import { Loader } from "./loader";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'solid' | 'text' | 'outlined' | 'icon' | 'link'
-  theme?: 'primary' | 'danger' | 'success' | 'warning'
-  size?: 'small' | 'medium' | 'large' | 'full' | 'fitContent'
-  icon?: ReactNode
-  pending?: boolean
-  children?: ReactNode
-}
+  variant?: "solid" | "text" | "outlined" | "icon" | "link";
+  theme?: "primary" | "danger" | "success" | "warning";
+  size?: "small" | "medium" | "large" | "full" | "fitContent";
+  icon?: ReactNode;
+  pending?: boolean;
+  children?: ReactNode;
+};
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
-      variant = 'solid',
+      variant = "solid",
       pending,
-      theme = 'primary',
-      size = 'medium',
+      theme = "primary",
+      size = "medium",
       icon,
       children,
       ...buttonProps
     },
-    ref
+    ref,
   ) => {
     return (
       <ButtonStyled
@@ -39,96 +41,96 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {!pending && children && <Text variant="button">{children}</Text>}
         {pending && <Loader />}
       </ButtonStyled>
-    )
-  }
-)
+    );
+  },
+);
 
-const ButtonStyled = styled('button', {
-  'transition': 'background 200ms',
-  'outline': 'none',
-  'border': 'none',
-  'background': 'none',
-  'cursor': 'pointer',
-  'height': '36px',
-  'position': 'relative',
+const ButtonStyled = styled("button", {
+  transition: "background 200ms",
+  outline: "none",
+  border: "none",
+  background: "none",
+  cursor: "pointer",
+  height: "36px",
+  position: "relative",
 
-  '& span': {
-    fontSize: '$button',
+  "& span": {
+    fontSize: "$button",
   },
 
-  'variants': {
+  variants: {
     variant: {
       solid: {
-        padding: '8px 16px',
-        borderRadius: '$tertiary',
+        padding: "8px 16px",
+        borderRadius: "$tertiary",
       },
       link: {
-        height: 'auto',
+        height: "auto",
         padding: 0,
       },
       icon: {
-        'padding': '2px',
-        'borderRadius': '$full',
-        'width': 'min-content',
+        padding: "2px",
+        borderRadius: "$full",
+        width: "min-content",
 
-        '&:hover': {
-          backgroundColor: '$backgroundTextHover',
+        "&:hover": {
+          backgroundColor: "$backgroundTextHover",
         },
       },
       text: {
-        'background': 'none',
-        'padding': '8px',
-        'borderRadius': '$tertiary',
-        'width': 'fit-content',
+        background: "none",
+        padding: "8px",
+        borderRadius: "$tertiary",
+        width: "fit-content",
 
-        '&:hover': {
-          backgroundColor: '$backgroundTextHover',
+        "&:hover": {
+          backgroundColor: "$backgroundTextHover",
         },
       },
       outlined: {
-        'borderRadius': '$tertiary',
-        'border': '1px solid $borderPrimary',
+        borderRadius: "$tertiary",
+        border: "1px solid $borderPrimary",
 
-        '&:hover': {
-          backgroundColor: '$backgroundInput',
+        "&:hover": {
+          backgroundColor: "$backgroundInput",
         },
-        '& svg': {
-          display: 'block',
-          position: 'absolute',
-          left: '10px',
-          top: '50%',
-          transform: 'translateY(-50%)',
+        "& svg": {
+          display: "block",
+          position: "absolute",
+          left: "10px",
+          top: "50%",
+          transform: "translateY(-50%)",
         },
       },
     },
     disabled: {
       true: {
-        background: '$backgroundDisabled',
+        background: "$backgroundDisabled",
       },
     },
     size: {
       fitContent: {
-        width: 'fit-content',
+        width: "fit-content",
       },
       small: {
-        width: '77px',
+        width: "77px",
       },
       medium: {
-        width: '80px',
+        width: "80px",
       },
       large: {
-        width: '93px',
+        width: "93px",
       },
       full: {
-        width: '100%',
+        width: "100%",
       },
     },
     pending: {
       true: {
-        background: '$backgroundDisabled',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        background: "$backgroundDisabled",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       },
     },
     theme: {
@@ -139,17 +141,17 @@ const ButtonStyled = styled('button', {
     },
   },
 
-  'compoundVariants': [
+  compoundVariants: [
     {
-      variant: 'solid',
-      theme: 'primary',
+      variant: "solid",
+      theme: "primary",
       css: {
-        'backgroundColor': '$primary',
-        'color': '$textWhite',
-        '&:hover': {
-          backgroundColor: '$primaryHover',
+        backgroundColor: "$primary",
+        color: "$textWhite",
+        "&:hover": {
+          backgroundColor: "$primaryHover",
         },
       },
     },
   ],
-})
+});
