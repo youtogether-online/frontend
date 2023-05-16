@@ -1,10 +1,12 @@
-import { ReactNode } from 'react'
-import { Content } from '@/shared/ui'
-import { Footer } from '@/widgets/footer'
-import { Header } from '@/widgets/header'
+import { type ReactNode } from "react";
+
+import { Footer } from "@/widgets/footer";
+import { Header } from "@/widgets/header";
+
+import { Content } from "@/shared/ui";
 
 interface MainLayoutProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
@@ -14,5 +16,5 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       <Content>{children}</Content>
       <Footer />
     </>
-  )
-}
+  );
+};

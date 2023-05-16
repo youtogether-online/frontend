@@ -1,42 +1,46 @@
-import { createRoutesView } from 'atomic-router-react'
-import { chainAnonymous, chainAuthorized } from '@/entities/session'
-import { CatalogPage } from '@/pages/catalog'
-import { FriendsPage } from '@/pages/friends'
-import { HomePage } from '@/pages/home'
-import { NotFoundPage } from '@/pages/not-found'
-import { ProfilePage } from '@/pages/profile'
-import { SettingsPage } from '@/pages/settings'
-import { SignInPage } from '@/pages/sign-in'
-import { routes } from '@/shared/routes'
-import { MainLayout } from '@/widgets/layouts/main-layout'
-import { SignInLayout } from '@/widgets/layouts/sign-in-layout'
+import { createRoutesView } from "atomic-router-react";
+
+import { CatalogPage } from "@/pages/catalog";
+import { FriendsPage } from "@/pages/friends";
+import { HomePage } from "@/pages/home";
+import { NotFoundPage } from "@/pages/not-found";
+import { ProfilePage } from "@/pages/profile";
+import { SettingsPage } from "@/pages/settings";
+import { SignInPage } from "@/pages/sign-in";
+
+import { MainLayout } from "@/widgets/layouts/main-layout";
+import { SignInLayout } from "@/widgets/layouts/sign-in-layout";
+
+import { chainAnonymous, chainAuthorized } from "@/entities/session";
+
+import { routes } from "@/shared/routes";
 
 export const routesMap = [
   {
-    path: '/',
+    path: "/",
     route: routes.home,
   },
   {
-    path: '/catalog',
+    path: "/catalog",
     route: routes.catalog,
   },
   {
-    path: '/settings',
+    path: "/settings",
     route: routes.settings,
   },
   {
-    path: '/sign-in',
+    path: "/sign-in",
     route: routes.signIn,
   },
   {
-    path: '/:username',
+    path: "/:username",
     route: routes.profile,
   },
   {
-    path: '/:username/friends',
+    path: "/:username/friends",
     route: routes.friends,
   },
-]
+];
 
 export const Pages = createRoutesView({
   routes: [
@@ -75,6 +79,6 @@ export const Pages = createRoutesView({
     },
   ],
   otherwise: () => {
-    return <NotFoundPage />
+    return <NotFoundPage />;
   },
-})
+});

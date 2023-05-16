@@ -1,9 +1,11 @@
-import { ReactNode } from 'react'
-import { Content } from '@/shared/ui'
-import { Header } from '@/widgets/header'
+import { type ReactNode } from "react";
+
+import { Header } from "@/widgets/header";
+
+import { Content } from "@/shared/ui";
 
 interface SignInLayoutProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export const SignInLayout = ({ children }: SignInLayoutProps) => {
@@ -12,5 +14,5 @@ export const SignInLayout = ({ children }: SignInLayoutProps) => {
       <Header centerLogo />
       <Content>{children}</Content>
     </>
-  )
-}
+  );
+};

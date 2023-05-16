@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import '@/shared/config/i18n'
 import { useUnit } from 'effector-react'
 import { useEffect } from 'react'
@@ -6,15 +7,29 @@ import { Pages } from '@/pages'
 import { darkTheme, styled } from '@/shared/config/stitches/stitches.config'
 import { globalStyles } from './global-styles'
 import { Provider } from './providers'
+=======
+import { useUnit } from "effector-react";
+import { useEffect } from "react";
+
+import { Pages } from "@/pages";
+
+import { appStarted } from "@/entities/session";
+
+import "@/shared/config/i18n";
+import { styled } from "@/shared/config/stitches/stitches.config";
+
+import { globalStyles } from "./global-styles";
+import { Provider } from "./providers";
+>>>>>>> main
 
 export const App = () => {
-  globalStyles()
+  globalStyles();
 
-  const startApp = useUnit(appStarted)
+  const startApp = useUnit(appStarted);
 
   useEffect(() => {
-    startApp()
-  }, [startApp])
+    startApp();
+  }, [startApp]);
 
   return (
     <Provider>
@@ -22,9 +37,10 @@ export const App = () => {
         <Pages />
       </Root>
     </Provider>
-  )
-}
+  );
+};
 
+<<<<<<< HEAD
 const Root = styled('div', {
   minHeight: '100vh',
   display: 'flex',
@@ -32,3 +48,11 @@ const Root = styled('div', {
   overflowX: 'hidden',
   backgroundColor: '$canvasDefault',
 })
+=======
+const Root = styled("div", {
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  overflowX: "hidden",
+});
+>>>>>>> main

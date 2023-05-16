@@ -1,37 +1,37 @@
-import { useForm } from 'effector-forms'
-import { useUnit } from 'effector-react'
-import { ChangeEvent, FormEvent } from 'react'
-import { useTranslation } from 'react-i18next'
-import { createByEmailModel } from '@/features/authentication/by-email'
-import { styled } from '@/shared/config/stitches/stitches.config'
-import { Button, Form, IconArrowLeft, Input } from '@/shared/ui'
+import { useForm } from "effector-forms";
+import { useUnit } from "effector-react";
+import { type ChangeEvent, type FormEvent } from "react";
+import { useTranslation } from "react-i18next";
+
+import { createByEmailModel } from "@/features/authentication/by-email";
+
+import { styled } from "@/shared/config/stitches/stitches.config";
+import { Button, Form, IconArrowLeft, Input } from "@/shared/ui";
 
 export const CheckCode = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
-  const byEmailModel = createByEmailModel.useModel()
+  const byEmailModel = createByEmailModel.useModel();
 
-  const { submit, fields, errorText } = useForm(byEmailModel.checkCodeForm)
-  const returnToPreviousStep = useUnit(byEmailModel.returnToPrevStepClicked)
-  const isLoading = useUnit(byEmailModel.checkCodeMutation.$pending)
-  const formError = useUnit(byEmailModel.$checkCodeFormError)
+  const { submit, fields, errorText } = useForm(byEmailModel.checkCodeForm);
+  const returnToPreviousStep = useUnit(byEmailModel.returnToPrevStepClicked);
+  const isLoading = useUnit(byEmailModel.checkCodeMutation.$pending);
+  const formError = useUnit(byEmailModel.$checkCodeFormError);
 
   const handleFormSubmit = (event: FormEvent) => {
-    event.preventDefault()
-    submit()
-  }
+    event.preventDefault();
+    submit();
+  };
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    fields.code.onChange(event.target.value)
-  }
+    fields.code.onChange(event.target.value);
+  };
 
   return (
     <Root>
       <Form onSubmit={handleFormSubmit} noValidate>
-        {formError && (
-          <Form.Error error={formError.error} advice={formError.advice} />
-        )}
-        <Form.Item error={errorText('code')}>
+        {formError != null && <Form.Error error={formError.error} advice={formError.advice} />}
+        <Form.Item error={errorText("code")}>
           <Button
             variant="icon"
             onClick={returnToPreviousStep}
@@ -39,7 +39,7 @@ export const CheckCode = () => {
             type="button"
           />
           <Input
-            placeholder={t('enterCodeFromEmail')}
+            placeholder={t("enterCodeFromEmail")}
             id="verification-code"
             onChange={handleInputChange}
             invalid={fields.code.hasError()}
@@ -53,18 +53,18 @@ export const CheckCode = () => {
         theme="primary"
         pending={isLoading}
       >
-        {t('send')}
+        {t("send")}
       </Button>
     </Root>
-  )
-}
+  );
+};
 
-const Root = styled('div', {
-  'display': 'flex',
-  'flexDirection': 'column',
-  'gap': '10px',
+const Root = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "10px",
 
-  '& input': {
+  "& input": {
     flex: 1,
   },
-})
+});

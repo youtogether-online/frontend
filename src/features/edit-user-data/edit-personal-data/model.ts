@@ -1,47 +1,49 @@
-import { sample } from 'effector'
-import { createForm } from 'effector-forms'
-import { z } from 'zod'
-import { getSessionQuery } from '@/entities/session'
-import { createRule } from '@/shared/lib/create-zod-rule'
+import { sample } from "effector";
+import { createForm } from "effector-forms";
+import { z } from "zod";
+
+import { getSessionQuery } from "@/entities/session";
+
+import { createRule } from "@/shared/lib/create-zod-rule";
 
 export const editPersonalDataForm = createForm({
   fields: {
     username: {
-      init: '',
+      init: "",
       rules: [
         createRule<string>({
-          name: 'username',
+          name: "username",
           schema: z.string().min(5),
         }),
       ],
     },
     firstName: {
-      init: '',
+      init: "",
       rules: [
         createRule<string>({
-          name: 'firstName',
+          name: "firstName",
           schema: z.string(),
         }),
       ],
     },
     lastName: {
-      init: '',
+      init: "",
       rules: [
         createRule<string>({
-          name: 'lastName',
+          name: "lastName",
           schema: z.string(),
         }),
       ],
     },
   },
-  validateOn: ['submit'],
-})
+  validateOn: ["submit"],
+});
 
 sample({
   clock: getSessionQuery.finished.success,
   fn: (sessionData) => {
-    const { username, lastName, firstName } = sessionData.result
-    return { username, lastName, firstName }
+    const { username, lastName, firstName } = sessionData.result;
+    return { username, lastName, firstName };
   },
   target: editPersonalDataForm.setForm,
-})
+});

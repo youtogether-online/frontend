@@ -1,60 +1,49 @@
-import { styled } from '@stitches/react'
-import { ReactNode } from 'react'
+import { styled } from "@stitches/react";
+import { type ReactNode } from "react";
 
 type TypographyVariant =
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6'
-  | 'subtitle1'
-  | 'subtitle2'
-  | 'body1'
-  | 'body2'
-  | 'caption'
-  | 'keyboard'
-  | 'button'
-  | 'link'
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "subtitle1"
+  | "subtitle2"
+  | "body1"
+  | "body2"
+  | "caption"
+  | "keyboard"
+  | "button"
+  | "link";
 
-type TextHTMLElements =
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6'
-  | 'span'
-  | 'p'
-  | 'kbd'
+type TextHTMLElements = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span" | "p" | "kbd";
 
-interface VariantsMapping {
-  [name: string]: TextHTMLElements
-}
+type VariantsMapping = Record<string, TextHTMLElements>;
 
 const variantsMapping: VariantsMapping = {
-  h1: 'h1',
-  h2: 'h2',
-  h3: 'h3',
-  h4: 'h4',
-  h5: 'h5',
-  h6: 'h6',
-  subtitle1: 'h6',
-  subtitle2: 'h6',
-  body1: 'p',
-  body2: 'p',
-  button: 'span',
-  link: 'span',
-  caption: 'span',
-  keyboard: 'kbd',
-}
+  h1: "h1",
+  h2: "h2",
+  h3: "h3",
+  h4: "h4",
+  h5: "h5",
+  h6: "h6",
+  subtitle1: "h6",
+  subtitle2: "h6",
+  body1: "p",
+  body2: "p",
+  button: "span",
+  link: "span",
+  caption: "span",
+  keyboard: "kbd",
+};
 
 interface TypographyProps {
-  variant: TypographyVariant
-  children: ReactNode
-  strong?: boolean
-  secondary?: boolean
-  centered?: boolean
+  variant: TypographyVariant;
+  children: ReactNode;
+  strong?: boolean;
+  secondary?: boolean;
+  centered?: boolean;
 }
 
 export const Text = ({
@@ -65,7 +54,7 @@ export const Text = ({
   centered = false,
   ...textComponentProps
 }: TypographyProps) => {
-  const TextHTMlElement: TextHTMLElements = variantsMapping[variant]
+  const TextHTMlElement: TextHTMLElements = variantsMapping[variant];
 
   return (
     <TextStyled
@@ -78,91 +67,91 @@ export const Text = ({
     >
       {children}
     </TextStyled>
-  )
-}
+  );
+};
 
-const TextStyled = styled('p', {
-  color: '$fgDefault',
+const TextStyled = styled("p", {
+  color: "$fgDefault",
 
   variants: {
     variant: {
       h1: {
-        fontSize: '$h1',
-        fontWeight: '$semiBold',
+        fontSize: "$h1",
+        fontWeight: "$semiBold",
       },
       h2: {
-        fontSize: '$h2',
-        fontWeight: '$semiBold',
+        fontSize: "$h2",
+        fontWeight: "$semiBold",
       },
       h3: {
-        fontSize: '$h3',
-        fontWeight: '$semiBold',
+        fontSize: "$h3",
+        fontWeight: "$semiBold",
       },
       h4: {
-        fontSize: '$h4',
-        fontWeight: '$semiBold',
+        fontSize: "$h4",
+        fontWeight: "$semiBold",
       },
       h5: {
-        fontSize: '$h5',
-        fontWeight: '$semiBold',
+        fontSize: "$h5",
+        fontWeight: "$semiBold",
       },
       h6: {
-        fontSize: '$h6',
-        fontWeight: '$semiBold',
+        fontSize: "$h6",
+        fontWeight: "$semiBold",
       },
       body1: {
-        fontSize: '$body1',
-        fontWeight: '$normal',
+        fontSize: "$body1",
+        fontWeight: "$normal",
       },
       body2: {
-        fontSize: '$body2',
-        fontWeight: '$normal',
+        fontSize: "$body2",
+        fontWeight: "$normal",
       },
       button: {
-        fontSize: '$button',
-        fontWeight: '$normal',
+        fontSize: "$button",
+        fontWeight: "$normal",
       },
       link: {
-        fontSize: '$link',
-        fontWeight: '$normal',
+        fontSize: "$link",
+        fontWeight: "$normal",
       },
       caption: {
-        fontSize: '$caption',
-        fontWeight: '$normal',
+        fontSize: "$caption",
+        fontWeight: "$normal",
       },
       subtitle1: {
-        fontSize: '$subtitle1',
-        fontWeight: '$normal',
+        fontSize: "$subtitle1",
+        fontWeight: "$normal",
       },
       subtitle2: {
-        fontSize: '$subtitle2',
-        fontWeight: '$medium',
+        fontSize: "$subtitle2",
+        fontWeight: "$medium",
       },
       keyboard: {
-        fontSize: '$keyboard',
-        fontWeight: '$normal',
-        border: '1px solid $neutralMuted',
-        verticalAlign: 'middle',
-        borderRadius: '3px',
-        background: 'inherit',
-        padding: '$1',
-        fontFamily: '$mono',
+        fontSize: "$keyboard",
+        fontWeight: "$normal",
+        border: "1px solid $neutralMuted",
+        verticalAlign: "middle",
+        borderRadius: "3px",
+        background: "inherit",
+        padding: "$1",
+        fontFamily: "$mono",
       },
     },
     strong: {
       true: {
-        fontWeight: '$bold',
+        fontWeight: "$bold",
       },
     },
     centered: {
       true: {
-        textAlign: 'center',
+        textAlign: "center",
       },
     },
     secondary: {
       true: {
-        color: '$fgMuted',
+        color: "$fgMuted",
       },
     },
   },
-})
+});

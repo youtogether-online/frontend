@@ -1,55 +1,54 @@
-import {
-  createJsonMutation,
-  declareParams,
-  unknownContract,
-} from '@farfetched/core'
-import { createStore, sample } from 'effector'
-import { modelFactory } from 'effector-factorio'
-import { createForm } from 'effector-forms'
-import { z } from 'zod'
-import { signInClicked } from '@/entities/session'
-import { signInByPasswordUrl } from '@/features/authentication/by-password/api'
-import { ServerErrorResponse } from '@/shared/api/internal/types'
-import { createRule } from '@/shared/lib/create-zod-rule'
+import { createJsonMutation, declareParams, unknownContract } from "@farfetched/core";
+import { createStore, sample } from "effector";
+import { modelFactory } from "effector-factorio";
+import { createForm } from "effector-forms";
+import { z } from "zod";
+
+import { signInByPasswordUrl } from "@/features/authentication/by-password/api";
+
+import { signInClicked } from "@/entities/session";
+
+import { type ServerErrorResponse } from "@/shared/api/internal/types";
+import { createRule } from "@/shared/lib/create-zod-rule";
 
 export const createByPasswordModel = modelFactory(() => {
-  const $formError = createStore<ServerErrorResponse | null>(null)
+  const $formError = createStore<ServerErrorResponse | null>(null);
 
   const byPasswordForm = createForm({
     filter: $formError.map((error) => error === null),
-    validateOn: ['submit'],
+    validateOn: ["submit"],
     fields: {
       email: {
-        init: '',
+        init: "",
         rules: [
           createRule<string>({
-            name: 'email',
+            name: "email",
             schema: z.string(),
           }),
         ],
       },
       password: {
-        init: '',
+        init: "",
         rules: [
           createRule<string>({
-            name: 'password',
+            name: "password",
             schema: z.string(),
           }),
         ],
       },
     },
-  })
+  });
 
-  $formError.reset(byPasswordForm.$values.updates)
+  $formError.reset(byPasswordForm.$values.updates);
 
   const signInByPasswordMutation = createJsonMutation({
     params: declareParams<{
-      email: string
-      password: string
-      device: string
+      email: string;
+      password: string;
+      device: string;
     }>(),
     request: {
-      method: 'POST',
+      method: "POST",
       url: signInByPasswordUrl,
       body: (params) => params,
     },
@@ -59,9 +58,9 @@ export const createByPasswordModel = modelFactory(() => {
         expected: 200,
       },
     },
-  })
+  });
 
-  const $userDevice = createStore<string>('Unknown')
+  const $userDevice = createStore<string>("Unknown");
 
   sample({
     clock: byPasswordForm.formValidated,
@@ -71,23 +70,23 @@ export const createByPasswordModel = modelFactory(() => {
       device: $userDevice,
     },
     target: signInByPasswordMutation.start,
-  })
+  });
 
   sample({
     clock: signInByPasswordMutation.finished.success,
     target: signInClicked,
-  })
+  });
 
   sample({
     clock: signInByPasswordMutation.finished.failure,
     fn: (failData) => {
-      if (failData.error.errorType === 'HTTP') {
-        return failData.error.response as unknown as ServerErrorResponse
+      if (failData.error.errorType === "HTTP") {
+        return failData.error.response as unknown as ServerErrorResponse;
       }
-      return null
+      return null;
     },
     target: $formError,
-  })
+  });
 
   // sample({
   //   clock: signInByPasswordMutation.finished.failure,
@@ -105,11 +104,11 @@ export const createByPasswordModel = modelFactory(() => {
   //   },
   // })
 
-  $formError.reset(byPasswordForm.$values.updates)
+  $formError.reset(byPasswordForm.$values.updates);
 
   return {
     signInByPasswordMutation,
     byPasswordForm,
     $formError,
-  }
-})
+  };
+});

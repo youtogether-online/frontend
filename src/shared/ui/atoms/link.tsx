@@ -1,5 +1,5 @@
-import { styled } from '@/shared/config/stitches/stitches.config'
+import { styled } from "@/shared/config/stitches/stitches.config";
 
-export const Link = styled('a', {
-  color: '$infoText',
-})
+export const Link = styled("a", {
+  color: "$infoText",
+});
