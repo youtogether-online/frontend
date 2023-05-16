@@ -1,8 +1,5 @@
-import { styled } from "@/shared/config/stitches/stitches.config";
 import { Text } from "@/shared/ui";
 
 export const CatalogPage = () => {
-  return <Section>Catalog</Section>;
+  return <section>Catalog</section>;
 };
-
-const Section = styled("section", {});

@@ -31,7 +31,13 @@
     "project": [
       "./tsconfig.json"
     ],
-    "tsconfigRootDir": "./"
+    "tsconfigRootDir": "./",
+    "include": [
+      ".ts",
+      ".tsx",
+      ".js",
+      ".jsx"
+    ]
   },
   "plugins": [
     "react",
@@ -44,12 +50,17 @@
   "settings": {
     "import/resolver": {
       "typescript": {
-        "project": "./",
+        "project": "./src",
         "alwaysTryTypes": true
       }
     },
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
+      "@typescript-eslint/parser": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ]
     },
     "react": {
       "version": "18.x"
@@ -58,7 +69,10 @@
   "rules": {
     "import/order": "off",
     "import/no-unresolved": "off",
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
     "sonarjs/no-duplicate-string": "off",
     "no-console": "off",
     "@typescript-eslint/ban-types": "off",
@@ -73,6 +87,7 @@
     "@typescript-eslint/naming-convention": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-use-before-define": "off",
+    "unicorn/prefer-module": "off",
     "unicorn/filename-case": [
       "error",
       {
@@ -92,7 +107,9 @@
   },
   "overrides": [
     {
-      "files": ["*.stories.tsx"],
+      "files": [
+        "*.stories.tsx"
+      ],
       "rules": {
         "import/no-default-export": "off"
       }

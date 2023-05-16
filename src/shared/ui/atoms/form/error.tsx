@@ -8,19 +8,9 @@ export const Error = ({ error, advice }: ServerErrorResponse) => {
   const { t } = useTranslation();
 
   return (
-    <ErrorStyled>
+    <div>
       <Text variant="body1">{error || t("unknownError")}</Text>
       {advice && <Text variant="body2">{advice}</Text>}
-    </ErrorStyled>
+    </div>
   );
 };
-
-const ErrorStyled = styled("div", {
-  backgroundColor: "$errorBackground",
-  padding: "12px",
-  borderRadius: "$tertiary",
-  color: "$errorText",
-  display: "flex",
-  gap: "4px",
-  flexDirection: "column",
-});

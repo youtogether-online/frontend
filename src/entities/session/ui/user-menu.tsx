@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 
 import { getSessionQuery, signOutClicked } from "@/entities/session";
 
-import { styled } from "@/shared/config/stitches/stitches.config";
 import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/atoms/button/button";
 import { NavLink } from "@/shared/ui/atoms/navLink";
@@ -20,75 +19,36 @@ export const UserMenu = () => {
   }
 
   return (
-    <Root>
-      <Notifications>
+    <div>
+      <div>
         <Text variant="h5">{t("notifications")}</Text>
-      </Notifications>
-      <UserActions>
-        <Username variant="h5">{session.username}</Username>
-        <Actions>
-          <Action>
+      </div>
+      <div>
+        <Text variant="h5">{session.username}</Text>
+        <div>
+          <div>
             <NavLink to={routes.profile} params={{ username: session.username }}>
               {t("yourProfile")}
             </NavLink>
-          </Action>
-          <Action>
+          </div>
+          <div>
             <NavLink to={routes.friends} params={{ username: session.username }}>
               {t("friends")}
             </NavLink>
-          </Action>
-          <Action>
+          </div>
+          <div>
             <NavLink to={routes.home}>{t("favorites")}</NavLink>
-          </Action>
-          <Action>
+          </div>
+          <div>
             <NavLink to={routes.settings}>{t("settings")}</NavLink>
-          </Action>
-          <Action>
+          </div>
+          <div>
             <Button variant="link" size="fitContent" onClick={signOut}>
               {t("exit")}
             </Button>
-          </Action>
-        </Actions>
-      </UserActions>
-    </Root>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
-
-const Root = styled("div", {
-  minHeight: "330px",
-  display: "flex",
-});
-
-const Notifications = styled("div", {
-  backgroundColor: "$backgroundLayout",
-  padding: "16px",
-  minWidth: "240px",
-  borderRadius: "$tertiary",
-});
-
-const UserActions = styled("div", {
-  backgroundColor: "$backgroundContainer",
-  padding: "16px 64px 16px 16px",
-  width: "max-content",
-});
-
-const Actions = styled("ul", {
-  display: "flex",
-  flexDirection: "column",
-  paddingTop: "10px",
-  gap: "6px",
-});
-
-const Action = styled("li", {
-  width: "100%",
-  display: "flex",
-  gap: "5px",
-
-  "& span:hover": {
-    color: "$primaryText",
-  },
-});
-
-const Username = styled(Text, {
-  textTransform: "capitalize",
-});

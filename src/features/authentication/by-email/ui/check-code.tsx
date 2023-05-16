@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 
 import { createByEmailModel } from "@/features/authentication/by-email";
 
-import { styled } from "@/shared/config/stitches/stitches.config";
 import { Button, Form, IconArrowLeft, Input } from "@/shared/ui";
 
 export const CheckCode = () => {
@@ -28,7 +27,7 @@ export const CheckCode = () => {
   };
 
   return (
-    <Root>
+    <div>
       <Form onSubmit={handleFormSubmit} noValidate>
         {formError != null && <Form.Error error={formError.error} advice={formError.advice} />}
         <Form.Item error={errorText("code")}>
@@ -55,16 +54,6 @@ export const CheckCode = () => {
       >
         {t("send")}
       </Button>
-    </Root>
+    </div>
   );
 };
-
-const Root = styled("div", {
-  display: "flex",
-  flexDirection: "column",
-  gap: "10px",
-
-  "& input": {
-    flex: 1,
-  },
-});

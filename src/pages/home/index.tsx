@@ -1,12 +1,9 @@
-import { styled } from "@/shared/config/stitches/stitches.config";
 import { Text } from "@/shared/ui";
 
 export const HomePage = () => {
   return (
-    <Section>
+    <section>
       <Text variant="h1">Home Page</Text>
-    </Section>
+    </section>
   );
 };
-
-const Section = styled("section", {});
