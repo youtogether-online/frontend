@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 
-
 import { Form, Input, Text } from "@/shared/ui";
 
 export const SearchBar = () => {

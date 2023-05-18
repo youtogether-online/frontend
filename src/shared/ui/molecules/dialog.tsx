@@ -1,9 +1,9 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { type ReactNode } from "react";
 
-import { styled } from "@/shared/config/stitches/stitches.config";
-import { Button } from "@/shared/ui/atoms/button/button";
 import { ReactComponent as Cross } from "@/shared/ui/icons/cross.svg";
+
+import { Button } from "../atoms/button";
 
 interface ModalProps {
   title?: string;

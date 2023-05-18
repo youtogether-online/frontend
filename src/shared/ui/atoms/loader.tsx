@@ -1,4 +1,3 @@
-import { keyframes, styled } from "@/shared/config/stitches/stitches.config";
 import { ReactComponent as LoaderIcon } from "@/shared/ui/icons/loader.svg";
 
 const spin = keyframes({

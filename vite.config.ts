@@ -1,20 +1,20 @@
-import * as path from 'path'
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
-import mkcert from 'vite-plugin-mkcert'
-import svgr from 'vite-plugin-svgr'
+import * as path from "node:path";
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import mkcert from "vite-plugin-mkcert";
+import svgr from "vite-plugin-svgr";
 
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
   plugins: [
     svgr(),
     react({
       babel: {
-        plugins: ['effector/babel-plugin'],
+        plugins: ["effector/babel-plugin", "typewind/babel"],
       },
     }),
     mkcert(),
@@ -31,4 +31,4 @@ export default defineConfig({
   preview: {
     port: 5173,
   },
-})
+});

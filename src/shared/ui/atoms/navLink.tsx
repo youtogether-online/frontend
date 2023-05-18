@@ -2,8 +2,6 @@ import { RouteParams } from "atomic-router";
 import { Link, type LinkProps } from "atomic-router-react";
 import { type ReactNode } from "react";
 
-import { css, styled } from "@/shared/config/stitches/stitches.config";
-
 const navLinkStyles = css({
   color: "$textPrimary",
   textDecoration: "none",

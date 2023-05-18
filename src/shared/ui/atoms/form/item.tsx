@@ -2,7 +2,7 @@ import { type ReactNode } from "react";
 
 import { styled } from "@/shared/config/stitches/stitches.config";
 
-import { Text } from "../text";
+import { Text } from "../typography/text/text";
 
 interface FormItemProps {
   label?: string;

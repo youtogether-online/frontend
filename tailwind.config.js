@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+const {typewindTransforms} = require('typewind/transform')
 
 module.exports = {
-  content: ["./src/**/*.{ts,tsx}"],
+  content: {files:["./src/**/*.{ts,tsx}"], transform: typewindTransforms},
   theme: {
     screens: {
       sm: "320px",
@@ -26,21 +27,14 @@ module.exports = {
       mono: ["SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", "Courier", "monospace"],
     },
     fontSize: {
-      h1: "2rem",
-      h2: "1.5rem",
-      h3: "1.25rem",
-      h4: "1rem",
-      h5: "0.875rem",
-      h6: "0.75rem",
-      body1: "1rem",
-      body2: "0.875rem",
-      subtitle1: "1rem",
-      subtitle2: "0.875rem",
-      caption: "0.75rem",
-      button: "1rem",
-      keyboard: "0.75rem",
-      error: "0.75rem",
-      link: "1rem",
+      sm: "12px",
+      md: "14px",
+      lg: "16px",
+      xl: "20px",
+      "2xl": "24px",
+      "3xl": "32px",
+      "4xl": "40px",
+      "5xl": "48px",
     },
     fontWeight: {
       light: "300",

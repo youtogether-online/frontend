@@ -6,7 +6,7 @@ import { getSessionQuery, signOutClicked } from "@/entities/session";
 import { routes } from "@/shared/routes";
 import { Button } from "@/shared/ui/atoms/button/button";
 import { NavLink } from "@/shared/ui/atoms/navLink";
-import { Text } from "@/shared/ui/atoms/text";
+import { Text } from "@/shared/ui/atoms/typography/text/text";
 
 export const UserMenu = () => {
   const signOut = useUnit(signOutClicked);

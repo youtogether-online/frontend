@@ -5,4 +5,4 @@ export * from "./input";
 export * from "./link";
 export * from "./loader";
 export * from "./navLink";
-export * from "./text";
+export * from "./typography/text/text";
