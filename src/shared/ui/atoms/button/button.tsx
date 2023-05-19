@@ -62,7 +62,7 @@ const button = cva(
         true: [tw.disabled(tw.pointer_events_none)],
       },
       block: {
-        true: [tw.h_full],
+        true: [tw.w_full],
       },
     },
     defaultVariants: {

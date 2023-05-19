@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button > Button should respects block prop 1`] = `
+<button
+  class="transition-colors border border-solid rounded-md cursor-pointer bg-buttonBg text-buttonText border-buttonBorder hover:border-buttonHoverBorder hover:bg-buttonHoverBg active:bg-buttonBg active:text-buttonText active:border-buttonBorder disabled:text-fgMuted text-md h-8 px-3 w-full"
+>
+  <span
+    class="flex h-full items-center overflow-hidden whitespace-nowrap"
+  >
+    Block
+  </span>
+</button>
+`;

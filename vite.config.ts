@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import mkcert from "vite-plugin-mkcert";
 import svgr from "vite-plugin-svgr";
+import { test } from "vitest";
 
 export default defineConfig({
   resolve: {
@@ -30,5 +31,8 @@ export default defineConfig({
   },
   preview: {
     port: 5173,
+  },
+  test: {
+    environment: "jsdom",
   },
 });
