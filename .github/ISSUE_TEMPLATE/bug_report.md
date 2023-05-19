@@ -1,8 +1,8 @@
 ---
-name: 'Bug report'
-about: 'You want to report a reproducible bug'
-labels: 'bug'
-title: 'BUG: '
+name: "Bug report"
+about: "You want to report a reproducible bug"
+labels: "bug"
+title: ""
 ---
 
 <!--
