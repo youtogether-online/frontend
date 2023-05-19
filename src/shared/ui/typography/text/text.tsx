@@ -16,15 +16,8 @@ const text = cva("", {
       span: [tw.font_normal],
       p: [tw.font_normal],
       kbd: [
-        tw.text_sm,
-        tw.font_mono,
-        tw.bg_canvasSubtle,
-        tw.border_neutralMuted,
-        tw.border,
-        tw.border_solid,
-        tw.rounded_md,
-        tw.inline_block,
-        tw.p_1,
+        tw.text_sm.font_mono.bg_canvasSubtle.border_neutralMuted.border.border_solid.rounded_md
+          .inline_block.p_1,
       ],
       em: [],
       u: [],

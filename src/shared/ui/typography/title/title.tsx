@@ -19,12 +19,12 @@ const title = cva("", {
   variants: {
     ...baseStyles,
     order: {
-      1: [tw.text_5xl, tw.font_bold],
-      2: [tw.text_4xl, tw.font_bold],
-      3: [tw.text_3xl, tw.font_bold],
-      4: [tw.text_2xl, tw.font_bold],
-      5: [tw.text_xl, tw.font_semiBold],
-      6: [tw.text_lg, tw.font_semiBold],
+      1: [tw.text_5xl.font_bold],
+      2: [tw.text_4xl.font_bold],
+      3: [tw.text_3xl.font_bold],
+      4: [tw.text_2xl.font_bold],
+      5: [tw.text_xl.font_semiBold],
+      6: [tw.text_lg.font_semiBold],
     },
   },
 });

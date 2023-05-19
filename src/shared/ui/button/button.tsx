@@ -3,23 +3,12 @@ import { type ButtonHTMLAttributes, type ReactNode } from "react";
 import { tw } from "typewind";
 
 const button = cva(
-  [
-    tw.transition_colors,
-    tw.border,
-    tw.border_solid,
-    tw.rounded_md,
-    tw.cursor_pointer,
-    tw.flex,
-    tw.gap_2,
-    tw.items_center,
-  ],
+  [tw.transition_colors.border.border_solid.rounded_md.cursor_pointer.flex.gap_2.items_center],
   {
     variants: {
       variant: {
         primary: [
-          tw.bg_buttonPrimaryBg,
-          tw.border_buttonPrimaryBorder,
-          tw.text_buttonPrimaryText,
+          tw.bg_buttonPrimaryBg.border_buttonPrimaryBorder.text_buttonPrimaryText,
           tw.hover(tw.bg_buttonPrimaryHoverBg.border_buttonPrimaryBorder),
           tw.active(tw.border_buttonPrimaryBorder.bg_buttonPrimaryBg),
           tw.disabled(
@@ -28,17 +17,13 @@ const button = cva(
           ),
         ],
         secondary: [
-          tw.bg_buttonBg,
-          tw.text_buttonText,
-          tw.border_buttonBorder,
+          tw.bg_buttonBg.text_buttonText.border_buttonBorder,
           tw.hover(tw.border_buttonHoverBorder.bg_buttonHoverBg),
           tw.active(tw.bg_buttonBg.text_buttonText.border_buttonBorder),
           tw.disabled(tw.text_fgMuted),
         ],
         outline: [
-          tw.bg_buttonBg,
-          tw.text_buttonOutlineText,
-          tw.border_buttonBorder,
+          tw.bg_buttonBg.text_buttonOutlineText.border_buttonBorder,
           tw.hover(
             tw.bg_buttonOutlineHoverBg.border_buttonOutlineHoverBorder.text_buttonOutlineHoverText,
           ),
@@ -49,9 +34,7 @@ const button = cva(
           tw.disabled(tw.bg_buttonOutlineDisabledBg.text_buttonOutlineDisabledText),
         ],
         danger: [
-          tw.bg_buttonBg,
-          tw.border_buttonBorder,
-          tw.text_buttonDangerText,
+          tw.bg_buttonBg.border_buttonBorder.text_buttonDangerText,
           tw.hover(
             tw.text_buttonDangerHoverText.border_buttonDangerHoverBorder.bg_buttonDangerHoverBg,
           ),
@@ -63,9 +46,9 @@ const button = cva(
         ],
       },
       size: {
-        sm: [tw.text_sm, tw.h_7, tw.px_2],
-        md: [tw.text_md, tw.h_8, tw.px_3],
-        lg: [tw.text_md, tw.h_10, tw.px_3],
+        sm: [tw.text_sm.h_7.px_2],
+        md: [tw.text_md.h_8.px_3],
+        lg: [tw.text_md.h_10.px_3],
       },
       disabled: {
         true: [tw.disabled(tw.pointer_events_none)],
@@ -88,6 +71,8 @@ const button = cva(
   },
 );
 
+const icon = tw.h_full.flex.items_center;
+
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof button> & {
     LeadingIcon?: ReactNode;
@@ -95,8 +80,6 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
     TrailingAction?: ReactNode;
     children: ReactNode;
   };
-
-const icon = tw.h_full.flex.items_center;
 
 export const Button = ({
   variant,
