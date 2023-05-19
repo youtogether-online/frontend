@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-const {typewindTransforms} = require('typewind/transform')
+const { typewindTransforms } = require("typewind/transform");
 
 module.exports = {
-  content: {files:["./src/**/*.{ts,tsx}"], transform: typewindTransforms},
+  content: { files: ["./src/**/*.{ts,tsx}"], transform: typewindTransforms },
   theme: {
     screens: {
       sm: "320px",
@@ -63,6 +63,8 @@ module.exports = {
       xl: `var(--shadow-xl)`,
     },
     colors: {
+      currentColor: "currentColor",
+      inherit: "inherit",
       footerLogo: "var(--color-footer-logo)",
       pageHeaderBg: "var(--color-page-header-bg)",
       avatarBg: "var(--color-avatar-bg)",

@@ -96,6 +96,8 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
     children: ReactNode;
   };
 
+const icon = tw.h_full.flex.items_center;
+
 export const Button = ({
   variant,
   block,
@@ -114,10 +116,10 @@ export const Button = ({
       disabled={disabled}
       className={button({ variant, block, size, disabled, alignContent })}
     >
-      {LeadingIcon && <span>{LeadingIcon}</span>}
-      <span className={tw.overflow_hidden.whitespace_nowrap}>{children}</span>
-      {TrailingIcon && <span>{TrailingIcon}</span>}
-      {TrailingAction && <span>{TrailingAction}</span>}
+      {LeadingIcon && <span className={icon}>{LeadingIcon}</span>}
+      <span className={tw.overflow_hidden.whitespace_nowrap.text_inherit}>{children}</span>
+      {TrailingIcon && <span className={icon}>{TrailingIcon}</span>}
+      {TrailingAction && <span className={icon}>{TrailingAction}</span>}
     </button>
   );
 };

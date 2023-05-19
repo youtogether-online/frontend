@@ -1,2 +1,4 @@
-export * from "./icons";
-export * from "./templates";
+export * from "./button";
+export * from "./avatar";
+export * from "./icon";
+export * from "./typography";

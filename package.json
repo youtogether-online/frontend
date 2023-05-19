@@ -18,7 +18,9 @@
     "start:prod": "vite preview",
     "start:storybook": "storybook dev -p 6006",
     "build": "tsc && vite build",
-    "build:storybook": "storybook build"
+    "build:storybook": "storybook build",
+    "generate:sprites": "sprite --group --root src/shared/assets/icons -o public/sprite -d src/shared/ui/icon/sprite.h.ts",
+    "generate:typewind": "typewind generate"
   },
   "typewind": {
     "showPixelEquivalents": true,
@@ -53,6 +55,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",
+    "@neodx/svg": "^0.1.7",
     "@storybook/addon-essentials": "^7.0.11",
     "@storybook/addon-interactions": "^7.0.11",
     "@storybook/addon-links": "^7.0.11",

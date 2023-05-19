@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { IconArrowLeft } from "../icons";
+import { Icon } from "@/shared/ui";
+
 import { Button } from "./button";
 
 const meta: Meta<typeof Button> = {
@@ -77,21 +78,21 @@ export const Block: Story = {
 
 export const LeadingIcon: Story = {
   args: {
-    LeadingIcon: <IconArrowLeft />,
+    LeadingIcon: <Icon name="common/arrowLeft" />,
     children: "Leading icon",
   },
 };
 
 export const TrailingIcon: Story = {
   args: {
-    TrailingAction: <IconArrowLeft />,
+    TrailingAction: <Icon name="common/arrowLeft" />,
     children: "Trailing Icon",
   },
 };
 
 export const TrailingAction: Story = {
   args: {
-    TrailingAction: <IconArrowLeft />,
+    TrailingAction: <Icon name="common/arrowLeft" />,
     children: "Leading Action",
   },
 };
