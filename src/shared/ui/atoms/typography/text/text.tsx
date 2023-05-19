@@ -1,5 +1,6 @@
 import { cva, type VariantProps } from "cva";
 import { type ReactNode } from "react";
+import { tw } from "typewind";
 
 import { baseStyles } from "../styles";
 
@@ -7,23 +8,23 @@ const text = cva("", {
   variants: {
     ...baseStyles,
     variant: {
-      primary: ["text-fgDefault"],
-      secondary: ["text-fgMuted"],
-      danger: ["text-dangerFg"],
+      primary: [tw.text_fgDefault],
+      secondary: [tw.text_fgMuted],
+      danger: [tw.text_dangerFg],
     },
     component: {
-      span: ["font-normal"],
-      p: ["font-normal"],
+      span: [tw.font_normal],
+      p: [tw.font_normal],
       kbd: [
-        "text-sm",
-        "font-mono",
-        "bg-canvasSubtle",
-        "border-neutralMuted",
-        "border",
-        "border-solid",
-        "rounded-md",
-        "inline-block",
-        "p-1",
+        tw.text_sm,
+        tw.font_mono,
+        tw.bg_canvasSubtle,
+        tw.border_neutralMuted,
+        tw.border,
+        tw.border_solid,
+        tw.rounded_md,
+        tw.inline_block,
+        tw.p_1,
       ],
       em: [],
       u: [],
@@ -44,8 +45,8 @@ type TextProps = VariantProps<typeof text> & {
   children: ReactNode;
 };
 
-export const Text = ({ component, children, sx, variant }: TextProps) => {
+export const Text = ({ component, children, variant }: TextProps) => {
   const Component = component;
 
-  return <Component className={text({ component, className: sx, variant })}>{children}</Component>;
+  return <Component className={text({ component, variant })}>{children}</Component>;
 };
