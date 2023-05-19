@@ -1,5 +1,6 @@
 import { cva, type VariantProps } from "cva";
 import { type ElementType, type ReactNode } from "react";
+import { tw } from "typewind";
 
 import { baseStyles } from "../styles";
 
@@ -18,12 +19,12 @@ const title = cva("", {
   variants: {
     ...baseStyles,
     order: {
-      1: ["text-5xl", "font-bold"],
-      2: ["text-4xl", "font-bold"],
-      3: ["text-3xl", "font-bold"],
-      4: ["text-2xl", "font-bold"],
-      5: ["text-xl", "font-semiBold"],
-      6: ["text-lg", "font-semiBold"],
+      1: [tw.text_5xl, tw.font_bold],
+      2: [tw.text_4xl, tw.font_bold],
+      3: [tw.text_3xl, tw.font_bold],
+      4: [tw.text_2xl, tw.font_bold],
+      5: [tw.text_xl, tw.font_semiBold],
+      6: [tw.text_lg, tw.font_semiBold],
     },
   },
 });
