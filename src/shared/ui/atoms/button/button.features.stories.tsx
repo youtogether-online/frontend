@@ -1,0 +1,97 @@
+import type { Meta, StoryObj } from "@storybook/react";
+
+import { IconArrowLeft } from "../../icons";
+import { Button } from "./button";
+
+const meta: Meta<typeof Button> = {
+  title: "Components/Buttons/Button/Features",
+  tags: ["autodocs"],
+  component: Button,
+};
+
+export default meta;
+type Story = StoryObj<typeof Button>;
+
+export const Primary: Story = {
+  args: {
+    variant: "primary",
+    children: "Primary",
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    variant: "secondary",
+    children: "Secondary",
+  },
+};
+
+export const Outlined: Story = {
+  args: {
+    variant: "outline",
+    children: "Outlined",
+  },
+};
+
+export const Danger: Story = {
+  args: {
+    variant: "danger",
+    children: "Danger",
+  },
+};
+
+export const Small: Story = {
+  args: {
+    size: "sm",
+    children: "Small",
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    size: "md",
+    children: "Medium",
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: "lg",
+    children: "Large",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    children: "Disabled",
+  },
+};
+
+export const Block: Story = {
+  args: {
+    block: true,
+    children: "Block",
+  },
+};
+
+export const LeadingIcon: Story = {
+  args: {
+    LeadingIcon: <IconArrowLeft />,
+    children: "Leading icon",
+  },
+};
+
+export const TrailingIcon: Story = {
+  args: {
+    TrailingAction: <IconArrowLeft />,
+    children: "Trailing Icon",
+  },
+};
+
+export const TrailingAction: Story = {
+  args: {
+    TrailingAction: <IconArrowLeft />,
+    children: "Leading Action",
+  },
+};

@@ -3,7 +3,16 @@ import { type ButtonHTMLAttributes, type ReactNode } from "react";
 import { tw } from "typewind";
 
 const button = cva(
-  [tw.transition_colors, tw.border, tw.border_solid, tw.rounded_md, tw.cursor_pointer],
+  [
+    tw.transition_colors,
+    tw.border,
+    tw.border_solid,
+    tw.rounded_md,
+    tw.cursor_pointer,
+    tw.flex,
+    tw.gap_2,
+    tw.items_center,
+  ],
   {
     variants: {
       variant: {
@@ -64,20 +73,26 @@ const button = cva(
       block: {
         true: [tw.w_full],
       },
+      alignContent: {
+        center: [tw.justify_center],
+        start: [tw.justify_start],
+      },
     },
     defaultVariants: {
       variant: "secondary",
       size: "md",
       block: false,
       disabled: false,
+      alignContent: "center",
     },
   },
 );
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof button> & {
-    leadingIcon?: ReactNode;
-    trailingIcon?: ReactNode;
+    LeadingIcon?: ReactNode;
+    TrailingIcon?: ReactNode;
+    TrailingAction?: ReactNode;
     children: ReactNode;
   };
 
@@ -86,8 +101,10 @@ export const Button = ({
   block,
   size,
   disabled,
-  leadingIcon,
-  trailingIcon,
+  LeadingIcon,
+  TrailingIcon,
+  alignContent,
+  TrailingAction,
   children,
   ...buttonProps
 }: ButtonProps) => {
@@ -95,11 +112,12 @@ export const Button = ({
     <button
       {...buttonProps}
       disabled={disabled}
-      className={button({ variant, block, size, disabled })}
+      className={button({ variant, block, size, disabled, alignContent })}
     >
-      <span className={tw.flex.h_full.items_center.overflow_hidden.whitespace_nowrap}>
-        {children}
-      </span>
+      {LeadingIcon && <span>{LeadingIcon}</span>}
+      <span className={tw.overflow_hidden.whitespace_nowrap}>{children}</span>
+      {TrailingIcon && <span>{TrailingIcon}</span>}
+      {TrailingAction && <span>{TrailingAction}</span>}
     </button>
   );
 };

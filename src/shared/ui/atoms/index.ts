@@ -1,4 +1,4 @@
-export * from "./avatar";
+export * from "./avatar/avatar";
 export * from "./button";
 export * from "./form";
 export * from "./input";
