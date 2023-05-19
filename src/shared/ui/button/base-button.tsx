@@ -1,6 +1,7 @@
 import { cva, type VariantProps } from "cva";
 import { tw } from "typewind";
-import { ButtonProps } from "./button.type";
+
+import { type ButtonProps } from "./types";
 
 export const baseButton = cva(
   [tw.transition_colors.border.border_solid.rounded_md.cursor_pointer.flex.gap_2.items_center],
@@ -92,13 +93,14 @@ export const BaseButton = ({
       disabled={disabled}
       className={baseButton({ disabled, variant, size, alignContent, block })}
     >
-      {icon ?? 
-      <>
-        {leadingIcon && <span className={buttonIcon}>{leadingIcon}</span>}
-        <span className={tw.overflow_hidden.whitespace_nowrap.text_inherit}>{children}</span>
-        {trailingIcon && <span className={buttonIcon}>{trailingIcon}</span>}
-        {trailingAction && <span className={buttonIcon}>{trailingAction}</span>}
-      </>}
+      {icon ?? (
+        <>
+          {leadingIcon && <span className={buttonIcon}>{leadingIcon}</span>}
+          <span className={tw.overflow_hidden.whitespace_nowrap.text_inherit}>{children}</span>
+          {trailingIcon && <span className={buttonIcon}>{trailingIcon}</span>}
+          {trailingAction && <span className={buttonIcon}>{trailingAction}</span>}
+        </>
+      )}
     </button>
   );
 };

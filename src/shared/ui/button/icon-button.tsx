@@ -1,6 +1,6 @@
 import { BaseButton } from "./base-button";
-import { IconButtonProps } from "./button.type";
+import { type IconButtonProps } from "./types";
 
-export const IconButton = ({...props}: IconButtonProps) => {
-  return <BaseButton {...props} />
+export const IconButton = ({ ...props }: IconButtonProps) => {
+  return <BaseButton {...props} />;
 };
