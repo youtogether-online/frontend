@@ -128,6 +128,8 @@ module.exports = {
       buttonDangerDisabledCounterBg: "var(--color-button-danger-disabled-counter-bg)",
       buttonDangerCounterBg: "var(--color-button-danger-counter-bg)",
       buttonDangerIcon: "var(--color-button-danger-icon)",
+      buttonInvisibleHoverBg: "var(--color-button-invisible-hover-bg)",
+      buttonInvisibleSelectedBg: "var(--color-button-invisible-selected-bg)",
       neutralEmphasisPlus: "var(--color-neutral-emphasis-plus)",
       neutralEmphasis: "var(--color-neutral-emphasis)",
       neutralMuted: "var(--color-neutral-muted)",

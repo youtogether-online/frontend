@@ -104,6 +104,7 @@
     "unicorn/no-null": "off",
     "@typescript-eslint/restrict-template-expressions": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
-    "@typescript-eslint/strict-boolean-expressions": "off"
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "unicorn/prefer-logical-operation-over-ternary": "off"
   }
 }

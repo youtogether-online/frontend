@@ -55,7 +55,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",
-    "@neodx/svg": "^0.1.7",
+    "@neodx/svg": "^0.1.8",
     "@storybook/addon-essentials": "^7.0.11",
     "@storybook/addon-interactions": "^7.0.11",
     "@storybook/addon-links": "^7.0.11",

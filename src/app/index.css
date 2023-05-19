@@ -79,6 +79,8 @@
     --color-button-danger-disabled-counter-bg: rgba(218, 54, 51, 0.05);
     --color-button-danger-counter-bg: rgba(218, 54, 51, 0.1);
     --color-button-danger-icon: #f85149;
+    --color-button-invisible-hover-bg: rgb(48, 54, 61);
+    --color-button-invisible-selected-bg: rgb(22, 27, 34);
     --color-neutral-emphasis-plus: #6e7681;
     --color-neutral-emphasis: #6e7681;
     --color-neutral-muted: rgba(110, 118, 129, 0.4);

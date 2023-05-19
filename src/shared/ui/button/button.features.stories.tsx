@@ -41,6 +41,13 @@ export const Danger: Story = {
   },
 };
 
+export const Invisible: Story = {
+  args: {
+    variant: "invisible",
+    children: "Invisible"
+  }
+}
+
 export const Small: Story = {
   args: {
     size: "sm",
@@ -78,21 +85,21 @@ export const Block: Story = {
 
 export const LeadingIcon: Story = {
   args: {
-    LeadingIcon: <Icon name="common/arrowLeft" />,
+    leadingIcon: <Icon name="common/arrowLeft" />,
     children: "Leading icon",
   },
 };
 
 export const TrailingIcon: Story = {
   args: {
-    TrailingAction: <Icon name="common/arrowLeft" />,
+    trailingAction: <Icon name="common/arrowLeft" />,
     children: "Trailing Icon",
   },
 };
 
 export const TrailingAction: Story = {
   args: {
-    TrailingAction: <Icon name="common/arrowLeft" />,
+    trailingAction: <Icon name="common/arrowLeft" />,
     children: "Leading Action",
   },
 };
