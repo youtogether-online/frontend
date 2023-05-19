@@ -16,7 +16,7 @@
     "test:coverage": "vitest run --coverage",
     "start:dev": "vite --host",
     "start:prod": "vite preview",
-    "start:storybook": "storybook dev -p 6006",
+    "start:storybook": "storybook dev -p 6006 --no-open",
     "build": "tsc && vite build",
     "build:storybook": "storybook build",
     "generate:sprites": "sprite --group --root src/shared/assets/icons -o public/sprite -d src/shared/ui/icon/sprite.h.ts",
