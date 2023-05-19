@@ -3,7 +3,7 @@ import { type ReactNode } from "react";
 
 import { ReactComponent as Cross } from "@/shared/ui/icons/cross.svg";
 
-import { Button } from "../atoms/button";
+import { Button } from "./button";
 
 interface ModalProps {
   title?: string;

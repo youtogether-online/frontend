@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 import { getSessionQuery, signOutClicked } from "@/entities/session";
 
 import { routes } from "@/shared/routes";
-import { Button } from "@/shared/ui/atoms/button/button";
-import { NavLink } from "@/shared/ui/atoms/navLink";
-import { Text } from "@/shared/ui/atoms/typography/text/text";
+import { Button } from "@/shared/ui/button/button";
+import { NavLink } from "@/shared/ui/navLink";
+import { Text } from "@/shared/ui/typography/text/text";
 
 export const UserMenu = () => {
   const signOut = useUnit(signOutClicked);
