@@ -13,13 +13,13 @@ type Story = StoryObj<typeof Text>;
 export const Variants: Story = {
   render: () => (
     <>
-      <Text component="p" variant="primary">
+      <Text as="p" variant="primary">
         Primary
       </Text>
-      <Text component="p" variant="secondary">
+      <Text as="p" variant="secondary">
         Secondary
       </Text>
-      <Text component="p" variant="danger">
+      <Text as="p" variant="danger">
         Danger
       </Text>
     </>
@@ -29,13 +29,13 @@ export const Variants: Story = {
 export const Components: Story = {
   render: () => (
     <div className="flex flex-col">
-      <Text component="p">Parapgraph</Text>
-      <Text component="kbd">Kbd</Text>
-      <Text component="span">Span</Text>
-      <Text component="em">Italized</Text>
-      <Text component="small">Small</Text>
-      <Text component="strong">Strong</Text>
-      <Text component="u">Misspeled</Text>
+      <Text as="p">Parapgraph</Text>
+      <Text as="kbd">Kbd</Text>
+      <Text as="span">Span</Text>
+      <Text as="em">Italized</Text>
+      <Text as="small">Small</Text>
+      <Text as="strong">Strong</Text>
+      <Text as="u">Misspeled</Text>
     </div>
   ),
 };

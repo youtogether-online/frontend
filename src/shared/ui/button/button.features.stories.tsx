@@ -44,9 +44,9 @@ export const Danger: Story = {
 export const Invisible: Story = {
   args: {
     variant: "invisible",
-    children: "Invisible"
-  }
-}
+    children: "Invisible",
+  },
+};
 
 export const Small: Story = {
   args: {

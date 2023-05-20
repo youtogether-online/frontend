@@ -45,6 +45,11 @@ export const baseButton = cva(
           ),
           tw.disabled(tw.bg_buttonDangerDisabledBg.text_buttonDangerDisabledText),
         ],
+        invisible: [
+          tw.text_accentFg.border_none,
+          tw.hover(tw.bg_buttonInvisibleHoverBg),
+          tw.active(tw.bg_buttonInvisibleSelectedBg),
+        ],
       },
       size: {
         sm: [tw.text_sm.h_7.px_2],
@@ -85,13 +90,13 @@ export const BaseButton = ({
   block,
   disabled,
   children,
-  ...buttonProps
+  ...props
 }: ButtonProps) => {
   return (
     <button
-      {...buttonProps}
       disabled={disabled}
       className={baseButton({ disabled, variant, size, alignContent, block })}
+      {...props}
     >
       {icon ?? (
         <>

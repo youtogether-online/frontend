@@ -21,9 +21,13 @@ type AvatarProps = VariantProps<typeof avatar> & {
   size?: number;
 };
 
-export const Avatar = ({ src, alt, square, fallback, size }: AvatarProps) => {
+export const Avatar = ({ src, alt, square, fallback, size, ...props }: AvatarProps) => {
   return (
-    <AvatarPrimitive.Root className={avatar({ square })} style={{ width: size, height: size }}>
+    <AvatarPrimitive.Root
+      className={avatar({ square })}
+      style={{ width: size, height: size }}
+      {...props}
+    >
       <AvatarPrimitive.Image src={src} alt={alt} className={tw.w_full.h_full.object_cover.block} />
       <AvatarPrimitive.Fallback
         delayMs={1000}

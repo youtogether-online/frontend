@@ -4,7 +4,7 @@ import { tw } from "typewind";
 
 import { baseStyles } from "../styles";
 
-const text = cva("", {
+const text = cva([], {
   variants: {
     ...baseStyles,
     variant: {
@@ -12,7 +12,7 @@ const text = cva("", {
       secondary: [tw.text_fgMuted],
       danger: [tw.text_dangerFg],
     },
-    component: {
+    as: {
       span: [tw.font_normal],
       p: [tw.font_normal],
       kbd: [
@@ -26,20 +26,20 @@ const text = cva("", {
     },
   },
   defaultVariants: {
-    component: "p",
+    as: "p",
     variant: "primary",
   },
 });
 
 type TextProps = VariantProps<typeof text> & {
   // Redefine `type` because cva doesn't provides way to set required props
-  component: "span" | "p" | "kbd" | "em" | "u" | "small" | "strong";
+  as: "span" | "p" | "kbd" | "em" | "u" | "small" | "strong";
   sx?: string;
   children: ReactNode;
 };
 
-export const Text = ({ component, children, variant }: TextProps) => {
-  const Component = component;
+export const Text = ({ as, children, variant }: TextProps) => {
+  const Component = as;
 
-  return <Component className={text({ component, variant })}>{children}</Component>;
+  return <Component className={text({ as, variant })}>{children}</Component>;
 };
