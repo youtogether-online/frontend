@@ -4,7 +4,7 @@ import { type ReactNode } from "react";
 import { type SxProp } from "../../types";
 
 type TextProps = {
-  asChild: boolean;
+  asChild?: boolean;
   children: ReactNode;
 } & SxProp;
 

@@ -22,5 +22,6 @@
     "^@/shared",
     "^[./]"
   ],
-  "importOrderSeparation": true
+  "importOrderSeparation": true,
+  "endOfLine": "auto"
 }

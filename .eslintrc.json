@@ -69,10 +69,6 @@
   "rules": {
     "import/order": "off",
     "import/no-unresolved": "off",
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
     "sonarjs/no-duplicate-string": "off",
     "no-console": "off",
     "@typescript-eslint/ban-types": "off",
