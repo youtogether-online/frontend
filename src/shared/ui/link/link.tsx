@@ -1,7 +1,10 @@
 import { Slot } from "@radix-ui/react-slot";
+import clsx from "clsx";
 import { cva, type VariantProps } from "cva";
 import { type AnchorHTMLAttributes, forwardRef, type ReactNode } from "react";
 import { tw } from "typewind";
+
+import { type SxProp } from "../types";
 
 const link = cva([tw.text_accentFg, tw.hover(tw.underline)], {
   variants: {
@@ -18,14 +21,14 @@ type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   VariantProps<typeof link> & {
     children: ReactNode;
     asChild?: boolean;
-  };
+  } & SxProp;
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
-  ({ children, asChild, underline, muted, ...props }, ref) => {
+  ({ children, asChild, underline, muted, sx, ...props }, ref) => {
     const Component = asChild ? Slot : "a";
 
     return (
-      <Component ref={ref} {...props} className={link({ muted, underline })}>
+      <Component ref={ref} className={clsx(link({ muted, underline }), sx)} {...props}>
         {children}
       </Component>
     );
