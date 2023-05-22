@@ -16,12 +16,18 @@ dependencies:
   '@radix-ui/react-dropdown-menu':
     specifier: ^2.0.4
     version: 2.0.4(@types/react@18.2.6)(react-dom@18.2.0)(react@18.2.0)
+  '@radix-ui/react-slot':
+    specifier: ^1.0.1
+    version: 1.0.1(react@18.2.0)
   atomic-router:
     specifier: ^0.8.0
     version: 0.8.0(effector@22.8.5)(history@5.3.0)
   atomic-router-react:
     specifier: ^0.8.3
     version: 0.8.3(atomic-router@0.8.0)(effector-react@22.5.2)(effector@22.8.5)(react@18.2.0)
+  clsx:
+    specifier: ^1.2.1
+    version: 1.2.1
   cva:
     specifier: npm:class-variance-authority@^0.6.0
     version: /class-variance-authority@0.6.0(typescript@4.9.5)

@@ -1,4 +1,6 @@
+import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "cva";
+import { forwardRef } from "react";
 import { tw } from "typewind";
 
 import { type ButtonProps } from "./types";
@@ -59,53 +61,52 @@ export const baseButton = cva(
       disabled: {
         true: [tw.disabled(tw.pointer_events_none)],
       },
-      block: {
-        true: [tw.w_full],
-      },
-      alignContent: {
-        center: [tw.justify_center],
-        start: [tw.justify_start],
-      },
     },
     defaultVariants: {
       variant: "secondary",
       size: "md",
-      block: false,
       disabled: false,
-      alignContent: "center",
     },
   },
 );
 
 const buttonIcon = tw.h_full.flex.items_center;
 
-export const BaseButton = ({
-  trailingIcon,
-  trailingAction,
-  leadingIcon,
-  icon,
-  variant,
-  size,
-  alignContent,
-  block,
-  disabled,
-  children,
-  ...props
-}: ButtonProps) => {
-  return (
-    <button
-      disabled={disabled}
-      className={baseButton({ disabled, variant, size, alignContent, block })}
-      {...props}
-    >
-      {icon ?? (
-        <>
-          {leadingIcon && <span className={buttonIcon}>{leadingIcon}</span>}
-          <span className={tw.overflow_hidden.whitespace_nowrap.text_inherit}>{children}</span>
-          {trailingIcon && <span className={buttonIcon}>{trailingIcon}</span>}
-          {trailingAction && <span className={buttonIcon}>{trailingAction}</span>}
-        </>
-      )}
-    </button>
-  );
-};
+export const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      trailingIcon,
+      trailingAction,
+      leadingIcon,
+      icon,
+      variant,
+      size,
+      disabled,
+      children,
+      sx,
+      asChild,
+      ...props
+    },
+    ref,
+  ) => {
+    const Component = asChild ? Slot : "button";
+
+    return (
+      <Component
+        disabled={disabled}
+        className={baseButton({ disabled, variant, size, class: sx })}
+        ref={ref}
+        {...props}
+      >
+        {icon ?? (
+          <>
+            {leadingIcon && <span className={buttonIcon}>{leadingIcon}</span>}
+            <span className={tw.overflow_hidden.whitespace_nowrap.text_inherit}>{children}</span>
+            {trailingIcon && <span className={buttonIcon}>{trailingIcon}</span>}
+            {trailingAction && <span className={buttonIcon}>{trailingAction}</span>}
+          </>
+        )}
+      </Component>
+    );
+  },
+);

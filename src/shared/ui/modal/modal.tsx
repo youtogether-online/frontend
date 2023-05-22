@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from "cva";
-import { type ReactNode } from "react";
+import { forwardRef, type ReactNode } from "react";
 
 const modal = cva([], {
   variants: {},
@@ -11,6 +11,8 @@ type ModalProps = VariantProps<typeof modal> & {
   children: ReactNode;
 };
 
-export const Modal = ({ children, isOpen, onDismiss }: ModalProps) => {
-  return <div></div>;
-};
+export const Modal = forwardRef<HTMLDivElement, ModalProps>(
+  ({ children, isOpen, onDismiss }, ref) => {
+    return <div ref={ref}></div>;
+  },
+);

@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "cva";
 import { type ElementType, type ReactNode } from "react";
 import { tw } from "typewind";
 
-import { baseStyles } from "../styles";
+import { type SxProp } from "../../types";
 
 type TitleComponentMapping = Record<string, ElementType>;
 
@@ -17,7 +17,6 @@ const titleComponentMapping: TitleComponentMapping = {
 
 const title = cva("", {
   variants: {
-    ...baseStyles,
     order: {
       1: [tw.text_5xl.font_bold],
       2: [tw.text_4xl.font_bold],
@@ -33,10 +32,10 @@ type TitleProps = VariantProps<typeof title> & {
   // Redefine `order` because cva doesn't provides way to set required props
   order: 1 | 2 | 3 | 4 | 5 | 6;
   children: ReactNode;
-};
+} & SxProp;
 
-export const Title = ({ children, order, fontSize, fontWeight, mono }: TitleProps) => {
+export const Title = ({ children, order }: TitleProps) => {
   const Component = titleComponentMapping[order];
 
-  return <Component className={title({ order, fontSize, fontWeight, mono })}>{children}</Component>;
+  return <Component className={title({ order })}>{children}</Component>;
 };

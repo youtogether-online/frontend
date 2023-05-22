@@ -76,13 +76,6 @@ export const Disabled: Story = {
   },
 };
 
-export const Block: Story = {
-  args: {
-    block: true,
-    children: "Block",
-  },
-};
-
 export const LeadingIcon: Story = {
   args: {
     leadingIcon: <Icon name="common/arrowLeft" />,
