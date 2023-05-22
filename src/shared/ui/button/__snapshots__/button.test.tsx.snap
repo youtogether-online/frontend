@@ -1,13 +1,13 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Button > Button should respects block prop 1`] = `
+exports[`Button > Button should respects size prop 1`] = `
 <button
-  class="transition-colors border border-solid rounded-md cursor-pointer flex gap-2 items-center bg-buttonBg text-buttonText border-buttonBorder hover:border-buttonHoverBorder hover:bg-buttonHoverBg active:bg-buttonBg active:text-buttonText active:border-buttonBorder disabled:text-fgMuted text-md h-8 px-3 w-full justify-center"
+  class="transition-colors border border-solid rounded-md cursor-pointer flex gap-2 items-center bg-buttonBg text-buttonText border-buttonBorder hover:border-buttonHoverBorder hover:bg-buttonHoverBg active:bg-buttonBg active:text-buttonText active:border-buttonBorder disabled:text-fgMuted text-sm h-7 px-2"
 >
   <span
     class="overflow-hidden whitespace-nowrap text-inherit"
   >
-    Block
+    Small button
   </span>
 </button>
 `;

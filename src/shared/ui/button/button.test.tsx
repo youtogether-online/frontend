@@ -4,8 +4,8 @@ import { describe, expect, it } from "vitest";
 import { Button } from "./button";
 
 describe("Button", () => {
-  it("Button should respects block prop", () => {
-    const container = render(<Button block>Block</Button>);
+  it("Button should respects size prop", () => {
+    const container = render(<Button size="sm">Small button</Button>);
     const button = container.getByRole("button");
     expect(button).toMatchSnapshot();
   });
