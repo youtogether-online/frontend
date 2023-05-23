@@ -46,6 +46,6 @@ jobs:
       - name: Trigger deploy to dev
         uses: peter-evans/repository-dispatch@v2.1.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
           repository: youtogether-online/releases
           event-type: deploy-dev
