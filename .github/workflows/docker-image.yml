@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -45,3 +45,9 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      - name: Trigger deploy to dev
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: youtogether-online/releases
+          event-type: deploy-dev
