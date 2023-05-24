@@ -14,8 +14,6 @@ import { Provider } from "./providers";
 export const App = () => {
   globalStyles();
 
-  console.log("kek");
-
   const startApp = useUnit(appStarted);
 
   useEffect(() => {
