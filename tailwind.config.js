@@ -63,6 +63,7 @@ module.exports = {
       xl: `var(--shadow-xl)`,
     },
     colors: {
+      transparent: "transparent",
       currentColor: "currentColor",
       inherit: "inherit",
       footerLogo: "var(--color-footer-logo)",

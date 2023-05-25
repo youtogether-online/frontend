@@ -96,3 +96,10 @@ export const TrailingAction: Story = {
     children: "Leading Action",
   },
 };
+
+export const Block: Story = {
+  args: {
+    block: true,
+    children: "Block",
+  }
+}
