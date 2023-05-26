@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Icon } from "@/shared/ui";
+import { Icon } from "@/shared/ui/icon";
 
 import { Button } from "./button";
 

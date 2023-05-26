@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Icon } from "@/shared/ui";
+import { Icon } from "@/shared/ui/icon";
 
 import { TextInput } from "./index";
 
 const meta: Meta<typeof TextInput> = {
-  title: "Components/TextInput/Features",
+  title: "Components/Form/TextInput/Features",
   tags: ["autodocs"],
   component: TextInput,
 };

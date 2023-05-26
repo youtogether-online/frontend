@@ -13,7 +13,7 @@
   }
 
   body {
-    @apply font-normal;
+    @apply font-normal text-fgDefault;
   }
 
   :root {

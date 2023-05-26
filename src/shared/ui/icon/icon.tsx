@@ -24,7 +24,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(({ name, viewBox, sx, .
       aria-hidden
       viewBox={viewBox}
       {...props}
-      className={cx(tw.select_none.fill_currentColor.w_4.h_4.inline_block, sx)}
+      className={cx(tw.select_none.fill_fgSubtle.w_4.h_4.inline_block, sx)}
     >
       <use xlinkHref={`/public/sprite/${spriteName}.svg#${iconName}`} />
     </svg>

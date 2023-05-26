@@ -62,7 +62,7 @@ export const InternalTextInput = forwardRef<HTMLInputElement, TextInputProps>(
     return (
       <span className={clsx(textVariants({ size, validationStatus, block }))}>
         {leadingVisual && <span className={icon}>{leadingVisual}</span>}
-        <input className={tw.bg_transparent.border_0.text_inherit.w_full.px_2.focus(tw.outline_0).focus_visible(tw.outline_0)} {...props} ref={ref} />
+        <input className={tw.bg_transparent.border_0.text_inherit.w_full.px_1.focus(tw.outline_0).focus_visible(tw.outline_0)} {...props} ref={ref} />
         {trailingVisual && <span className={icon}>{trailingVisual}</span>}
         {trailingAction && loading && <Icon sx={tw.animate_spin} name="common/loader" />}
         {trailingAction && !loading && <span className={icon}>{trailingAction}</span>}
