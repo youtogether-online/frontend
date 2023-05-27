@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Form } from "@/shared/ui/form/form";
+
 import { TextInput } from "../text-input";
 
 const meta: Meta<typeof Form> = {
@@ -14,31 +15,38 @@ type Story = StoryObj<typeof Form>;
 
 export const Default: Story = {
   args: {
-    children: <><Form.Field name="login">
-        <Form.Label required>Email</Form.Label>
-        <TextInput placeholder="email" />
-        <Form.Caption>your email</Form.Caption>
-    </Form.Field>
-    </>
+    children: (
+      <>
+        <Form.Field name="login">
+          <Form.Label required>Email</Form.Label>
+          <TextInput placeholder="email" />
+          <Form.Caption>your email</Form.Caption>
+        </Form.Field>
+      </>
+    ),
   },
 };
 
 export const Warning: Story = {
   args: {
-    children: <Form.Field name="login">
+    children: (
+      <Form.Field name="login">
         <Form.Label>Email</Form.Label>
         <TextInput />
         <Form.Validation>Warning</Form.Validation>
-    </Form.Field>
+      </Form.Field>
+    ),
   },
-}
+};
 
 export const Danger: Story = {
   args: {
-    children: <Form.Field name="login">
+    children: (
+      <Form.Field name="login">
         <Form.Label>Email</Form.Label>
         <TextInput />
         <Form.Validation>Incorrect email</Form.Validation>
-    </Form.Field>
+      </Form.Field>
+    ),
   },
-}
+};

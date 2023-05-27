@@ -1,18 +1,24 @@
-import { LabelHTMLAttributes, ReactNode, forwardRef } from "react";
-import { SxProp } from "../../types";
+import { Label as LabelPrimitive } from "@radix-ui/react-form";
 import clsx from "clsx";
-import {Label as LabelPrimitive} from '@radix-ui/react-form'
+import { forwardRef, LabelHTMLAttributes, ReactNode } from "react";
 import { tw } from "typewind";
 
-type LabelProps = {
-    asChild?: boolean;
-    children: ReactNode
-    required?: boolean
-} & SxProp & LabelHTMLAttributes<HTMLLabelElement>
+import { SxProp } from "../../types";
 
-export const Label = forwardRef<HTMLLabelElement, LabelProps>(({asChild, children, required, sx}, ref) => {
-    return <LabelPrimitive className={clsx(tw.text_md.font_bold, sx)} asChild={asChild} ref={ref}>
+type LabelProps = {
+  asChild?: boolean;
+  children: ReactNode;
+  required?: boolean;
+} & SxProp &
+  LabelHTMLAttributes<HTMLLabelElement>;
+
+export const Label = forwardRef<HTMLLabelElement, LabelProps>(
+  ({ asChild, children, required, sx }, ref) => {
+    return (
+      <LabelPrimitive className={clsx(tw.text_md.font_bold, sx)} asChild={asChild} ref={ref}>
         {children}
-        <span>{required && '*'}</span>
-    </LabelPrimitive>
-})
+        <span>{required && "*"}</span>
+      </LabelPrimitive>
+    );
+  },
+);

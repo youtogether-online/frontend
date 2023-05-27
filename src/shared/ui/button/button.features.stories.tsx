@@ -101,5 +101,5 @@ export const Block: Story = {
   args: {
     block: true,
     children: "Block",
-  }
-}
+  },
+};

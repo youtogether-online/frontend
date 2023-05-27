@@ -5,6 +5,8 @@ import mkcert from "vite-plugin-mkcert";
 import svgr from "vite-plugin-svgr";
 import { test } from "vitest";
 
+ы;
+
 export default defineConfig({
   resolve: {
     alias: {

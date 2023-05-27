@@ -62,8 +62,8 @@ export const baseButton = cva(
         true: [tw.disabled(tw.pointer_events_none)],
       },
       block: {
-        true: [tw.w_full]
-      }
+        true: [tw.w_full],
+      },
     },
     defaultVariants: {
       variant: "secondary",

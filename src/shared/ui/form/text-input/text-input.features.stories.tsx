@@ -15,7 +15,7 @@ type Story = StoryObj<typeof TextInput>;
 
 export const Default: Story = {
   args: {
-    placeholder: "input"
+    placeholder: "input",
   },
 };
 
@@ -23,77 +23,89 @@ export const Small: Story = {
   args: {
     size: "sm",
     placeholder: "input",
-  }
-}
+  },
+};
 
 export const Medium: Story = {
   args: {
     placeholder: "input",
-    size: "md"
-  }
-}
+    size: "md",
+  },
+};
 
 export const Large: Story = {
   args: {
     placeholder: "input",
-    size: "lg"
-  }
-}
+    size: "lg",
+  },
+};
 
 export const Success: Story = {
   args: {
     placeholder: "input",
-    validationStatus: "success"
-  }
-}
+    validationStatus: "success",
+  },
+};
 
 export const Warning: Story = {
   args: {
     placeholder: "input",
-    validationStatus: "warning"
-  }
-}
+    validationStatus: "warning",
+  },
+};
 
 export const Error: Story = {
   args: {
     placeholder: "input",
-    validationStatus: "error"
-  }
-}
+    validationStatus: "error",
+  },
+};
 
 export const Block: Story = {
   args: {
     placeholder: "input",
-    block: true
-  }
-}
+    block: true,
+  },
+};
 
 export const Loading: Story = {
   args: {
     placeholder: "input",
     loading: true,
-    trailingAction: <TextInput.Action aria-label="Clear input" onClick={() => alert('click')} icon="common/cross"></TextInput.Action>
-  }
-}
+    trailingAction: (
+      <TextInput.Action
+        aria-label="Clear input"
+        onClick={() => alert("click")}
+        icon="common/cross"
+      ></TextInput.Action>
+    ),
+  },
+};
 
 export const TrailingVisual: Story = {
   args: {
     placeholder: "input",
-    trailingVisual: <Icon name="common/arrowLeft" />
-  }
-}
+    trailingVisual: <Icon name="common/arrowLeft" />,
+  },
+};
 
 export const LeadingVisual: Story = {
   args: {
     placeholder: "input",
     leadingVisual: <Icon name="common/arrowLeft" />,
-    value: "God, bless JQuery!"
-  }
-}
+    value: "God, bless JQuery!",
+  },
+};
 
 export const TrailingAction: Story = {
   args: {
     placeholder: "input",
-    trailingAction: <TextInput.Action aria-label="Clear input" onClick={() => alert('click')} icon="common/cross"></TextInput.Action>
-  }
-}
+    trailingAction: (
+      <TextInput.Action
+        aria-label="Clear input"
+        onClick={() => alert("click")}
+        icon="common/cross"
+      ></TextInput.Action>
+    ),
+  },
+};
