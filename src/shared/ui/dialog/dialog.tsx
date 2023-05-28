@@ -1,17 +1,17 @@
 import { cva, type VariantProps } from "cva";
 import { forwardRef, type ReactNode } from "react";
 
-const modal = cva([], {
+const dialogVariants = cva([], {
   variants: {},
 });
 
-type ModalProps = VariantProps<typeof modal> & {
+type DialogProps = VariantProps<typeof dialogVariants> & {
   isOpen: boolean;
   onDismiss: () => void;
   children: ReactNode;
 };
 
-export const Modal = forwardRef<HTMLDivElement, ModalProps>(
+export const Modal = forwardRef<HTMLDivElement, DialogProps>(
   ({ children, isOpen, onDismiss }, ref) => {
     return <div ref={ref}></div>;
   },
