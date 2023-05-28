@@ -5,7 +5,10 @@ import { useTranslation } from "react-i18next";
 
 import { createByEmailModel } from "@/features/authentication/by-email";
 
-import { Button, Form, IconArrowLeft, Input } from "@/shared/ui";
+import { Button, IconButton } from "@/shared/ui/button";
+import { Form } from "@/shared/ui/form/form";
+import { TextInput } from "@/shared/ui/form/text-input";
+import { Icon } from "@/shared/ui/icon";
 
 export const CheckCode = () => {
   const { t } = useTranslation();
@@ -29,29 +32,20 @@ export const CheckCode = () => {
   return (
     <div>
       <Form onSubmit={handleFormSubmit} noValidate>
-        {formError != null && <Form.Error error={formError.error} advice={formError.advice} />}
-        <Form.Item error={errorText("code")}>
-          <Button
-            variant="icon"
+        <Form.Field name="code">
+          <IconButton
             onClick={returnToPreviousStep}
-            icon={<IconArrowLeft />}
+            icon={<Icon name="common/mail" />}
             type="button"
           />
-          <Input
+          <TextInput
             placeholder={t("enterCodeFromEmail")}
             id="verification-code"
             onChange={handleInputChange}
-            invalid={fields.code.hasError()}
           />
-        </Form.Item>
+        </Form.Field>
       </Form>
-      <Button
-        type="submit"
-        size="full"
-        onClick={handleFormSubmit}
-        theme="primary"
-        pending={isLoading}
-      >
+      <Button type="submit" block onClick={handleFormSubmit} variant="primary">
         {t("send")}
       </Button>
     </div>

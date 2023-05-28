@@ -5,12 +5,10 @@ import { useTranslation } from "react-i18next";
 import { SignIn } from "@/widgets/sign-in";
 import { createSignInModel } from "@/widgets/sign-in/model";
 
-import { SearchBar } from "@/features/search-bar";
-
-import { $isAuthorized, getSessionQuery, UserMenu } from "@/entities/session";
+import { $isAuthorized, getSessionQuery } from "@/entities/session";
 
 import { routes } from "@/shared/routes";
-import { Avatar, Button, IconLogoHorizontal, NavLink } from "@/shared/ui";
+import { Icon } from "@/shared/ui/icon";
 
 interface HeaderProps {
   subheader?: boolean;
@@ -32,29 +30,8 @@ export const Header = ({ subheader, navbar, search, user, centerLogo }: HeaderPr
     <div>
       <main>
         <Link to={routes.home}>
-          <IconLogoHorizontal />
+          <Icon name="common/horizontal-logo" />
         </Link>
-        {search && (
-          <div>
-            <SearchBar />
-          </div>
-        )}
-        {user && (
-          <div>
-            {!isAuthorized && <Button>{t("signIn")}</Button>}
-            {isAuthorized && session != null && (
-              <Avatar
-                url={session.avatar}
-                alt={session.username.slice(0, 2)}
-                fallback={session.username.slice(0, 2)}
-              />
-            )}
-            <div>
-              {!isAuthorized && <SignIn model={signInModel} />}
-              {session != null && <UserMenu />}
-            </div>
-          </div>
-        )}
       </main>
     </div>
   );

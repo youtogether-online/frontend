@@ -5,7 +5,7 @@ import { forwardRef, type ReactNode } from "react";
 import { type SxProp } from "../../types";
 
 type InternalFormProps = {
-  asChild: boolean;
+  asChild?: boolean;
   children: ReactNode;
 } & SxProp &
   FormProps;
