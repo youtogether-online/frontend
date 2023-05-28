@@ -5,7 +5,9 @@ import { useTranslation } from "react-i18next";
 
 import { createByEmailModel } from "@/features/authentication/by-email";
 
-import { Button, Form, Input } from "@/shared/ui";
+import { Button } from "@/shared/ui/button";
+import { Form } from "@/shared/ui/form/form";
+import { TextInput } from "@/shared/ui/form/text-input";
 
 export const SendCode = () => {
   const { t } = useTranslation();
@@ -27,17 +29,16 @@ export const SendCode = () => {
 
   return (
     <Form onSubmit={handleFormSubmit} noValidate>
-      {formError != null && <Form.Error error={formError.error} advice={formError.advice} />}
-      <Form.Item error={errorText("email")}>
-        <Input
+      {formError && <Form.Validation>Error</Form.Validation>}
+      <Form.Field name="email">
+        <TextInput
           placeholder={t("email")}
           id="email"
           value={fields.email.value}
           onChange={handleInputChange}
-          invalid={fields.email.hasError()}
         />
-      </Form.Item>
-      <Button type="submit" theme="primary" pending={pending} size="full">
+      </Form.Field>
+      <Button variant="primary" block>
         {t("getCode")}
       </Button>
     </Form>

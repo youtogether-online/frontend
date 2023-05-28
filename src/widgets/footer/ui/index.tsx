@@ -1,23 +1,11 @@
-import { styled } from "@/shared/config/stitches/stitches.config";
-import { IconLogoVertical } from "@/shared/ui";
+import { Icon } from "@/shared/ui/icon";
 
 export const Footer = () => {
   return (
-    <InnerRoot>
-      <Root>
-        <IconLogoVertical color="#fff" />
-      </Root>
-    </InnerRoot>
+    <footer>
+      <div>
+        <Icon name="common/vertical-logo" color="#fff" />
+      </div>
+    </footer>
   );
 };
-
-const InnerRoot = styled("footer", {
-  background: "$backgroundFooter",
-});
-
-const Root = styled("div", {
-  maxWidth: "$containerLg",
-  width: "100%",
-  margin: "0 auto",
-  padding: "18px 0px",
-});

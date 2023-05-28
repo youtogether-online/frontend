@@ -1,5 +1,4 @@
 {
-  "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "importOrderGroupNamespaceSpecifiers": true,
   "importOrderCaseInsensitive": true,
@@ -9,7 +8,9 @@
   "arrowParens": "always",
   "printWidth": 100,
   "semi": true,
-  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports"
+  ],
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
     "^@/app",
@@ -19,5 +20,7 @@
     "^@/entities",
     "^@/shared",
     "^[./]"
-  ]
+  ],
+  "importOrderSeparation": true,
+  "endOfLine": "auto"
 }

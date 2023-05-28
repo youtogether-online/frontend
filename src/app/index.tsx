@@ -6,14 +6,11 @@ import { Pages } from "@/pages";
 import { appStarted } from "@/entities/session";
 
 import "@/shared/config/i18n";
-import { styled } from "@/shared/config/stitches/stitches.config";
 
-import { globalStyles } from "./global-styles";
+import "./index.css";
 import { Provider } from "./providers";
 
 export const App = () => {
-  globalStyles();
-
   const startApp = useUnit(appStarted);
 
   useEffect(() => {
@@ -22,16 +19,9 @@ export const App = () => {
 
   return (
     <Provider>
-      <Root>
+      <div className="flex min-h-screen flex-col overflow-x-hidden bg-canvasDefault">
         <Pages />
-      </Root>
+      </div>
     </Provider>
   );
 };
-
-const Root = styled("div", {
-  minHeight: "100vh",
-  display: "flex",
-  flexDirection: "column",
-  overflowX: "hidden",
-});
