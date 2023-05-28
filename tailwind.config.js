@@ -157,6 +157,7 @@ module.exports = {
       canvasSubtle: "var(--color-canvas-subtle)",
       inputDisabledBg: "var(--color-input-disabled-bg)",
       controlBorderEmphasis: "var(--color-control-border-emphasis)",
+      canvasBackdrop: "var(--color-canvas-backdrop)",
     },
   },
   plugins: [],

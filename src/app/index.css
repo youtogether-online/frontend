@@ -106,6 +106,7 @@
     --color-canvas-overlay: #161b22;
     --color-canvas-inset: #010409;
     --color-canvas-subtle: #161b22;
+    --color-canvas-backdrop: rgba(1, 4, 9, 0.8);
     --color-input-disabled-bg: rgba(110, 118, 129, 0);
     --color-control-border-emphasis: #606771;
     --shadow-container: 0px 0px 4px rgba(0, 0, 0, 0.08);
