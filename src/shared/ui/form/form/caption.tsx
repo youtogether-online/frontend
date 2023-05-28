@@ -1,8 +1,8 @@
 import clsx from "clsx";
-import { forwardRef, ReactNode } from "react";
+import { forwardRef, type ReactNode } from "react";
 import { tw } from "typewind";
 
-import { SxProp } from "../../types";
+import { type SxProp } from "../../types";
 
 type CaptionProps = {
   children: ReactNode;

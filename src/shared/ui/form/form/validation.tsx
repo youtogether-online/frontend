@@ -1,10 +1,10 @@
 import { FormMessage } from "@radix-ui/react-form";
 import clsx from "clsx";
-import { cva, VariantProps } from "cva";
-import { forwardRef, ReactNode } from "react";
+import { cva, type VariantProps } from "cva";
+import { forwardRef, type ReactNode } from "react";
 import { tw } from "typewind";
 
-import { SxProp } from "../../types";
+import { type SxProp } from "../../types";
 
 const validationVariants = cva([tw.text_sm], {
   variants: {
@@ -23,9 +23,13 @@ type ValidationProps = {
   VariantProps<typeof validationVariants>;
 
 export const Validation = forwardRef<HTMLSpanElement, ValidationProps>(
-  ({ children, asChild, sx }, ref) => {
+  ({ children, asChild, sx, variant }, ref) => {
     return (
-      <FormMessage ref={ref} asChild={asChild} className={clsx(validationVariants({}), sx)}>
+      <FormMessage
+        ref={ref}
+        asChild={asChild}
+        className={clsx(validationVariants({ variant }), sx)}
+      >
         {children}
       </FormMessage>
     );

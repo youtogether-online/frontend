@@ -1,9 +1,9 @@
 import { Label as LabelPrimitive } from "@radix-ui/react-form";
 import clsx from "clsx";
-import { forwardRef, LabelHTMLAttributes, ReactNode } from "react";
+import { forwardRef, type LabelHTMLAttributes, type ReactNode } from "react";
 import { tw } from "typewind";
 
-import { SxProp } from "../../types";
+import { type SxProp } from "../../types";
 
 type LabelProps = {
   asChild?: boolean;

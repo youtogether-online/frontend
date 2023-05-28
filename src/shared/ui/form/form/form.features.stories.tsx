@@ -18,11 +18,49 @@ export const Default: Story = {
     children: (
       <>
         <Form.Field name="login">
+          <Form.Label>Email</Form.Label>
+          <TextInput placeholder="email" />
+        </Form.Field>
+      </>
+    ),
+  },
+};
+
+export const Required: Story = {
+  args: {
+    children: (
+      <>
+        <Form.Field name="login">
           <Form.Label required>Email</Form.Label>
+          <TextInput placeholder="email" />
+        </Form.Field>
+      </>
+    ),
+  },
+};
+
+export const Caption: Story = {
+  args: {
+    children: (
+      <>
+        <Form.Field name="login">
+          <Form.Label>Email</Form.Label>
           <TextInput placeholder="email" />
           <Form.Caption>your email</Form.Caption>
         </Form.Field>
       </>
+    ),
+  },
+};
+
+export const Success: Story = {
+  args: {
+    children: (
+      <Form.Field name="login">
+        <Form.Label>Email</Form.Label>
+        <TextInput />
+        <Form.Validation variant="success">Success</Form.Validation>
+      </Form.Field>
     ),
   },
 };
@@ -33,7 +71,7 @@ export const Warning: Story = {
       <Form.Field name="login">
         <Form.Label>Email</Form.Label>
         <TextInput />
-        <Form.Validation>Warning</Form.Validation>
+        <Form.Validation variant="warning">Warning</Form.Validation>
       </Form.Field>
     ),
   },
@@ -45,7 +83,7 @@ export const Danger: Story = {
       <Form.Field name="login">
         <Form.Label>Email</Form.Label>
         <TextInput />
-        <Form.Validation>Incorrect email</Form.Validation>
+        <Form.Validation variant="error">Incorrect email</Form.Validation>
       </Form.Field>
     ),
   },
