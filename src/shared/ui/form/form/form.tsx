@@ -1,22 +1,21 @@
-import { Form as FormPrimitive } from "@radix-ui/react-form";
-import { Slot } from "@radix-ui/react-slot";
+import { Form, type FormProps } from "@radix-ui/react-form";
 import clsx from "clsx";
-import { type FormHTMLAttributes, forwardRef, type ReactNode } from "react";
+import { forwardRef, type ReactNode } from "react";
 
 import { type SxProp } from "../../types";
 
-type FormProps = {
+type InternalFormProps = {
   asChild: boolean;
   children: ReactNode;
 } & SxProp &
-  FormHTMLAttributes<HTMLFormElement>;
+  FormProps;
 
-export const InternalForm = forwardRef<HTMLFormElement, FormProps>(
-  ({ asChild, children, sx }, ref) => {
+export const InternalForm = forwardRef<HTMLFormElement, InternalFormProps>(
+  ({ children, sx, ...props }, ref) => {
     return (
-      <FormPrimitive asChild={asChild} ref={ref} className={clsx(sx)}>
+      <Form ref={ref} className={clsx(sx)} {...props}>
         {children}
-      </FormPrimitive>
+      </Form>
     );
   },
 );

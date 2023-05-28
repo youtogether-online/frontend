@@ -1,4 +1,5 @@
 import { Caption } from "./caption";
+import { Control } from "./control";
 import { Field } from "./field";
 import { InternalForm } from "./form";
 import { Label } from "./label";
@@ -9,4 +10,5 @@ export const Form = Object.assign(InternalForm, {
   Caption,
   Validation,
   Field,
+  Control,
 });

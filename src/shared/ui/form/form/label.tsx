@@ -1,24 +1,33 @@
-import { Label as LabelPrimitive } from "@radix-ui/react-form";
+import { FormLabel, type FormLabelProps } from "@radix-ui/react-form";
 import clsx from "clsx";
+import { cva, type VariantProps } from "cva";
 import { forwardRef, type LabelHTMLAttributes, type ReactNode } from "react";
 import { tw } from "typewind";
 
 import { type SxProp } from "../../types";
 
+const labelVariants = cva([tw.text_md.font_bold], {
+  variants: {
+    visuallyHidden: {
+      true: [tw.hidden],
+    },
+  },
+});
+
 type LabelProps = {
-  asChild?: boolean;
   children: ReactNode;
   required?: boolean;
 } & SxProp &
-  LabelHTMLAttributes<HTMLLabelElement>;
+  FormLabelProps &
+  VariantProps<typeof labelVariants>;
 
 export const Label = forwardRef<HTMLLabelElement, LabelProps>(
-  ({ asChild, children, required, sx }, ref) => {
+  ({ children, required, sx, visuallyHidden, ...props }, ref) => {
     return (
-      <LabelPrimitive className={clsx(tw.text_md.font_bold, sx)} asChild={asChild} ref={ref}>
+      <FormLabel className={clsx(labelVariants({ visuallyHidden }), sx)} ref={ref} {...props}>
         {children}
         <span>{required && "*"}</span>
-      </LabelPrimitive>
+      </FormLabel>
     );
   },
 );

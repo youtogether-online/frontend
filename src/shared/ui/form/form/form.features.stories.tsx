@@ -19,7 +19,9 @@ export const Default: Story = {
       <>
         <Form.Field name="login">
           <Form.Label>Email</Form.Label>
-          <TextInput placeholder="email" />
+          <Form.Control asChild>
+            <TextInput placeholder="email" />
+          </Form.Control>
         </Form.Field>
       </>
     ),
@@ -32,7 +34,9 @@ export const Required: Story = {
       <>
         <Form.Field name="login">
           <Form.Label required>Email</Form.Label>
-          <TextInput placeholder="email" />
+          <Form.Control asChild>
+            <TextInput placeholder="email" />
+          </Form.Control>
         </Form.Field>
       </>
     ),
@@ -45,7 +49,9 @@ export const Caption: Story = {
       <>
         <Form.Field name="login">
           <Form.Label>Email</Form.Label>
-          <TextInput placeholder="email" />
+          <Form.Control asChild>
+            <TextInput placeholder="email" />
+          </Form.Control>
           <Form.Caption>your email</Form.Caption>
         </Form.Field>
       </>
@@ -57,8 +63,10 @@ export const Success: Story = {
   args: {
     children: (
       <Form.Field name="login">
-        <Form.Label>Email</Form.Label>
-        <TextInput />
+        <Form.Label htmlFor="email">Email</Form.Label>
+        <Form.Control asChild>
+          <TextInput id="email" />
+        </Form.Control>
         <Form.Validation variant="success">Success</Form.Validation>
       </Form.Field>
     ),
@@ -69,8 +77,10 @@ export const Warning: Story = {
   args: {
     children: (
       <Form.Field name="login">
-        <Form.Label>Email</Form.Label>
-        <TextInput />
+        <Form.Label htmlFor="email">Email</Form.Label>
+        <Form.Control asChild>
+          <TextInput id="email" />
+        </Form.Control>
         <Form.Validation variant="warning">Warning</Form.Validation>
       </Form.Field>
     ),
@@ -81,9 +91,26 @@ export const Danger: Story = {
   args: {
     children: (
       <Form.Field name="login">
-        <Form.Label>Email</Form.Label>
-        <TextInput />
+        <Form.Label htmlFor="email">Email</Form.Label>
+        <Form.Control asChild>
+          <TextInput id="email" />
+        </Form.Control>
         <Form.Validation variant="error">Incorrect email</Form.Validation>
+      </Form.Field>
+    ),
+  },
+};
+
+export const VisuallyHiddenLabel: Story = {
+  args: {
+    children: (
+      <Form.Field name="login">
+        <Form.Label visuallyHidden htmlFor="email">
+          Email
+        </Form.Label>
+        <Form.Control asChild>
+          <TextInput id="email" />
+        </Form.Control>
       </Form.Field>
     ),
   },
