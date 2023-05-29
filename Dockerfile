@@ -14,7 +14,7 @@ COPY ./ /app/
 RUN pnpm run build
 
 # RELEASE
-FROM node:18.7.0
+FROM nginx:alpine
 
 WORKDIR /app
 
