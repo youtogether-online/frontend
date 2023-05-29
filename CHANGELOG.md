@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/youtogether-online/frontend/compare/v1.0.1...v1.1.0) (2023-05-29)
+
+
+### Features
+
+* add @neodx/svg for svg sprites, close [#13](https://github.com/youtogether-online/frontend/issues/13) ([273093f](https://github.com/youtogether-online/frontend/commit/273093f6419561fe61030af25dd58f0687733123))
+* add form control component ([8f4cc39](https://github.com/youtogether-online/frontend/commit/8f4cc39c053973d4f943e2255837f6db7ee05fc2))
+* **button:** add variants for button ([56ee57a](https://github.com/youtogether-online/frontend/commit/56ee57a5272c447b85c9d84c54499e17888e199f))
+* **button:** add variants for button ([447e87b](https://github.com/youtogether-online/frontend/commit/447e87b0e1bafb403e1d1ae8a186a392219b5b71))
+* replace as props with asChild ([12b19b9](https://github.com/youtogether-online/frontend/commit/12b19b990a06fba29c956c3037b601d1e6fe2317))
+* **ui-kit:** add icon-button component ([c6295d2](https://github.com/youtogether-online/frontend/commit/c6295d2fa9d56cb29d677f4bd24ea1e14a7055d0))
+
 ## [1.0.1](https://github.com/youtogether-online/frontend/compare/v1.0.0...v1.0.1) (2023-04-26)
 
 
