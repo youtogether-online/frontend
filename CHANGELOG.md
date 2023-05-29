@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/youtogether-online/frontend/compare/v1.1.0...v1.1.1) (2023-05-29)
+
+
+### Bug Fixes
+
+* **ci:** add needs to deploy job ([a6a4a88](https://github.com/youtogether-online/frontend/commit/a6a4a8849633b811e20e2bea456d20ff77f873fb))
+
 ## [1.1.0](https://github.com/youtogether-online/frontend/compare/v1.0.1...v1.1.0) (2023-05-29)
 
 
