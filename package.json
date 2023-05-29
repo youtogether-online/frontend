@@ -18,7 +18,7 @@
     "start:prod": "vite preview",
     "start:storybook": "storybook dev -p 6006 --no-open",
     "build": "tsc && vite build",
-    "build:storybook": "storybook build -o dist-storybook",
+    "build:storybook": "storybook build -o dist-storybook -s ./public",
     "generate:sprites": "sprite --group --root src/shared/assets/icons -o public/sprite -d src/shared/ui/icon/sprite.h.ts",
     "generate:typewind": "typewind generate"
   },

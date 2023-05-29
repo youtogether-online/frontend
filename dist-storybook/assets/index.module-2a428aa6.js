@@ -1,0 +1,2 @@
+import{r as a,a as u}from"./index-8db94870.js";import{b as r}from"./index.module-334a8208.js";function n(f,t,{checkForDefaultPrevented:o=!0}={}){return function($){if(f==null||f($),o===!1||!$.defaultPrevented)return t==null?void 0:t($)}}const c=u["useId".toString()]||(()=>{});let s=0;function p(f){const[t,o]=a.useState(c());return r(()=>{f||o(e=>e??String(s++))},[f]),f||(t?`radix-${t}`:"")}export{n as $,p as a};
+//# sourceMappingURL=index.module-2a428aa6.js.map

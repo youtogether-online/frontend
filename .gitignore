@@ -25,4 +25,3 @@ dist-ssr
 
 docker-compose.yml
 coverage
-dist-storybook

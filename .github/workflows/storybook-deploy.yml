@@ -39,10 +39,11 @@ jobs:
         with:
           name: dist-storybook
           path: dist-storybook
-      - name: ls
-        run: ls
       - name: Deploy to Github Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
           folder: dist-storybook
+          clean: true
+          target-folder: dist-storybook
