@@ -28,22 +28,17 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     needs:
       - build
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: dist-storybook
-          path: dist-storybook
-      - name: Deploy to Github Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          folder: dist-storybook
-          clean: true
-          target-folder: dist-storybook
+          artifact_name: dist-storybook
