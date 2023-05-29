@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths: [".storybook", src/**/*.stories.@(ts|tsx)"]
+  workflow_dispatch:
 
 jobs:
   build:
