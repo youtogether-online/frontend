@@ -1,3 +1,4 @@
 # you-together-frontend
 
-YouTogether - project that allows you to view movies together
+Dev: https://youtogether.frkam.dev/
+Storybook: https://youtogether-online.github.io/frontend/
