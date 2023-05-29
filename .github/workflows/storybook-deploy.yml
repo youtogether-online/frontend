@@ -12,6 +12,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,11 +29,12 @@ jobs:
           run_install: true
       - name: Build
         run: pnpm run build:storybook
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-pages-artifact@v1
         with:
           path: ./dist-storybook
-          name: github-pages
   deploy:
     runs-on: ubuntu-latest
     environment:
@@ -38,10 +43,6 @@ jobs:
     needs:
       - build
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: github-pages
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Deploy to GitHub Pages
