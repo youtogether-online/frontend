@@ -14,12 +14,8 @@ COPY ./ /app/
 RUN pnpm run build
 
 # RELEASE
-FROM nginx:stable-alpine
+FROM node:18.7.0
 
 WORKDIR /app
 
-COPY --from=build /app/dist /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npx", "serve", "dist"]
