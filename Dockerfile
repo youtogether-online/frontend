@@ -5,7 +5,7 @@ WORKDIR /app
 
 RUN npm i -g pnpm
 
-COPY package.json pnpm-lock.yaml /app/
+COPY package.json pnpm-lock.yaml tailwind.config.js /app/
 
 RUN pnpm install
 
