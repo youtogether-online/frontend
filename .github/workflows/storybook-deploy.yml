@@ -39,6 +39,8 @@ jobs:
         with:
           name: dist-storybook
           path: dist-storybook
+      - name: ls
+        run: ls
       - name: Deploy to Github Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
