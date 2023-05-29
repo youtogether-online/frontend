@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/youtogether-online/frontend/compare/v1.1.1...v1.1.2) (2023-05-29)
+
+
+### Bug Fixes
+
+* change svg path from /public/sprite to /sprite ([74f4f77](https://github.com/youtogether-online/frontend/commit/74f4f77cfea9e6cd2a52f3c4684768dc4790e9ba))
+
 ## [1.1.1](https://github.com/youtogether-online/frontend/compare/v1.1.0...v1.1.1) (2023-05-29)
 
 
