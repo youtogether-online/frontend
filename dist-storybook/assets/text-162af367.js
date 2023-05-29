@@ -1,2 +1,0 @@
-import{j as o}from"./jsx-runtime-94f6e698.js";import{a as n}from"./index.module-a2311ee0.js";const a=({asChild:e,children:t,sx:r})=>{const s=e?n:"p";return o.jsx(s,{className:r,children:t})};try{a.displayName="Text",a.__docgenInfo={description:"",displayName:"Text",props:{asChild:{defaultValue:null,description:"",name:"asChild",required:!1,type:{name:"boolean"}},sx:{defaultValue:null,description:"",name:"sx",required:!1,type:{name:"string"}}}}}catch{}export{a as T};
-//# sourceMappingURL=text-162af367.js.map
