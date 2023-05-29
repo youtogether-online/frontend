@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-    paths: [".storybook", src/**/*.stories.@(ts|tsx)"]
+    paths: [".storybook", src/**/*.stories.@(ts|tsx)", "./storybook-deploy.yml"]
   workflow_dispatch:
 
 jobs:
