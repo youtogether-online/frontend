@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-    paths: [".storybook", src/**", ".github/workflows/storybook-deploy.yml"]
+    paths: [".storybook/**", src/**", ".github/workflows/storybook-deploy.yml"]
   workflow_dispatch:
 
 permissions:
