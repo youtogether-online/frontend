@@ -27,6 +27,7 @@
     "rootFontSize": 16
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.21.5",
     "@farfetched/core": "^0.8.12",
     "@farfetched/zod": "^0.8.12",
     "@radix-ui/react-avatar": "^1.0.2",
