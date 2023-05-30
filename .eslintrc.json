@@ -100,12 +100,11 @@
     "unicorn/no-null": "off",
     "@typescript-eslint/restrict-template-expressions": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
-    "unicorn/prefer-module": "off",
-    "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
     "unicorn/prefer-logical-operation-over-ternary": "off",
     "@typescript-eslint/no-var-requires": "off",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "@typescript-eslint/triple-slash-reference": "off"
   },
   "overrides": [
     {
