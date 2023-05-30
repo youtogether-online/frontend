@@ -6,7 +6,6 @@ export interface SpritesMap {
     | "exit"
     | "eye-none"
     | "eye-open"
-    | "gear"
     | "globe"
     | "horizontal-logo"
     | "key"
@@ -21,7 +20,7 @@ export interface SpritesMap {
     | "vertical-logo";
 }
 
-export const SPRITES_META: { [K in keyof SpritesMap]: Array<SpritesMap[K]> } = {
+export const SPRITES_META: { [K in keyof SpritesMap]: SpritesMap[K][] } = {
   common: [
     "arrowLeft",
     "bookmark",
@@ -29,7 +28,6 @@ export const SPRITES_META: { [K in keyof SpritesMap]: Array<SpritesMap[K]> } = {
     "exit",
     "eye-none",
     "eye-open",
-    "gear",
     "globe",
     "horizontal-logo",
     "key",

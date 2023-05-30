@@ -1,23 +1,28 @@
-import * as path from "node:path";
+import svg from "@neodx/svg/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import mkcert from "vite-plugin-mkcert";
-import svgr from "vite-plugin-svgr";
+import tsconfigPath from "vite-tsconfig-paths";
 import { test } from "vitest";
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
   plugins: [
-    svgr(),
     react({
       babel: {
         plugins: ["effector/babel-plugin", "typewind/babel"],
       },
     }),
+    svg({
+      root: "./src/shared/assets/icons",
+      group: true,
+      output: "./public/sprite",
+      definitions: "./src/shared/ui/icon/sprite.h.ts",
+      resetColors: {
+        replaceUnknown: "currentColor",
+      },
+      optimize: true,
+    }),
+    tsconfigPath(),
     mkcert(),
   ],
   server: {
