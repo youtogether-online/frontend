@@ -1,0 +1,8 @@
+file: 'https://youtogether-online.github.io/backend/OpenAPI.yaml'
+templateFileNameCode: index.gen.ts
+outputDir: ./src/shared/api/internal
+presets:
+  - - openapi-preset-effector
+    - effectorImport: effector
+      requestName: requestFx
+      requestPath: '@/shared/api/request'

@@ -75,7 +75,9 @@ export const Loading: Story = {
     trailingAction: (
       <TextInput.Action
         aria-label="Clear input"
-        onClick={() => alert("click")}
+        onClick={() => {
+          alert("click");
+        }}
         icon="common/cross"
       ></TextInput.Action>
     ),
@@ -103,7 +105,9 @@ export const TrailingAction: Story = {
     trailingAction: (
       <TextInput.Action
         aria-label="Clear input"
-        onClick={() => alert("click")}
+        onClick={() => {
+          alert("click");
+        }}
         icon="common/cross"
       ></TextInput.Action>
     ),

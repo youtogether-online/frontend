@@ -1,7 +1,5 @@
 import { createRoutesView } from "atomic-router-react";
 
-import { CatalogPage } from "@/pages/catalog";
-import { FriendsPage } from "@/pages/friends";
 import { HomePage } from "@/pages/home";
 import { NotFoundPage } from "@/pages/not-found";
 import { ProfilePage } from "@/pages/profile";
@@ -21,10 +19,6 @@ export const routesMap = [
     route: routes.home,
   },
   {
-    path: "/catalog",
-    route: routes.catalog,
-  },
-  {
     path: "/settings",
     route: routes.settings,
   },
@@ -36,10 +30,6 @@ export const routesMap = [
     path: "/:username",
     route: routes.profile,
   },
-  {
-    path: "/:username/friends",
-    route: routes.friends,
-  },
 ];
 
 export const Pages = createRoutesView({
@@ -47,11 +37,6 @@ export const Pages = createRoutesView({
     {
       route: routes.home,
       view: HomePage,
-      layout: MainLayout,
-    },
-    {
-      route: routes.catalog,
-      view: CatalogPage,
       layout: MainLayout,
     },
     {
@@ -70,11 +55,6 @@ export const Pages = createRoutesView({
     {
       route: routes.profile,
       view: ProfilePage,
-      layout: MainLayout,
-    },
-    {
-      route: routes.friends,
-      view: FriendsPage,
       layout: MainLayout,
     },
   ],

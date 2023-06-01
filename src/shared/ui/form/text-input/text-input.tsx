@@ -6,7 +6,7 @@ import {
   type HTMLProps,
   type InputHTMLAttributes,
   type ReactElement,
-  ReactNode,
+  type ReactNode,
 } from "react";
 import { tw } from "typewind";
 
