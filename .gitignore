@@ -27,5 +27,5 @@ docker-compose.yml
 coverage
 dist-storybook
 
-locales/_build/
-locales/**/*.js
+src/shared/config/i18n/locales/_build/
+src/shared/config/i18n/locales/**/*.js

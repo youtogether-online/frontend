@@ -1,5 +1,6 @@
 dist
 src/shared/api/internal/index.gen.ts
+src/shared/ui/icon/sprite.gen.ts
 
-locales/_build/
-locales/**/*.js
+src/shared/config/i18n/locales/_build/
+src/shared/config/i18n/locales/**/*.js
