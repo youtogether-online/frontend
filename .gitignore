@@ -26,3 +26,6 @@ dist-ssr
 docker-compose.yml
 coverage
 dist-storybook
+
+locales/_build/
+locales/**/*.js

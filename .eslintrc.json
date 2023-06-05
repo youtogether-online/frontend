@@ -25,19 +25,8 @@
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "project": [
-      "./tsconfig.json"
-    ],
-    "tsconfigRootDir": "./",
-    "include": [
-      ".ts",
-      ".tsx",
-      ".js",
-      ".jsx"
-    ]
+    "tsConfigRootDir": "__dirname",
+    "project": "./tsconfig.json"
   },
   "plugins": [
     "react",
@@ -50,20 +39,11 @@
   "settings": {
     "import/resolver": {
       "typescript": {
-        "project": "./src",
         "alwaysTryTypes": true
       }
     },
-    "import/parsers": {
-      "@typescript-eslint/parser": [
-        "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
-      ]
-    },
     "react": {
-      "version": "18.x"
+      "version": "detect"
     }
   },
   "rules": {

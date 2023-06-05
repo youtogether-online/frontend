@@ -6,12 +6,8 @@ import { ProfilePage } from "@/pages/profile";
 import { SettingsPage } from "@/pages/settings";
 import { SignInPage } from "@/pages/sign-in";
 
-import { MainLayout } from "@/widgets/layouts/main-layout";
-import { SignInLayout } from "@/widgets/layouts/sign-in-layout";
-
-import { chainAnonymous, chainAuthorized } from "@/entities/session";
-
 import { routes } from "@/shared/routes";
+import { BaseLayout } from "@/widgets/layouts";
 
 export const routesMap = [
   {
@@ -37,25 +33,22 @@ export const Pages = createRoutesView({
     {
       route: routes.home,
       view: HomePage,
-      layout: MainLayout,
+      layout: BaseLayout,
     },
     {
-      route: chainAuthorized({
-        route: routes.settings,
-        replaceWith: routes.signIn,
-      }),
+      route: routes.settings,
       view: SettingsPage,
-      layout: MainLayout,
+      layout: BaseLayout,
     },
     {
-      route: chainAnonymous(routes.signIn),
+      route: routes.signIn,
       view: SignInPage,
-      layout: SignInLayout,
+      layout: BaseLayout,
     },
     {
       route: routes.profile,
       view: ProfilePage,
-      layout: MainLayout,
+      layout: BaseLayout,
     },
   ],
   otherwise: () => {

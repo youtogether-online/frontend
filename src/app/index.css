@@ -17,7 +17,7 @@
   }
 
   :root {
-    --color-footer-logo: #0d1117;
+    --color-footer-logo: #007dff;
     --color-page-header-bg: #0d1117;
     --color-avatar-bg: 255 255 255;
     --color-avatar-border: 240 246 252;
@@ -26,7 +26,7 @@
     --color-header-text: 255 255 255;
     --color-header-bg: #161b22;
     --color-header-divider: #8b949e;
-    --color-header-logo: #fff;
+    --color-header-logo: #007dff;
     --color-header-search-bg: #0d1117;
     --color-header-search-border: #30363d;
     --color-fg-default: #c9d1d9;

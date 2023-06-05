@@ -1,0 +1,10 @@
+locales:
+   - "en"
+   - "ru"
+
+catalogs:
+   - path: ./src/shared/config/i18n/locales/{locale}
+     include:
+     - src
+
+format: po

@@ -1,2 +1,5 @@
 dist
 src/shared/api/internal/index.gen.ts
+
+locales/_build/
+locales/**/*.js

@@ -3,7 +3,7 @@ import { forwardRef, type SVGProps } from "react";
 import { tw } from "typewind";
 
 import { type SxProp } from "../types";
-import { type SpritesMap } from "./sprite.h";
+import { type SpritesMap } from "./sprite.gen";
 
 export type SpriteKey = {
   [Key in keyof SpritesMap]: `${Key}/${SpritesMap[Key]}`;
@@ -24,7 +24,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(({ name, viewBox, sx, .
       aria-hidden
       viewBox={viewBox}
       {...props}
-      className={cx(tw.select_none.fill_fgSubtle.w_4.h_4.inline_block, sx)}
+      className={cx(tw.select_none.inline_block, sx)}
     >
       <use xlinkHref={`/sprite/${spriteName}.svg#${iconName}`} />
     </svg>

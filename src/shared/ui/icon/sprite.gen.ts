@@ -7,7 +7,6 @@ export interface SpritesMap {
     | "eye-none"
     | "eye-open"
     | "globe"
-    | "horizontal-logo"
     | "key"
     | "laptop"
     | "loader"
@@ -16,11 +15,11 @@ export interface SpritesMap {
     | "person"
     | "persons"
     | "search"
-    | "sun"
-    | "vertical-logo";
+    | "sun";
+  logos: "youtogether-horizontal" | "youtogether-vertical";
 }
 
-export const SPRITES_META: { [K in keyof SpritesMap]: SpritesMap[K][] } = {
+export const SPRITES_META: { [K in keyof SpritesMap]: Array<SpritesMap[K]> } = {
   common: [
     "arrowLeft",
     "bookmark",
@@ -29,7 +28,6 @@ export const SPRITES_META: { [K in keyof SpritesMap]: SpritesMap[K][] } = {
     "eye-none",
     "eye-open",
     "globe",
-    "horizontal-logo",
     "key",
     "laptop",
     "loader",
@@ -39,6 +37,6 @@ export const SPRITES_META: { [K in keyof SpritesMap]: SpritesMap[K][] } = {
     "persons",
     "search",
     "sun",
-    "vertical-logo",
   ],
+  logos: ["youtogether-horizontal", "youtogether-vertical"],
 };

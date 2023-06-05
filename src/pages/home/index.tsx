@@ -1,3 +1,9 @@
+import { Trans } from "@lingui/macro";
+
 export const HomePage = () => {
-  return <section>Home Page</section>;
+  return (
+    <section>
+      <Trans>Домашняя страница</Trans>
+    </section>
+  );
 };
