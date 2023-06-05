@@ -1,5 +1,5 @@
 import { Slot } from "@radix-ui/react-slot";
-import { cva, type VariantProps } from "cva";
+import { cva } from "cva";
 import { forwardRef } from "react";
 import { tw } from "typewind";
 

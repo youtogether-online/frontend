@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { type ButtonHTMLAttributes, forwardRef, type FunctionComponent } from "react";
+import { type ButtonHTMLAttributes, forwardRef } from "react";
 import { tw } from "typewind";
 
 import { Icon, type SpriteKey } from "../../icon";

@@ -63,6 +63,7 @@
     "@typescript-eslint/naming-convention": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-floating-promises": "off",
     "unicorn/prefer-module": "off",
     "unicorn/filename-case": [
       "error",

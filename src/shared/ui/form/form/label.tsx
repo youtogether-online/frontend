@@ -2,7 +2,7 @@ import { FormLabel, type FormLabelProps } from "@radix-ui/react-form";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import clsx from "clsx";
 import { cva, type VariantProps } from "cva";
-import { forwardRef, type LabelHTMLAttributes, type ReactNode } from "react";
+import { forwardRef, type ReactNode } from "react";
 import { tw } from "typewind";
 
 import { type SxProp } from "../../types";

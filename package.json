@@ -32,7 +32,6 @@
     "@farfetched/core": "^0.8.12",
     "@farfetched/typed-contracts": "^0.8.12",
     "@lingui/core": "^4.2.0",
-    "@lingui/detect-locale": "^4.2.0",
     "@lingui/react": "^4.2.0",
     "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-dialog": "^1.0.4",

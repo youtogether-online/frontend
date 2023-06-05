@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { tw } from "typewind";
 
 import { Button, IconButton } from "@/shared/ui/button";
 import { Dialog } from "@/shared/ui/dialog";
@@ -15,7 +14,7 @@ const meta: Meta<typeof Dialog> = {
 export default meta;
 type Story = StoryObj<typeof Dialog>;
 
-export const Default = {
+export const Default: Story = {
   render: () => {
     const [isOpen, setIsOpen] = useState(false);
 

@@ -1,5 +1,5 @@
 import { RouterProvider } from "atomic-router-react";
-import { ComponentType, FC, type ReactNode } from "react";
+import { type ComponentType } from "react";
 
 import { router } from "../router";
 

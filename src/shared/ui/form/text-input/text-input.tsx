@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import { cva, type VariantProps } from "cva";
 import {
-  type ComponentType,
   forwardRef,
   type HTMLProps,
   type InputHTMLAttributes,
