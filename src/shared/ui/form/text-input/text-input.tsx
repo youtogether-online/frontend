@@ -81,7 +81,9 @@ export const InternalTextInput = forwardRef<HTMLInputElement, TextInputProps>(
           ref={ref}
         />
         {trailingVisual && <span className={icon}>{trailingVisual}</span>}
-        {trailingAction && loading && <Icon sx={tw.animate_spin} name="common/loader" />}
+        {trailingAction && loading && (
+          <Icon sx={tw.animate_spin} name="logos/youtogether-vertical" />
+        )}
         {trailingAction && !loading && <span className={icon}>{trailingAction}</span>}
       </span>
     );

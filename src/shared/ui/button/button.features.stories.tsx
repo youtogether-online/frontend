@@ -78,21 +78,21 @@ export const Disabled: Story = {
 
 export const LeadingIcon: Story = {
   args: {
-    leadingIcon: <Icon name="common/arrowLeft" />,
+    leadingIcon: <Icon name="logos/youtogether-vertical" />,
     children: "Leading icon",
   },
 };
 
 export const TrailingIcon: Story = {
   args: {
-    trailingAction: <Icon name="common/arrowLeft" />,
+    trailingAction: <Icon name="logos/youtogether-vertical" />,
     children: "Trailing Icon",
   },
 };
 
 export const TrailingAction: Story = {
   args: {
-    trailingAction: <Icon name="common/arrowLeft" />,
+    trailingAction: <Icon name="logos/youtogether-vertical" />,
     children: "Leading Action",
   },
 };

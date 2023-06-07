@@ -78,7 +78,7 @@ export const Loading: Story = {
         onClick={() => {
           alert("click");
         }}
-        icon="common/cross"
+        icon="logos/youtogether-vertical"
       ></TextInput.Action>
     ),
   },
@@ -87,14 +87,14 @@ export const Loading: Story = {
 export const TrailingVisual: Story = {
   args: {
     placeholder: "input",
-    trailingVisual: <Icon name="common/arrowLeft" />,
+    trailingVisual: <Icon name="logos/youtogether-vertical" />,
   },
 };
 
 export const LeadingVisual: Story = {
   args: {
     placeholder: "input",
-    leadingVisual: <Icon name="common/arrowLeft" />,
+    leadingVisual: <Icon name="logos/youtogether-vertical" />,
     value: "God, bless JQuery!",
   },
 };
@@ -108,7 +108,7 @@ export const TrailingAction: Story = {
         onClick={() => {
           alert("click");
         }}
-        icon="common/cross"
+        icon="logos/youtogether-vertical"
       ></TextInput.Action>
     ),
   },

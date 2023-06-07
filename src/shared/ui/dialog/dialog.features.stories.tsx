@@ -27,7 +27,7 @@ export const Default: Story = {
           <Dialog.Header>
             <Dialog.Title>Title</Dialog.Title>
             <Dialog.CloseButton asChild>
-              <IconButton variant="invisible" icon={<Icon name="common/cross" />} />
+              <IconButton variant="invisible" icon={<Icon name="logos/youtogether-vertical" />} />
             </Dialog.CloseButton>
           </Dialog.Header>
           <Dialog.Body>Body</Dialog.Body>
