@@ -1,5 +1,5 @@
 import { Slot } from "@radix-ui/react-slot";
-import { type ReactNode } from "react";
+import { forwardRef, type ReactNode } from "react";
 
 import { type SxProp } from "../../types";
 
@@ -8,8 +8,14 @@ type TextProps = {
   children: ReactNode;
 } & SxProp;
 
-export const Text = ({ asChild, children, sx }: TextProps) => {
-  const Component = asChild ? Slot : "p";
+export const Text = forwardRef<HTMLParagraphElement, TextProps>(
+  ({ asChild, children, sx }, ref) => {
+    const Component = asChild ? Slot : "p";
 
-  return <Component className={sx}>{children}</Component>;
-};
+    return (
+      <Component className={sx} ref={ref}>
+        {children}
+      </Component>
+    );
+  },
+);

@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from "cva";
-import { type ElementType, type ReactNode } from "react";
+import { type ElementType, forwardRef, type ReactNode } from "react";
 import { tw } from "typewind";
 
 import { type SxProp } from "../../types";
@@ -34,8 +34,12 @@ type TitleProps = VariantProps<typeof title> & {
   children: ReactNode;
 } & SxProp;
 
-export const Title = ({ children, order }: TitleProps) => {
+export const Title = forwardRef<HTMLHeadingElement, TitleProps>(({ children, order }, ref) => {
   const Component = titleComponentMapping[order];
 
-  return <Component className={title({ order })}>{children}</Component>;
-};
+  return (
+    <Component className={title({ order })} ref={ref}>
+      {children}
+    </Component>
+  );
+});

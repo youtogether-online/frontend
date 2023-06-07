@@ -1,1 +1,1 @@
-export * as internalApi from "./index.gen";
+export * from "./index.gen";

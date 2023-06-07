@@ -3,10 +3,10 @@ import { createRouteView } from "atomic-router-react";
 import { BaseLayout } from "@/widgets/layouts";
 
 import { currentRoute } from "./model";
-import { SettingsPage } from "./page";
+import { HomePage } from "./page";
 
-export const SettingsRoute = {
-  view: createRouteView({ route: currentRoute, view: SettingsPage }),
+export const HomeRoute = {
+  view: createRouteView({ route: currentRoute, view: HomePage }),
   route: currentRoute,
   layout: BaseLayout,
 };

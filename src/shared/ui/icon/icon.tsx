@@ -1,9 +1,10 @@
+import * as AccessibleIcon from "@radix-ui/react-accessible-icon";
 import { cx } from "cva";
 import { forwardRef, type SVGProps } from "react";
 import { tw } from "typewind";
 
 import { type SxProp } from "../types";
-import { type SpritesMap } from "./sprite.gen";
+import { type SpritesMap } from "./sprites.gen";
 
 export type SpriteKey = {
   [Key in keyof SpritesMap]: `${Key}/${SpritesMap[Key]}`;
@@ -18,6 +19,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(({ name, viewBox, sx, .
   const [spriteName, iconName] = name.split("/");
 
   return (
+    // <AccessibleIcon.Root label={iconName}>
     <svg
       focusable="false"
       ref={ref}
@@ -26,7 +28,8 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(({ name, viewBox, sx, .
       {...props}
       className={cx(tw.select_none.inline_block, sx)}
     >
-      <use xlinkHref={`/sprite/${spriteName}.svg#${iconName}`} />
+      <use xlinkHref={`/sprites/${spriteName}.svg#${iconName}`} />
     </svg>
+    // </AccessibleIcon.Root>
   );
 });

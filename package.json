@@ -29,10 +29,12 @@
     "rootFontSize": 16
   },
   "dependencies": {
+    "@effector/reflect": "^8.3.1",
     "@farfetched/core": "^0.8.12",
     "@farfetched/typed-contracts": "^0.8.12",
     "@lingui/core": "^4.2.0",
     "@lingui/react": "^4.2.0",
+    "@radix-ui/react-accessible-icon": "^1.0.3",
     "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-dialog": "^1.0.4",
     "@radix-ui/react-dropdown-menu": "^2.0.5",

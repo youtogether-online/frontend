@@ -17,8 +17,8 @@ export default defineConfig({
     svg({
       root: "./src/shared/assets/icons",
       group: true,
-      output: "./public/sprite",
-      definitions: "./src/shared/ui/icon/sprite.gen.ts",
+      output: "./public/sprites",
+      definitions: "./src/shared/ui/icon/sprites.gen.ts",
       resetColors: {
         replaceUnknown: "currentColor",
         replace: {

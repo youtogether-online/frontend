@@ -4,10 +4,9 @@ import queryString from "query-string";
 export type Request = {
   path: string;
   method: "POST" | "GET" | "DELETE" | "PUT" | "PATCH";
-  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
-  body?: Record<string, unknown> | null | void;
+  body?: Record<string, unknown> | null;
   query?: Record<string, string>;
-  headers?: Record<string, string>;
+  header?: Record<string, string>;
   cookies?: string;
 };
 
@@ -22,7 +21,7 @@ export const requestFx = createEffect<Request, Response, Response>({
   handler: async ({ path, method, ...params }) => {
     const body = JSON.stringify(params.body);
 
-    const headers = new Headers(params.headers);
+    const headers = new Headers(params.header);
 
     const query = queryToString(params.query);
 
@@ -30,7 +29,7 @@ export const requestFx = createEffect<Request, Response, Response>({
       body,
       method,
       headers,
-      credentials: "same-origin",
+      credentials: "include",
     });
 
     const answer: Response = await response.json();

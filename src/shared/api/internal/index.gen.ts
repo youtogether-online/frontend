@@ -7,7 +7,7 @@ import { createEffect } from "effector";
 
 import { requestFx } from "@/shared/api/request";
 
-// #region prebuilt code
+//#region prebuilt code
 const custom = { any: (valueName: string, value: unknown): any => value };
 
 export type GenericErrors =
@@ -62,10 +62,22 @@ function parseByStatus<
   return { status, answer } as Result[Exclude<keyof Result, ErrorCodes>];
 }
 
-// #endregion prebuilt code/* --- */
-// #region authSessionGet
+//#endregion prebuilt code/* --- */
+//#region authSessionGet
 export type AuthSessionGet = {};
-export const authSessionGetOk = typed.nul;
+/* OK */
+export const authSessionGetOk = typed.object({
+  name: typed.string,
+  firstName: typed.string.optional,
+  lastName: typed.string.optional,
+  role: typed.union("USER", "ADMIN"),
+  biography: typed.string.optional,
+  email: typed.string,
+  language: typed.union("EN", "RU"),
+  theme: typed.union("DARK", "LIGHT", "SYSTEM"),
+  isEmailVerified: typed.boolean,
+  friendsIds: typed.array(typed.number).optional,
+});
 export type AuthSessionGetDone = {
   status: "ok";
   answer: typed.Get<typeof authSessionGetOk>;
@@ -115,10 +127,10 @@ export const authSessionGet = createEffect<AuthSessionGet, AuthSessionGetDone, A
     });
   },
 });
-// #endregion authSessionGet
+//#endregion authSessionGet
 
 /* --- */
-// #region authSessionDelete
+//#region authSessionDelete
 export type AuthSessionDelete = {};
 /* OK */
 export const authSessionDeleteOk = typed.nul;
@@ -155,16 +167,16 @@ export const authSessionDelete = createEffect<
     });
   },
 });
-// #endregion authSessionDelete
+//#endregion authSessionDelete
 
 /* --- */
-// #region authEmailPost
+//#region authEmailPost
 export type AuthEmailPost = {
   body: {
     email: string;
     code: string;
   };
-  headers?: {
+  header?: {
     "Accept-Language"?: "EN" | "RU";
   };
 };
@@ -197,13 +209,13 @@ export type AuthEmailPostFail =
   | GenericErrors;
 /* Authorize user with code that previously was sent to email. If user with specified email does not exist, create new user. Can be used for sign-in and sign-up. */
 export const authEmailPost = createEffect<AuthEmailPost, AuthEmailPostDone, AuthEmailPostFail>({
-  async handler({ body, headers }) {
+  async handler({ body, header }) {
     const name = "authEmailPost.body";
     const response = await requestFx({
       path: "/auth/email",
       method: "POST",
       body,
-      headers,
+      header,
     });
     return parseByStatus(name, response, {
       200: ["ok", authEmailPostOk],
@@ -212,16 +224,16 @@ export const authEmailPost = createEffect<AuthEmailPost, AuthEmailPostDone, Auth
     });
   },
 });
-// #endregion authEmailPost
+//#endregion authEmailPost
 
 /* --- */
-// #region authPasswordPost
+//#region authPasswordPost
 export type AuthPasswordPost = {
   body: {
     email: string;
     password: string;
   };
-  headers?: {
+  header?: {
     "Accept-Language"?: "EN" | "RU";
   };
 };
@@ -268,13 +280,13 @@ export const authPasswordPost = createEffect<
   AuthPasswordPostDone,
   AuthPasswordPostFail
 >({
-  async handler({ body, headers }) {
+  async handler({ body, header }) {
     const name = "authPasswordPost.body";
     const response = await requestFx({
       path: "/auth/password",
       method: "POST",
       body,
-      headers,
+      header,
     });
     return parseByStatus(name, response, {
       200: ["ok", authPasswordPostOk],
@@ -284,10 +296,10 @@ export const authPasswordPost = createEffect<
     });
   },
 });
-// #endregion authPasswordPost
+//#endregion authPasswordPost
 
 /* --- */
-// #region emailSendCodePost
+//#region emailSendCodePost
 export type EmailSendCodePost = {
   body: {
     email: string;
@@ -351,16 +363,24 @@ export const emailSendCodePost = createEffect<
     });
   },
 });
-// #endregion emailSendCodePost
+//#endregion emailSendCodePost
 
 /* --- */
-// #region userUsernameGet
+//#region userUsernameGet
 export type UserUsernameGet = {
   path: {
     username: string;
   };
 };
-export const userUsernameGetOk = typed.nul;
+/* OK */
+export const userUsernameGetOk = typed.object({
+  name: typed.string,
+  firstName: typed.string.optional,
+  lastName: typed.string.optional,
+  role: typed.union("USER", "ADMIN"),
+  biography: typed.string.optional,
+  friendsIds: typed.array(typed.number).optional,
+});
 export type UserUsernameGetDone = {
   status: "ok";
   answer: typed.Get<typeof userUsernameGetOk>;
@@ -415,10 +435,10 @@ export const userUsernameGet = createEffect<
     });
   },
 });
-// #endregion userUsernameGet
+//#endregion userUsernameGet
 
 /* --- */
-// #region userCheckNameNameGet
+//#region userCheckNameNameGet
 export type UserCheckNameNameGet = {
   path: {
     name: string;
@@ -466,10 +486,10 @@ export const userCheckNameNameGet = createEffect<
     });
   },
 });
-// #endregion userCheckNameNameGet
+//#endregion userCheckNameNameGet
 
 /* --- */
-// #region userPatch
+//#region userPatch
 export type UserPatch = {
   body: {
     firstName?: string;
@@ -532,10 +552,10 @@ export const userPatch = createEffect<UserPatch, UserPatchDone, UserPatchFail>({
     });
   },
 });
-// #endregion userPatch
+//#endregion userPatch
 
 /* --- */
-// #region userPasswordPatch
+//#region userPasswordPatch
 export type UserPasswordPatch = {
   body: {
     email: string;
@@ -600,10 +620,10 @@ export const userPasswordPatch = createEffect<
     });
   },
 });
-// #endregion userPasswordPatch
+//#endregion userPasswordPatch
 
 /* --- */
-// #region userEmailPatch
+//#region userEmailPatch
 export type UserEmailPatch = {
   body: {
     newEmail: string;
@@ -663,10 +683,10 @@ export const userEmailPatch = createEffect<UserEmailPatch, UserEmailPatchDone, U
     });
   },
 });
-// #endregion userEmailPatch
+//#endregion userEmailPatch
 
 /* --- */
-// #region userNamePatch
+//#region userNamePatch
 export type UserNamePatch = {
   body: {
     name: string;
@@ -725,4 +745,4 @@ export const userNamePatch = createEffect<UserNamePatch, UserNamePatchDone, User
     });
   },
 });
-// #endregion userNamePatch
+//#endregion userNamePatch

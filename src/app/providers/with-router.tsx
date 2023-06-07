@@ -1,7 +1,7 @@
 import { RouterProvider } from "atomic-router-react";
 import { type ComponentType } from "react";
 
-import { router } from "../router";
+import { router } from "@/shared/routing";
 
 export const withRouter = (WrappedComponent: ComponentType) => () => {
   return (
