@@ -14,12 +14,12 @@ COPY ./ /app/
 RUN pnpm run build
 
 # RELEASE
-FROM nginx:alpine
+FROM steebchen/nginx-spa:stable
 
 WORKDIR /app
 
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist /app
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx"]
