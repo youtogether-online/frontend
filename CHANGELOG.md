@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/youtogether-online/frontend/compare/v1.1.2...v1.2.0) (2023-06-05)
+
+
+### Features
+
+* add api generation from openapi, close [#15](https://github.com/youtogether-online/frontend/issues/15) ([d8b412e](https://github.com/youtogether-online/frontend/commit/d8b412e174b817050794884a4b310ad63cb0d87c))
+
+
+### Bug Fixes
+
+* **vite-config:** fix build error ([400f1b5](https://github.com/youtogether-online/frontend/commit/400f1b547783da52fffc824b62c18339872e670c))
+
 ## [1.1.2](https://github.com/youtogether-online/frontend/compare/v1.1.1...v1.1.2) (2023-05-29)
 
 
