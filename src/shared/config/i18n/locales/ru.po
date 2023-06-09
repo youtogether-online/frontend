@@ -13,6 +13,14 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/home/index.tsx:4
+#: src/pages/not-found/page.tsx:28
+msgid "Go home"
+msgstr "Вернуться на домашнюю страницу"
+
+#: src/pages/not-found/page.tsx:24
+msgid "Page Not Found"
+msgstr "Страница не найдена"
+
+#: src/pages/home/page.tsx:6
 msgid "Домашняя страница"
 msgstr "Домашняя страница"

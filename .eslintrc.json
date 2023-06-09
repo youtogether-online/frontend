@@ -85,7 +85,8 @@
     "unicorn/prefer-logical-operation-over-ternary": "off",
     "@typescript-eslint/no-var-requires": "off",
     "react/display-name": "off",
-    "@typescript-eslint/triple-slash-reference": "off"
+    "@typescript-eslint/triple-slash-reference": "off",
+    "@typescript-eslint/array-type": "off"
   },
   "overrides": [
     {
