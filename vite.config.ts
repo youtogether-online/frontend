@@ -13,7 +13,6 @@ export default defineConfig({
         plugins: ["effector/babel-plugin", "typewind/babel", "macros"],
       },
     }),
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     svg({
       root: "./src/shared/assets/icons",
       group: true,
