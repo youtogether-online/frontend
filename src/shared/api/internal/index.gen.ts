@@ -84,27 +84,22 @@ export type AuthSessionGetDone = {
 };
 /* User is not logged in */
 export const authSessionGetUnauthorized = typed.object({
-  message: typed.string,
-  advice: typed.string,
-});
-/* There is no such object */
-export const authSessionGetNotFound = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 /* Internal Server Error */
 export const authSessionGetInternalServerError = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 export type AuthSessionGetFail =
   | {
       status: "unauthorized";
       error: typed.Get<typeof authSessionGetUnauthorized>;
-    }
-  | {
-      status: "not_found";
-      error: typed.Get<typeof authSessionGetNotFound>;
     }
   | {
       status: "internal_server_error";
@@ -122,7 +117,6 @@ export const authSessionGet = createEffect<AuthSessionGet, AuthSessionGetDone, A
     return parseByStatus(name, response, {
       200: ["ok", authSessionGetOk],
       401: ["unauthorized", authSessionGetUnauthorized],
-      404: ["not_found", authSessionGetNotFound],
       500: ["internal_server_error", authSessionGetInternalServerError],
     });
   },
@@ -140,8 +134,10 @@ export type AuthSessionDeleteDone = {
 };
 /* Internal Server Error */
 export const authSessionDeleteInternalServerError = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 export type AuthSessionDeleteFail =
   | {
@@ -188,28 +184,22 @@ export type AuthEmailPostDone = {
 };
 /* Invalid data */
 export const authEmailPostBadRequest = typed.object({
-  message: typed.string,
-  advice: typed.string,
-  fields: typed.object({}),
-});
-/* There is no such object */
-export const authEmailPostNotFound = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 /* Internal Server Error */
 export const authEmailPostInternalServerError = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 export type AuthEmailPostFail =
   | {
       status: "bad_request";
       error: typed.Get<typeof authEmailPostBadRequest>;
-    }
-  | {
-      status: "not_found";
-      error: typed.Get<typeof authEmailPostNotFound>;
     }
   | {
       status: "internal_server_error";
@@ -229,7 +219,6 @@ export const authEmailPost = createEffect<AuthEmailPost, AuthEmailPostDone, Auth
     return parseByStatus(name, response, {
       200: ["ok", authEmailPostOk],
       400: ["bad_request", authEmailPostBadRequest],
-      404: ["not_found", authEmailPostNotFound],
       500: ["internal_server_error", authEmailPostInternalServerError],
     });
   },
@@ -255,28 +244,22 @@ export type AuthPasswordPostDone = {
 };
 /* Invalid data */
 export const authPasswordPostBadRequest = typed.object({
-  message: typed.string,
-  advice: typed.string,
-  fields: typed.object({}),
-});
-/* There is no such object */
-export const authPasswordPostNotFound = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 /* Internal Server Error */
 export const authPasswordPostInternalServerError = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 export type AuthPasswordPostFail =
   | {
       status: "bad_request";
       error: typed.Get<typeof authPasswordPostBadRequest>;
-    }
-  | {
-      status: "not_found";
-      error: typed.Get<typeof authPasswordPostNotFound>;
     }
   | {
       status: "internal_server_error";
@@ -300,7 +283,6 @@ export const authPasswordPost = createEffect<
     return parseByStatus(name, response, {
       200: ["ok", authPasswordPostOk],
       400: ["bad_request", authPasswordPostBadRequest],
-      404: ["not_found", authPasswordPostNotFound],
       500: ["internal_server_error", authPasswordPostInternalServerError],
     });
   },
@@ -322,28 +304,22 @@ export type EmailSendCodePostDone = {
 };
 /* Invalid data */
 export const emailSendCodePostBadRequest = typed.object({
-  message: typed.string,
-  advice: typed.string,
-  fields: typed.object({}),
-});
-/* There is no such object */
-export const emailSendCodePostNotFound = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 /* Internal Server Error */
 export const emailSendCodePostInternalServerError = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 export type EmailSendCodePostFail =
   | {
       status: "bad_request";
       error: typed.Get<typeof emailSendCodePostBadRequest>;
-    }
-  | {
-      status: "not_found";
-      error: typed.Get<typeof emailSendCodePostNotFound>;
     }
   | {
       status: "internal_server_error";
@@ -366,7 +342,6 @@ export const emailSendCodePost = createEffect<
     return parseByStatus(name, response, {
       200: ["ok", emailSendCodePostOk],
       400: ["bad_request", emailSendCodePostBadRequest],
-      404: ["not_found", emailSendCodePostNotFound],
       500: ["internal_server_error", emailSendCodePostInternalServerError],
     });
   },
@@ -395,28 +370,22 @@ export type UserUsernameGetDone = {
 };
 /* Invalid data */
 export const userUsernameGetBadRequest = typed.object({
-  message: typed.string,
-  advice: typed.string,
-  fields: typed.object({}),
-});
-/* There is no such object */
-export const userUsernameGetNotFound = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 /* Internal Server Error */
 export const userUsernameGetInternalServerError = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 export type UserUsernameGetFail =
   | {
       status: "bad_request";
       error: typed.Get<typeof userUsernameGetBadRequest>;
-    }
-  | {
-      status: "not_found";
-      error: typed.Get<typeof userUsernameGetNotFound>;
     }
   | {
       status: "internal_server_error";
@@ -438,7 +407,6 @@ export const userUsernameGet = createEffect<
     return parseByStatus(name, response, {
       200: ["ok", userUsernameGetOk],
       400: ["bad_request", userUsernameGetBadRequest],
-      404: ["not_found", userUsernameGetNotFound],
       500: ["internal_server_error", userUsernameGetInternalServerError],
     });
   },
@@ -462,8 +430,10 @@ export type UserCheckNameNameGetDone = {
 export const userCheckNameNameGetForbidden = typed.nul;
 /* Internal Server Error */
 export const userCheckNameNameGetInternalServerError = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 export type UserCheckNameNameGetFail =
   | {
@@ -515,19 +485,24 @@ export type UserPatchDone = {
 };
 /* Invalid data */
 export const userPatchBadRequest = typed.object({
-  message: typed.string,
-  advice: typed.string,
-  fields: typed.object({}),
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 /* User is not logged in */
 export const userPatchUnauthorized = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 /* Internal Server Error */
 export const userPatchInternalServerError = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 export type UserPatchFail =
   | {
@@ -579,19 +554,24 @@ export type UserPasswordPatchDone = {
 };
 /* Invalid data */
 export const userPasswordPatchBadRequest = typed.object({
-  message: typed.string,
-  advice: typed.string,
-  fields: typed.object({}),
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 /* User is not logged in */
 export const userPasswordPatchUnauthorized = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 /* Internal Server Error */
 export const userPasswordPatchInternalServerError = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 export type UserPasswordPatchFail =
   | {
@@ -646,19 +626,24 @@ export type UserEmailPatchDone = {
 };
 /* Invalid data */
 export const userEmailPatchBadRequest = typed.object({
-  message: typed.string,
-  advice: typed.string,
-  fields: typed.object({}),
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 /* User is not logged in */
 export const userEmailPatchUnauthorized = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 /* Internal Server Error */
 export const userEmailPatchInternalServerError = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 export type UserEmailPatchFail =
   | {
@@ -708,19 +693,24 @@ export type UserNamePatchDone = {
 };
 /* Invalid data */
 export const userNamePatchBadRequest = typed.object({
-  message: typed.string,
-  advice: typed.string,
-  fields: typed.object({}),
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 /* User is not logged in */
 export const userNamePatchUnauthorized = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 /* Internal Server Error */
 export const userNamePatchInternalServerError = typed.object({
-  message: typed.string,
-  advice: typed.string,
+  code: typed.union("validation", "authorization", "server", "not_found"),
+  description: typed.string.optional,
+  advice: typed.string.optional,
+  fields: typed.object({}).optional,
 });
 export type UserNamePatchFail =
   | {

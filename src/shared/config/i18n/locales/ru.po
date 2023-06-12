@@ -13,13 +13,33 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/features/auth/by-password/ui.tsx:45
+msgid "Email address"
+msgstr "Почтовый адрес"
+
 #: src/pages/not-found/page.tsx:28
 msgid "Go home"
 msgstr "Вернуться на домашнюю страницу"
 
+#: src/features/auth/by-password/model.ts:25
+msgid "Incorrect email"
+msgstr "Неправильный почтовый адрес"
+
 #: src/pages/not-found/page.tsx:24
 msgid "Page Not Found"
 msgstr "Страница не найдена"
+
+#: src/features/auth/by-password/ui.tsx:56
+msgid "Password"
+msgstr "Пароль"
+
+#: src/features/auth/by-password/ui.tsx:71
+msgid "Sign in"
+msgstr "Войти"
+
+#: src/features/auth/by-password/model.ts:34
+msgid "The password must consist of at least 8 characters"
+msgstr "Пароль должен состоять как минимум из 8 символов"
 
 #: src/pages/home/page.tsx:6
 msgid "Домашняя страница"

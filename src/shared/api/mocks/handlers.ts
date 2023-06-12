@@ -29,7 +29,8 @@ export const handlers = [
       return await res(
         ctx.status(400),
         ctx.json({
-          message: "Validation error",
+          code: "validation",
+          description: "Validation error",
           advice: "Try to enter the correct data",
           fields: {
             password: "Password length should be at least 8 symbols",
@@ -46,8 +47,12 @@ export const handlers = [
 
     if (!user) {
       return await res(
-        ctx.status(404),
-        ctx.json({ message: "No user with such credentials was found", advice: "f" }),
+        ctx.status(400),
+        ctx.json({
+          description: "No user with such credentials was found",
+          advice: "f",
+          code: "not_found",
+        }),
       );
     }
 
