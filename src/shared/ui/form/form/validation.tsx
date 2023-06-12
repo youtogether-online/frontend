@@ -16,12 +16,7 @@ const validationVariants = cva([tw.text_sm], {
   },
 });
 
-type ValidationProps = {
-  children: ReactNode;
-  asChild?: boolean;
-} & SxProp &
-  VariantProps<typeof validationVariants> &
-  FormMessageProps;
+type ValidationProps = SxProp & VariantProps<typeof validationVariants> & FormMessageProps;
 
 export const Validation = forwardRef<HTMLSpanElement, ValidationProps>(
   ({ children, asChild, sx, variant, ...props }, ref) => {

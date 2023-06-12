@@ -10,7 +10,11 @@ export default defineConfig({
   plugins: [
     react({
       babel: {
-        plugins: ["effector/babel-plugin", "typewind/babel", "macros"],
+        plugins: [
+          ["effector/babel-plugin", { factories: ["effector-forms"] }],
+          "typewind/babel",
+          "macros",
+        ],
       },
     }),
     svg({

@@ -6,7 +6,10 @@ import { tw } from "typewind";
 import { type ButtonProps } from "./types";
 
 export const baseButton = cva(
-  [tw.transition_colors.border.border_solid.rounded_md.cursor_pointer.flex.gap_2.items_center],
+  [
+    tw.transition_colors.border.border_solid.rounded_md.cursor_pointer.flex.gap_2.items_center
+      .justify_center,
+  ],
   {
     variants: {
       variant: {
@@ -85,6 +88,7 @@ export const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
       variant,
       size,
       disabled,
+      block,
       children,
       sx,
       asChild,
@@ -97,7 +101,7 @@ export const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Component
         disabled={disabled}
-        className={baseButton({ disabled, variant, size, class: sx })}
+        className={baseButton({ disabled, variant, size, block, class: sx })}
         ref={ref}
         {...props}
       >

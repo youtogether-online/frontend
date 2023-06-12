@@ -192,6 +192,11 @@ export const authEmailPostBadRequest = typed.object({
   advice: typed.string,
   fields: typed.object({}),
 });
+/* There is no such object */
+export const authEmailPostNotFound = typed.object({
+  message: typed.string,
+  advice: typed.string,
+});
 /* Internal Server Error */
 export const authEmailPostInternalServerError = typed.object({
   message: typed.string,
@@ -201,6 +206,10 @@ export type AuthEmailPostFail =
   | {
       status: "bad_request";
       error: typed.Get<typeof authEmailPostBadRequest>;
+    }
+  | {
+      status: "not_found";
+      error: typed.Get<typeof authEmailPostNotFound>;
     }
   | {
       status: "internal_server_error";
@@ -220,6 +229,7 @@ export const authEmailPost = createEffect<AuthEmailPost, AuthEmailPostDone, Auth
     return parseByStatus(name, response, {
       200: ["ok", authEmailPostOk],
       400: ["bad_request", authEmailPostBadRequest],
+      404: ["not_found", authEmailPostNotFound],
       500: ["internal_server_error", authEmailPostInternalServerError],
     });
   },
@@ -254,11 +264,10 @@ export const authPasswordPostNotFound = typed.object({
   message: typed.string,
   advice: typed.string,
 });
-/* Invalid data */
+/* Internal Server Error */
 export const authPasswordPostInternalServerError = typed.object({
   message: typed.string,
   advice: typed.string,
-  fields: typed.object({}),
 });
 export type AuthPasswordPostFail =
   | {
@@ -317,11 +326,10 @@ export const emailSendCodePostBadRequest = typed.object({
   advice: typed.string,
   fields: typed.object({}),
 });
-/* Invalid data */
+/* There is no such object */
 export const emailSendCodePostNotFound = typed.object({
   message: typed.string,
   advice: typed.string,
-  fields: typed.object({}),
 });
 /* Internal Server Error */
 export const emailSendCodePostInternalServerError = typed.object({

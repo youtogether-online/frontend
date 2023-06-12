@@ -21,3 +21,5 @@ export const user: User = {
   friendsIds: [],
   role: "USER",
 };
+
+export const accounts = [{ email: "frkam@icloud.com", password: "12345678910" }];

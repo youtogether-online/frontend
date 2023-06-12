@@ -14,7 +14,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(({ children, name, s
   return (
     <Form.Field
       name={name}
-      className={clsx(tw.flex.flex_col.gap_["0.5"].justify_between.items_baseline, sx)}
+      className={clsx(tw.flex.flex_col.gap_1.justify_between.items_baseline, sx)}
       ref={ref}
     >
       {children}

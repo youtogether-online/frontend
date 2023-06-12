@@ -20,7 +20,7 @@
     "build": "tsc && vite build",
     "build:storybook": "storybook build -o dist-storybook",
     "generate:typewind": "typewind generate",
-    "generate:openapi": "openapi",
+    "generate:api": "openapi",
     "messages:extract": "lingui extract",
     "messages:compile": "lingui compile"
   },
@@ -56,7 +56,8 @@
     "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "typewind": "^0.1.3"
+    "typewind": "^0.1.3",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.21.5",
