@@ -41,8 +41,14 @@ export const handlers = [
 
     const user = accounts.find((account) => account.email === email);
 
-    if (user?.password === password) {
-      return await res(ctx.status(200), ctx.cookie("session_id", "abc"));
+    if (user?.password !== password) {
+      return await res(
+        ctx.status(400),
+        ctx.json({
+          description: "Incorrect email or password",
+          code: "",
+        }),
+      );
     }
 
     if (!user) {
@@ -56,7 +62,7 @@ export const handlers = [
       );
     }
 
-    return await res(ctx.status(500));
+    return await res(ctx.status(200), ctx.cookie("session_id", "abc"));
   }),
   rest.post("api/email/send-code", async (req, res, ctx) => {
     return await res(ctx.status(200));

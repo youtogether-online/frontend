@@ -1,4 +1,4 @@
-file: 'https://youtogether-online.github.io/backend/OpenAPI.yaml'
+file: https://youtogether-online.github.io/backend/OpenAPI.yaml
 templateFileNameCode: index.gen.ts
 outputDir: ./src/shared/api/internal
 presets:

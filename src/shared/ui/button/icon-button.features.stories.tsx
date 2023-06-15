@@ -15,48 +15,48 @@ type Story = StoryObj<typeof IconButton>;
 export const Primary: Story = {
   args: {
     variant: "primary",
-    icon: <Icon name="logos/youtogether-vertical" />,
+    icon: <Icon name="abstract/cross" />,
   },
 };
 
 export const Secondary: Story = {
   args: {
     variant: "secondary",
-    icon: <Icon name="logos/youtogether-vertical" />,
+    icon: <Icon name="abstract/cross" />,
   },
 };
 
 export const Outline: Story = {
   args: {
     variant: "outline",
-    icon: <Icon name="logos/youtogether-vertical" />,
+    icon: <Icon name="abstract/cross" />,
   },
 };
 
 export const Danger: Story = {
   args: {
     variant: "danger",
-    icon: <Icon name="logos/youtogether-vertical" />,
+    icon: <Icon name="abstract/cross" />,
   },
 };
 
 export const Small: Story = {
   args: {
     size: "sm",
-    icon: <Icon name="logos/youtogether-vertical" />,
+    icon: <Icon name="abstract/cross" />,
   },
 };
 
 export const Medium: Story = {
   args: {
     size: "md",
-    icon: <Icon name="logos/youtogether-vertical" />,
+    icon: <Icon name="abstract/cross" />,
   },
 };
 
 export const Large: Story = {
   args: {
     size: "lg",
-    icon: <Icon name="logos/youtogether-vertical" />,
+    icon: <Icon name="abstract/cross" />,
   },
 };

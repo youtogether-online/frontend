@@ -1,12 +1,12 @@
 import { Slot } from "@radix-ui/react-slot";
 import clsx from "clsx";
 import { cva, type VariantProps } from "cva";
-import { forwardRef, type ReactNode } from "react";
+import { forwardRef, type ReactNode, useState } from "react";
 import { tw } from "typewind";
 
 import { type SxProp } from "../types";
 
-const flashVariants = cva([tw.p_4.my_auto.border.rounded_md], {
+const flashVariants = cva([tw.p_4.my_auto.border.rounded_md.flex], {
   variants: {
     block: {
       true: [tw.w_full],
@@ -31,10 +31,13 @@ type FlashProps = {
 
 export const Flash = forwardRef<HTMLDivElement, FlashProps>(
   ({ asChild, children, block, variant, sx, ...props }, ref) => {
+    const [isOpen, setIsOpen] = useState(true);
     const Component = asChild ? Slot : "div";
 
+    if (!isOpen) return null;
+
     return (
-      <Component ref={ref} {...props} className={clsx(flashVariants({ variant, block }), sx)}>
+      <Component className={clsx(flashVariants({ block, variant }))} {...props} ref={ref}>
         {children}
       </Component>
     );
