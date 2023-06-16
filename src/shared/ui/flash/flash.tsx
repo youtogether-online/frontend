@@ -37,7 +37,7 @@ export const Flash = forwardRef<HTMLDivElement, FlashProps>(
     if (!isOpen) return null;
 
     return (
-      <Component className={clsx(flashVariants({ block, variant }))} {...props} ref={ref}>
+      <Component className={clsx(flashVariants({ block, variant }), sx)} {...props} ref={ref}>
         {children}
       </Component>
     );

@@ -1,19 +1,43 @@
-import type * as typed from "typed-contracts";
-import { createMutation } from "@farfetched/core";
+import {
+  createJsonMutation,
+  declareParams,
+  type HttpError,
+  isHttpError,
+  isHttpErrorCode,
+} from "@farfetched/core";
+import { zodContract } from "@farfetched/zod";
 import { t } from "@lingui/macro";
-import { createStore, sample } from "effector";
+import { createStore, type Json, sample } from "effector";
 import { createForm } from "effector-forms";
-import { debug } from "patronum";
+import { debug, not } from "patronum";
 import { z } from "zod";
 
-import { internalApi } from "@/shared/api";
+import {
+  type AuthPasswordFailedResponse,
+  type ErrorWithCode,
+  getAuthPasswordPostUrl,
+  type postAuthPasswordBody,
+  type ValidationError,
+} from "@/shared/api/internal";
 import { createRule } from "@/shared/lib/effector-forms/zod";
+import { isValidationError } from "@/shared/lib/is-validation-error";
 
-export const $formServerError = createStore<typed.Get<
-  typeof internalApi.authPasswordPostBadRequest
-> | null>(null);
+export const $formServerError = createStore<ValidationError | null>(null);
 
-const authByPasswordMutation = createMutation({ effect: internalApi.authPasswordPost });
+const authByPasswordMutation = createJsonMutation({
+  params: declareParams<z.infer<typeof postAuthPasswordBody>>(),
+  request: {
+    method: "POST",
+    url: getAuthPasswordPostUrl,
+    body: (payload) => payload,
+  },
+  response: {
+    contract: zodContract(z.object({})),
+    status: {
+      expected: 201,
+    },
+  },
+});
 
 export const authByPasswordForm = createForm({
   fields: {
@@ -40,44 +64,44 @@ export const authByPasswordForm = createForm({
 
 sample({
   clock: authByPasswordForm.formValidated,
-  fn: (state) => ({ body: state }),
   target: authByPasswordMutation.start,
 });
 
 sample({
   clock: sample({
     clock: authByPasswordMutation.finished.failure,
-    fn: (error) => error.error,
+    filter: isHttpErrorCode(400),
+    fn: (error) => {
+      return (error.error as unknown as HttpError<400>).response as ErrorWithCode;
+    },
   }),
-  filter: (
-    error: internalApi.AuthPasswordPostFail,
-  ): error is {
-    status: "bad_request";
-    error: typed.Get<typeof internalApi.authPasswordPostBadRequest>;
-  } => Boolean(error.status === "bad_request" && error.error.code !== "validation"),
-  fn: (error) => error.error,
+  filter: (error: ErrorWithCode): error is ValidationError => {
+    return !isValidationError(error);
+  },
   target: $formServerError,
 });
 
 sample({
   clock: sample({
     clock: authByPasswordMutation.finished.failure,
-    fn: (error) => error.error,
+    filter: isHttpErrorCode(400),
+    fn: (error) => {
+      return (error.error as unknown as HttpError<400>).response as ErrorWithCode;
+    },
   }),
-  filter: (
-    error: internalApi.AuthPasswordPostFail,
-  ): error is {
-    status: "bad_request";
-    error: typed.Get<typeof internalApi.authPasswordPostBadRequest>;
-  } => Boolean(error.status === "bad_request" && error.error.code === "validation"),
+  filter: (error) => {
+    return isValidationError(error);
+  },
   fn: (error) => {
     const errors = [];
-    // Redefine `fields` because openapi doesnt provide correct typings
-    for (const field in error.error.fields as Record<string, string>) {
+
+    const fields = (error as unknown as AuthPasswordFailedResponse)?.fields;
+
+    for (const field in fields) {
       errors.push({
         rule: "backend",
         field,
-        errorText: (error.error.fields as Record<string, string>)[field],
+        errorText: fields[field],
       });
     }
 

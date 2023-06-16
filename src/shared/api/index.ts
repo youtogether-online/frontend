@@ -1,3 +1,2 @@
-export * as internalApi from "./internal";
-export * from "./types";
+export * from "./internal";
 export * from "./mocks";

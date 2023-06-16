@@ -46,7 +46,7 @@ export const handlers = [
         ctx.status(400),
         ctx.json({
           description: "Incorrect email or password",
-          code: "",
+          code: "invalid_password",
         }),
       );
     }

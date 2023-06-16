@@ -1,4 +1,5 @@
-import { createQuery } from "@farfetched/core";
+import { createJsonQuery, createQuery } from "@farfetched/core";
+import { zodContract } from "@farfetched/zod";
 import {
   chainRoute,
   type RouteInstance,
@@ -7,16 +8,24 @@ import {
 } from "atomic-router";
 import { createEvent, createStore, type Effect, type Event, sample } from "effector";
 
-import { internalApi, type Session } from "@/shared/api";
+import { getAuthSessionResponse } from "@/shared/api";
+import { getAuthSessionGetUrl, type Session } from "@/shared/api/internal";
 import { appStarted } from "@/shared/config/init";
 
 export const $session = createStore<Session | null>(null);
 
-const getSessionQuery = createQuery({ effect: internalApi.authSessionGet });
+const getSessionQuery = createJsonQuery({
+  request: {
+    method: "GET",
+    url: getAuthSessionGetUrl(),
+  },
+  response: {
+    contract: zodContract(getAuthSessionResponse),
+  },
+});
 
 sample({
   clock: appStarted,
-  fn: () => ({}),
   target: getSessionQuery.start,
 });
 

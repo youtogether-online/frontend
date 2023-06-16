@@ -4,3 +4,6 @@ src/shared/ui/icon/sprite.gen.ts
 
 src/shared/config/i18n/locales/_build/
 src/shared/config/i18n/locales/**/*.js
+
+src/shared/api/internal/schemas
+src/shared/api/internal/contracts.ts
