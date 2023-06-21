@@ -2,8 +2,6 @@ import { Link } from "atomic-router-react";
 import { type ReactNode } from "react";
 import { tw } from "typewind";
 
-import { Header } from "@/widgets/header";
-
 import { routes } from "@/shared/routing";
 import { Icon } from "@/shared/ui/icon";
 
