@@ -42,6 +42,10 @@ msgstr "Get code"
 msgid "Go home"
 msgstr "Go home"
 
+#: src/pages/home/page.tsx:6
+msgid "Home page"
+msgstr "Home page"
+
 #: src/features/auth/by-email/model.ts:44
 #: src/features/auth/by-password/model.ts:52
 msgid "Incorrect email"
@@ -76,7 +80,3 @@ msgstr "Submit code"
 #: src/features/auth/by-password/model.ts:64
 msgid "The password must consist of at least 8 characters"
 msgstr "The password must consist of at least 8 characters"
-
-#: src/pages/home/page.tsx:6
-msgid "Домашняя страница"
-msgstr "Home page"
