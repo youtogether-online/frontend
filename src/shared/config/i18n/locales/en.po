@@ -17,15 +17,15 @@ msgstr ""
 msgid "Authenticate"
 msgstr "Authenticate"
 
-#: src/pages/auth/page.tsx:29
+#: src/pages/auth/page.tsx:27
 msgid "Authenticate by email"
 msgstr "Authenticate by email"
 
-#: src/pages/auth/page.tsx:27
+#: src/pages/auth/page.tsx:29
 msgid "Authenticate by password"
 msgstr "Authenticate by password"
 
-#: src/features/auth/by-email/ui/submit-code.tsx:38
+#: src/features/auth/by-email/ui/submit-code.tsx:48
 msgid "Code from email"
 msgstr "Code from email"
 
@@ -38,7 +38,7 @@ msgstr "Email address"
 msgid "Get code"
 msgstr "Get code"
 
-#: src/pages/not-found/page.tsx:28
+#: src/pages/not-found/page.tsx:27
 msgid "Go home"
 msgstr "Go home"
 
@@ -51,13 +51,13 @@ msgstr "Incorrect email"
 #: src/features/auth/by-password/model.ts:51
 #: src/features/auth/by-password/model.ts:63
 msgid "It's required property"
-msgstr "Это обязательное поле"
+msgstr "It's required property"
 
-#: src/widgets/header/ui.tsx:29
+#: src/widgets/header/ui.tsx:42
 msgid "Login"
 msgstr "Login"
 
-#: src/pages/not-found/page.tsx:24
+#: src/pages/not-found/page.tsx:23
 msgid "Page Not Found"
 msgstr "Page Not Found"
 
@@ -69,7 +69,7 @@ msgstr "Password"
 #~ msgid "Sign in"
 #~ msgstr "Sign in"
 
-#: src/features/auth/by-email/ui/submit-code.tsx:48
+#: src/features/auth/by-email/ui/submit-code.tsx:64
 msgid "Submit code"
 msgstr "Submit code"
 
