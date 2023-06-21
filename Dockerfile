@@ -9,6 +9,8 @@ COPY package.json pnpm-lock.yaml tailwind.config.js /app/
 
 RUN pnpm install
 
+ENV VITE_API_URL=/api
+
 COPY ./ /app/
 
 RUN pnpm run build
