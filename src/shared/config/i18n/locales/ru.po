@@ -25,16 +25,16 @@ msgstr "Авторизоваться по почте"
 msgid "Authenticate by password"
 msgstr "Авторизоваться по паролю"
 
-#: src/features/auth/by-email/ui/submit-code.tsx:30
+#: src/features/auth/by-email/ui/submit-code.tsx:38
 msgid "Code from email"
 msgstr "Код с почты"
 
-#: src/features/auth/by-email/ui/send-code.tsx:30
+#: src/features/auth/by-email/ui/send-code.tsx:37
 #: src/features/auth/by-password/ui.tsx:42
 msgid "Email address"
 msgstr "Почтовый адрес"
 
-#: src/features/auth/by-email/ui/send-code.tsx:43
+#: src/features/auth/by-email/ui/send-code.tsx:53
 msgid "Get code"
 msgstr "Отправить код"
 
@@ -42,10 +42,16 @@ msgstr "Отправить код"
 msgid "Go home"
 msgstr "Вернуться на домашнюю страницу"
 
-#: src/features/auth/by-email/model.ts:33
-#: src/features/auth/by-password/model.ts:49
+#: src/features/auth/by-email/model.ts:44
+#: src/features/auth/by-password/model.ts:52
 msgid "Incorrect email"
 msgstr "Неправильный почтовый адрес"
+
+#: src/features/auth/by-email/model.ts:58
+#: src/features/auth/by-password/model.ts:51
+#: src/features/auth/by-password/model.ts:63
+msgid "It's required property"
+msgstr "Это обязательное поле"
 
 #: src/widgets/header/ui.tsx:29
 msgid "Login"
@@ -63,11 +69,11 @@ msgstr "Пароль"
 #~ msgid "Sign in"
 #~ msgstr "Войти"
 
-#: src/features/auth/by-email/ui/submit-code.tsx:37
+#: src/features/auth/by-email/ui/submit-code.tsx:48
 msgid "Submit code"
 msgstr "Отправить код"
 
-#: src/features/auth/by-password/model.ts:58
+#: src/features/auth/by-password/model.ts:64
 msgid "The password must consist of at least 8 characters"
 msgstr "Пароль должен состоять как минимум из 8 символов"
 
