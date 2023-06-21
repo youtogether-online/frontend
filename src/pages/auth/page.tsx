@@ -19,7 +19,7 @@ export const AuthPage = () => {
   };
 
   return (
-    <section className={tw.max_w_["340px"].w_full.mx_auto}>
+    <section className={tw.w_full.mx_auto}>
       <div className={tw.p_4.border.border_borderDefault.rounded_md.bg_canvasInset}>
         {authMethod === "password" ? <AuthByPassword /> : <AuthByEmail />}
         <Button variant="invisible" block sx={tw.mt_4} onClick={handleSwitchAuthMethod}>
