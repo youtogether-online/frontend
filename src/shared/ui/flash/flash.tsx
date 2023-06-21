@@ -6,7 +6,7 @@ import { tw } from "typewind";
 
 import { type SxProp } from "../types";
 
-const flashVariants = cva([tw.p_4.my_auto.border.rounded_md.flex], {
+const flashVariants = cva([tw.p_2.my_auto.border.rounded_md.flex], {
   variants: {
     block: {
       true: [tw.w_full],

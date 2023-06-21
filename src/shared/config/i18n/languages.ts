@@ -3,4 +3,4 @@ export const languages = {
   en: "English",
 };
 
-export const DEFAULT_LANGUAGE = "en";
+export const DEFAULT_LANGUAGE = "ru";

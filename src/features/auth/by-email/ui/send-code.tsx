@@ -4,16 +4,17 @@ import { type ChangeEvent, type FormEvent } from "react";
 import { tw } from "typewind";
 
 import { Button } from "@/shared/ui/button";
+import { Flash } from "@/shared/ui/flash";
 import { Form } from "@/shared/ui/form/form";
 import { TextInput } from "@/shared/ui/form/text-input";
 
-import { sendCodeForm } from "../model";
+import { $sendCodeError, sendCodeForm } from "../model";
 
 export const SendCode = () => {
   const emailField = useUnit(sendCodeForm.fields.email);
   const formSubmit = useUnit(sendCodeForm.submit);
+  const formError = useUnit($sendCodeError);
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     formSubmit();
@@ -24,24 +25,34 @@ export const SendCode = () => {
   };
 
   return (
-    <Form className={tw.flex.flex_col.gap_4} onSubmit={handleSubmit}>
-      <Form.Field name="login">
-        <Form.Label>
-          <Trans>Email address</Trans>
-        </Form.Label>
-        <Form.Control asChild>
-          <TextInput
-            block
-            autoComplete="username"
-            placeholder="example@gmail.com"
-            value={emailField.value}
-            onChange={handleEmailChange}
-          />
-        </Form.Control>
-      </Form.Field>
-      <Button variant="primary" block type="submit">
-        <Trans>Get code</Trans>
-      </Button>
-    </Form>
+    <>
+      {formError?.description && (
+        <Flash variant="danger" sx={tw.mb_4}>
+          {formError.description}
+        </Flash>
+      )}
+      <Form className={tw.flex.flex_col.gap_4} onSubmit={handleSubmit}>
+        <Form.Field name="login">
+          <Form.Label>
+            <Trans>Email address</Trans>
+          </Form.Label>
+          <Form.Control asChild>
+            <TextInput
+              block
+              autoComplete="username"
+              placeholder="example@gmail.com"
+              value={emailField.value}
+              onChange={handleEmailChange}
+            />
+          </Form.Control>
+          {emailField.errors.length > 0 && (
+            <Form.Validation variant="error">{emailField.errorText}</Form.Validation>
+          )}
+        </Form.Field>
+        <Button variant="primary" block type="submit">
+          <Trans>Get code</Trans>
+        </Button>
+      </Form>
+    </>
   );
 };

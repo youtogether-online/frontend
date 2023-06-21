@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Link } from "./nav-link";
+import { NavLink } from "./nav-link";
 
-const meta: Meta<typeof Link> = {
+const meta: Meta<typeof NavLink> = {
   title: "Components/Link/Features",
   tags: ["autodocs"],
-  component: Link,
+  component: NavLink,
 };
 
 export default meta;
-type Story = StoryObj<typeof Link>;
+type Story = StoryObj<typeof NavLink>;
 
 const href = "https://example.com";
 

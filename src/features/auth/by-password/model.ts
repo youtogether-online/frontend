@@ -37,7 +37,7 @@ const authByPasswordMutation = createJsonMutation({
   },
 });
 
-export const $formServerError = createStore<ValidationError | null>(null);
+export const $formServerError = createStore<ErrorWithCode | null>(null);
 
 export const authByPasswordForm = createForm({
   fields: {
@@ -46,7 +46,10 @@ export const authByPasswordForm = createForm({
       rules: [
         createRule<string>({
           name: "email",
-          schema: z.string().email(t`Incorrect email`),
+          schema: z
+            .string()
+            .nonempty(t`It's required property`)
+            .email(t`Incorrect email`),
         }),
       ],
     },
@@ -55,7 +58,10 @@ export const authByPasswordForm = createForm({
       rules: [
         createRule<string>({
           name: "password",
-          schema: z.string().min(8, t`The password must consist of at least 8 characters`),
+          schema: z
+            .string()
+            .nonempty(t`It's required property`)
+            .min(8, t`The password must consist of at least 8 characters`),
         }),
       ],
     },
@@ -72,14 +78,16 @@ sample({
   target: getSessionQuery.start,
 });
 
+const authByPasswordMutationError = sample({
+  clock: authByPasswordMutation.finished.failure,
+  filter: isHttpErrorCode(400),
+  fn: (error) => {
+    return (error.error as unknown as HttpError<400>).response as ErrorWithCode;
+  },
+});
+
 sample({
-  clock: sample({
-    clock: authByPasswordMutation.finished.failure,
-    filter: isHttpErrorCode(400),
-    fn: (error) => {
-      return (error.error as unknown as HttpError<400>).response as ErrorWithCode;
-    },
-  }),
+  clock: authByPasswordMutationError,
   filter: (error: ErrorWithCode): error is ValidationError => {
     return !isValidationError(error);
   },
@@ -87,16 +95,8 @@ sample({
 });
 
 sample({
-  clock: sample({
-    clock: authByPasswordMutation.finished.failure,
-    filter: isHttpErrorCode(400),
-    fn: (error) => {
-      return (error.error as unknown as HttpError<400>).response as ErrorWithCode;
-    },
-  }),
-  filter: (error: ErrorWithCode): error is ValidationError => {
-    return isValidationError(error);
-  },
+  clock: authByPasswordMutationError,
+  filter: isValidationError,
   fn: mapValidationError,
   target: authByPasswordForm.addErrors,
 });

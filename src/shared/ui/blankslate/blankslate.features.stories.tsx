@@ -26,7 +26,7 @@ export const Default: Story = {
             <Button variant="primary">Main action</Button>
           </Blankslate.Action>
           <Blankslate.Action>
-            <NavLink href="http://example.com">Learn more</NavLink>
+            <NavLink to="http://example.com">Learn more</NavLink>
           </Blankslate.Action>
         </Blankslate>
       </div>

@@ -13,31 +13,61 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/features/auth/by-password/ui.tsx:45
+#: src/features/auth/by-password/ui.tsx:76
+msgid "Authenticate"
+msgstr "Авторизоваться"
+
+#: src/pages/auth/page.tsx:29
+msgid "Authenticate by email"
+msgstr "Авторизоваться по почте"
+
+#: src/pages/auth/page.tsx:27
+msgid "Authenticate by password"
+msgstr "Авторизоваться по паролю"
+
+#: src/features/auth/by-email/ui/submit-code.tsx:30
+msgid "Code from email"
+msgstr "Код с почты"
+
+#: src/features/auth/by-email/ui/send-code.tsx:30
+#: src/features/auth/by-password/ui.tsx:42
 msgid "Email address"
 msgstr "Почтовый адрес"
+
+#: src/features/auth/by-email/ui/send-code.tsx:43
+msgid "Get code"
+msgstr "Отправить код"
 
 #: src/pages/not-found/page.tsx:28
 msgid "Go home"
 msgstr "Вернуться на домашнюю страницу"
 
-#: src/features/auth/by-password/model.ts:25
+#: src/features/auth/by-email/model.ts:33
+#: src/features/auth/by-password/model.ts:49
 msgid "Incorrect email"
 msgstr "Неправильный почтовый адрес"
+
+#: src/widgets/header/ui.tsx:29
+msgid "Login"
+msgstr "Войти"
 
 #: src/pages/not-found/page.tsx:24
 msgid "Page Not Found"
 msgstr "Страница не найдена"
 
-#: src/features/auth/by-password/ui.tsx:56
+#: src/features/auth/by-password/ui.tsx:59
 msgid "Password"
 msgstr "Пароль"
 
 #: src/features/auth/by-password/ui.tsx:71
-msgid "Sign in"
-msgstr "Войти"
+#~ msgid "Sign in"
+#~ msgstr "Войти"
 
-#: src/features/auth/by-password/model.ts:34
+#: src/features/auth/by-email/ui/submit-code.tsx:37
+msgid "Submit code"
+msgstr "Отправить код"
+
+#: src/features/auth/by-password/model.ts:58
 msgid "The password must consist of at least 8 characters"
 msgstr "Пароль должен состоять как минимум из 8 символов"
 

@@ -6,7 +6,7 @@ import { tw } from "typewind";
 
 import { type SxProp } from "../types";
 
-const link = cva([tw.text_accentFg.text_md, tw.hover(tw.underline)], {
+const linkVariants = cva([tw.text_accentFg.text_md, tw.hover(tw.underline)], {
   variants: {
     muted: {
       true: [tw.text_fgMuted, tw.hover(tw.no_underline.text_accentFg)],
@@ -18,7 +18,7 @@ const link = cva([tw.text_accentFg.text_md, tw.hover(tw.underline)], {
 });
 
 type NavLinkProps = LinkProps<any> &
-  VariantProps<typeof link> & {
+  VariantProps<typeof linkVariants> & {
     children: ReactNode;
     asChild?: boolean;
   } & SxProp;
@@ -28,7 +28,7 @@ export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(
     const Component = asChild ? Slot : Link;
 
     return (
-      <Component ref={ref} className={link({ muted, underline, class: sx })} {...props}>
+      <Component ref={ref} className={linkVariants({ muted, underline, class: sx })} {...props}>
         {children}
       </Component>
     );
