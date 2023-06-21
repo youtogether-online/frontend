@@ -11,7 +11,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
     <>
       <Header />
-      <main className={tw.flex_1.mt_10}>{children}</main>
+      <main className={tw.flex_1.mt_10.p_6}>{children}</main>
     </>
   );
 };
