@@ -7,13 +7,15 @@ import { Button } from "@/shared/ui/button";
 import { Flash } from "@/shared/ui/flash";
 import { Form } from "@/shared/ui/form/form";
 import { TextInput } from "@/shared/ui/form/text-input";
+import { Icon } from "@/shared/ui/icon";
 
-import { $submitCodeError, submitCodeForm } from "../model";
+import { $submitCodeError, prevStepClicked, submitCodeForm } from "../model";
 
 export const SubmitCode = () => {
   const codeField = useUnit(submitCodeForm.fields.code);
   const formSubmit = useUnit(submitCodeForm.submit);
   const formError = useUnit($submitCodeError);
+  const goToPrevStep = useUnit(prevStepClicked);
 
   const handleCodeChange = (event: ChangeEvent<HTMLInputElement>) => {
     codeField.onChange(event.target.value);
@@ -34,11 +36,25 @@ export const SubmitCode = () => {
       )}
       <Form className={tw.flex.flex_col.gap_4} onSubmit={handleSubmit}>
         <Form.Field name="code">
-          <Form.Label>
-            <Trans>Code from email</Trans>
-          </Form.Label>
+          <div className={tw.flex.items_center.gap_1}>
+            <button
+              type="button"
+              className={tw.flex.items_center.justify_center}
+              onClick={goToPrevStep}
+            >
+              <Icon name="arrows/arrow-left" viewBox="0 0 25 25" height="20" width="20" />
+            </button>
+            <Form.Label>
+              <Trans>Code from email</Trans>
+            </Form.Label>
+          </div>
           <Form.Control asChild>
-            <TextInput block value={codeField.value} onChange={handleCodeChange} />
+            <TextInput
+              block
+              value={codeField.value}
+              onChange={handleCodeChange}
+              placeholder="12345"
+            />
           </Form.Control>
           {codeField.errors.length > 0 && (
             <Form.Validation variant="error">{codeField.errorText}</Form.Validation>

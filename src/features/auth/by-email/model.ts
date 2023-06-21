@@ -29,7 +29,7 @@ export const $submitCodeError = createStore<ErrorWithCode | null>(null);
 
 export const $currentStep = createStore<"sendCode" | "submitCode">("sendCode");
 
-export const goToPrevStep = createEvent();
+export const prevStepClicked = createEvent();
 
 export const sendCodeForm = createForm({
   fields: {
@@ -147,7 +147,7 @@ sample({
 });
 
 sample({
-  clock: goToPrevStep,
+  clock: prevStepClicked,
   fn: () => "sendCode" as const,
   target: $currentStep,
 });
