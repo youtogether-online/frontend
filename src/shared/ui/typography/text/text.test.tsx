@@ -1,10 +1,12 @@
 import { render } from "@testing-library/react";
-import { describe, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { Text } from "./text";
 
-describe("Title", () => {
-  it("Title respects order prop", () => {
-    render(<Text>Default text</Text>);
+describe("Text", () => {
+  it("Text respects order prop", () => {
+    const container = render(<Text>Default text</Text>);
+    const text = container.getByText("Default text");
+    expect(text).toMatchSnapshot();
   });
 });
