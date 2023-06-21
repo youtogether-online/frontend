@@ -8,12 +8,10 @@ export type ValidationError = {
   fields: Record<string, string>;
   code: "invalid_validation";
   description?: string;
-  advice: string;
 };
 
 export type ErrorWithCode = {
   fields?: Record<string, string>;
   code: string;
   description?: string;
-  advice?: string;
 };

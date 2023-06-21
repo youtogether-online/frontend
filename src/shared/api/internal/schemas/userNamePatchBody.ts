@@ -6,7 +6,8 @@
 You can get more info about that project [here](https://github.com/youtogether-online)
  * OpenAPI spec version: 1.0.0
  */
+import type { Name } from "./name";
 
 export type UserNamePatchBody = {
-  name: string;
+  name: Name;
 };

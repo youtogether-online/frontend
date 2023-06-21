@@ -2,7 +2,7 @@ import { Trans } from "@lingui/macro";
 import { useUnit } from "effector-react";
 import { tw } from "typewind";
 
-import { BaseLayout } from "@/widgets/layouts";
+import { BaseLayout } from "@/layouts";
 
 import { Blankslate } from "@/shared/ui/blankslate";
 import { Button } from "@/shared/ui/button";

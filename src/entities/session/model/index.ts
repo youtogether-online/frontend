@@ -14,15 +14,20 @@ import { appStarted } from "@/shared/config/init";
 
 export const $session = createStore<Session | null>(null);
 
-const getSessionQuery = createJsonQuery({
+export const getSessionQuery = createJsonQuery({
   request: {
     method: "GET",
     url: getAuthSessionGetUrl(),
+    headers: {
+      credentials: "include",
+    },
   },
   response: {
     contract: zodContract(getAuthSessionResponse),
   },
 });
+
+export const $isAuthorized = getSessionQuery.$succeeded;
 
 sample({
   clock: appStarted,

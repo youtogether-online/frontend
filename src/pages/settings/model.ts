@@ -4,5 +4,5 @@ import { routes } from "@/shared/routing";
 
 export const currentRoute = routes.settings;
 export const authorizedRoute = chainAuthorized(currentRoute, {
-  otherwise: routes.auth.signIn.open,
+  otherwise: routes.auth.open,
 });

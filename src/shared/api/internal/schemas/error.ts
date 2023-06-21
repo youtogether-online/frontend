@@ -10,6 +10,5 @@ import type { ErrorFields } from "./errorFields";
 
 export interface Error {
   readonly description?: string;
-  readonly advice?: string;
   readonly fields?: ErrorFields;
 }

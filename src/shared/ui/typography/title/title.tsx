@@ -34,11 +34,11 @@ type TitleProps = VariantProps<typeof title> & {
   children: ReactNode;
 } & SxProp;
 
-export const Title = forwardRef<HTMLHeadingElement, TitleProps>(({ children, order }, ref) => {
+export const Title = forwardRef<HTMLHeadingElement, TitleProps>(({ children, order, sx }, ref) => {
   const Component = titleComponentMapping[order];
 
   return (
-    <Component className={title({ order })} ref={ref}>
+    <Component className={title({ order, class: sx })} ref={ref}>
       {children}
     </Component>
   );

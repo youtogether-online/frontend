@@ -4,7 +4,7 @@ import { tw } from "typewind";
 import { Blankslate } from "@/shared/ui/blankslate";
 import { Button } from "@/shared/ui/button";
 
-import { Link } from "../link";
+import { NavLink } from "../nav-link";
 
 const meta: Meta<typeof Blankslate> = {
   title: "Components/Blankslate/Features",
@@ -26,7 +26,7 @@ export const Default: Story = {
             <Button variant="primary">Main action</Button>
           </Blankslate.Action>
           <Blankslate.Action>
-            <Link href="http://example.com">Learn more</Link>
+            <NavLink href="http://example.com">Learn more</NavLink>
           </Blankslate.Action>
         </Blankslate>
       </div>

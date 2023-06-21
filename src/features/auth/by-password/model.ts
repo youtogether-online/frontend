@@ -2,18 +2,17 @@ import {
   createJsonMutation,
   declareParams,
   type HttpError,
-  isHttpError,
   isHttpErrorCode,
 } from "@farfetched/core";
 import { zodContract } from "@farfetched/zod";
 import { t } from "@lingui/macro";
-import { createStore, type Json, sample } from "effector";
+import { createStore, sample } from "effector";
 import { createForm } from "effector-forms";
-import { debug, not } from "patronum";
 import { z } from "zod";
 
+import { getSessionQuery } from "@/entities/session";
+
 import {
-  type AuthPasswordFailedResponse,
   type ErrorWithCode,
   getAuthPasswordPostUrl,
   type postAuthPasswordBody,
@@ -21,8 +20,7 @@ import {
 } from "@/shared/api/internal";
 import { createRule } from "@/shared/lib/effector-forms/zod";
 import { isValidationError } from "@/shared/lib/is-validation-error";
-
-export const $formServerError = createStore<ValidationError | null>(null);
+import { mapValidationError } from "@/shared/lib/map-validation-error";
 
 const authByPasswordMutation = createJsonMutation({
   params: declareParams<z.infer<typeof postAuthPasswordBody>>(),
@@ -32,12 +30,14 @@ const authByPasswordMutation = createJsonMutation({
     body: (payload) => payload,
   },
   response: {
-    contract: zodContract(z.object({})),
+    contract: zodContract(z.null()),
     status: {
       expected: 201,
     },
   },
 });
+
+export const $formServerError = createStore<ValidationError | null>(null);
 
 export const authByPasswordForm = createForm({
   fields: {
@@ -68,6 +68,11 @@ sample({
 });
 
 sample({
+  clock: authByPasswordMutation.finished.success,
+  target: getSessionQuery.start,
+});
+
+sample({
   clock: sample({
     clock: authByPasswordMutation.finished.failure,
     filter: isHttpErrorCode(400),
@@ -89,23 +94,9 @@ sample({
       return (error.error as unknown as HttpError<400>).response as ErrorWithCode;
     },
   }),
-  filter: (error) => {
+  filter: (error: ErrorWithCode): error is ValidationError => {
     return isValidationError(error);
   },
-  fn: (error) => {
-    const errors = [];
-
-    const fields = (error as unknown as AuthPasswordFailedResponse)?.fields;
-
-    for (const field in fields) {
-      errors.push({
-        rule: "backend",
-        field,
-        errorText: fields[field],
-      });
-    }
-
-    return errors;
-  },
+  fn: mapValidationError,
   target: authByPasswordForm.addErrors,
 });

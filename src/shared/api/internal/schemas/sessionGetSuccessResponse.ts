@@ -9,6 +9,6 @@ You can get more info about that project [here](https://github.com/youtogether-o
 import type { Me } from "./me";
 
 /**
- * Session exists
+ * User's info by session
  */
 export type SessionGetSuccessResponse = Me;

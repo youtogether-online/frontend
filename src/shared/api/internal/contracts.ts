@@ -12,14 +12,29 @@ import { z as zod } from "zod";
  * Returns user session data from cookie session
  * @summary Returns authorized user session data
  */
+export const getAuthSessionResponseNameMin = 5;
+export const getAuthSessionResponseNameMax = 20;
+export const getAuthSessionResponseNameRegExp = new RegExp(
+  "^[a-zA-Z][a-zA-Z0-9_]{3,18}([a-zA-Z0-9])$",
+);
 export const getAuthSessionResponseFirstNameMin = 3;
 export const getAuthSessionResponseFirstNameMax = 32;
 export const getAuthSessionResponseLastNameMin = 3;
 export const getAuthSessionResponseLastNameMax = 32;
-export const getAuthSessionResponseEmailRegExp = new RegExp("^S+@S+.S+$");
+export const getAuthSessionResponseBiographyMin = 1;
+export const getAuthSessionResponseBiographyMax = 140;
 
 export const getAuthSessionResponse = zod.object({
-  name: zod.string(),
+  name: zod
+    .string()
+    .min(getAuthSessionResponseNameMin)
+    .max(getAuthSessionResponseNameMax)
+    .regex(getAuthSessionResponseNameRegExp),
+  email: zod.string().email(),
+  role: zod.enum(["USER", "ADMIN"]),
+  friendsIds: zod.array(zod.number()),
+  language: zod.enum(["EN", "RU"]),
+  theme: zod.enum(["DARK", "LIGHT", "SYSTEM"]),
   firstName: zod
     .string()
     .min(getAuthSessionResponseFirstNameMin)
@@ -30,10 +45,12 @@ export const getAuthSessionResponse = zod.object({
     .min(getAuthSessionResponseLastNameMin)
     .max(getAuthSessionResponseLastNameMax)
     .optional(),
-  role: zod.enum(["USER", "ADMIN"]),
-  email: zod.string().regex(getAuthSessionResponseEmailRegExp).optional(),
-  language: zod.enum(["EN", "RU"]),
-  theme: zod.enum(["DARK", "LIGHT", "SYSTEM"]),
+  biography: zod
+    .string()
+    .min(getAuthSessionResponseBiographyMin)
+    .max(getAuthSessionResponseBiographyMax)
+    .optional(),
+  createTime: zod.string().datetime(),
   isEmailVerified: zod.boolean(),
 });
 
@@ -45,12 +62,11 @@ export const postAuthEmailHeader = zod.object({
   "Accept-Language": zod.enum(["EN", "RU"]).optional(),
 });
 
-export const postAuthEmailBodyEmailRegExp = new RegExp("^S+@S+.S+$");
 export const postAuthEmailBodyCodeMin = 5;
 export const postAuthEmailBodyCodeMax = 5;
 
 export const postAuthEmailBody = zod.object({
-  email: zod.string().regex(postAuthEmailBodyEmailRegExp),
+  email: zod.string().email(),
   code: zod.string().min(postAuthEmailBodyCodeMin).max(postAuthEmailBodyCodeMax),
 });
 
@@ -62,41 +78,60 @@ export const postAuthPasswordHeader = zod.object({
   "Accept-Language": zod.enum(["EN", "RU"]).optional(),
 });
 
-export const postAuthPasswordBodyEmailRegExp = new RegExp("^S+@S+.S+$");
-export const postAuthPasswordBodyPasswordRegExp = new RegExp("^P{Cc}P{Cn}P{Cs}$");
-
 export const postAuthPasswordBody = zod.object({
-  email: zod.string().regex(postAuthPasswordBodyEmailRegExp),
-  password: zod.string().regex(postAuthPasswordBodyPasswordRegExp),
+  email: zod.string().email(),
+  password: zod.string(),
 });
 
 /**
  * Generates 5-digit string, saves it and sends it to specified email
  * @summary Send secret authorization code to specified email
  */
-export const postEmailSendCodeBodyEmailRegExp = new RegExp("^S+@S+.S+$");
-
 export const postEmailSendCodeBody = zod.object({
-  email: zod.string().regex(postEmailSendCodeBodyEmailRegExp),
+  email: zod.string().email(),
 });
 
 /**
  * Returns user's main data by username, if exist
  * @summary Get user main info by username
  */
+export const getUserNamePathNameMin = 5;
+export const getUserNamePathNameMax = 20;
+export const getUserNamePathNameRegExp = new RegExp("^[a-zA-Z][a-zA-Z0-9_]{3,18}([a-zA-Z0-9])$");
+
 export const getUserNameParams = zod.object({
-  name: zod.string(),
+  name: zod
+    .string()
+    .min(getUserNamePathNameMin)
+    .max(getUserNamePathNameMax)
+    .regex(getUserNamePathNameRegExp),
 });
 
+export const getUserNameResponseNameMin = 5;
+export const getUserNameResponseNameMax = 20;
+export const getUserNameResponseNameRegExp = new RegExp(
+  "^[a-zA-Z][a-zA-Z0-9_]{3,18}([a-zA-Z0-9])$",
+);
+export const getUserNameResponseBiographyMin = 1;
+export const getUserNameResponseBiographyMax = 140;
 export const getUserNameResponseFirstNameMin = 3;
 export const getUserNameResponseFirstNameMax = 32;
 export const getUserNameResponseLastNameMin = 3;
 export const getUserNameResponseLastNameMax = 32;
-export const getUserNameResponseBiographyMin = 1;
-export const getUserNameResponseBiographyMax = 140;
 
 export const getUserNameResponse = zod.object({
-  name: zod.string(),
+  name: zod
+    .string()
+    .min(getUserNameResponseNameMin)
+    .max(getUserNameResponseNameMax)
+    .regex(getUserNameResponseNameRegExp),
+  biography: zod
+    .string()
+    .min(getUserNameResponseBiographyMin)
+    .max(getUserNameResponseBiographyMax)
+    .optional(),
+  role: zod.enum(["USER", "ADMIN"]),
+  friendsIds: zod.array(zod.number()),
   firstName: zod
     .string()
     .min(getUserNameResponseFirstNameMin)
@@ -107,20 +142,25 @@ export const getUserNameResponse = zod.object({
     .min(getUserNameResponseLastNameMin)
     .max(getUserNameResponseLastNameMax)
     .optional(),
-  role: zod.enum(["USER", "ADMIN"]),
-  biography: zod
-    .string()
-    .min(getUserNameResponseBiographyMin)
-    .max(getUserNameResponseBiographyMax)
-    .optional(),
+  createTime: zod.string().datetime(),
 });
 
 /**
  * Checks specified name on already exist
  * @summary Check name on name already used
  */
+export const getUserCheckNameNamePathNameMin = 5;
+export const getUserCheckNameNamePathNameMax = 20;
+export const getUserCheckNameNamePathNameRegExp = new RegExp(
+  "^[a-zA-Z][a-zA-Z0-9_]{3,18}([a-zA-Z0-9])$",
+);
+
 export const getUserCheckNameNameParams = zod.object({
-  name: zod.string(),
+  name: zod
+    .string()
+    .min(getUserCheckNameNamePathNameMin)
+    .max(getUserCheckNameNamePathNameMax)
+    .regex(getUserCheckNameNamePathNameRegExp),
 });
 
 /**
@@ -146,24 +186,18 @@ export const patchUserBody = zod.object({
  * Updates user's password by email
  * @summary Update user's password
  */
-export const patchUserPasswordBodyOldPasswordRegExp = new RegExp("^P{Cc}P{Cn}P{Cs}$");
-export const patchUserPasswordBodyNewPasswordRegExp = new RegExp("^P{Cc}P{Cn}P{Cs}$");
-
 export const patchUserPasswordBody = zod.object({
-  oldPassword: zod.string().regex(patchUserPasswordBodyOldPasswordRegExp),
-  newPassword: zod.string().regex(patchUserPasswordBodyNewPasswordRegExp),
+  oldPassword: zod.string(),
+  newPassword: zod.string(),
 });
 
 /**
  * Updates user's email by password
  * @summary Update user's email
  */
-export const patchUserEmailBodyNewEmailRegExp = new RegExp("^S+@S+.S+$");
-export const patchUserEmailBodyPasswordRegExp = new RegExp("^P{Cc}P{Cn}P{Cs}$");
-
 export const patchUserEmailBody = zod.object({
-  newEmail: zod.string().regex(patchUserEmailBodyNewEmailRegExp),
-  password: zod.string().regex(patchUserEmailBodyPasswordRegExp),
+  newEmail: zod.string().email(),
+  password: zod.string(),
 });
 
 /**

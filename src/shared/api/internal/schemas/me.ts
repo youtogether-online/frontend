@@ -6,8 +6,11 @@
 You can get more info about that project [here](https://github.com/youtogether-online)
  * OpenAPI spec version: 1.0.0
  */
+import type { Biography } from "./biography";
+import type { CreateTime } from "./createTime";
 import type { Email } from "./email";
 import type { FirstName } from "./firstName";
+import type { FriendsIds } from "./friendsIds";
 import type { Language } from "./language";
 import type { LastName } from "./lastName";
 import type { Name } from "./name";
@@ -16,11 +19,14 @@ import type { Theme } from "./theme";
 
 export interface Me {
   readonly name: Name;
-  readonly firstName?: FirstName;
-  readonly lastName?: LastName;
+  readonly email: Email;
   readonly role: Role;
-  readonly email?: Email;
+  readonly friendsIds: FriendsIds;
   readonly language: Language;
   readonly theme: Theme;
+  readonly firstName?: FirstName;
+  readonly lastName?: LastName;
+  readonly biography?: Biography;
+  readonly createTime: CreateTime;
   readonly isEmailVerified: boolean;
 }

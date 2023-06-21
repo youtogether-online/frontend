@@ -1,6 +1,6 @@
 import { createRouteView } from "atomic-router-react";
 
-import { BaseLayout } from "@/widgets/layouts";
+import { BaseLayout } from "@/layouts";
 
 import { authorizedRoute, currentRoute } from "./model";
 import { SettingsPage } from "./page";

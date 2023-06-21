@@ -13,5 +13,7 @@ export type UserEmailPatchFailedResponseAllOfCode =
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const UserEmailPatchFailedResponseAllOfCode = {
   invalid_validation: "invalid_validation",
-  code_invalid_or_expired: "code_invalid_or_expired",
+  invalid_password: "invalid_password",
+  already_exist: "already_exist",
+  password_not_set: "password_not_set",
 } as const;

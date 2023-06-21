@@ -1,6 +1,5 @@
+import { BaseLayout } from "@/layouts";
 import { createRouteView } from "atomic-router-react";
-
-import { BaseLayout } from "@/widgets/layouts";
 
 import { currentRoute } from "./model";
 import { HomePage } from "./page";

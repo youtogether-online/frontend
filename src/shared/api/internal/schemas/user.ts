@@ -7,15 +7,19 @@ You can get more info about that project [here](https://github.com/youtogether-o
  * OpenAPI spec version: 1.0.0
  */
 import type { Biography } from "./biography";
+import type { CreateTime } from "./createTime";
 import type { FirstName } from "./firstName";
+import type { FriendsIds } from "./friendsIds";
 import type { LastName } from "./lastName";
 import type { Name } from "./name";
 import type { Role } from "./role";
 
 export interface User {
   readonly name: Name;
+  readonly biography?: Biography;
+  readonly role: Role;
+  readonly friendsIds: FriendsIds;
   readonly firstName?: FirstName;
   readonly lastName?: LastName;
-  readonly role: Role;
-  readonly biography?: Biography;
+  readonly createTime: CreateTime;
 }

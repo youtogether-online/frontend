@@ -13,5 +13,5 @@ export type UserNamePatchFailedResponseAllOfCode =
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const UserNamePatchFailedResponseAllOfCode = {
   invalid_validation: "invalid_validation",
-  user_name_already_taken: "user_name_already_taken",
+  already_exist: "already_exist",
 } as const;

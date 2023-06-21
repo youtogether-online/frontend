@@ -1,4 +1,4 @@
-import { Slot } from "@radix-ui/react-slot";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { cva } from "cva";
 import { forwardRef } from "react";
 import { tw } from "typewind";
@@ -105,14 +105,10 @@ export const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        {icon ?? (
-          <>
-            {leadingIcon && <span className={buttonIcon}>{leadingIcon}</span>}
-            <span className={tw.overflow_hidden.whitespace_nowrap.text_inherit}>{children}</span>
-            {trailingIcon && <span className={buttonIcon}>{trailingIcon}</span>}
-            {trailingAction && <span className={buttonIcon}>{trailingAction}</span>}
-          </>
-        )}
+        {leadingIcon && <span className={buttonIcon}>{leadingIcon}</span>}
+        <Slottable>{children}</Slottable>
+        {trailingIcon && <span className={buttonIcon}>{trailingIcon}</span>}
+        {trailingAction && <span className={buttonIcon}>{trailingAction}</span>}
       </Component>
     );
   },

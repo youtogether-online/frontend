@@ -7,5 +7,6 @@ You can get more info about that project [here](https://github.com/youtogether-o
  * OpenAPI spec version: 1.0.0
  */
 import type { Error } from "./error";
+import type { UserGetByUsernameFailedResponseAllOf } from "./userGetByUsernameFailedResponseAllOf";
 
-export type UserGetByUsernameFailedResponse = "user_not_found" & Error;
+export type UserGetByUsernameFailedResponse = UserGetByUsernameFailedResponseAllOf & Error;

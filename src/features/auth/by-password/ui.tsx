@@ -36,16 +36,19 @@ export const AuthByPassword = () => {
           {formServerError.description}
         </Flash>
       )}
-      <Form
-        onSubmit={handleSubmit}
-        className={tw.bg_canvasSubtle.rounded_md.p_4.flex.flex_col.gap_4.border_borderMuted.border}
-      >
-        <Form.Field name="email">
+      <Form onSubmit={handleSubmit} className={tw.flex.flex_col.gap_4}>
+        <Form.Field name="login">
           <Form.Label>
             <Trans>Email address</Trans>
           </Form.Label>
           <Form.Control asChild>
-            <TextInput value={emailField.value} onChange={handleEmailChange} block />
+            <TextInput
+              value={emailField.value}
+              onChange={handleEmailChange}
+              block
+              autoComplete="username"
+              placeholder="example@gmail.com"
+            />
           </Form.Control>
           {emailField.errors.length > 0 && (
             <Form.Validation variant="error">{emailField.errorText}</Form.Validation>
@@ -61,6 +64,8 @@ export const AuthByPassword = () => {
               onChange={handlePasswordChange}
               type="password"
               block
+              autoComplete="current-password"
+              placeholder="12345678"
             />
           </Form.Control>
           {passwordField.errors.length > 0 && (
@@ -68,7 +73,7 @@ export const AuthByPassword = () => {
           )}
         </Form.Field>
         <Button type="submit" variant="primary" block>
-          <Trans>Sign in</Trans>
+          <Trans>Authenticate</Trans>
         </Button>
       </Form>
     </>

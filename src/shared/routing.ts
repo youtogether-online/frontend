@@ -7,9 +7,7 @@ import { appStarted } from "./config/init";
 export const routes = {
   home: createRoute(),
   profile: createRoute<{ username: string }>(),
-  auth: {
-    signIn: createRoute(),
-  },
+  auth: createRoute(),
   settings: createRoute(),
 };
 
@@ -26,8 +24,8 @@ export const router = createHistoryRouter({
       route: routes.profile,
     },
     {
-      path: "/sign-in",
-      route: routes.auth.signIn,
+      path: "/auth",
+      route: routes.auth,
     },
     {
       path: "/settings",
