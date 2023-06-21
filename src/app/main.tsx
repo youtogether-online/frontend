@@ -1,5 +1,5 @@
 import { createEffect, sample } from "effector";
-import { combineEvents } from "patronum";
+import { combineEvents, debug } from "patronum";
 import { createRoot } from "react-dom/client";
 
 import { getSessionQuery } from "@/entities/session";
@@ -23,6 +23,8 @@ const appDataLoaded = combineEvents({
 const renderAppFx = createEffect(() => {
   root.render(<App />);
 });
+
+debug(appDataLoaded);
 
 sample({
   clock: appDataLoaded,
