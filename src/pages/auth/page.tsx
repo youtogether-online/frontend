@@ -24,9 +24,9 @@ export const AuthPage = () => {
         {authMethod === "password" ? <AuthByPassword /> : <AuthByEmail />}
         <Button variant="invisible" block sx={tw.mt_4} onClick={handleSwitchAuthMethod}>
           {authMethod === "password" ? (
-            <Trans>Authenticate by password</Trans>
-          ) : (
             <Trans>Authenticate by email</Trans>
+          ) : (
+            <Trans>Authenticate by password</Trans>
           )}
         </Button>
       </div>
