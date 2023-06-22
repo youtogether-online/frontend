@@ -1,4 +1,5 @@
 /// <reference types="vitest" />
+import importMetaEnv from "@import-meta-env/unplugin";
 import { lingui } from "@lingui/vite-plugin";
 import svg from "@neodx/svg/vite";
 import react from "@vitejs/plugin-react";
@@ -30,6 +31,7 @@ export default defineConfig({
         },
       },
     }),
+    importMetaEnv.vite({ example: ".env.sample" }),
     tsconfigPath(),
     lingui(),
     mkcert(),

@@ -31,7 +31,9 @@ export const SubmitCode = () => {
     <>
       {formError?.description && (
         <>
-          <Flash variant="danger">{formError.description}</Flash>
+          <Flash variant="danger" sx={tw.mb_2}>
+            {formError.description}
+          </Flash>
         </>
       )}
       <Form className={tw.flex.flex_col.gap_4} onSubmit={handleSubmit}>

@@ -19,17 +19,17 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(({ name, viewBox, sx, .
   const [spriteName, iconName] = name.split("/");
 
   return (
-    // <AccessibleIcon.Root label={iconName}>
-    <svg
-      focusable="false"
-      ref={ref}
-      aria-hidden
-      viewBox={viewBox}
-      {...props}
-      className={cx(tw.select_none.inline_block, sx)}
-    >
-      <use xlinkHref={`/sprites/${spriteName}.svg#${iconName}`} />
-    </svg>
-    // </AccessibleIcon.Root>
+    <AccessibleIcon.Root label={iconName}>
+      <svg
+        focusable="false"
+        ref={ref}
+        aria-hidden
+        viewBox={viewBox}
+        {...props}
+        className={cx(tw.select_none.inline_block, sx)}
+      >
+        <use xlinkHref={`/sprites/${spriteName}.svg#${iconName}`} />
+      </svg>
+    </AccessibleIcon.Root>
   );
 });

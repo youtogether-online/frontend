@@ -29,5 +29,4 @@ dist-storybook
 
 src/shared/config/i18n/locales/_build/
 src/shared/config/i18n/locales/**/*.js
-.env.development
-.env.production
+.env

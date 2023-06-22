@@ -1,12 +1,12 @@
 import { Slot } from "@radix-ui/react-slot";
-import clsx from "clsx";
 import { cva, type VariantProps } from "cva";
-import { forwardRef, type ReactNode, useState } from "react";
+import { forwardRef, type ReactNode } from "react";
 import { tw } from "typewind";
 
+import { Icon } from "../icon";
 import { type SxProp } from "../types";
 
-const flashVariants = cva([tw.p_2.my_auto.border.rounded_md.flex], {
+const flashVariants = cva([tw.p_2.my_auto.border.rounded_md.flex.justify_between.items_center], {
   variants: {
     block: {
       true: [tw.w_full],
@@ -26,19 +26,24 @@ const flashVariants = cva([tw.p_2.my_auto.border.rounded_md.flex], {
 type FlashProps = {
   asChild?: boolean;
   children: ReactNode;
+  onClose?: () => void;
 } & SxProp &
   VariantProps<typeof flashVariants>;
 
 export const Flash = forwardRef<HTMLDivElement, FlashProps>(
-  ({ asChild, children, block, variant, sx, ...props }, ref) => {
-    const [isOpen, setIsOpen] = useState(true);
+  ({ asChild, children, block, variant, sx, onClose, ...props }, ref) => {
     const Component = asChild ? Slot : "div";
 
-    if (!isOpen) return null;
-
     return (
-      <Component className={clsx(flashVariants({ block, variant }), sx)} {...props} ref={ref}>
+      <Component className={flashVariants({ block, variant, class: sx })} {...props} ref={ref}>
         {children}
+        {onClose && (
+          <>
+            <button onClick={onClose} className={tw.flex.items_center}>
+              <Icon name="abstract/cross" viewBox="0 0 20 20" height="20" width="20" />
+            </button>
+          </>
+        )}
       </Component>
     );
   },

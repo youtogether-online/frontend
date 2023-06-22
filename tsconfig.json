@@ -33,7 +33,8 @@
     "./vite.config.ts",
     "./tailwind.config.js",
     "./postcss.config.js",
-    "./orval.config.ts"
+    "./orval.config.ts",
+    "./import-meta-env.d.ts",
   ],
   "references": [
     {

@@ -30,8 +30,7 @@ export const Header = () => {
           <Avatar
             src="https://avatars.githubusercontent.com/u/80841256?v=4"
             alt={`${session?.firstName} avatar`}
-            size={40}
-            square
+            size={38}
             fallback="AV"
             fallbackColor="#fff"
           ></Avatar>
