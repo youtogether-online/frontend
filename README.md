@@ -1,4 +1,6 @@
 # you-together-frontend
 
-Dev: https://youtogether.frkam.dev/
-Storybook: https://youtogether-online.github.io/frontend/
+Deploy: https://youtogether.frkam.dev/ <br>
+Mocked deploy: https://mocked.youtogether.frkam.dev <br>
+Storybook: https://youtogether-online.github.io/frontend/ <br>
+
