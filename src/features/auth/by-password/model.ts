@@ -6,7 +6,7 @@ import {
 } from "@farfetched/core";
 import { zodContract } from "@farfetched/zod";
 import { t } from "@lingui/macro";
-import { createStore, sample } from "effector";
+import { createEvent, createStore, sample } from "effector";
 import { createForm } from "effector-forms";
 import { z } from "zod";
 
@@ -22,6 +22,8 @@ import { createRule } from "@/shared/lib/effector-forms/zod";
 import { isValidationError } from "@/shared/lib/is-validation-error";
 import { mapValidationError } from "@/shared/lib/map-validation-error";
 
+export const $formServerError = createStore<ErrorWithCode | null>(null);
+
 const authByPasswordMutation = createJsonMutation({
   params: declareParams<z.infer<typeof postAuthPasswordBody>>(),
   request: {
@@ -36,8 +38,6 @@ const authByPasswordMutation = createJsonMutation({
     },
   },
 });
-
-export const $formServerError = createStore<ErrorWithCode | null>(null);
 
 export const authByPasswordForm = createForm({
   fields: {
@@ -66,6 +66,13 @@ export const authByPasswordForm = createForm({
       ],
     },
   },
+});
+
+const flashClosed = createEvent();
+
+sample({
+  clock: flashClosed,
+  target: $formServerError.reinit!,
 });
 
 sample({

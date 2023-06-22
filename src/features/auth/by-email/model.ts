@@ -18,18 +18,10 @@ import {
   getEmailSendCodePostUrl,
   type postAuthEmailBody,
   type postEmailSendCodeBody,
-  type ValidationError,
 } from "@/shared/api";
 import { createRule } from "@/shared/lib/effector-forms/zod";
 import { isValidationError } from "@/shared/lib/is-validation-error";
 import { mapValidationError } from "@/shared/lib/map-validation-error";
-
-export const $sendCodeError = createStore<ErrorWithCode | null>(null);
-export const $submitCodeError = createStore<ErrorWithCode | null>(null);
-
-export const $currentStep = createStore<"sendCode" | "submitCode">("sendCode");
-
-export const prevStepClicked = createEvent();
 
 export const sendCodeForm = createForm({
   fields: {
@@ -62,6 +54,10 @@ export const submitCodeForm = createForm({
   },
 });
 
+export const $sendCodeError = createStore<ErrorWithCode | null>(null);
+export const $submitCodeError = createStore<ErrorWithCode | null>(null);
+export const $currentStep = createStore<"sendCode" | "submitCode">("sendCode");
+
 export const submitCodeMutation = createJsonMutation({
   params: declareParams<z.infer<typeof postAuthEmailBody>>(),
   request: {
@@ -89,6 +85,20 @@ export const sendCodeMutation = createJsonMutation({
   },
 });
 
+export const sendCodeFlashClosed = createEvent();
+export const submitCodeFlashClosed = createEvent();
+export const prevStepClicked = createEvent();
+
+sample({
+  clock: submitCodeFlashClosed,
+  target: $submitCodeError.reinit!,
+});
+
+sample({
+  clock: sendCodeFlashClosed,
+  target: $sendCodeError.reinit!,
+});
+
 sample({
   clock: sendCodeForm.formValidated,
   target: sendCodeMutation.start,
@@ -110,9 +120,7 @@ const sendCodeMutationError = sample({
 
 sample({
   clock: sendCodeMutationError,
-  filter: (error: ErrorWithCode): error is ValidationError => {
-    return !isValidationError(error);
-  },
+  filter: (error) => !isValidationError(error),
   target: $sendCodeError,
 });
 
@@ -133,9 +141,7 @@ const submitCodeMutationError = sample({
 
 sample({
   clock: submitCodeMutationError,
-  filter: (error: ErrorWithCode): error is ValidationError => {
-    return !isValidationError(error);
-  },
+  filter: (error) => !isValidationError(error),
   target: $submitCodeError,
 });
 

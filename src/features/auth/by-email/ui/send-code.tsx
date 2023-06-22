@@ -8,12 +8,13 @@ import { Flash } from "@/shared/ui/flash";
 import { Form } from "@/shared/ui/form/form";
 import { TextInput } from "@/shared/ui/form/text-input";
 
-import { $sendCodeError, sendCodeForm } from "../model";
+import { $sendCodeError, sendCodeFlashClosed, sendCodeForm } from "../model";
 
 export const SendCode = () => {
   const emailField = useUnit(sendCodeForm.fields.email);
   const formSubmit = useUnit(sendCodeForm.submit);
   const formError = useUnit($sendCodeError);
+  const closeFlash = useUnit(sendCodeFlashClosed);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -27,7 +28,7 @@ export const SendCode = () => {
   return (
     <>
       {formError?.description && (
-        <Flash variant="danger" sx={tw.mb_4}>
+        <Flash variant="danger" sx={tw.mb_4} onClose={closeFlash}>
           {formError.description}
         </Flash>
       )}

@@ -9,19 +9,19 @@ import { Form } from "@/shared/ui/form/form";
 import { TextInput } from "@/shared/ui/form/text-input";
 import { Icon } from "@/shared/ui/icon";
 
-import { $submitCodeError, prevStepClicked, submitCodeForm } from "../model";
+import { $submitCodeError, prevStepClicked, submitCodeFlashClosed, submitCodeForm } from "../model";
 
 export const SubmitCode = () => {
   const codeField = useUnit(submitCodeForm.fields.code);
   const formSubmit = useUnit(submitCodeForm.submit);
   const formError = useUnit($submitCodeError);
   const goToPrevStep = useUnit(prevStepClicked);
+  const closeFlash = useUnit(submitCodeFlashClosed);
 
   const handleCodeChange = (event: ChangeEvent<HTMLInputElement>) => {
     codeField.onChange(event.target.value);
   };
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     formSubmit();
@@ -31,7 +31,7 @@ export const SubmitCode = () => {
     <>
       {formError?.description && (
         <>
-          <Flash variant="danger" sx={tw.mb_2}>
+          <Flash variant="danger" sx={tw.mb_2} onClose={closeFlash}>
             {formError.description}
           </Flash>
         </>
