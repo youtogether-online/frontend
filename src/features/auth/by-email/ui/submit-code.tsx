@@ -9,14 +9,16 @@ import { Form } from "@/shared/ui/form/form";
 import { TextInput } from "@/shared/ui/form/text-input";
 import { Icon } from "@/shared/ui/icon";
 
-import { $submitCodeError, prevStepClicked, submitCodeFlashClosed, submitCodeForm } from "../model";
+import { createAuthByEmailModel } from "../model";
 
 export const SubmitCode = () => {
-  const codeField = useUnit(submitCodeForm.fields.code);
-  const formSubmit = useUnit(submitCodeForm.submit);
-  const formError = useUnit($submitCodeError);
-  const goToPrevStep = useUnit(prevStepClicked);
-  const closeFlash = useUnit(submitCodeFlashClosed);
+  const authByEmailModel = createAuthByEmailModel.useModel();
+
+  const codeField = useUnit(authByEmailModel.submitCodeForm.fields.code);
+  const formSubmit = useUnit(authByEmailModel.submitCodeForm.submit);
+  const formError = useUnit(authByEmailModel.$submitCodeFormServerError);
+  const goToPrevStep = useUnit(authByEmailModel.prevStepClicked);
+  const closeFlash = useUnit(authByEmailModel.submitCodeFlashClosed);
 
   const handleCodeChange = (event: ChangeEvent<HTMLInputElement>) => {
     codeField.onChange(event.target.value);

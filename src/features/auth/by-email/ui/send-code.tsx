@@ -8,13 +8,15 @@ import { Flash } from "@/shared/ui/flash";
 import { Form } from "@/shared/ui/form/form";
 import { TextInput } from "@/shared/ui/form/text-input";
 
-import { $sendCodeError, sendCodeFlashClosed, sendCodeForm } from "../model";
+import { createAuthByEmailModel } from "../model";
 
 export const SendCode = () => {
-  const emailField = useUnit(sendCodeForm.fields.email);
-  const formSubmit = useUnit(sendCodeForm.submit);
-  const formError = useUnit($sendCodeError);
-  const closeFlash = useUnit(sendCodeFlashClosed);
+  const authByEmailModel = createAuthByEmailModel.useModel();
+
+  const emailField = useUnit(authByEmailModel.sendCodeForm.fields.email);
+  const formSubmit = useUnit(authByEmailModel.sendCodeForm.submit);
+  const formError = useUnit(authByEmailModel.$sendCodeFormServerError);
+  const closeFlash = useUnit(authByEmailModel.sendCodeFlashClosed);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();

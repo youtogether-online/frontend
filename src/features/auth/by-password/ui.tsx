@@ -1,4 +1,5 @@
 import { Trans } from "@lingui/macro";
+import { modelView } from "effector-factorio";
 import { useUnit } from "effector-react";
 import { type ChangeEvent, type FormEvent } from "react";
 import { tw } from "typewind";
@@ -8,13 +9,15 @@ import { Flash } from "@/shared/ui/flash";
 import { Form } from "@/shared/ui/form/form";
 import { TextInput } from "@/shared/ui/form/text-input";
 
-import { $formServerError, authByPasswordForm } from "./model";
+import { createAuthByPasswordModel } from "./model";
 
-export const AuthByPassword = () => {
-  const emailField = useUnit(authByPasswordForm.fields.email);
-  const passwordField = useUnit(authByPasswordForm.fields.password);
-  const form = useUnit(authByPasswordForm);
-  const formServerError = useUnit($formServerError);
+export const AuthByPasswordForm = modelView(createAuthByPasswordModel, () => {
+  const authByPasswordModel = createAuthByPasswordModel.useModel();
+
+  const emailField = useUnit(authByPasswordModel.authByPasswordForm.fields.email);
+  const passwordField = useUnit(authByPasswordModel.authByPasswordForm.fields.password);
+  const form = useUnit(authByPasswordModel.authByPasswordForm);
+  const formError = useUnit(authByPasswordModel.$authByPasswordError);
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     emailField.onChange(event.target.value);
@@ -31,9 +34,9 @@ export const AuthByPassword = () => {
 
   return (
     <>
-      {formServerError?.description && (
+      {formError?.description && (
         <Flash variant="danger" sx={tw.mb_4}>
-          {formServerError.description}
+          {formError.description}
         </Flash>
       )}
       <Form onSubmit={handleSubmit} className={tw.flex.flex_col.gap_4}>
@@ -78,4 +81,4 @@ export const AuthByPassword = () => {
       </Form>
     </>
   );
-};
+});
