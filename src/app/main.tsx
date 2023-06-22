@@ -24,8 +24,6 @@ const renderAppFx = createEffect(() => {
   root.render(<App />);
 });
 
-debug(appDataLoaded);
-
 sample({
   clock: appDataLoaded,
   target: renderAppFx,
