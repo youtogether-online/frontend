@@ -23,20 +23,18 @@ export const AuthPage = () => {
 
   return (
     <section className={tw.w_full.mx_auto}>
-      <div className={tw.p_4.border.border_borderDefault.rounded_md.bg_canvasInset}>
+      {authMethod === "password" ? (
+        <AuthByPassword.View model={$$authByPassword} />
+      ) : (
+        <AuthByEmail.View model={$$authByEmail} />
+      )}
+      <Button variant="invisible" block sx={tw.mt_4} onClick={handleSwitchAuthMethod}>
         {authMethod === "password" ? (
-          <AuthByPassword.View model={$$authByPassword} />
+          <Trans>Authenticate by email</Trans>
         ) : (
-          <AuthByEmail.View model={$$authByEmail} />
+          <Trans>Authenticate by password</Trans>
         )}
-        <Button variant="invisible" block sx={tw.mt_4} onClick={handleSwitchAuthMethod}>
-          {authMethod === "password" ? (
-            <Trans>Authenticate by email</Trans>
-          ) : (
-            <Trans>Authenticate by password</Trans>
-          )}
-        </Button>
-      </div>
+      </Button>
     </section>
   );
 };

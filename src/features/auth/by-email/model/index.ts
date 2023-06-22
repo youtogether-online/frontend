@@ -34,11 +34,7 @@ export const createAuthByEmailModel = modelFactory(() => {
   return {
     $currentStep,
     prevStepClicked,
-    sendCodeFlashClosed: $$sendCode.flashClosed,
-    submitCodeFlashClosed: $$submitCode.flashClosed,
-    sendCodeForm: $$sendCode.sendCodeForm,
-    submitCodeForm: $$submitCode.submitCodeForm,
-    $sendCodeFormServerError: $$sendCode.$formServerError,
-    $submitCodeFormServerError: $$submitCode.$formServerError,
+    $$sendCode,
+    $$submitCode,
   };
 });

@@ -6,7 +6,7 @@ import { tw } from "typewind";
 import { Icon } from "../icon";
 import { type SxProp } from "../types";
 
-const flashVariants = cva([tw.p_2.my_auto.border.rounded_md.flex.justify_between.items_center], {
+const flashVariants = cva([tw.p_4.my_auto.border.rounded_md.flex.justify_between.items_center], {
   variants: {
     block: {
       true: [tw.w_full],

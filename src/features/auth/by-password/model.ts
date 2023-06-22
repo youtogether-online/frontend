@@ -9,6 +9,7 @@ import { t } from "@lingui/macro";
 import { createEvent, createStore, sample } from "effector";
 import { modelFactory } from "effector-factorio";
 import { createForm } from "effector-forms";
+import { not } from "patronum";
 import { z } from "zod";
 
 import { getSessionQuery } from "@/entities/session";
@@ -17,14 +18,14 @@ import {
   type ErrorWithCode,
   getAuthPasswordPostUrl,
   type postAuthPasswordBody,
-  type ValidationError,
 } from "@/shared/api/internal";
 import { createRule } from "@/shared/lib/effector-forms/zod";
+import { isErrorWithDescription } from "@/shared/lib/is-error-with-description";
 import { isValidationError } from "@/shared/lib/is-validation-error";
 import { mapValidationError } from "@/shared/lib/map-validation-error";
 
 export const createAuthByPasswordModel = modelFactory(() => {
-  const $authByPasswordError = createStore<ErrorWithCode | null>(null);
+  const $authByPasswordError = createStore<string | null>(null);
 
   const authByPasswordMutation = createJsonMutation({
     params: declareParams<z.infer<typeof postAuthPasswordBody>>(),
@@ -42,6 +43,7 @@ export const createAuthByPasswordModel = modelFactory(() => {
   });
 
   const authByPasswordForm = createForm({
+    filter: not($authByPasswordError),
     fields: {
       email: {
         init: "",
@@ -78,6 +80,11 @@ export const createAuthByPasswordModel = modelFactory(() => {
   });
 
   sample({
+    clock: [authByPasswordForm.fields.email.changed, authByPasswordForm.fields.password.changed],
+    target: $authByPasswordError.reinit!,
+  });
+
+  sample({
     clock: authByPasswordForm.formValidated,
     target: authByPasswordMutation.start,
   });
@@ -97,9 +104,8 @@ export const createAuthByPasswordModel = modelFactory(() => {
 
   sample({
     clock: authByPasswordMutationError,
-    filter: (error: ErrorWithCode): error is ValidationError => {
-      return !isValidationError(error);
-    },
+    filter: isErrorWithDescription,
+    fn: (error) => error.description,
     target: $authByPasswordError,
   });
 
@@ -114,5 +120,6 @@ export const createAuthByPasswordModel = modelFactory(() => {
     flashClosed,
     authByPasswordForm,
     $authByPasswordError,
+    authByPasswordMutation,
   };
 });

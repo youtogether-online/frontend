@@ -14,11 +14,12 @@ import { createAuthByEmailModel } from "../model";
 export const SubmitCode = () => {
   const authByEmailModel = createAuthByEmailModel.useModel();
 
-  const codeField = useUnit(authByEmailModel.submitCodeForm.fields.code);
-  const formSubmit = useUnit(authByEmailModel.submitCodeForm.submit);
-  const formError = useUnit(authByEmailModel.$submitCodeFormServerError);
+  const codeField = useUnit(authByEmailModel.$$submitCode.submitCodeForm.fields.code);
+  const formSubmit = useUnit(authByEmailModel.$$submitCode.submitCodeForm.submit);
+  const formError = useUnit(authByEmailModel.$$submitCode.$formServerError);
   const goToPrevStep = useUnit(authByEmailModel.prevStepClicked);
-  const closeFlash = useUnit(authByEmailModel.submitCodeFlashClosed);
+  const closeFlash = useUnit(authByEmailModel.$$submitCode.flashClosed);
+  const isLoading = useUnit(authByEmailModel.$$submitCode.submitCodeMutation.$pending);
 
   const handleCodeChange = (event: ChangeEvent<HTMLInputElement>) => {
     codeField.onChange(event.target.value);
@@ -31,14 +32,11 @@ export const SubmitCode = () => {
 
   return (
     <>
-      {formError?.description && (
-        <>
-          <Flash variant="danger" sx={tw.mb_2} onClose={closeFlash}>
-            {formError.description}
-          </Flash>
-        </>
-      )}
-      <Form className={tw.flex.flex_col.gap_4} onSubmit={handleSubmit}>
+      {formError && <Form.Error onClose={closeFlash}>{formError}</Form.Error>}
+      <Form
+        className={tw.flex.flex_col.gap_4.p_4.border.border_borderDefault.rounded_md.bg_canvasInset}
+        onSubmit={handleSubmit}
+      >
         <Form.Field name="code">
           <div className={tw.flex.items_center.gap_1}>
             <button
@@ -64,8 +62,8 @@ export const SubmitCode = () => {
             <Form.Validation variant="error">{codeField.errorText}</Form.Validation>
           )}
         </Form.Field>
-        <Button variant="primary" type="submit" block>
-          <Trans>Submit code</Trans>
+        <Button variant="primary" type="submit" block disabled={isLoading}>
+          {isLoading ? <Trans>Loading...</Trans> : <Trans>Submit code</Trans>}
         </Button>
       </Form>
     </>

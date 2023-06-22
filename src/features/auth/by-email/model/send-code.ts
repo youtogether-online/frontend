@@ -8,6 +8,7 @@ import { zodContract } from "@farfetched/zod";
 import { t } from "@lingui/macro";
 import { createEvent, createStore, sample } from "effector";
 import { createForm } from "effector-forms";
+import { debug, not } from "patronum";
 import { z } from "zod";
 
 import {
@@ -16,13 +17,15 @@ import {
   type postEmailSendCodeBody,
 } from "@/shared/api";
 import { createRule } from "@/shared/lib/effector-forms/zod";
+import { isErrorWithDescription } from "@/shared/lib/is-error-with-description";
 import { isValidationError } from "@/shared/lib/is-validation-error";
 import { mapValidationError } from "@/shared/lib/map-validation-error";
 
 export const createSendCodeModel = () => {
-  const $formServerError = createStore<ErrorWithCode | null>(null);
+  const $formServerError = createStore<string | null>(null);
 
   const sendCodeForm = createForm({
+    filter: not($formServerError),
     fields: {
       email: {
         init: "",
@@ -31,7 +34,7 @@ export const createSendCodeModel = () => {
             name: "email",
             schema: z
               .string()
-              .nonempty(`It's required property`)
+              .nonempty(t`It's required property`)
               .email(t`Incorrect email`),
           }),
         ],
@@ -59,11 +62,16 @@ export const createSendCodeModel = () => {
   });
 
   sample({
+    clock: sendCodeForm.fields.email.changed,
+    target: $formServerError.reinit!,
+  });
+
+  sample({
     clock: sendCodeForm.formValidated,
     target: sendCodeMutation.start,
   });
 
-  const sendCodeMutationError = sample({
+  const sendCodeMutationBadRequest = sample({
     clock: sendCodeMutation.finished.failure,
     filter: isHttpErrorCode(400),
     fn: (error) => {
@@ -72,16 +80,28 @@ export const createSendCodeModel = () => {
   });
 
   sample({
-    clock: sendCodeMutationError,
-    filter: (error) => !isValidationError(error),
+    clock: sendCodeMutationBadRequest,
+    filter: isErrorWithDescription,
+    fn: (error) => error.description,
     target: $formServerError,
   });
 
   sample({
-    clock: sendCodeMutationError,
+    clock: sendCodeMutationBadRequest,
     filter: isValidationError,
     fn: mapValidationError,
     target: sendCodeForm.addErrors,
+  });
+
+  const sendCodeMutationNotFound = sample({
+    clock: sendCodeMutation.finished.failure,
+    filter: isHttpErrorCode(404),
+  });
+
+  sample({
+    clock: sendCodeMutationNotFound,
+    fn: () => t`STMP server doesn't work currently`,
+    target: $formServerError,
   });
 
   return {

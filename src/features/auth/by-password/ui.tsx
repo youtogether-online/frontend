@@ -18,6 +18,8 @@ export const AuthByPasswordForm = modelView(createAuthByPasswordModel, () => {
   const passwordField = useUnit(authByPasswordModel.authByPasswordForm.fields.password);
   const form = useUnit(authByPasswordModel.authByPasswordForm);
   const formError = useUnit(authByPasswordModel.$authByPasswordError);
+  const isLoading = useUnit(authByPasswordModel.authByPasswordMutation.$pending);
+  const closeFlash = useUnit(authByPasswordModel.flashClosed);
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     emailField.onChange(event.target.value);
@@ -34,12 +36,11 @@ export const AuthByPasswordForm = modelView(createAuthByPasswordModel, () => {
 
   return (
     <>
-      {formError?.description && (
-        <Flash variant="danger" sx={tw.mb_4}>
-          {formError.description}
-        </Flash>
-      )}
-      <Form onSubmit={handleSubmit} className={tw.flex.flex_col.gap_4}>
+      {formError && <Form.Error onClose={closeFlash}>{formError}</Form.Error>}
+      <Form
+        onSubmit={handleSubmit}
+        className={tw.flex.flex_col.gap_4.p_4.border.border_borderDefault.rounded_md.bg_canvasInset}
+      >
         <Form.Field name="login">
           <Form.Label>
             <Trans>Email address</Trans>
@@ -75,8 +76,8 @@ export const AuthByPasswordForm = modelView(createAuthByPasswordModel, () => {
             <Form.Validation variant="error">{passwordField.errorText}</Form.Validation>
           )}
         </Form.Field>
-        <Button type="submit" variant="primary" block>
-          <Trans>Authenticate</Trans>
+        <Button type="submit" variant="primary" block disabled={isLoading}>
+          {isLoading ? <Trans>Loading...</Trans> : <Trans>Authenticate</Trans>}
         </Button>
       </Form>
     </>

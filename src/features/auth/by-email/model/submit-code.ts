@@ -9,10 +9,12 @@ import { t } from "@lingui/macro";
 import { createEvent, createStore, sample } from "effector";
 import { createForm } from "effector-forms";
 import { type Form } from "effector-forms";
+import { not } from "patronum";
 import { z } from "zod";
 
 import { type ErrorWithCode, getAuthEmailPostUrl, type postAuthEmailBody } from "@/shared/api";
 import { createRule } from "@/shared/lib/effector-forms/zod";
+import { isErrorWithDescription } from "@/shared/lib/is-error-with-description";
 import { isValidationError } from "@/shared/lib/is-validation-error";
 import { mapValidationError } from "@/shared/lib/map-validation-error";
 
@@ -21,9 +23,10 @@ export const createSubmitCodeModel = ({
 }: {
   sendCodeForm: Form<{ email: string }>;
 }) => {
-  const $formServerError = createStore<ErrorWithCode | null>(null);
+  const $formServerError = createStore<string | null>(null);
 
   const submitCodeForm = createForm({
+    filter: not($formServerError),
     fields: {
       code: {
         init: "",
@@ -68,8 +71,14 @@ export const createSubmitCodeModel = ({
   });
 
   sample({
+    clock: submitCodeForm.fields.code.changed,
+    target: $formServerError.reinit!,
+  });
+
+  sample({
     clock: submitCodeMutationError,
-    filter: (error) => !isValidationError(error),
+    filter: isErrorWithDescription,
+    fn: (error) => error.description,
     target: $formServerError,
   });
 
