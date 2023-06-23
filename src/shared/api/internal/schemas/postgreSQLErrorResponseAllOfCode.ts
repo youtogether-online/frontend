@@ -7,10 +7,10 @@ You can get more info about that project [here](https://github.com/youtogether-o
  * OpenAPI spec version: 1.0.0
  */
 
-export type UserNamePatchErrorResponseAllOfCode =
-  (typeof UserNamePatchErrorResponseAllOfCode)[keyof typeof UserNamePatchErrorResponseAllOfCode];
+export type PostgreSQLErrorResponseAllOfCode =
+  (typeof PostgreSQLErrorResponseAllOfCode)[keyof typeof PostgreSQLErrorResponseAllOfCode];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
-export const UserNamePatchErrorResponseAllOfCode = {
+export const PostgreSQLErrorResponseAllOfCode = {
   server_error: "server_error",
 } as const;

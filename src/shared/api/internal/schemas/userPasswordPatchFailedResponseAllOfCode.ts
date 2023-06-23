@@ -12,6 +12,5 @@ export type UserPasswordPatchFailedResponseAllOfCode =
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const UserPasswordPatchFailedResponseAllOfCode = {
-  invalid_validation: "invalid_validation",
   invalid_password: "invalid_password",
 } as const;

@@ -6,9 +6,7 @@
 You can get more info about that project [here](https://github.com/youtogether-online)
  * OpenAPI spec version: 1.0.0
  */
-import type { ErrorFields } from "./errorFields";
 
 export interface Error {
   readonly description?: string;
-  readonly fields?: ErrorFields;
 }

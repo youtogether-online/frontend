@@ -13,5 +13,4 @@ export type UserGetByUsernameFailedResponseAllOfCode =
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const UserGetByUsernameFailedResponseAllOfCode = {
   not_found: "not_found",
-  invalid_validation: "invalid_validation",
 } as const;

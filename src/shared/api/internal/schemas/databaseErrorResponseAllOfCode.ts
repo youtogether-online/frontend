@@ -7,11 +7,11 @@ You can get more info about that project [here](https://github.com/youtogether-o
  * OpenAPI spec version: 1.0.0
  */
 
-export type AuthByPasswordErrorResponseAllOfCode =
-  (typeof AuthByPasswordErrorResponseAllOfCode)[keyof typeof AuthByPasswordErrorResponseAllOfCode];
+export type DatabaseErrorResponseAllOfCode =
+  (typeof DatabaseErrorResponseAllOfCode)[keyof typeof DatabaseErrorResponseAllOfCode];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
-export const AuthByPasswordErrorResponseAllOfCode = {
+export const DatabaseErrorResponseAllOfCode = {
   server_error: "server_error",
   transaction_failed: "transaction_failed",
 } as const;

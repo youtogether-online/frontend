@@ -13,7 +13,7 @@ const { $language: $prefferedLanguage } = trackPreferredLanguages({
   setup: appStarted,
 });
 
-type Language = "EN" | "RU";
+type Language = "en" | "ru";
 
 const $language = createStore<Language | null>(null);
 
@@ -22,7 +22,7 @@ persist({
   key: "language",
 });
 
-const languageSet = createEvent<string>();
+const languageSet = createEvent<Language>();
 
 sample({
   clock: getSessionQuery.finished.success,
@@ -42,9 +42,11 @@ sample({
   source: $prefferedLanguage,
   filter: and(empty($language), not(empty($prefferedLanguage))),
   fn: (language) => {
-    const primaryLanguage = language!.split("-")[0].toUpperCase();
+    const primaryLanguage = language!.split("-")[0];
 
-    return Object.keys(languages).includes(primaryLanguage) ? primaryLanguage : DEFAULT_LANGUAGE;
+    return Object.keys(languages).includes(primaryLanguage)
+      ? (primaryLanguage as Language)
+      : DEFAULT_LANGUAGE;
   },
   target: languageSet,
 });

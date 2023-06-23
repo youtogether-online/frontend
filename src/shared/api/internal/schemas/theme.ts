@@ -11,7 +11,7 @@ export type Theme = (typeof Theme)[keyof typeof Theme];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const Theme = {
-  DARK: "DARK",
-  LIGHT: "LIGHT",
-  SYSTEM: "SYSTEM",
+  dark: "dark",
+  light: "light",
+  system: "system",
 } as const;

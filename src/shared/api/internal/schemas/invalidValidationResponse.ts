@@ -6,7 +6,9 @@
 You can get more info about that project [here](https://github.com/youtogether-online)
  * OpenAPI spec version: 1.0.0
  */
-import type { Error } from "./error";
-import type { UserEmailPatchErrorResponseAllOf } from "./userEmailPatchErrorResponseAllOf";
+import type { ValidationError } from "./validationError";
 
-export type UserEmailPatchErrorResponse = UserEmailPatchErrorResponseAllOf & Error;
+/**
+ * Data entered incorrectly
+ */
+export type InvalidValidationResponse = ValidationError;

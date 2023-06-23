@@ -12,6 +12,5 @@ export type AuthByEmailFailedResponseAllOfCode =
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const AuthByEmailFailedResponseAllOfCode = {
-  invalid_validation: "invalid_validation",
   code_invalid_or_expired: "code_invalid_or_expired",
 } as const;

@@ -6,8 +6,7 @@
 You can get more info about that project [here](https://github.com/youtogether-online)
  * OpenAPI spec version: 1.0.0
  */
+import type { DatabaseErrorResponseAllOf } from "./databaseErrorResponseAllOf";
+import type { Error } from "./error";
 
-/**
- * Email was successfully sent
- */
-export type EmailSendCodeSuccessResponse = void;
+export type DatabaseErrorResponse = DatabaseErrorResponseAllOf & Error;

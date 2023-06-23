@@ -31,10 +31,10 @@ export const getAuthSessionResponse = zod.object({
     .max(getAuthSessionResponseNameMax)
     .regex(getAuthSessionResponseNameRegExp),
   email: zod.string().email(),
-  role: zod.enum(["USER", "ADMIN"]),
+  role: zod.enum(["user", "admin"]),
   friendsIds: zod.array(zod.number()),
-  language: zod.enum(["EN", "RU"]),
-  theme: zod.enum(["DARK", "LIGHT", "SYSTEM"]),
+  language: zod.enum(["en", "ru"]),
+  theme: zod.enum(["dark", "light", "system"]),
   firstName: zod
     .string()
     .min(getAuthSessionResponseFirstNameMin)
@@ -78,9 +78,11 @@ export const postAuthPasswordHeader = zod.object({
   "Accept-Language": zod.enum(["EN", "RU"]).optional(),
 });
 
+export const postAuthPasswordBodyPasswordRegExp = new RegExp("^w{4,20}$");
+
 export const postAuthPasswordBody = zod.object({
   email: zod.string().email(),
-  password: zod.string(),
+  password: zod.string().regex(postAuthPasswordBodyPasswordRegExp),
 });
 
 /**
@@ -130,7 +132,7 @@ export const getUserNameResponse = zod.object({
     .min(getUserNameResponseBiographyMin)
     .max(getUserNameResponseBiographyMax)
     .optional(),
-  role: zod.enum(["USER", "ADMIN"]),
+  role: zod.enum(["user", "admin"]),
   friendsIds: zod.array(zod.number()),
   firstName: zod
     .string()
@@ -178,26 +180,31 @@ export const patchUserBody = zod.object({
   firstName: zod.string().min(patchUserBodyFirstNameMin).max(patchUserBodyFirstNameMax).optional(),
   lastName: zod.string().min(patchUserBodyLastNameMin).max(patchUserBodyLastNameMax).optional(),
   biography: zod.string().min(patchUserBodyBiographyMin).max(patchUserBodyBiographyMax).optional(),
-  theme: zod.enum(["DARK", "LIGHT", "SYSTEM"]).optional(),
-  language: zod.enum(["EN", "RU"]).optional(),
+  theme: zod.enum(["dark", "light", "system"]).optional(),
+  language: zod.enum(["en", "ru"]).optional(),
 });
 
 /**
  * Updates user's password by email
  * @summary Update user's password
  */
+export const patchUserPasswordBodyOldPasswordRegExp = new RegExp("^w{4,20}$");
+export const patchUserPasswordBodyNewPasswordRegExp = new RegExp("^w{4,20}$");
+
 export const patchUserPasswordBody = zod.object({
-  oldPassword: zod.string(),
-  newPassword: zod.string(),
+  oldPassword: zod.string().regex(patchUserPasswordBodyOldPasswordRegExp),
+  newPassword: zod.string().regex(patchUserPasswordBodyNewPasswordRegExp),
 });
 
 /**
  * Updates user's email by password
  * @summary Update user's email
  */
+export const patchUserEmailBodyPasswordRegExp = new RegExp("^w{4,20}$");
+
 export const patchUserEmailBody = zod.object({
   newEmail: zod.string().email(),
-  password: zod.string(),
+  password: zod.string().regex(patchUserEmailBodyPasswordRegExp),
 });
 
 /**
@@ -214,4 +221,47 @@ export const patchUserNameBody = zod.object({
     .min(patchUserNameBodyNameMin)
     .max(patchUserNameBodyNameMax)
     .regex(patchUserNameBodyNameRegExp),
+});
+
+/**
+ * Creates (or updates, if exists) the room. Room created once, after first account query.
+ * @summary Upsert user's room, and connect to it
+ */
+export const putRoomBodyTitleMin = 5;
+export const putRoomBodyTitleMax = 20;
+export const putRoomBodyTitleRegExp = new RegExp("^[a-zA-Z][a-zA-Z0-9_]{3,18}([a-zA-Z0-9])$");
+export const putRoomBodyDescriptionMin = 1;
+export const putRoomBodyDescriptionMax = 140;
+export const putRoomBodyPasswordRegExp = new RegExp("^w{4,20}$");
+
+export const putRoomBody = zod.object({
+  title: zod
+    .string()
+    .min(putRoomBodyTitleMin)
+    .max(putRoomBodyTitleMax)
+    .regex(putRoomBodyTitleRegExp)
+    .optional(),
+  privacy: zod.enum(["public", "private", "friends"]).optional(),
+  description: zod
+    .string()
+    .min(putRoomBodyDescriptionMin)
+    .max(putRoomBodyDescriptionMax)
+    .optional(),
+  password: zod.string().regex(putRoomBodyPasswordRegExp).optional(),
+});
+
+/**
+ * Open web socket connection to user's room
+ * @summary Connect to user's room by websocket
+ */
+export const getRoomNamePathNameMin = 5;
+export const getRoomNamePathNameMax = 20;
+export const getRoomNamePathNameRegExp = new RegExp("^[a-zA-Z][a-zA-Z0-9_]{3,18}([a-zA-Z0-9])$");
+
+export const getRoomNameParams = zod.object({
+  name: zod
+    .string()
+    .min(getRoomNamePathNameMin)
+    .max(getRoomNamePathNameMax)
+    .regex(getRoomNamePathNameRegExp),
 });

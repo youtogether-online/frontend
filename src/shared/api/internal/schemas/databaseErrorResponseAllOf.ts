@@ -6,7 +6,8 @@
 You can get more info about that project [here](https://github.com/youtogether-online)
  * OpenAPI spec version: 1.0.0
  */
-import type { Error } from "./error";
-import type { UserGetByUsernameErrorResponseAllOf } from "./userGetByUsernameErrorResponseAllOf";
+import type { DatabaseErrorResponseAllOfCode } from "./databaseErrorResponseAllOfCode";
 
-export type UserGetByUsernameErrorResponse = UserGetByUsernameErrorResponseAllOf & Error;
+export type DatabaseErrorResponseAllOf = {
+  code: DatabaseErrorResponseAllOfCode;
+};

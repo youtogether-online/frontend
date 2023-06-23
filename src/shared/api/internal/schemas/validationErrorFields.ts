@@ -7,7 +7,4 @@ You can get more info about that project [here](https://github.com/youtogether-o
  * OpenAPI spec version: 1.0.0
  */
 
-/**
- * Failed to get session, maybe cookie is expired
- */
-export type SessionGetUnathorizedResponse = void;
+export type ValidationErrorFields = { [key: string]: string };

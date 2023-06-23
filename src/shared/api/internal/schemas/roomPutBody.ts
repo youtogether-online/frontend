@@ -6,9 +6,6 @@
 You can get more info about that project [here](https://github.com/youtogether-online)
  * OpenAPI spec version: 1.0.0
  */
-import type { AuthEmailFailedResponseAllOf } from "./authEmailFailedResponseAllOf";
+import type { Room } from "./room";
 
-/**
- * Check or recover your credentials
- */
-export type AuthEmailFailedResponse = AuthEmailFailedResponseAllOf;
+export type RoomPutBody = Room;

@@ -7,11 +7,11 @@ import { appStarted } from "@/shared/config/init";
 
 import { getSessionQuery } from "./session";
 
-type theme = "LIGHT" | "DARK" | "SYSTEM";
+type theme = "light" | "dark" | "system";
 
 const themeChanged = createEvent<theme>();
 
-const $theme = createStore<theme>("SYSTEM");
+const $theme = createStore<theme>("system");
 
 const { light, dark } = trackMediaQuery(
   { light: "(prefers-color-scheme: light)", dark: "(prefers-color-scheme: dark)" },
@@ -43,8 +43,8 @@ sample({
 
 sample({
   clock: themeChanged,
-  filter: (theme): theme is Exclude<theme, "SYSTEM"> => {
-    return Boolean(not(equals(theme, "SYSTEM")));
+  filter: (theme): theme is Exclude<theme, "system"> => {
+    return Boolean(not(equals(theme, "system")));
   },
   target: setThemeFx,
 });
@@ -52,8 +52,8 @@ sample({
 sample({
   clock: getSessionQuery.finished.failure,
   source: $theme,
-  filter: (theme): theme is Exclude<theme, "SYSTEM"> => {
-    return Boolean(not(equals(theme, "SYSTEM")));
+  filter: (theme): theme is Exclude<theme, "system"> => {
+    return Boolean(not(equals(theme, "system")));
   },
 
   target: setThemeFx,
@@ -61,14 +61,14 @@ sample({
 
 sample({
   clock: [getSessionQuery.finished.finally, light.matched],
-  filter: and(light.$matches, equals($theme, "SYSTEM")),
-  fn: () => "LIGHT" as const,
+  filter: and(light.$matches, equals($theme, "system")),
+  fn: () => "light" as const,
   target: setThemeFx,
 });
 
 sample({
   clock: [getSessionQuery.finished.finally, dark.matched],
-  filter: and(dark.$matches, equals($theme, "SYSTEM")),
-  fn: () => "DARK" as const,
+  filter: and(dark.$matches, equals($theme, "system")),
+  fn: () => "dark" as const,
   target: setThemeFx,
 });

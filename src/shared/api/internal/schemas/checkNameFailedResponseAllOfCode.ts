@@ -13,5 +13,4 @@ export type CheckNameFailedResponseAllOfCode =
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const CheckNameFailedResponseAllOfCode = {
   already_exist: "already_exist",
-  invalid_validation: "invalid_validation",
 } as const;

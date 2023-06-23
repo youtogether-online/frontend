@@ -11,6 +11,7 @@ import type { CreateTime } from "./createTime";
 import type { Email } from "./email";
 import type { FirstName } from "./firstName";
 import type { FriendsIds } from "./friendsIds";
+import type { IsEmailVerified } from "./isEmailVerified";
 import type { Language } from "./language";
 import type { LastName } from "./lastName";
 import type { Name } from "./name";
@@ -28,5 +29,5 @@ export interface Me {
   readonly lastName?: LastName;
   readonly biography?: Biography;
   readonly createTime: CreateTime;
-  readonly isEmailVerified: boolean;
+  readonly isEmailVerified: IsEmailVerified;
 }

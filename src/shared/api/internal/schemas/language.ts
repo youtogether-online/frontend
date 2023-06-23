@@ -11,6 +11,6 @@ export type Language = (typeof Language)[keyof typeof Language];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const Language = {
-  EN: "EN",
-  RU: "RU",
+  en: "en",
+  ru: "ru",
 } as const;

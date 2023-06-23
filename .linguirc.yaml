@@ -1,6 +1,6 @@
 locales:
-  - "EN"
-  - "RU"
+  - "en"
+  - "ru"
 
 catalogs:
   - path: ./src/shared/config/i18n/locales/{locale}

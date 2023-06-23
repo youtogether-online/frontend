@@ -6,8 +6,8 @@
 You can get more info about that project [here](https://github.com/youtogether-online)
  * OpenAPI spec version: 1.0.0
  */
-import type { AuthByPasswordErrorResponseAllOfCode } from "./authByPasswordErrorResponseAllOfCode";
+import type { ValidationErrorFields } from "./validationErrorFields";
 
-export type AuthByPasswordErrorResponseAllOf = {
-  code: AuthByPasswordErrorResponseAllOfCode;
-};
+export interface ValidationError {
+  readonly fields?: ValidationErrorFields;
+}
