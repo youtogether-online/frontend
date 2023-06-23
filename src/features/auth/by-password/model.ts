@@ -15,13 +15,13 @@ import { z } from "zod";
 import { getSessionQuery } from "@/entities/session";
 
 import {
-  type ErrorWithCode,
+  type BadRequestError,
   getAuthPasswordPostUrl,
   type postAuthPasswordBody,
+  type ValidationError,
 } from "@/shared/api/internal";
 import { createRule } from "@/shared/lib/effector-forms/zod";
 import { isErrorWithDescription } from "@/shared/lib/is-error-with-description";
-import { isValidationError } from "@/shared/lib/is-validation-error";
 import { mapValidationError } from "@/shared/lib/map-validation-error";
 
 export const createAuthByPasswordModel = modelFactory(() => {
@@ -94,24 +94,27 @@ export const createAuthByPasswordModel = modelFactory(() => {
     target: getSessionQuery.start,
   });
 
-  const authByPasswordMutationError = sample({
+  const authByPasswordBadRequest = sample({
     clock: authByPasswordMutation.finished.failure,
     filter: isHttpErrorCode(400),
-    fn: (error) => {
-      return (error.error as unknown as HttpError<400>).response as ErrorWithCode;
-    },
+    fn: (error) => (error.error as unknown as HttpError<400>).response as BadRequestError,
+  });
+
+  const authBYPasswordValidationError = sample({
+    clock: authByPasswordMutation.finished.failure,
+    filter: isHttpErrorCode(422),
+    fn: (error) => (error.error as unknown as HttpError<422>).response as ValidationError,
   });
 
   sample({
-    clock: authByPasswordMutationError,
+    clock: authByPasswordBadRequest,
     filter: isErrorWithDescription,
     fn: (error) => error.description,
     target: $authByPasswordError,
   });
 
   sample({
-    clock: authByPasswordMutationError,
-    filter: isValidationError,
+    clock: authBYPasswordValidationError,
     fn: mapValidationError,
     target: authByPasswordForm.addErrors,
   });

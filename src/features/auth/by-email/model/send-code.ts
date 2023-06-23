@@ -8,17 +8,17 @@ import { zodContract } from "@farfetched/zod";
 import { t } from "@lingui/macro";
 import { createEvent, createStore, sample } from "effector";
 import { createForm } from "effector-forms";
-import { debug, not } from "patronum";
+import { not } from "patronum";
 import { z } from "zod";
 
 import {
-  type ErrorWithCode,
+  type BadRequestError,
   getEmailSendCodePostUrl,
   type postEmailSendCodeBody,
+  type ValidationError,
 } from "@/shared/api";
 import { createRule } from "@/shared/lib/effector-forms/zod";
 import { isErrorWithDescription } from "@/shared/lib/is-error-with-description";
-import { isValidationError } from "@/shared/lib/is-validation-error";
 import { mapValidationError } from "@/shared/lib/map-validation-error";
 
 export const createSendCodeModel = () => {
@@ -71,24 +71,27 @@ export const createSendCodeModel = () => {
     target: sendCodeMutation.start,
   });
 
-  const sendCodeMutationBadRequest = sample({
+  const sendCodeBadRequest = sample({
     clock: sendCodeMutation.finished.failure,
     filter: isHttpErrorCode(400),
-    fn: (error) => {
-      return (error.error as unknown as HttpError<400>).response as ErrorWithCode;
-    },
+    fn: (error) => (error.error as unknown as HttpError<400>).response as BadRequestError,
+  });
+
+  const sendCodeValidationError = sample({
+    clock: sendCodeMutation.finished.failure,
+    filter: isHttpErrorCode(422),
+    fn: (error) => (error.error as unknown as HttpError<422>).response as ValidationError,
   });
 
   sample({
-    clock: sendCodeMutationBadRequest,
+    clock: sendCodeBadRequest,
     filter: isErrorWithDescription,
     fn: (error) => error.description,
     target: $formServerError,
   });
 
   sample({
-    clock: sendCodeMutationBadRequest,
-    filter: isValidationError,
+    clock: sendCodeValidationError,
     fn: mapValidationError,
     target: sendCodeForm.addErrors,
   });

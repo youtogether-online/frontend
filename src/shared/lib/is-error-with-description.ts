@@ -1,7 +1,7 @@
-import { type ErrorWithCode } from "../api";
+import { type BadRequestError } from "../api";
 
 export const isErrorWithDescription = (
-  error: ErrorWithCode,
-): error is ErrorWithCode & Required<Pick<ErrorWithCode, "description">> => {
+  error: BadRequestError,
+): error is BadRequestError & Required<Pick<BadRequestError, "description">> => {
   return Boolean("description" in error);
 };
