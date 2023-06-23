@@ -18,7 +18,7 @@ export const Header = () => {
   return (
     <header
       className={
-        tw.h_16.flex.p_4.text_headerText.bg_canvasInset.items_center.flex_nowrap.justify_between
+        tw.h_14.flex.p_4.text_headerText.bg_canvasInset.items_center.flex_nowrap.justify_between
           .border_b.border_b_borderDefault
       }
     >
@@ -30,7 +30,7 @@ export const Header = () => {
           <Avatar
             src="https://avatars.githubusercontent.com/u/80841256?v=4"
             alt={`${session?.firstName} avatar`}
-            size={38}
+            size={32}
             fallback="AV"
             fallbackColor="#fff"
           ></Avatar>

@@ -1,5 +1,4 @@
 import { FormMessage, type FormMessageProps } from "@radix-ui/react-form";
-import clsx from "clsx";
 import { cva, type VariantProps } from "cva";
 import { forwardRef, type ReactNode } from "react";
 import { tw } from "typewind";
@@ -21,7 +20,7 @@ type ValidationProps = SxProp & VariantProps<typeof validationVariants> & FormMe
 export const Validation = forwardRef<HTMLSpanElement, ValidationProps>(
   ({ children, asChild, sx, variant, ...props }, ref) => {
     return (
-      <FormMessage ref={ref} className={clsx(validationVariants({ variant }), sx)} {...props}>
+      <FormMessage ref={ref} className={validationVariants({ variant, class: sx })} {...props}>
         {children}
       </FormMessage>
     );

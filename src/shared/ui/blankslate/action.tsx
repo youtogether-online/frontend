@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cx } from "cva";
 import { forwardRef, type ReactNode } from "react";
 import { tw } from "typewind";
 
@@ -10,7 +10,7 @@ type ActionProps = {
 
 export const Action = forwardRef<HTMLDivElement, ActionProps>(({ children, sx }, ref) => {
   return (
-    <div className={clsx(tw.text_md.mt_4.first_of_type(tw.mt_6), sx)} ref={ref}>
+    <div className={cx(tw.text_md.mt_4.first_of_type(tw.mt_6), sx)} ref={ref}>
       {children}
     </div>
   );

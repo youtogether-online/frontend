@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cx } from "cva";
 import { forwardRef, type ReactNode } from "react";
 import { tw } from "typewind";
 
@@ -10,7 +10,7 @@ type FooterProps = {
 
 export const Footer = forwardRef<HTMLDivElement, FooterProps>(({ children, sx }, ref) => {
   return (
-    <div className={clsx(tw.flex.p_3.justify_end.flex_wrap.gap_2, sx)} ref={ref}>
+    <div className={cx(tw.flex.p_3.justify_end.flex_wrap.gap_2, sx)} ref={ref}>
       {children}
     </div>
   );

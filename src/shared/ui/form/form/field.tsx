@@ -1,5 +1,5 @@
 import * as Form from "@radix-ui/react-form";
-import clsx from "clsx";
+import { cx } from "cva";
 import { forwardRef, type ReactNode } from "react";
 import { tw } from "typewind";
 
@@ -14,7 +14,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(({ children, name, s
   return (
     <Form.Field
       name={name}
-      className={clsx(tw.flex.flex_col.gap_1.justify_between.items_baseline, sx)}
+      className={cx(tw.flex.flex_col.gap_1.justify_between.items_baseline, sx)}
       ref={ref}
     >
       {children}

@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { cva, type VariantProps } from "cva";
 import {
   forwardRef,
@@ -66,12 +65,13 @@ export const InternalTextInput = forwardRef<HTMLInputElement, TextInputProps>(
       leadingVisual,
       trailingAction,
       trailingVisual,
+      sx,
       ...props
     },
     ref,
   ) => {
     return (
-      <span className={clsx(textVariants({ size, validationStatus, block }))}>
+      <span className={textVariants({ size, validationStatus, block, class: sx })}>
         {leadingVisual && <span className={icon}>{leadingVisual}</span>}
         <input
           className={tw.bg_transparent.border_0.text_inherit.w_full.px_1

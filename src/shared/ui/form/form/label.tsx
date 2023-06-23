@@ -1,6 +1,5 @@
 import { FormLabel, type FormLabelProps } from "@radix-ui/react-form";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import clsx from "clsx";
 import { cva, type VariantProps } from "cva";
 import { forwardRef, type ReactNode } from "react";
 import { tw } from "typewind";
@@ -22,7 +21,7 @@ type LabelProps = {
 export const Label = forwardRef<HTMLLabelElement, LabelProps>(
   ({ children, required, sx, visuallyHidden, ...props }, ref) => {
     return (
-      <FormLabel className={clsx(labelVariants(), sx)} ref={ref} {...props}>
+      <FormLabel className={labelVariants({ class: sx })} ref={ref} {...props}>
         {visuallyHidden ? (
           <VisuallyHidden>
             {children}

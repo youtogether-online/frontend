@@ -17,7 +17,7 @@ export const SendCode = () => {
   const formSubmit = useUnit(authByEmailModel.$$sendCode.sendCodeForm.submit);
   const formError = useUnit(authByEmailModel.$$sendCode.$formServerError);
   const closeFlash = useUnit(authByEmailModel.$$sendCode.flashClosed);
-  const isLoading = useUnit(authByEmailModel.$$sendCode.sendCodeMutation.$pending);
+  const { pending } = useUnit(authByEmailModel.$$sendCode.sendCodeMutation);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -52,8 +52,8 @@ export const SendCode = () => {
             <Form.Validation variant="error">{emailField.errorText}</Form.Validation>
           )}
         </Form.Field>
-        <Button variant="primary" block type="submit" disabled={isLoading}>
-          {isLoading ? <Trans>Loading...</Trans> : <Trans>Get code</Trans>}
+        <Button variant="primary" block type="submit" disabled={pending}>
+          {pending ? <Trans>Loading...</Trans> : <Trans>Get code</Trans>}
         </Button>
       </Form>
     </>

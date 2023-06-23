@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cx } from "cva";
 import { forwardRef, type ReactNode } from "react";
 import { tw } from "typewind";
 
@@ -12,7 +12,7 @@ type HeadingProps = {
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(({ children, sx }, ref) => {
   return (
-    <Title sx={clsx(tw.font_bold, sx)} order={5} ref={ref}>
+    <Title sx={cx(tw.font_bold, sx)} order={5} ref={ref}>
       {children}
     </Title>
   );

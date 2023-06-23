@@ -1,8 +1,8 @@
 import { createEffect, sample } from "effector";
-import { combineEvents } from "patronum";
+import { combineEvents, debug } from "patronum";
 import { createRoot } from "react-dom/client";
 
-import { getSessionQuery } from "@/entities/session";
+import { setThemeFx } from "@/entities/session";
 
 import { loadLocaleFx } from "@/shared/config/i18n/load-locale";
 import { appStarted } from "@/shared/config/init";
@@ -15,8 +15,8 @@ appStarted();
 
 const appDataLoaded = combineEvents({
   events: {
-    loadLocale: loadLocaleFx.finally,
-    loadSession: getSessionQuery.finished.finally,
+    setLocale: loadLocaleFx.done,
+    setTheme: setThemeFx.done,
   },
 });
 

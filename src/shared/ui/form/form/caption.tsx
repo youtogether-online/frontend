@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cx } from "cva";
 import { forwardRef, type ReactNode } from "react";
 import { tw } from "typewind";
 
@@ -10,7 +10,7 @@ type CaptionProps = {
 
 export const Caption = forwardRef<HTMLSpanElement, CaptionProps>(({ children, sx }, ref) => {
   return (
-    <span className={clsx(tw.text_sm.text_fgMuted, sx)} ref={ref}>
+    <span className={cx(tw.text_sm.text_fgMuted, sx)} ref={ref}>
       {children}
     </span>
   );

@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cx } from "cva";
 import { type ButtonHTMLAttributes, forwardRef } from "react";
 import { tw } from "typewind";
 
@@ -15,7 +15,7 @@ export const Action = forwardRef<HTMLButtonElement, ActionProps>(({ icon, sx, ..
     <button
       ref={ref}
       {...props}
-      className={clsx(
+      className={cx(
         tw.rounded_sm.h_5.w_6.flex.items_center.justify_center.hover(tw.bg_canvasSubtle),
         sx,
       )}

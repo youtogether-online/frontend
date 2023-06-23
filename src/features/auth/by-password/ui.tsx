@@ -18,8 +18,8 @@ export const AuthByPasswordForm = modelView(createAuthByPasswordModel, () => {
   const passwordField = useUnit(authByPasswordModel.authByPasswordForm.fields.password);
   const form = useUnit(authByPasswordModel.authByPasswordForm);
   const formError = useUnit(authByPasswordModel.$authByPasswordError);
-  const isLoading = useUnit(authByPasswordModel.authByPasswordMutation.$pending);
   const closeFlash = useUnit(authByPasswordModel.flashClosed);
+  const { pending } = useUnit(authByPasswordModel.authByPasswordMutation);
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     emailField.onChange(event.target.value);
@@ -76,8 +76,8 @@ export const AuthByPasswordForm = modelView(createAuthByPasswordModel, () => {
             <Form.Validation variant="error">{passwordField.errorText}</Form.Validation>
           )}
         </Form.Field>
-        <Button type="submit" variant="primary" block disabled={isLoading}>
-          {isLoading ? <Trans>Loading...</Trans> : <Trans>Authenticate</Trans>}
+        <Button type="submit" variant="primary" block disabled={pending}>
+          {pending ? <Trans>Loading...</Trans> : <Trans>Authenticate</Trans>}
         </Button>
       </Form>
     </>

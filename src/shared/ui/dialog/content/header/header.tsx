@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cx } from "cva";
 import { forwardRef, type ReactNode } from "react";
 import { tw } from "typewind";
 
@@ -12,7 +12,7 @@ export const Header = forwardRef<HTMLDivElement, HeaderProps>(({ children, sx },
   return (
     <div
       ref={ref}
-      className={clsx(tw.flex.justify_between.items_center.p_3.border_b.border_borderDefault, sx)}
+      className={cx(tw.flex.justify_between.items_center.p_3.border_b.border_borderDefault, sx)}
     >
       {children}
     </div>

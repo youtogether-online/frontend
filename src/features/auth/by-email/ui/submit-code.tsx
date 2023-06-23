@@ -19,7 +19,7 @@ export const SubmitCode = () => {
   const formError = useUnit(authByEmailModel.$$submitCode.$formServerError);
   const goToPrevStep = useUnit(authByEmailModel.prevStepClicked);
   const closeFlash = useUnit(authByEmailModel.$$submitCode.flashClosed);
-  const isLoading = useUnit(authByEmailModel.$$submitCode.submitCodeMutation.$pending);
+  const { pending } = useUnit(authByEmailModel.$$submitCode.submitCodeMutation);
 
   const handleCodeChange = (event: ChangeEvent<HTMLInputElement>) => {
     codeField.onChange(event.target.value);
@@ -62,8 +62,8 @@ export const SubmitCode = () => {
             <Form.Validation variant="error">{codeField.errorText}</Form.Validation>
           )}
         </Form.Field>
-        <Button variant="primary" type="submit" block disabled={isLoading}>
-          {isLoading ? <Trans>Loading...</Trans> : <Trans>Submit code</Trans>}
+        <Button variant="primary" type="submit" block disabled={pending}>
+          {pending ? <Trans>Loading...</Trans> : <Trans>Submit code</Trans>}
         </Button>
       </Form>
     </>
