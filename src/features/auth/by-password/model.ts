@@ -100,7 +100,7 @@ export const createAuthByPasswordModel = modelFactory(() => {
     fn: (error) => (error.error as unknown as HttpError<400>).response as BadRequestError,
   });
 
-  const authBYPasswordValidationError = sample({
+  const authByPasswordValidationError = sample({
     clock: authByPasswordMutation.finished.failure,
     filter: isHttpErrorCode(422),
     fn: (error) => (error.error as unknown as HttpError<422>).response as ValidationError,
@@ -114,7 +114,7 @@ export const createAuthByPasswordModel = modelFactory(() => {
   });
 
   sample({
-    clock: authBYPasswordValidationError,
+    clock: authByPasswordValidationError,
     fn: mapValidationError,
     target: authByPasswordForm.addErrors,
   });
