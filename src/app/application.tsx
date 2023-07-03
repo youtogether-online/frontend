@@ -1,8 +1,6 @@
 import { Pages } from "@/pages";
 
-import "./dark.css";
 import "./index.css";
-import "./light.css";
 import { withHocs } from "./providers/index";
 
 const App = () => {
