@@ -35,7 +35,7 @@ const itemVariants = cva([], {
 
 type ItemProps = {
   children: ReactNode;
-  onSelect: (event: MouseEvent<HTMLLIElement> | KeyboardEvent<HTMLLIElement>) => void;
+  onSelect?: (event: MouseEvent<HTMLLIElement> | KeyboardEvent<HTMLLIElement>) => void;
 } & SxProp &
   VariantProps<typeof itemVariants> &
   LiHTMLAttributes<HTMLLIElement>;

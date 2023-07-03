@@ -32,7 +32,7 @@ export const getAuthSessionResponse = zod.object({
     .regex(getAuthSessionResponseNameRegExp),
   email: zod.string().email(),
   role: zod.enum(["user", "admin"]),
-  friendsIds: zod.array(zod.number()),
+  friendsIds: zod.array(zod.number()).optional(),
   language: zod.enum(["en", "ru"]),
   theme: zod.enum(["dark", "light", "system"]),
   firstName: zod

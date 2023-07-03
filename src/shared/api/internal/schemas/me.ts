@@ -22,7 +22,7 @@ export interface Me {
   readonly name: Name;
   readonly email: Email;
   readonly role: Role;
-  readonly friendsIds: FriendsIds;
+  readonly friendsIds?: FriendsIds;
   readonly language: Language;
   readonly theme: Theme;
   readonly firstName?: FirstName;

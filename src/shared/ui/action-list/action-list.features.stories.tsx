@@ -12,5 +12,13 @@ export default meta;
 type Story = StoryObj<typeof ActionList>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    children: (
+      <>
+        <ActionList.Group title="File group">
+          <ActionList.Item>New File</ActionList.Item>
+        </ActionList.Group>
+      </>
+    ),
+  },
 };

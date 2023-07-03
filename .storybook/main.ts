@@ -2,9 +2,7 @@ import type { StorybookConfig } from "@storybook/react-vite";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(ts|tsx)"],
-  staticDirs: [
-    { from: "../public/sprites", to: "public/sprites" },
-  ],
+  staticDirs: [{ from: "../public/sprites", to: "public/sprites" }],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
