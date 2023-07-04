@@ -1,5 +1,5 @@
 import { createEffect, sample } from "effector";
-import { combineEvents, debug } from "patronum";
+import { combineEvents } from "patronum";
 import { createRoot } from "react-dom/client";
 
 import { setThemeFx } from "@/entities/session";
