@@ -12,7 +12,7 @@ export default defineConfig({
     react({
       babel: {
         plugins: [
-          ["effector/babel-plugin", { factories: ["effector-forms"] }],
+          ["effector/babel-plugin", { factories: ["effector-forms", "@withease/factories"] }],
           "typewind/babel",
           "macros",
         ],

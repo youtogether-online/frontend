@@ -5,7 +5,7 @@ import { tw } from "typewind";
 import { type SxProp } from "../types";
 import { Text } from "../typography";
 
-const groupVariants = cva([], {
+const groupVariants = cva([tw.text_sm.text_fgMuted], {
   variants: {
     variant: {
       filled: [],
@@ -28,18 +28,18 @@ type GroupProps = {
 } & SxProp &
   VariantProps<typeof groupVariants>;
 
-export const Group = forwardRef<HTMLDivElement, GroupProps>(
+export const Group = forwardRef<HTMLLIElement, GroupProps>(
   ({ children, variant, selectionVariant, title, auxiliaryText }, ref) => {
     return (
-      <div ref={ref} className={groupVariants({ variant, selectionVariant })}>
-        <Text asChild sx={tw.text_sm.text_fgMuted.font_bold}>
-          <span>{title}</span>
-        </Text>
-        <Text asChild sx={tw.text_sm.text_fgMuted}>
-          {auxiliaryText}
-        </Text>
-        {children}
-      </div>
+      <li ref={ref} className={groupVariants({ variant, selectionVariant })}>
+        <div className={tw.px_4.py_["6px"]}>
+          <Text asChild sx={tw.font_bold}>
+            <span>{title}</span>
+          </Text>
+          <Text asChild>{auxiliaryText}</Text>
+        </div>
+        <ul>{children}</ul>
+      </li>
     );
   },
 );

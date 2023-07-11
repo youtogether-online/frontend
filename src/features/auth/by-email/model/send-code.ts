@@ -6,6 +6,7 @@ import {
 } from "@farfetched/core";
 import { zodContract } from "@farfetched/zod";
 import { t } from "@lingui/macro";
+import { createFactory } from "@withease/factories";
 import { createEvent, createStore, sample } from "effector";
 import { createForm } from "effector-forms";
 import { not } from "patronum";
@@ -21,7 +22,7 @@ import { createRule } from "@/shared/lib/effector-forms/zod";
 import { isErrorWithDescription } from "@/shared/lib/is-error-with-description";
 import { mapValidationError } from "@/shared/lib/map-validation-error";
 
-export const createSendCodeModel = () => {
+export const createSendCodeModel = createFactory(() => {
   const $formServerError = createStore<string | null>(null);
 
   const sendCodeForm = createForm({
@@ -113,4 +114,4 @@ export const createSendCodeModel = () => {
     sendCodeMutation,
     flashClosed,
   };
-};
+});

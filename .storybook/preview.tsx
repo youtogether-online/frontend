@@ -3,13 +3,14 @@ import type { Preview, StoryFn } from "@storybook/react";
 
 import "../src/app/index.css";
 import React from "react";
+import { tw } from 'typewind';
 
 const withBackground = (StoryFn: StoryFn) => {
   return <div style={{
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundColor: "var(--color-canvas-default)",
+    backgroundColor: "var(--color-canvas-inset)",
     height: "100vh",
     width: "100vw",
     padding: "12px",

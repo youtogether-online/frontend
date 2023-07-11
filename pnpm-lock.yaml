@@ -44,6 +44,9 @@ dependencies:
   '@radix-ui/react-visually-hidden':
     specifier: ^1.0.3
     version: 1.0.3(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0)(react@18.2.0)
+  '@withease/factories':
+    specifier: ^0.2.0
+    version: 0.2.0
   '@withease/web-api':
     specifier: ^0.4.0
     version: 0.4.0(effector@22.8.6)
@@ -6636,6 +6639,10 @@ packages:
       '@webassemblyjs/ast': 1.11.6
       '@xtuc/long': 4.2.2
     dev: true
+
+  /@withease/factories@0.2.0:
+    resolution: {integrity: sha512-TsWCczf03APuSGc8W8pbFGg3cDYLe2Zn90+SSP7g/zyvzdLhV8Bvb/jcnHyi/tJBRY8aps67aGFa/7hceTCvMw==}
+    dev: false
 
   /@withease/web-api@0.4.0(effector@22.8.6):
     resolution: {integrity: sha512-xd4o9rLA4Ab1OOVLPURAYmTOHrzjSM/Laig2/dA2NjsBQqzIt8Yo9zbMiDnIAppDsHEZrVb5lVF9b+FyKVg7JQ==}

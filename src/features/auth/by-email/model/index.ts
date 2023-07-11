@@ -1,3 +1,4 @@
+import { invoke } from "@withease/factories";
 import { createEvent, createStore, sample } from "effector";
 import { modelFactory } from "effector-factorio";
 
@@ -7,8 +8,8 @@ import { createSendCodeModel } from "./send-code";
 import { createSubmitCodeModel } from "./submit-code";
 
 export const createAuthByEmailModel = modelFactory(() => {
-  const $$sendCode = createSendCodeModel();
-  const $$submitCode = createSubmitCodeModel({ sendCodeForm: $$sendCode.sendCodeForm });
+  const $$sendCode = invoke(createSendCodeModel);
+  const $$submitCode = invoke(createSubmitCodeModel, { sendCodeForm: $$sendCode.sendCodeForm });
 
   const $currentStep = createStore<"sendCode" | "submitCode">("sendCode");
 
