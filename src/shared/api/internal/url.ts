@@ -1,4 +1,6 @@
-const API_URL = import.meta.env.API_URL;
+import { env } from "@/shared/config/env";
+
+const { API_URL } = env;
 
 export const getAuthSessionGetUrl = () => `${API_URL}/auth/session`;
 export const getAuthSessionDeleteUrl = () => `${API_URL}/auth/session`;
