@@ -14,7 +14,7 @@ const itemVariants = cva(
   [
     tw.rounded_md.py_["6px"].px_2.mx_2
       .hover(tw.cursor_pointer)
-      .text_md.aria_disabled(tw.cursor_not_allowed),
+      .text_md.aria_disabled(tw.cursor_not_allowed).text_fgDefault,
   ],
   {
     variants: {

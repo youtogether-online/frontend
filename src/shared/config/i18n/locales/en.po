@@ -17,24 +17,24 @@ msgstr ""
 msgid "Authenticate"
 msgstr "Authenticate"
 
-#: src/pages/auth/page.tsx:34
+#: src/pages/auth/page.tsx:33
 msgid "Authenticate by email"
 msgstr "Authenticate by email"
 
-#: src/pages/auth/page.tsx:36
+#: src/pages/auth/page.tsx:35
 msgid "Authenticate by password"
 msgstr "Authenticate by password"
 
-#: src/features/auth/by-email/ui/submit-code.tsx:53
+#: src/features/auth/by-email/ui/submit-code.tsx:50
 msgid "Code from email"
 msgstr "Code from email"
 
-#: src/features/auth/by-email/ui/send-code.tsx:41
+#: src/features/auth/by-email/ui/send-code.tsx:40
 #: src/features/auth/by-password/ui.tsx:46
 msgid "Email address"
 msgstr "Email address"
 
-#: src/features/auth/by-email/ui/send-code.tsx:57
+#: src/features/auth/by-email/ui/send-code.tsx:56
 msgid "Get code"
 msgstr "Get code"
 
@@ -46,20 +46,20 @@ msgstr "Go home"
 msgid "Home page"
 msgstr "Home page"
 
-#: src/features/auth/by-email/model/send-code.ts:37
-#: src/features/auth/by-password/model.ts:55
+#: src/features/auth/by-email/model/send-code.ts:39
+#: src/features/auth/by-password/model.ts:56
 msgid "Incorrect email"
 msgstr "Incorrect email"
 
-#: src/features/auth/by-email/model/send-code.ts:36
-#: src/features/auth/by-email/model/submit-code.ts:34
-#: src/features/auth/by-password/model.ts:54
-#: src/features/auth/by-password/model.ts:66
+#: src/features/auth/by-email/model/send-code.ts:38
+#: src/features/auth/by-email/model/submit-code.ts:37
+#: src/features/auth/by-password/model.ts:55
+#: src/features/auth/by-password/model.ts:67
 msgid "It's required property"
 msgstr "It's required property"
 
-#: src/features/auth/by-email/ui/send-code.tsx:57
-#: src/features/auth/by-email/ui/submit-code.tsx:69
+#: src/features/auth/by-email/ui/send-code.tsx:56
+#: src/features/auth/by-email/ui/submit-code.tsx:66
 #: src/features/auth/by-password/ui.tsx:80
 msgid "Loading..."
 msgstr "Loading..."
@@ -80,14 +80,18 @@ msgstr "Password"
 #~ msgid "Sign in"
 #~ msgstr "Sign in"
 
-#: src/features/auth/by-email/model/send-code.ts:97
+#: src/features/auth/by-email/model/send-code.ts:107
 msgid "STMP server doesn't work currently"
 msgstr "The server for sending codes is currently down"
 
-#: src/features/auth/by-email/ui/submit-code.tsx:69
+#: src/features/auth/by-email/ui/submit-code.tsx:66
 msgid "Submit code"
 msgstr "Submit code"
 
-#: src/features/auth/by-password/model.ts:67
+#: src/features/auth/by-password/model.ts:68
 msgid "The password must consist of at least 8 characters"
 msgstr "The password must consist of at least 8 characters"
+
+#: src/widgets/announcment-bar/ui.tsx:10
+msgid "This is a demo client of the service"
+msgstr "This is a demo client of the service"

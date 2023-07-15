@@ -160,7 +160,7 @@ module.exports = {
       canvasBackdrop: "var(--color-canvas-backdrop)",
       actionListItemInlineDivider: "var(--color-action-list-item-inline-divider)",
       actionListItemDefaultHoverBg: "var(--color-action-list-item-default-hover-bg)",
-      actionListItemDangerHoverBg: "var(--color-action-list-item-danger-hover-bg)",
+      actionListItemDangerHoverBg: "var(--color-action-list-item-danger-hover-bgw)",
     },
   },
   plugins: [],

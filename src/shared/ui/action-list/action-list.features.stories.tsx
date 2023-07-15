@@ -19,7 +19,9 @@ export const Default: Story = {
     children: (
       <>
         <ActionList.Group title="File group">
-          <ActionList.Item>New File</ActionList.Item>
+          <ActionList.Item>
+            New File<ActionList.Description>Create new file</ActionList.Description>
+          </ActionList.Item>
           <ActionList.Item>
             <NavLink to="https://google.com/" sx={tw.w_full.block}>
               Edit file
