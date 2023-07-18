@@ -55,7 +55,6 @@ sample({
   filter: (theme): theme is Exclude<theme, "system"> => {
     return Boolean(not(equals(theme, "system")));
   },
-
   target: setThemeFx,
 });
 
