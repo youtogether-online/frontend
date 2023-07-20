@@ -35,6 +35,7 @@
     "./postcss.config.js",
     "./orval.config.ts",
     "./import-meta-env.d.ts",
+    "./uno.config.ts"
   ],
   "references": [
     {

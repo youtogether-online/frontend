@@ -2,11 +2,10 @@ import { FormLabel, type FormLabelProps } from "@radix-ui/react-form";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { cva, type VariantProps } from "cva";
 import { forwardRef, type ReactNode } from "react";
-import { tw } from "typewind";
 
 import { type SxProp } from "../../types";
 
-const labelVariants = cva([tw.text_md.font_bold], {
+const labelVariants = cva("text-md font-bold", {
   variants: {},
 });
 

@@ -1,7 +1,6 @@
 import { BaseLayout } from "@/layouts";
 import { Trans } from "@lingui/macro";
 import { useUnit } from "effector-react";
-import { tw } from "typewind";
 
 import { Blankslate } from "@/shared/ui/blankslate";
 import { Button } from "@/shared/ui/button";
@@ -17,7 +16,7 @@ export const NotFoundPage = () => {
 
   return (
     <BaseLayout>
-      <section className={tw.flex.justify_center.items_center}>
+      <section className="flex items-center justify-center">
         <Blankslate>
           <Blankslate.Heading>
             <Trans>Page Not Found</Trans>

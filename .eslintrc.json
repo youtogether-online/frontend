@@ -19,7 +19,8 @@
     "prettier",
     "plugin:storybook/recommended",
     "plugin:sonarjs/recommended",
-    "plugin:unicorn/recommended"
+    "plugin:unicorn/recommended",
+    "@unocss"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

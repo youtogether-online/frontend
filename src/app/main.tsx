@@ -1,6 +1,10 @@
+import "@unocss/reset/tailwind.css";
 import { createEffect, sample } from "effector";
 import { combineEvents } from "patronum";
 import { createRoot } from "react-dom/client";
+import "uno.css";
+import "virtual:uno.css";
+import "virtual:unocss-devtools";
 
 import { setThemeFx } from "@/entities/session";
 

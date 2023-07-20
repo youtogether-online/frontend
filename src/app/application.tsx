@@ -5,7 +5,7 @@ import { withHocs } from "./providers/index";
 
 const App = () => {
   return (
-    <div className="flex min-h-screen flex-col overflow-x-hidden bg-canvasDefault">
+    <div className="min-h-screen flex flex-col overflow-x-hidden bg-canvas-default">
       <Pages />
     </div>
   );

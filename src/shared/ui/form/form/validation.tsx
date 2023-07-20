@@ -1,16 +1,15 @@
 import { FormMessage, type FormMessageProps } from "@radix-ui/react-form";
 import { cva, type VariantProps } from "cva";
 import { forwardRef, type ReactNode } from "react";
-import { tw } from "typewind";
 
 import { type SxProp } from "../../types";
 
-const validationVariants = cva([tw.text_sm], {
+const validationVariants = cva("text-sm", {
   variants: {
     variant: {
-      error: [tw.text_dangerFg],
-      warning: [tw.text_attentionFg],
-      success: [tw.text_successFg],
+      error: "text-danger-fg",
+      warning: "text-attention-fg",
+      success: "text-success-fg",
     },
   },
 });

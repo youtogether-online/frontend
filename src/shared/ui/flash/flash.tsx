@@ -1,20 +1,19 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "cva";
 import { forwardRef, type ReactNode } from "react";
-import { tw } from "typewind";
 
 import { Icon } from "../icon";
 import { type SxProp } from "../types";
 
-const flashVariants = cva([tw.p_4.my_auto.border.rounded_md.flex.justify_between.items_center], {
+const flashVariants = cva("p-4 my-auto border rounded-md flex justify-between items-center", {
   variants: {
     block: {
-      true: [tw.w_full],
+      true: "w-full",
     },
     variant: {
-      default: [tw.bg_accentSubtle.border_accentMuted],
-      danger: [tw.bg_dangerSubtle.border_dangerMuted],
-      success: [tw.bg_successSubtle.border_successMuted],
+      default: "bg-accent-subtle border-accent-muted",
+      danger: "bg-danger-subtle border-danger-muted",
+      success: "bg-success-subtle border-success-muted",
     },
   },
   defaultVariants: {
@@ -39,7 +38,7 @@ export const Flash = forwardRef<HTMLDivElement, FlashProps>(
         {children}
         {onClose && (
           <>
-            <button onClick={onClose} className={tw.flex.items_center}>
+            <button onClick={onClose} className="flex items-center">
               <Icon name="abstract/cross" viewBox="0 0 20 20" height="20" width="20" />
             </button>
           </>

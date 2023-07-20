@@ -1,6 +1,5 @@
 import { cx } from "cva";
 import { forwardRef, type ReactNode } from "react";
-import { tw } from "typewind";
 
 import { type SxProp } from "../types";
 
@@ -14,7 +13,7 @@ export const LeadingVisual = forwardRef<HTMLSpanElement, LeadingVisualProps>(
       <span
         ref={ref}
         className={cx(
-          tw.h_5.min_w_["16px"].max_w_["20px"].flex.justify_center.items_center.shrink_0.mr_2,
+          "h-5 min-w-[16px] max-w-[20px] flex justify-center items-center shrink-0 mr-2",
           sx,
         )}
       >

@@ -1,6 +1,5 @@
 import { Trans } from "@lingui/macro";
 import { useState } from "react";
-import { tw } from "typewind";
 
 import { AuthByEmail } from "@/features/auth/by-email";
 import { AuthByPassword } from "@/features/auth/by-password";
@@ -22,13 +21,13 @@ export const AuthPage = () => {
   };
 
   return (
-    <section className={tw.w_full.mx_auto}>
+    <section className={"w-full mx-auto"}>
       {authMethod === "password" ? (
         <AuthByPassword.View model={$$authByPassword} />
       ) : (
         <AuthByEmail.View model={$$authByEmail} />
       )}
-      <Button variant="invisible" block sx={tw.mt_4} onClick={handleSwitchAuthMethod}>
+      <Button variant="invisible" block sx="mt-4" onClick={handleSwitchAuthMethod}>
         {authMethod === "password" ? (
           <Trans>Authenticate by email</Trans>
         ) : (

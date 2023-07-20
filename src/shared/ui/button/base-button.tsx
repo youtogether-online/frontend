@@ -1,71 +1,54 @@
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { cva } from "cva";
 import { forwardRef } from "react";
-import { tw } from "typewind";
 
 import { type ButtonProps } from "./types";
 
 export const baseButton = cva(
-  [
-    tw.transition_colors.border.border_solid.rounded_md.cursor_pointer.flex.gap_2.items_center
-      .justify_center,
-  ],
+  "transition-colors border border-solid rounded-md cursor-pointer flex gap-2 items-center justify-center",
   {
     variants: {
       variant: {
         primary: [
-          tw.bg_buttonPrimaryBg.border_buttonPrimaryBorder.text_buttonPrimaryText,
-          tw.hover(tw.bg_buttonPrimaryHoverBg.border_buttonPrimaryBorder),
-          tw.active(tw.border_buttonPrimaryBorder.bg_buttonPrimaryBg),
-          tw.disabled(
-            tw.bg_buttonPrimaryDisabledBg.text_buttonPrimaryDisabledText
-              .border_buttonPrimaryDisabledBorder,
-          ),
+          "bg-button-primary-bg border-button-primary-border text-button-primary-text",
+          "hover:(bg-button-primary-hover-bg border-button-primary-border)",
+          "active:(border-button-primary-border bg-button-primary-bg)",
+          "disabled:(bg-button-primary-disabled-bg text-button-primary-disabled-text border-button-primary-disabled-border)",
         ],
         secondary: [
-          tw.bg_buttonBg.text_buttonText.border_buttonBorder,
-          tw.hover(tw.border_buttonHoverBorder.bg_buttonHoverBg),
-          tw.active(tw.bg_buttonBg.text_buttonText.border_buttonBorder),
-          tw.disabled(tw.text_fgMuted),
+          "bg-button-bg text-button-text border-button-border",
+          "hover:(border-button-hover-border bg-button-hover-bg)",
+          "active:(bg-button-bg text-button-text border-button-border)",
+          "disabled:text-fg-muted",
         ],
         outline: [
-          tw.bg_buttonBg.text_buttonOutlineText.border_buttonBorder,
-          tw.hover(
-            tw.bg_buttonOutlineHoverBg.border_buttonOutlineHoverBorder.text_buttonOutlineHoverText,
-          ),
-          tw.active(
-            tw.bg_buttonOutlineSelectedBg.text_buttonOutlineSelectedText
-              .border_buttonOutlineSelectedBorder,
-          ),
-          tw.disabled(tw.bg_buttonOutlineDisabledBg.text_buttonOutlineDisabledText),
+          "bg-button-bg text-button-outline-text border-button-border",
+          "hover:(bg-button-outline-hover-bg border-button-outline-hover-border text-button-outline-hover-text)",
+          "active:(bg-button-outline-selected-bg text-button-outline-selected-text border-button-outline-selected-border)",
+          "disabled:(bg-button-outline-disabled-bg text-button-outline-disabled-text)",
         ],
         danger: [
-          tw.bg_buttonBg.border_buttonBorder.text_buttonDangerText,
-          tw.hover(
-            tw.text_buttonDangerHoverText.border_buttonDangerHoverBorder.bg_buttonDangerHoverBg,
-          ),
-          tw.active(
-            tw.text_buttonDangerSelectedText.border_buttonDangerSelectedBorder
-              .bg_buttonDangerSelectedBg,
-          ),
-          tw.disabled(tw.bg_buttonDangerDisabledBg.text_buttonDangerDisabledText),
+          "bg-button-bg border-button-border text-button-danger-text",
+          "hover:(text-button-danger-hover-text border-button-danger-hover-border bg-button-danger-hover-bg)",
+          "active:(text-button-danger-telected-text border-button-danger-selected-border bg-button-danger-selected-bg)",
+          "disabled:(bg-button-danger-disabled-bg text-button-danger-disabled-text)",
         ],
         invisible: [
-          tw.text_accentFg.border_none,
-          tw.hover(tw.bg_buttonInvisibleHoverBg),
-          tw.active(tw.bg_buttonInvisibleSelectedBg),
+          "text-accent-fg border-none",
+          "hover:bg-button-invisible-hover-bg",
+          "active:bg-button-invisible-selected-bg",
         ],
       },
       size: {
-        sm: [tw.text_sm.h_7.px_2],
-        md: [tw.text_md.h_8.px_3],
-        lg: [tw.text_md.h_10.px_3],
+        sm: "text-sm h-7 px-2",
+        md: "text-md h-8 px-3",
+        lg: "text-md h-10 px-3",
       },
       disabled: {
-        true: [tw.disabled(tw.pointer_events_none)],
+        true: "disabled:pointer-events-none",
       },
       block: {
-        true: [tw.w_full],
+        true: "w-full",
       },
     },
     defaultVariants: {
@@ -76,7 +59,7 @@ export const baseButton = cva(
   },
 );
 
-const buttonIcon = tw.h_full.flex.items_center;
+const buttonIcon = "h-full flex items-center";
 
 export const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
   (

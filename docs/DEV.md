@@ -6,14 +6,6 @@
 
 Use docker-compose from [releases](https://github.com/youtogether-online/releases) for accessing to local instance of backend
 
-### Generate typewind types
-
-Project uses typewind for better IDE intellisense with CVA
-
-```
-pnpm run generate:typewind
-```
-
 ### Localhost
 
 ```

@@ -1,7 +1,6 @@
 import { Trans } from "@lingui/macro";
 import { Link } from "atomic-router-react";
 import { useUnit } from "effector-react";
-import { tw } from "typewind";
 
 import { $isAuthorized, $session } from "@/entities/session";
 
@@ -16,14 +15,9 @@ export const Header = () => {
   const session = useUnit($session);
 
   return (
-    <header
-      className={
-        tw.h_14.flex.p_4.text_headerText.bg_canvasInset.items_center.flex_nowrap.justify_between
-          .border_b.border_b_borderDefault
-      }
-    >
+    <header className="h-14 flex flex-nowrap items-center justify-between border-b border-b-border-default bg-canvas-inset p-4 text-header-text">
       <Link to={routes.home}>
-        <Icon name="logos/youtogether-horizontal" sx={tw.h_8.w_40.text_fgDefault} />
+        <Icon name="logos/youtogether-horizontal" sx="h-8 w-40 text-fg-default text-header-logo" />
       </Link>
       {isAuthorized ? (
         <>

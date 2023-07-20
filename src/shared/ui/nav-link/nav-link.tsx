@@ -2,17 +2,16 @@ import { Slot } from "@radix-ui/react-slot";
 import { Link, type LinkProps } from "atomic-router-react";
 import { cva, type VariantProps } from "cva";
 import { forwardRef, type ReactNode } from "react";
-import { tw } from "typewind";
 
 import { type SxProp } from "../types";
 
-const linkVariants = cva([tw.text_accentFg.text_md, tw.hover(tw.underline)], {
+const linkVariants = cva("text-accent-fg text-md hover:underline", {
   variants: {
     muted: {
-      true: [tw.text_fgMuted, tw.hover(tw.no_underline.text_accentFg)],
+      true: ["text_fg-muted", "hover:(no-underline text-accent-fg)"],
     },
     underline: {
-      true: [tw.underline],
+      true: ["underline"],
     },
   },
 });

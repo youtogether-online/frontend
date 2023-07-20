@@ -1,6 +1,5 @@
 import { cx } from "cva";
 import { forwardRef, type ReactNode } from "react";
-import { tw } from "typewind";
 
 import { type SxProp } from "../../types";
 
@@ -10,7 +9,7 @@ type CaptionProps = {
 
 export const Caption = forwardRef<HTMLSpanElement, CaptionProps>(({ children, sx }, ref) => {
   return (
-    <span className={cx(tw.text_sm.text_fgMuted, sx)} ref={ref}>
+    <span className={cx("text-sm text-fg-muted", sx)} ref={ref}>
       {children}
     </span>
   );

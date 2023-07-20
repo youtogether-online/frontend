@@ -1,6 +1,5 @@
 import { cx } from "cva";
 import { forwardRef, type ReactNode } from "react";
-import { tw } from "typewind";
 
 import { type SxProp } from "@/shared/ui/types";
 
@@ -12,7 +11,7 @@ export const Header = forwardRef<HTMLDivElement, HeaderProps>(({ children, sx },
   return (
     <div
       ref={ref}
-      className={cx(tw.flex.justify_between.items_center.p_3.border_b.border_borderDefault, sx)}
+      className={cx("flex justify-between items-center p-3 border-b border-border-default", sx)}
     >
       {children}
     </div>

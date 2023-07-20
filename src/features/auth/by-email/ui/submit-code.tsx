@@ -1,10 +1,8 @@
 import { Trans } from "@lingui/macro";
 import { useUnit } from "effector-react";
 import { type ChangeEvent, type FormEvent } from "react";
-import { tw } from "typewind";
 
 import { Button } from "@/shared/ui/button";
-import { Flash } from "@/shared/ui/flash";
 import { Form } from "@/shared/ui/form/form";
 import { TextInput } from "@/shared/ui/form/text-input";
 import { Icon } from "@/shared/ui/icon";
@@ -34,14 +32,14 @@ export const SubmitCode = () => {
     <>
       {formError && <Form.Error onClose={closeFlash}>{formError}</Form.Error>}
       <Form
-        className={tw.flex.flex_col.gap_4.p_4.border.border_borderDefault.rounded_md.bg_canvasInset}
+        className="bg-canvasInset flex flex-col gap-4 border border-border-default rounded-md p-4"
         onSubmit={handleSubmit}
       >
         <Form.Field name="code">
-          <div className={tw.flex.items_center.gap_1}>
+          <div className="flex items-center gap-1">
             <button
               type="button"
-              className={tw.flex.items_center.justify_center}
+              className={"flex items-center justify-center"}
               onClick={goToPrevStep}
             >
               <Icon name="arrows/arrow-left" viewBox="0 0 25 25" height="20" width="20" />

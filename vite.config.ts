@@ -3,6 +3,7 @@ import importMetaEnv from "@import-meta-env/unplugin";
 import { lingui } from "@lingui/vite-plugin";
 import svg from "@neodx/svg/vite";
 import react from "@vitejs/plugin-react";
+import UnoCSS from "unocss/vite";
 import { defineConfig } from "vite";
 import mkcert from "vite-plugin-mkcert";
 import tsconfigPath from "vite-tsconfig-paths";
@@ -13,7 +14,6 @@ export default defineConfig({
       babel: {
         plugins: [
           ["effector/babel-plugin", { factories: ["effector-forms", "@withease/factories"] }],
-          "typewind/babel",
           "macros",
         ],
       },
@@ -27,7 +27,7 @@ export default defineConfig({
         replaceUnknown: "currentColor",
         replace: {
           from: ["#007DFF"],
-          to: "var(--color-header-logo)",
+          to: "var(--header-logo)",
         },
       },
     }),
@@ -35,6 +35,7 @@ export default defineConfig({
     tsconfigPath(),
     lingui(),
     mkcert(),
+    UnoCSS(),
   ],
   server: {
     hmr: false,

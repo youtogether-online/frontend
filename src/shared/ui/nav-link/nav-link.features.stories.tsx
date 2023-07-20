@@ -15,14 +15,14 @@ const href = "https://example.com";
 
 export const Default: Story = {
   args: {
-    href,
+    to: href,
     children: "Default",
   },
 };
 
 export const Muted: Story = {
   args: {
-    href,
+    to: href,
     muted: true,
     children: "Muted",
   },
@@ -30,7 +30,7 @@ export const Muted: Story = {
 
 export const Underline: Story = {
   args: {
-    href,
+    to: href,
     underline: true,
     children: "Underline",
   },

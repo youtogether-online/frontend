@@ -6,34 +6,32 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
-import { tw } from "typewind";
 
 import { Icon } from "../../icon";
 import { type SxProp } from "../../types";
 
 const textVariants = cva(
   [
-    tw.text_md.shadow_sm.inline_flex.bg_canvasInset.border_borderDefault.border.rounded_md
-      .text_fgDefault.px_3.py_1.block.items_center.px_2.w_["440px"],
-    tw.focus_within(tw.outline_none.border.border_accentFg.shadow_sm),
+    "text-md shadow-sm inline-flex bg-canvas-inset border-border-default border rounded-md text-fg-default px-3 py-1 block items-center px-2 w-[440px]",
+    "focus-within:(outline-none border border-accent-fg shadow-sm)",
   ],
   {
     variants: {
       validationStatus: {
-        success: [tw.border_successEmphasis],
-        error: [tw.border_dangerEmphasis],
-        warning: [tw.border_attentionEmphasis],
+        success: "border-success-emphasis",
+        error: "border-danger-emphasis",
+        warning: "border-attention-emphasis",
       },
       size: {
-        sm: [tw.min_h_["28px"]],
-        md: [tw.min_h_["32px"]],
-        lg: [tw.min_h_["32px"].h_10],
+        sm: "min-h-[28px]",
+        md: "min-h-[32px]",
+        lg: "min-h-[32px] h-10",
       },
       block: {
-        true: [tw.w_full],
+        true: "w-full",
       },
       disabled: {
-        true: [tw.bg_inputDisabledBg],
+        true: "bg-input-disabled-bg",
       },
     },
     defaultVariants: {
@@ -53,7 +51,7 @@ type TextInputProps = {
   SxProp &
   VariantProps<typeof textVariants>;
 
-const icon = tw.self_center.shrink_0.flex.items_center;
+const icon = "self-center shrink-0 flex items-center";
 
 export const InternalTextInput = forwardRef<HTMLInputElement, TextInputProps>(
   (
@@ -74,16 +72,12 @@ export const InternalTextInput = forwardRef<HTMLInputElement, TextInputProps>(
       <span className={textVariants({ size, validationStatus, block, class: sx })}>
         {leadingVisual && <span className={icon}>{leadingVisual}</span>}
         <input
-          className={tw.bg_transparent.border_0.text_inherit.w_full.px_1
-            .focus(tw.outline_0)
-            .focus_visible(tw.outline_0)}
+          className="w-full border-0 bg-transparent px-1 text-inherit focus-visible:outline-0 focus:outline-0"
           {...props}
           ref={ref}
         />
         {trailingVisual && <span className={icon}>{trailingVisual}</span>}
-        {trailingAction && loading && (
-          <Icon sx={tw.animate_spin} name="logos/youtogether-vertical" />
-        )}
+        {trailingAction && loading && <Icon sx="animate-spin" name="logos/youtogether-vertical" />}
         {trailingAction && !loading && <span className={icon}>{trailingAction}</span>}
       </span>
     );

@@ -1,5 +1,4 @@
-import { type ReactNode, useEffect } from "react";
-import { tw } from "typewind";
+import { type ReactNode } from "react";
 
 import { AnnouncmentBar } from "@/widgets/announcment-bar";
 import { Footer } from "@/widgets/footer";
@@ -12,7 +11,7 @@ export const BaseLayout = ({ children }: { children: ReactNode }) => {
     <>
       {env.PREVIEW && <AnnouncmentBar />}
       <Header />
-      <main className={tw.flex_1.p_6}>{children}</main>
+      <main className="flex-1 p-6">{children}</main>
       <Footer />
     </>
   );

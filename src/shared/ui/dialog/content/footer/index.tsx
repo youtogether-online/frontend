@@ -1,6 +1,5 @@
 import { cx } from "cva";
 import { forwardRef, type ReactNode } from "react";
-import { tw } from "typewind";
 
 import { type SxProp } from "@/shared/ui/types";
 
@@ -10,7 +9,7 @@ type FooterProps = {
 
 export const Footer = forwardRef<HTMLDivElement, FooterProps>(({ children, sx }, ref) => {
   return (
-    <div className={cx(tw.flex.p_3.justify_end.flex_wrap.gap_2, sx)} ref={ref}>
+    <div className={cx("flex p-3 justify-end flex-wrap gap-2", sx)} ref={ref}>
       {children}
     </div>
   );

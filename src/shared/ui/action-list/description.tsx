@@ -1,14 +1,13 @@
 import { cva, type VariantProps } from "cva";
 import { forwardRef, type ReactNode } from "react";
-import { tw } from "typewind";
 
 import { Text } from "../typography";
 
-const descriptionVariants = cva([tw.text_sm.text_fgMuted], {
+const descriptionVariants = cva("text-sm text-fg-muted", {
   variants: {
     variant: {
-      inline: [tw.ml_2],
-      block: [tw.block],
+      inline: "ml-2",
+      block: "mt-2",
     },
   },
   defaultVariants: {

@@ -7,7 +7,6 @@ import {
   type ReactNode,
 } from "react";
 import { createSlot } from "react-slotify";
-import { tw } from "typewind";
 
 import { useSlots } from "@/shared/lib/use-slot";
 
@@ -18,47 +17,35 @@ import { TrailingVisual } from "./trailing-visual";
 
 const itemVariants = cva(
   [
-    tw.rounded_md.py_["6px"].px_2.mx_2.relative.flex
-      .hover(tw.cursor_pointer)
-      .text_md.aria_disabled(tw.cursor_not_allowed),
+    "rounded-md py-[6px] px-2 mx-2 relative flex hover:cursor-pointer text-md aria-disabled:cursor-not-allowed",
   ],
   {
     variants: {
       variant: {
-        default: [
-          tw.hover(tw.bg_actionListItemDefaultHoverBg).active(tw.bg_actionListItemDefaultActiveBg)
-            .text_fgDefault,
-        ],
-        danger: [
-          tw.hover(tw.bg_actionListItemDangerHoverBg).active(tw.bg_actionListItemDangerActiveBg)
-            .text_dangerFg,
-        ],
+        default:
+          "hover:bg-action-list-item-default-hover-bg active:bg-action-list-item-default-active-bg text-fg-default",
+        danger:
+          "hover:bg-action-list-item-danger-hover-bg active:bg-action-list-item-danger-active-bg text-danger-fg",
       },
       active: {
-        true: [
-          tw.before(
-            tw.content_[" "].bg_accentFg.rounded_md.h_6.absolute.w_1.top_["calc(50%-12px)"].left_[
-              "calc(0.5rem*-1)"
-            ],
-          ),
-        ],
+        true: "before:(content-[''] bg-accent-fg rounded-md h-6 absolute w-1 top-[calc(50%-12px)] left-[calc(0.5rem*-1)] )",
       },
       disabled: {
-        true: [
-          tw.cursor_not_allowed.text_fgMuted.hover(tw.bg_transparent).active(tw.bg_transparent),
-        ],
+        true: "cursor-not-allowed text-fg-muted hover:bg-transparent active:bg-transparent",
       },
     },
     compoundVariants: [
       {
         active: true,
         variant: "default",
-        class: tw.bg_actionListItemDefaultSelectedBg.active(tw.bg_actionListItemDefaultSelectedBg),
+        class:
+          "bg-action-list-item-default-selected-bg active:bg-action-list-item-default-selected-bg",
       },
       {
         active: true,
         variant: "danger",
-        class: tw.bg_actionListItemDangerSelectedBg.active(tw.bg_actionListItemDangerSelectedBg),
+        class:
+          "bg-action-list-item-danger-selected-bg active:bg-action-list-item-danger-selected-bg",
       },
     ],
     defaultVariants: {
@@ -95,7 +82,13 @@ export const Item = forwardRef<HTMLLIElement, ItemProps>(
         {...props}
       >
         {slots.leadingVisual}
-        <div className={cx(slots.description?.props.variant === "block" && tw.flex_col, tw.flex)}>
+        <div
+          className={cx(
+            (slots.description?.props.variant === "block" && "flex-col items-start") ||
+              "items-center",
+            "flex",
+          )}
+        >
           {childrenWithoutSlots}
           {slots.description}
         </div>

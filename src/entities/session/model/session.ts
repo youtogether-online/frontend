@@ -7,6 +7,7 @@ import {
   type RouteParamsAndQuery,
 } from "atomic-router";
 import { createEvent, createStore, type Effect, type Event, sample } from "effector";
+import { debug } from "patronum";
 
 import { getAuthSessionResponse } from "@/shared/api";
 import { getAuthSessionGetUrl, type Session } from "@/shared/api/internal";

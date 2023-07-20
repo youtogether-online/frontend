@@ -1,6 +1,5 @@
 import { cx } from "cva";
 import { type ButtonHTMLAttributes, forwardRef } from "react";
-import { tw } from "typewind";
 
 import { Icon, type SpriteKey } from "../../icon";
 import { type SxProp } from "../../types";
@@ -16,7 +15,7 @@ export const Action = forwardRef<HTMLButtonElement, ActionProps>(({ icon, sx, ..
       ref={ref}
       {...props}
       className={cx(
-        tw.rounded_sm.h_5.w_6.flex.items_center.justify_center.hover(tw.bg_canvasSubtle),
+        "rounded-sm h-5 w-6 flex items-center justify-center hover:bg-canvas-subtle",
         sx,
       )}
     >

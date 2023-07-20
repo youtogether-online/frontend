@@ -1,16 +1,17 @@
 import { withThemeByClassName } from "@storybook/addon-styling";
 import type { Preview, StoryFn } from "@storybook/react";
+import "../src/app/index.css"
+import '@unocss/reset/tailwind.css';
+import 'uno.css'; 
 
-import "../src/app/index.css";
 import React from "react";
-import { tw } from 'typewind';
 
 const withBackground = (StoryFn: StoryFn) => {
   return <div style={{
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundColor: "var(--color-canvas-inset)",
+    background: "rgba(var(--un-preset-theme-colors-canvas-default), 1)",
     height: "100vh",
     width: "100vw",
     padding: "12px",
@@ -36,6 +37,7 @@ const preview: Preview = {
 };
 
 export const decorators = [
+  withBackground,
   withThemeByClassName({
     themes: {
       light: "light",
@@ -43,7 +45,6 @@ export const decorators = [
     },
     defaultTheme: "dark",
   }),
-  withBackground
 ];
 
 export default preview;

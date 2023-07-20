@@ -1,12 +1,11 @@
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import { cva, type VariantProps } from "cva";
 import { forwardRef } from "react";
-import { tw } from "typewind";
 
-const avatar = cva([tw.rounded_lg.block.overflow_hidden], {
+const avatar = cva("rounded-lg block overflow-hidden", {
   variants: {
     square: {
-      true: [tw.rounded_sm],
+      true: "rounded-sm",
     },
   },
   defaultVariants: {
@@ -34,11 +33,11 @@ export const Avatar = forwardRef<HTMLImageElement, AvatarProps>(
           src={src}
           alt={alt}
           ref={ref}
-          className={tw.w_full.h_full.object_cover.block}
+          className={"w-full h-full object-cover block"}
         />
         <AvatarPrimitive.Fallback
           delayMs={1000}
-          className={tw.flex.justify_center.items_center.h_full.bg_fgSubtle}
+          className={"flex justify-center items-center h-full bg-fg-subtle"}
         >
           {fallback}
         </AvatarPrimitive.Fallback>

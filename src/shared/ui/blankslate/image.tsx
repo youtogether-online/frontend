@@ -1,6 +1,5 @@
 import { cx } from "cva";
 import { forwardRef, type ReactNode } from "react";
-import { tw } from "typewind";
 
 import { type SxProp } from "../types";
 
@@ -10,7 +9,7 @@ type ImageProps = {
 
 export const Image = forwardRef<HTMLDivElement, ImageProps>(({ children, sx }, ref) => {
   return (
-    <div className={cx(tw.h_72.w_72, sx)} ref={ref}>
+    <div className={cx("h-72 w-72", sx)} ref={ref}>
       {children}
     </div>
   );

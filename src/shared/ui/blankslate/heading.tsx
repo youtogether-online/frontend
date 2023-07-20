@@ -1,6 +1,5 @@
 import { cx } from "cva";
 import { forwardRef, type ReactNode } from "react";
-import { tw } from "typewind";
 
 import { Title } from "@/shared/ui/typography/title";
 
@@ -12,7 +11,7 @@ type HeadingProps = {
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(({ children, sx }, ref) => {
   return (
-    <Title sx={cx(tw.font_bold, sx)} order={5} ref={ref}>
+    <Title sx={cx("font-bold", sx)} order={5} ref={ref}>
       {children}
     </Title>
   );

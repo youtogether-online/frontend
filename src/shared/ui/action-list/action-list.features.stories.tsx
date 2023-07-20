@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { tw } from "typewind";
 
 import { ActionList } from "@/shared/ui/action-list";
 
@@ -33,10 +32,8 @@ export const Default: Story = {
             <ActionList.LeadingVisual>
               <Icon name="abstract/cross" />
             </ActionList.LeadingVisual>
-            <ActionList.Link to="https://google.com/edit-file">
-              Edit file
-              <ActionList.Description variant="block">Edit file in new tab</ActionList.Description>
-            </ActionList.Link>
+            <ActionList.Link to="https://google.com/edit-file">Edit file</ActionList.Link>
+            <ActionList.Description variant="block">Edit file in new tab</ActionList.Description>
           </ActionList.Item>
           <ActionList.Divider />
           <ActionList.Item variant="danger">
@@ -61,7 +58,7 @@ export const InlineDescription: Story = {
             <ActionList.Description variant="inline">Create new file</ActionList.Description>
           </ActionList.Item>
           <ActionList.Item>
-            <ActionList.Link to="https://google.com/" sx={tw.w_full.block}>
+            <ActionList.Link to="https://google.com/" sx="w-full block">
               Edit file
             </ActionList.Link>
           </ActionList.Item>
@@ -82,7 +79,7 @@ export const BlockDescription: Story = {
             New File<ActionList.Description variant="block">Create new file</ActionList.Description>
           </ActionList.Item>
           <ActionList.Item>
-            <ActionList.Link to="https://google.com/" sx={tw.w_full.block}>
+            <ActionList.Link to="https://google.com/" sx="w-full block">
               Edit file
             </ActionList.Link>
           </ActionList.Item>

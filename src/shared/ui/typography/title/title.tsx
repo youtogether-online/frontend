@@ -1,6 +1,5 @@
 import { cva, type VariantProps } from "cva";
 import { type ElementType, forwardRef, type ReactNode } from "react";
-import { tw } from "typewind";
 
 import { type SxProp } from "../../types";
 
@@ -18,12 +17,12 @@ const titleComponentMapping: TitleComponentMapping = {
 const title = cva("", {
   variants: {
     order: {
-      1: [tw.text_5xl.font_bold],
-      2: [tw.text_4xl.font_bold],
-      3: [tw.text_3xl.font_bold],
-      4: [tw.text_2xl.font_bold],
-      5: [tw.text_xl.font_semiBold],
-      6: [tw.text_lg.font_semiBold],
+      1: "text-5xl font-semibold",
+      2: "text-4xl font-semibold",
+      3: "text-3xl font-semibold",
+      4: "text-2xl font-semibold",
+      5: "text-xl font-medium",
+      6: "text-lg font-medium",
     },
   },
 });

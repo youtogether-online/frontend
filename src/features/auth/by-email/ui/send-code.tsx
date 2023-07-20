@@ -1,7 +1,7 @@
 import { Trans } from "@lingui/macro";
 import { useUnit } from "effector-react";
 import { type ChangeEvent, type FormEvent } from "react";
-import { tw } from "typewind";
+
 import { Button } from "@/shared/ui/button";
 import { Form } from "@/shared/ui/form/form";
 import { TextInput } from "@/shared/ui/form/text-input";
@@ -30,7 +30,9 @@ export const SendCode = () => {
     <>
       {formError && <Form.Error onClose={closeFlash}>{formError}</Form.Error>}
       <Form
-        className={tw.flex.flex_col.gap_4.p_4.border.border_borderDefault.rounded_md.bg_canvasInset}
+        className={
+          "flex flex-col gap-4 p-4 border border-border-default rounded-md bg-canvas-inset"
+        }
         onSubmit={handleSubmit}
       >
         <Form.Field name="login">

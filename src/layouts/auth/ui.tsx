@@ -1,6 +1,5 @@
 import { Link } from "atomic-router-react";
 import { type ReactNode } from "react";
-import { tw } from "typewind";
 
 import { AnnouncmentBar } from "@/widgets/announcment-bar";
 
@@ -16,11 +15,11 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
     <>
       {env.PREVIEW && <AnnouncmentBar />}
-      <div className={tw.mt_10.flex.flex_col.p_6.gap_8.mx_auto.items_center}>
+      <div className="mx-auto mt-10 flex flex-col items-center gap-8 p-6">
         <Link to={routes.home}>
           <Icon name="logos/youtogether-vertical" viewBox="0 0 140 80" height="80" width="140" />
         </Link>
-        <main className={tw.w_["340px"]}>{children}</main>
+        <main className="w-[340px]">{children}</main>
       </div>
     </>
   );

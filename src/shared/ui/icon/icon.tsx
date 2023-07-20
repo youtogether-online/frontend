@@ -1,7 +1,6 @@
 import * as AccessibleIcon from "@radix-ui/react-accessible-icon";
 import { cx } from "cva";
 import { forwardRef, type SVGProps } from "react";
-import { tw } from "typewind";
 
 import { type SxProp } from "../types";
 import { type SpritesMap } from "./sprites.gen";
@@ -26,7 +25,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(({ name, viewBox, sx, .
         aria-hidden
         viewBox={viewBox}
         {...props}
-        className={cx(tw.select_none.inline_block.h_full.text_inherit, sx)}
+        className={cx("select-none inline-block h-full text-inherit", sx)}
       >
         <use xlinkHref={`/sprites/${spriteName}.svg#${iconName}`} />
       </svg>
