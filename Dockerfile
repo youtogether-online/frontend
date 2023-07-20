@@ -1,7 +1,7 @@
 FROM node:18.10.0-alpine3.15 as build
 WORKDIR /app
 RUN npm i -g pnpm
-COPY package.json pnpm-lock.yaml tailwind.config.js ./
+COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
 RUN npx pkg ./node_modules/@import-meta-env/cli/bin/import-meta-env.js \
