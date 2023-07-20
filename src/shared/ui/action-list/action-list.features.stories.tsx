@@ -3,7 +3,7 @@ import { tw } from "typewind";
 
 import { ActionList } from "@/shared/ui/action-list";
 
-import { NavLink } from "../nav-link";
+import { Icon } from "../icon";
 
 const meta: Meta<typeof ActionList> = {
   title: "Components/ActionList/Features",
@@ -18,14 +18,73 @@ export const Default: Story = {
   args: {
     children: (
       <>
+        <ActionList.Group title="File group" auxiliaryText="Change your files">
+          <ActionList.Item disabled>
+            <ActionList.LeadingVisual>
+              <Icon name="arrows/arrow-left" />
+            </ActionList.LeadingVisual>
+            New File
+            <ActionList.Description>Create new file</ActionList.Description>
+            <ActionList.TrailingVisual>
+              <Icon name="abstract/cross" />
+            </ActionList.TrailingVisual>
+          </ActionList.Item>
+          <ActionList.Item active>
+            <ActionList.LeadingVisual>
+              <Icon name="abstract/cross" />
+            </ActionList.LeadingVisual>
+            <ActionList.Link to="https://google.com/edit-file">
+              Edit file
+              <ActionList.Description variant="block">Edit file in new tab</ActionList.Description>
+            </ActionList.Link>
+          </ActionList.Item>
+          <ActionList.Divider />
+          <ActionList.Item variant="danger">
+            <ActionList.LeadingVisual>
+              <Icon name="abstract/cross" />
+            </ActionList.LeadingVisual>
+            Delete file
+          </ActionList.Item>
+        </ActionList.Group>
+      </>
+    ),
+  },
+};
+
+export const InlineDescription: Story = {
+  args: {
+    children: (
+      <>
         <ActionList.Group title="File group">
           <ActionList.Item>
-            New File<ActionList.Description>Create new file</ActionList.Description>
+            New File
+            <ActionList.Description variant="inline">Create new file</ActionList.Description>
           </ActionList.Item>
           <ActionList.Item>
-            <NavLink to="https://google.com/" sx={tw.w_full.block}>
+            <ActionList.Link to="https://google.com/" sx={tw.w_full.block}>
               Edit file
-            </NavLink>
+            </ActionList.Link>
+          </ActionList.Item>
+          <ActionList.Divider />
+          <ActionList.Item variant="danger">Delete file</ActionList.Item>
+        </ActionList.Group>
+      </>
+    ),
+  },
+};
+
+export const BlockDescription: Story = {
+  args: {
+    children: (
+      <>
+        <ActionList.Group title="File group">
+          <ActionList.Item>
+            New File<ActionList.Description variant="block">Create new file</ActionList.Description>
+          </ActionList.Item>
+          <ActionList.Item>
+            <ActionList.Link to="https://google.com/" sx={tw.w_full.block}>
+              Edit file
+            </ActionList.Link>
           </ActionList.Item>
           <ActionList.Divider />
           <ActionList.Item variant="danger">Delete file</ActionList.Item>
