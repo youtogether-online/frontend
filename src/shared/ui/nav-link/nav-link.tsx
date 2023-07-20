@@ -17,7 +17,7 @@ const linkVariants = cva([tw.text_accentFg.text_md, tw.hover(tw.underline)], {
   },
 });
 
-type NavLinkProps = LinkProps<any> &
+export type NavLinkProps = LinkProps<any> &
   VariantProps<typeof linkVariants> & {
     children: ReactNode;
     asChild?: boolean;

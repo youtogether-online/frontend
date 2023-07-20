@@ -119,6 +119,11 @@
     --color-action-list-item-inline-divider: rgba(48, 54, 61, 0.48);
     --color-action-list-item-default-hover-bg: rgba(177, 186, 196, 0.12);
     --color-action-list-item-danger-hover-bg: rgba(248, 81, 73, 0.16);
+    --color-action-list-item-default-active-bg: rgba(177, 186, 196, 0.2);
+    --color-action-list-item-danger-active-bg: rgba(248, 81, 73, 0.2);
+    --color-action-list-item-default-selected-bg: rgba(177, 186, 196, 0.08);
+    --color-action-list-item-danger-selected-bg: rgba(177, 186, 196, 0.08);
+    --color-divider: rgba(208, 215, 222, 0.48);
   }
 
   .light {
@@ -224,5 +229,10 @@
     --color-action-list-item-inline-divider: rgba(48, 54, 61, 0.48);
     --color-action-list-item-default-hover-bg: rgba(177, 186, 196, 0.12);
     --color-action-list-item-danger-hover-bg: rgba(255, 235, 233, 0.64);
+    --color-action-list-item-default-active-bg: rgba(177, 186, 196, 0.2);
+    --color-action-list-item-danger-active-bg: rgba(55, 235, 233, 0.2);
+    --color-action-list-item-default-selected-bg: rgba(177, 186, 196, 0.08);
+    --color-action-list-item-danger-selected-bg: rgba(177, 186, 196, 0.08);
+    --color-divider: rgba(208, 215, 222, 0.48);
   }
 }

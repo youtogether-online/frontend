@@ -2,9 +2,7 @@ import { Trans } from "@lingui/macro";
 import { useUnit } from "effector-react";
 import { type ChangeEvent, type FormEvent } from "react";
 import { tw } from "typewind";
-
 import { Button } from "@/shared/ui/button";
-import { Flash } from "@/shared/ui/flash";
 import { Form } from "@/shared/ui/form/form";
 import { TextInput } from "@/shared/ui/form/text-input";
 

@@ -58,6 +58,7 @@
     "patronum": "^1.18.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-slotify": "^0.2.2",
     "typewind": "^0.1.3",
     "zod": "^3.21.4"
   },

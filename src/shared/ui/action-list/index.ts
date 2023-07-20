@@ -4,6 +4,7 @@ import { Divider } from "./divider";
 import { Group } from "./group";
 import { Item } from "./item";
 import { LeadingVisual } from "./leading-visual";
+import { Link } from "./link";
 import { TrailingVisual } from "./trailing-visual";
 
 export const ActionList = Object.assign(InternalActionList, {
@@ -13,4 +14,5 @@ export const ActionList = Object.assign(InternalActionList, {
   LeadingVisual,
   Divider,
   TrailingVisual,
+  Link,
 });
