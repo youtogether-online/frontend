@@ -17,7 +17,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
       {env.PREVIEW && <AnnouncmentBar />}
       <div className="mx-auto mt-10 flex flex-col items-center gap-8 p-6">
         <Link to={routes.home}>
-          <Icon name="logos/youtogether-vertical" viewBox="0 0 140 80" height="80" width="140" />
+          <Icon name="logos/youtogether-vertical" viewBox="0 0 140 80" sx="h-20 w-35" />
         </Link>
         <main className="w-[340px]">{children}</main>
       </div>

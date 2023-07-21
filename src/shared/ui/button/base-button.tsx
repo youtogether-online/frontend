@@ -53,7 +53,7 @@ export const baseButtonVariants = cva(
   },
 );
 
-const buttonIcon = "h-full flex items-center";
+const buttonIcon = "h-full flex items-center h-4 w-4";
 
 export const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -83,7 +83,7 @@ export const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {leadingIcon && <span className={buttonIcon}>{leadingIcon}</span>}
-        <Slottable>{icon ?? children}</Slottable>
+        <Slottable>{icon ? <span className="h-4 w-4">{icon}</span> : children}</Slottable>
         {trailingIcon && <span className={buttonIcon}>{trailingIcon}</span>}
         {trailingAction && <span className={buttonIcon}>{trailingAction}</span>}
       </Component>
