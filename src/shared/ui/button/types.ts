@@ -2,20 +2,25 @@ import { type VariantProps } from "cva";
 import { type ButtonHTMLAttributes, type ReactNode } from "react";
 
 import { type SxProp } from "../types";
-import { type baseButton } from "./base-button";
+import { type baseButtonVariants } from "./base-button";
+import { type buttonVariants } from "./button";
+import { type iconButtonVariants } from "./icon-button";
 
-export type BaseButtonProps = VariantProps<typeof baseButton> & {
+export type BaseButtonProps = {
   asChild?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement> &
-  SxProp;
+  SxProp &
+  VariantProps<typeof baseButtonVariants>;
 
 export type ButtonProps = {
   trailingIcon?: ReactNode;
   trailingAction?: ReactNode;
   leadingIcon?: ReactNode;
   icon?: ReactNode;
-} & BaseButtonProps;
+} & BaseButtonProps &
+  VariantProps<typeof buttonVariants>;
 
 export type IconButtonProps = {
   icon: ReactNode;
-} & BaseButtonProps;
+} & BaseButtonProps &
+  VariantProps<typeof iconButtonVariants>;

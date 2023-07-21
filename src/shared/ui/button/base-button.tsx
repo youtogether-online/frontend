@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 
 import { type ButtonProps } from "./types";
 
-export const baseButton = cva(
+export const baseButtonVariants = cva(
   "transition-colors border border-solid rounded-md cursor-pointer flex gap-2 items-center justify-center",
   {
     variants: {
@@ -39,11 +39,6 @@ export const baseButton = cva(
           "active:bg-button-invisible-selected-bg",
         ],
       },
-      size: {
-        sm: "text-sm h-7 px-2",
-        md: "text-md h-8 px-3",
-        lg: "text-md h-10 px-3",
-      },
       disabled: {
         true: "disabled:pointer-events-none",
       },
@@ -53,7 +48,6 @@ export const baseButton = cva(
     },
     defaultVariants: {
       variant: "secondary",
-      size: "md",
       disabled: false,
     },
   },
@@ -84,7 +78,7 @@ export const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Component
         disabled={disabled}
-        className={cx(baseButton({ disabled, variant, size, block }), sx)}
+        className={cx(baseButtonVariants({ disabled, variant, block }), sx)}
         ref={ref}
         {...props}
       >
