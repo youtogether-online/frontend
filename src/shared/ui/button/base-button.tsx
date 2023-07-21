@@ -1,5 +1,5 @@
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import { cva } from "cva";
+import { cva, cx } from "cva";
 import { forwardRef } from "react";
 
 import { type ButtonProps } from "./types";
@@ -34,7 +34,7 @@ export const baseButton = cva(
           "disabled:(bg-button-danger-disabled-bg text-button-danger-disabled-text)",
         ],
         invisible: [
-          "text-accent-fg border-none",
+          "text-accent-fg border-transparent",
           "hover:bg-button-invisible-hover-bg",
           "active:bg-button-invisible-selected-bg",
         ],
@@ -84,12 +84,12 @@ export const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Component
         disabled={disabled}
-        className={baseButton({ disabled, variant, size, block, class: sx })}
+        className={cx(baseButton({ disabled, variant, size, block }), sx)}
         ref={ref}
         {...props}
       >
         {leadingIcon && <span className={buttonIcon}>{leadingIcon}</span>}
-        <Slottable>{children}</Slottable>
+        <Slottable>{icon ?? children}</Slottable>
         {trailingIcon && <span className={buttonIcon}>{trailingIcon}</span>}
         {trailingAction && <span className={buttonIcon}>{trailingAction}</span>}
       </Component>
