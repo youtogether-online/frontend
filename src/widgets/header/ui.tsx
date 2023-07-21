@@ -15,9 +15,12 @@ export const Header = () => {
   const session = useUnit($session);
 
   return (
-    <header className="h-14 flex flex-nowrap items-center justify-between border-b border-b-border-default bg-canvas-inset p-4 text-header-text">
-      <Link to={routes.home}>
-        <Icon name="logos/youtogether-horizontal" sx="h-8 w-40 text-fg-default text-header-logo" />
+    <header className="h-14 flex flex-nowrap items-center justify-between border-b border-b-border-default bg-canvas-inset px-4 text-header-text">
+      <Link to={routes.home} className="h-full">
+        <Icon
+          name="logos/youtogether-horizontal"
+          sx="w-40 h-full text-fg-default text-header-logo"
+        />
       </Link>
       {isAuthorized ? (
         <>

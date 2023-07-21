@@ -14,23 +14,21 @@ type IconProps = {
 } & SxProp &
   Omit<SVGProps<SVGSVGElement>, "name" | "type">;
 
-export const Icon = forwardRef<SVGSVGElement, IconProps>(
-  ({ name, viewBox = "0 0 16 16", sx, ...props }, ref) => {
-    const [spriteName, iconName] = name.split("/");
+export const Icon = forwardRef<SVGSVGElement, IconProps>(({ name, viewBox, sx, ...props }, ref) => {
+  const [spriteName, iconName] = name.split("/");
 
-    return (
-      <AccessibleIcon.Root label={iconName}>
-        <svg
-          focusable="false"
-          ref={ref}
-          aria-hidden
-          viewBox={viewBox}
-          {...props}
-          className={cx("select-none inline-block h-full text-inherit w-4 h-4", sx)}
-        >
-          <use xlinkHref={`/sprites/${spriteName}.svg#${iconName}`} />
-        </svg>
-      </AccessibleIcon.Root>
-    );
-  },
-);
+  return (
+    <AccessibleIcon.Root label={iconName}>
+      <svg
+        focusable="false"
+        ref={ref}
+        aria-hidden
+        viewBox={viewBox}
+        {...props}
+        className={cx("select-none inline-block text-inherit w-4 h-4", sx)}
+      >
+        <use xlinkHref={`/sprites/${spriteName}.svg#${iconName}`} />
+      </svg>
+    </AccessibleIcon.Root>
+  );
+});
