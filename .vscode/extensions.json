@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "antfu.unocss"
+    ],
+    "unwantedRecommendations": [
+        "bradlc.vscode-tailwindcss",
+        "voorjaar.windicss-intellisense"
+    ]
+}
