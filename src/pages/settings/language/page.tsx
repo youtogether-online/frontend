@@ -3,7 +3,7 @@ import { useUnit } from "effector-react";
 
 import { $language, languageChanged } from "@/entities/session";
 
-import { type Language } from "@/shared/api";
+import { type Language } from "@/shared/api/internal/schemas";
 import { languagesMap } from "@/shared/config/i18n/languages";
 import { Form } from "@/shared/ui/form/form";
 import { PageHead } from "@/shared/ui/pagehead";

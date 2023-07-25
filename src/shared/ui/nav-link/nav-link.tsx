@@ -16,18 +16,18 @@ const linkVariants = cva("text-accent-fg hover:underline", {
   },
 });
 
-export type NavLinkProps = Omit<LinkProps<any>, "className"> &
+export type NavLinkProps = LinkProps<any> &
   VariantProps<typeof linkVariants> & {
     children: ReactNode;
     asChild?: boolean;
-  } & SxProp;
+  };
 
 export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(
-  ({ children, asChild, underline, muted, sx, ...props }, ref) => {
+  ({ children, asChild, underline, muted, className, ...props }, ref) => {
     const Component = asChild ? Slot : Link;
 
     return (
-      <Component ref={ref} className={linkVariants({ muted, underline, class: sx })} {...props}>
+      <Component ref={ref} className={linkVariants({ muted, underline, className })} {...props}>
         {children}
       </Component>
     );

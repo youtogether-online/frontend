@@ -44,7 +44,7 @@ export const SettingsLayout = ({ children }: SettingsLayoutProps) => {
             <NavLink
               to={routes.profile}
               params={{ name: session.name }}
-              sx="flex flex-col gap-1 md:(flex-row) text-xl"
+              className="flex flex-col gap-1 text-xl md:(flex-row)"
             >
               <h1 className="text-xl">{session.name}</h1>
               <p className="text-fg-muted">

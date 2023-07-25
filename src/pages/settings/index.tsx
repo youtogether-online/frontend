@@ -1,3 +1,4 @@
+import { Trans } from "@lingui/macro";
 import { createRoutesView } from "atomic-router-react";
 
 import { SettingsAccountRoute } from "./account";
@@ -12,5 +13,5 @@ export const SettingsPages = createRoutesView({
     SettingsAppearanceRoute,
     SettingsLanguageRoute,
   ],
-  otherwise: () => "notFound",
+  otherwise: () => <Trans>Not found</Trans>,
 });
