@@ -7,4 +7,6 @@ catalogs:
     include:
       - src
 
+sourceLocale: en
+
 format: po

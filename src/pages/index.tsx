@@ -3,9 +3,9 @@ import { createRoutesView } from "atomic-router-react";
 import { AuthRoute } from "./auth";
 import { HomeRoute } from "./home";
 import { NotFoundPage } from "./not-found";
-import { SettingsRoute } from "./settings";
+import { SettingsRootRoute } from "./settings/root";
 
 export const Pages = createRoutesView({
-  routes: [AuthRoute, SettingsRoute, HomeRoute],
+  routes: [AuthRoute, SettingsRootRoute, HomeRoute],
   otherwise: NotFoundPage,
 });

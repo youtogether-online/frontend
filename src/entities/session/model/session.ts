@@ -1,4 +1,4 @@
-import { createJsonQuery, createQuery } from "@farfetched/core";
+import { createJsonMutation, createJsonQuery } from "@farfetched/core";
 import { zodContract } from "@farfetched/zod";
 import {
   chainRoute,
@@ -6,33 +6,51 @@ import {
   type RouteParams,
   type RouteParamsAndQuery,
 } from "atomic-router";
-import { createEvent, createStore, type Effect, type Event, sample } from "effector";
-import { debug } from "patronum";
+import { createEvent, type Effect, type Event, sample } from "effector";
+import { z } from "zod";
 
-import { getAuthSessionResponse } from "@/shared/api";
-import { getAuthSessionGetUrl, type Session } from "@/shared/api/internal";
+import {
+  getAuthSessionDeleteUrl,
+  getAuthSessionGetUrl,
+  getAuthSessionResponse,
+} from "@/shared/api";
 import { appStarted } from "@/shared/config/init";
 
-export const $session = createStore<Session | null>(null);
+export const signOutClicked = createEvent();
+
+export const signOutMutation = createJsonMutation({
+  request: {
+    method: "DELETE",
+    url: getAuthSessionDeleteUrl(),
+  },
+  response: {
+    contract: zodContract(z.null()),
+  },
+});
 
 export const getSessionQuery = createJsonQuery({
   request: {
     method: "GET",
     url: getAuthSessionGetUrl(),
-    headers: {
-      credentials: "include",
-    },
   },
   response: {
     contract: zodContract(getAuthSessionResponse),
   },
 });
 
-export const $isAuthorized = getSessionQuery.$succeeded;
-
 sample({
   clock: appStarted,
   target: getSessionQuery.start,
+});
+
+sample({
+  clock: signOutClicked,
+  target: signOutMutation.start,
+});
+
+sample({
+  clock: signOutMutation.$succeeded,
+  target: getSessionQuery.reset,
 });
 
 interface ChainParams {

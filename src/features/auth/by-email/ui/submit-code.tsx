@@ -32,7 +32,7 @@ export const SubmitCode = () => {
     <>
       {formError && <Form.Error onClose={closeFlash}>{formError}</Form.Error>}
       <Form
-        className="bg-canvasInset flex flex-col gap-4 border border-border-default rounded-md p-4"
+        className="flex flex-col gap-4 border border-border-default rounded-md bg-canvas-inset p-4"
         onSubmit={handleSubmit}
       >
         <Form.Field name="code">

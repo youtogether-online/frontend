@@ -16,7 +16,7 @@ export const Content = forwardRef<ElementRef<typeof SelectContent>, ContentProps
         sideOffset={4}
         ref={ref}
         className={cx(
-          "text-md bg-canvas-inset border border-border-default w-full rounded-md overflow-hidden shadow-md",
+          "text-md bg-canvas-inset border border-border-default w-full rounded-md overflow-hidden",
           className,
         )}
         {...props}

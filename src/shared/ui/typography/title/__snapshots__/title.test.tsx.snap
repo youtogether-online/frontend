@@ -1,9 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`Title > Title respects order prop 1`] = `
-<h1
-  class="text-5xl font-bold"
->
-  Heading 1
-</h1>
-`;

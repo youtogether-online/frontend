@@ -5,10 +5,10 @@ import { forwardRef, type ReactNode } from "react";
 
 import { type SxProp } from "../types";
 
-const linkVariants = cva("text-accent-fg text-md hover:underline", {
+const linkVariants = cva("text-accent-fg hover:underline", {
   variants: {
     muted: {
-      true: ["text_fg-muted", "hover:(no-underline text-accent-fg)"],
+      true: ["text-fg-muted", "hover:(no-underline text-accent-fg)"],
     },
     underline: {
       true: ["underline"],
@@ -16,7 +16,7 @@ const linkVariants = cva("text-accent-fg text-md hover:underline", {
   },
 });
 
-export type NavLinkProps = LinkProps<any> &
+export type NavLinkProps = Omit<LinkProps<any>, "className"> &
   VariantProps<typeof linkVariants> & {
     children: ReactNode;
     asChild?: boolean;

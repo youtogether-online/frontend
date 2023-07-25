@@ -10,7 +10,7 @@ type LinkProps = {
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(({ children, sx, ...props }, ref) => {
   return (
-    <NavLink className={"flex-grow"} {...props} ref={ref}>
+    <NavLink className="flex-grow" {...props} ref={ref}>
       {children}
     </NavLink>
   );

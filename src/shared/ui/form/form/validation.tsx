@@ -1,6 +1,6 @@
 import { FormMessage, type FormMessageProps } from "@radix-ui/react-form";
 import { cva, type VariantProps } from "cva";
-import { forwardRef, type ReactNode } from "react";
+import { forwardRef } from "react";
 
 import { type SxProp } from "../../types";
 

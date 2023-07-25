@@ -1,7 +1,7 @@
 import { type Rule } from "effector-forms";
 import { type z, type ZodError } from "zod";
 
-export function createRule<V, T = any>({
+export function createRule<V>({
   schema,
   name,
 }: {

@@ -13,24 +13,44 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/features/auth/by-password/ui.tsx:80
+#: src/layouts/settings/ui.tsx:76
+msgid "Account"
+msgstr "Аккаунта"
+
+#: src/layouts/settings/ui.tsx:82
+msgid "Appearance"
+msgstr "Внешний вид"
+
+#: src/features/auth/by-password/ui.tsx:78
 msgid "Authenticate"
 msgstr "Авторизоваться"
 
-#: src/pages/auth/page.tsx:33
+#: src/pages/auth/page.tsx:32
 msgid "Authenticate by email"
 msgstr "Авторизоваться по почте"
 
-#: src/pages/auth/page.tsx:35
+#: src/pages/auth/page.tsx:34
 msgid "Authenticate by password"
 msgstr "Авторизоваться по паролю"
 
-#: src/features/auth/by-email/ui/submit-code.tsx:50
+#: src/features/auth/by-email/ui/submit-code.tsx:48
 msgid "Code from email"
 msgstr "Код с почты"
 
+#: src/shared/config/theme/theme.ts:6
+msgid "Dark"
+msgstr "Темная тема"
+
+#: src/pages/settings/account/page.tsx:10
+msgid "Delete Account"
+msgstr "Удалить аккаунт"
+
+#: src/pages/settings/account/page.tsx:14
+msgid "Delete your account"
+msgstr "Удалить аккаунт"
+
 #: src/features/auth/by-email/ui/send-code.tsx:40
-#: src/features/auth/by-password/ui.tsx:46
+#: src/features/auth/by-password/ui.tsx:44
 msgid "Email address"
 msgstr "Почтовый адрес"
 
@@ -38,7 +58,7 @@ msgstr "Почтовый адрес"
 msgid "Get code"
 msgstr "Отправить код"
 
-#: src/pages/not-found/page.tsx:27
+#: src/pages/not-found/page.tsx:26
 msgid "Go home"
 msgstr "Вернуться на домашнюю страницу"
 
@@ -58,40 +78,79 @@ msgstr "Неправильный почтовый адрес"
 msgid "It's required property"
 msgstr "Это обязательное поле"
 
+#: src/layouts/settings/ui.tsx:88
+#: src/pages/settings/language/page.tsx:22
+msgid "Language"
+msgstr "Язык"
+
+#: src/shared/config/theme/theme.ts:5
+msgid "Light"
+msgstr "Светлая тема"
+
 #: src/features/auth/by-email/ui/send-code.tsx:56
-#: src/features/auth/by-email/ui/submit-code.tsx:66
-#: src/features/auth/by-password/ui.tsx:80
+#: src/features/auth/by-email/ui/submit-code.tsx:64
+#: src/features/auth/by-password/ui.tsx:78
 msgid "Loading..."
 msgstr "Загрузка..."
 
-#: src/widgets/header/ui.tsx:41
+#: src/widgets/header/ui.tsx:61
 msgid "Login"
 msgstr "Войти"
 
-#: src/pages/not-found/page.tsx:23
+#: src/pages/not-found/page.tsx:22
 msgid "Page Not Found"
 msgstr "Страница не найдена"
 
-#: src/features/auth/by-password/ui.tsx:63
+#: src/features/auth/by-password/ui.tsx:61
 msgid "Password"
 msgstr "Пароль"
+
+#: src/layouts/settings/ui.tsx:70
+#: src/pages/settings/profile/page.tsx:9
+msgid "Public profile"
+msgstr "Профиль"
+
+#: src/widgets/header/ui.tsx:49
+msgid "Settings"
+msgstr "Настройки"
+
+#: src/pages/settings/language/page.tsx:22
+#~ msgid "Settings language page"
+#~ msgstr "Страница настройки языков"
 
 #: src/features/auth/by-password/ui.tsx:71
 #~ msgid "Sign in"
 #~ msgstr "Войти"
 
+#: src/widgets/header/ui.tsx:53
+msgid "Sign out"
+msgstr "Выйти"
+
 #: src/features/auth/by-email/model/send-code.ts:107
 msgid "STMP server doesn't work currently"
 msgstr "Сервер для отправки кодов в настоящее время не работает"
 
-#: src/features/auth/by-email/ui/submit-code.tsx:66
+#: src/features/auth/by-email/ui/submit-code.tsx:64
 msgid "Submit code"
 msgstr "Отправить код"
+
+#: src/shared/config/theme/theme.ts:4
+msgid "System"
+msgstr "Системная тема"
 
 #: src/features/auth/by-password/model.ts:68
 msgid "The password must consist of at least 8 characters"
 msgstr "Пароль должен состоять как минимум из 8 символов"
 
-#: src/widgets/announcment-bar/ui.tsx:10
+#: src/pages/settings/appearance/page.tsx:21
+msgid "Theme"
+msgstr "Тема"
+
+#: src/widgets/announcment-bar/ui.tsx:7
 msgid "This is a demo client of the service"
 msgstr "Это демо-клиент сервиса"
+
+#: src/layouts/settings/ui.tsx:58
+#: src/widgets/header/ui.tsx:44
+msgid "Your profile"
+msgstr "Ваш профиль"

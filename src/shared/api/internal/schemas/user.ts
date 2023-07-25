@@ -6,6 +6,7 @@
 You can get more info about that project [here](https://github.com/youtogether-online)
  * OpenAPI spec version: 1.0.0
  */
+import type { Avatar } from "./avatar";
 import type { Biography } from "./biography";
 import type { CreateTime } from "./createTime";
 import type { FirstName } from "./firstName";
@@ -22,4 +23,5 @@ export interface User {
   readonly firstName?: FirstName;
   readonly lastName?: LastName;
   readonly createTime: CreateTime;
+  readonly avatar: Avatar;
 }

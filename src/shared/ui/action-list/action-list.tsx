@@ -9,7 +9,7 @@ type InternalActionListProps = {
 export const InternalActionList = forwardRef<HTMLUListElement, InternalActionListProps>(
   ({ children, sx, ...props }, ref) => {
     return (
-      <ul ref={ref} {...props}>
+      <ul ref={ref} className={sx} {...props}>
         {children}
       </ul>
     );

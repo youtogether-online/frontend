@@ -1,6 +1,7 @@
 import { invoke } from "@withease/factories";
 import { createEvent, createStore, sample } from "effector";
 import { modelFactory } from "effector-factorio";
+import { combineEvents } from "patronum";
 
 import { getSessionQuery } from "@/entities/session";
 
@@ -30,6 +31,14 @@ export const createAuthByEmailModel = modelFactory(() => {
   sample({
     clock: $$submitCode.submitCodeMutation.finished.success,
     target: getSessionQuery.start,
+  });
+
+  sample({
+    clock: combineEvents({
+      events: [$$submitCode.submitCodeMutation.finished.success, getSessionQuery.finished.success],
+    }),
+    fn: () => "sendCode" as const,
+    target: $currentStep,
   });
 
   return {

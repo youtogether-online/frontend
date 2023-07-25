@@ -28,13 +28,13 @@ export const Default: Story = {
               <Icon name="abstract/cross" />
             </ActionList.TrailingVisual>
           </ActionList.Item>
-          <ActionList.Item active>
+          <ActionList.LinkItem to="https://google.com/edit-file" active>
             <ActionList.LeadingVisual>
               <Icon name="abstract/cross" />
             </ActionList.LeadingVisual>
-            <ActionList.Link to="https://google.com/edit-file">Edit file</ActionList.Link>
+            Edit file
             <ActionList.Description variant="block">Edit file in new tab</ActionList.Description>
-          </ActionList.Item>
+          </ActionList.LinkItem>
           <ActionList.Divider />
           <ActionList.Item variant="danger">
             <ActionList.LeadingVisual>
@@ -57,11 +57,9 @@ export const InlineDescription: Story = {
             New File
             <ActionList.Description variant="inline">Create new file</ActionList.Description>
           </ActionList.Item>
-          <ActionList.Item>
-            <ActionList.Link to="https://google.com/" sx="w-full block">
-              Edit file
-            </ActionList.Link>
-          </ActionList.Item>
+          <ActionList.LinkItem to="https://google.com/" sx="w-full block">
+            Edit file
+          </ActionList.LinkItem>
           <ActionList.Divider />
           <ActionList.Item variant="danger">Delete file</ActionList.Item>
         </ActionList.Group>
@@ -78,11 +76,9 @@ export const BlockDescription: Story = {
           <ActionList.Item>
             New File<ActionList.Description variant="block">Create new file</ActionList.Description>
           </ActionList.Item>
-          <ActionList.Item>
-            <ActionList.Link to="https://google.com/" sx="w-full block">
-              Edit file
-            </ActionList.Link>
-          </ActionList.Item>
+          <ActionList.LinkItem to="https://google.com/" sx="w-full block">
+            Edit file
+          </ActionList.LinkItem>
           <ActionList.Divider />
           <ActionList.Item variant="danger">Delete file</ActionList.Item>
         </ActionList.Group>

@@ -6,8 +6,6 @@ import "uno.css";
 import "virtual:uno.css";
 import "virtual:unocss-devtools";
 
-import { setThemeFx } from "@/entities/session";
-
 import { loadLocaleFx } from "@/shared/config/i18n/load-locale";
 import { appStarted } from "@/shared/config/init";
 
@@ -20,7 +18,7 @@ appStarted();
 const appDataLoaded = combineEvents({
   events: {
     setLocale: loadLocaleFx.done,
-    setTheme: setThemeFx.done,
+    // setTheme: setThemeFx.done,
   },
 });
 

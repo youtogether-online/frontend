@@ -1,7 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`Text > Text respects order prop 1`] = `
-<p>
-  Default text
-</p>
-`;

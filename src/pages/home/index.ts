@@ -1,4 +1,4 @@
-import { BaseLayout } from "@/layouts";
+import { BaseLayout } from "@/layouts/base";
 import { createRouteView } from "atomic-router-react";
 
 import { currentRoute } from "./model";

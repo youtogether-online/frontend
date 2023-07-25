@@ -6,9 +6,9 @@
 You can get more info about that project [here](https://github.com/youtogether-online)
  * OpenAPI spec version: 1.0.0
  */
-import type { Me } from "./me";
+import type { Session } from "./session";
 
 /**
  * User's info by session
  */
-export type SessionGetSuccessResponse = Me;
+export type SessionGetSuccessResponse = Session;

@@ -1,6 +1,5 @@
+import { AuthLayout } from "@/layouts/auth";
 import { createRouteView } from "atomic-router-react";
-
-import { AuthLayout } from "@/layouts";
 
 import { anonymousRoute, currentRoute } from "./model";
 import { AuthPage } from "./page";

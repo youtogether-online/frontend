@@ -1,4 +1,4 @@
-import { BaseLayout } from "@/layouts";
+import { BaseLayout } from "@/layouts/base";
 import { Trans } from "@lingui/macro";
 import { useUnit } from "effector-react";
 

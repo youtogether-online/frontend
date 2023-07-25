@@ -21,7 +21,7 @@ export const AuthPage = () => {
   };
 
   return (
-    <section className={"w-full mx-auto"}>
+    <section className="mx-auto w-full">
       {authMethod === "password" ? (
         <AuthByPassword.View model={$$authByPassword} />
       ) : (

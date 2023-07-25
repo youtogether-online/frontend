@@ -54,10 +54,12 @@ export function useSlots<T extends SlotConfig>(
 
     // If slot is already filled, ignore duplicates
     if (slots[slotKey]) {
-      console.warn(
-        true,
-        `Found duplicate "${String(slotKey)}" slot. Only the first will be rendered.`,
-      );
+      // console.warn(
+      //   true,
+      //   // This is not user message
+      //   // eslint-disable-next-line string-to-lingui/missing-lingui-transformation
+      //   `Found duplicate "${String(slotKey)}" slot. Only the first will be rendered.`,
+      // );
       return;
     }
 

@@ -1,12 +1,13 @@
 import { cva, cx, type VariantProps } from "cva";
 import {
+  type FC,
   forwardRef,
+  Fragment,
   type KeyboardEvent,
   type LiHTMLAttributes,
   type MouseEvent,
   type ReactNode,
 } from "react";
-import { createSlot } from "react-slotify";
 
 import { useSlots } from "@/shared/lib/use-slot";
 
@@ -15,10 +16,8 @@ import { Description } from "./description";
 import { LeadingVisual } from "./leading-visual";
 import { TrailingVisual } from "./trailing-visual";
 
-const itemVariants = cva(
-  [
-    "rounded-md py-[6px] px-2 mx-2 relative flex hover:cursor-pointer text-md aria-disabled:cursor-not-allowed",
-  ],
+export const itemVariants = cva(
+  "rounded-md py-[6px] px-2 relative flex hover:cursor-pointer text-md aria-disabled:cursor-not-allowed",
   {
     variants: {
       variant: {
@@ -28,7 +27,7 @@ const itemVariants = cva(
           "hover:bg-action-list-item-danger-hover-bg active:bg-action-list-item-danger-active-bg text-danger-fg",
       },
       active: {
-        true: "before:(content-[''] bg-accent-fg rounded-md h-6 absolute w-1 top-[calc(50%-12px)] left-[calc(0.5rem*-1)] )",
+        true: "font-bold before:(content-[''] bg-accent-fg rounded-md h-6 absolute w-1 top-[calc(50%-12px)] left-[calc(0.5rem*-1)] )",
       },
       disabled: {
         true: "cursor-not-allowed text-fg-muted hover:bg-transparent active:bg-transparent",
@@ -56,43 +55,50 @@ const itemVariants = cva(
   },
 );
 
-type ItemProps = {
+export type ItemProps = {
   children: ReactNode;
   onSelect?: (event: MouseEvent<HTMLLIElement> | KeyboardEvent<HTMLLIElement>) => void;
+  asChild?: boolean;
+  _PrivateItemWrapper?: FC<{ children: ReactNode }>;
 } & SxProp &
   VariantProps<typeof itemVariants> &
   LiHTMLAttributes<HTMLLIElement>;
 
-export const TrailingVisualSlot = createSlot();
-
 export const Item = forwardRef<HTMLLIElement, ItemProps>(
-  ({ sx, variant, active, onSelect, disabled, children, ...props }, ref) => {
+  (
+    { sx, variant, active, onSelect, disabled, children, asChild, _PrivateItemWrapper, ...props },
+    ref,
+  ) => {
     const [slots, childrenWithoutSlots] = useSlots(children, {
       leadingVisual: LeadingVisual,
       trailingVisual: TrailingVisual,
       description: Description,
     });
 
+    const ItemWrapper = _PrivateItemWrapper ?? Fragment;
+
     return (
       <li
         aria-disabled={Boolean(disabled)}
-        className={itemVariants({ class: sx, variant, active, disabled })}
+        className={cx(itemVariants({ variant, active, disabled }), sx)}
         ref={ref}
         onClick={onSelect}
         {...props}
       >
-        {slots.leadingVisual}
-        <div
-          className={cx(
-            (slots.description?.props.variant === "block" && "flex-col items-start") ||
-              "items-center",
-            "flex",
-          )}
-        >
-          {childrenWithoutSlots}
-          {slots.description}
-        </div>
-        {slots.trailingVisual}
+        <ItemWrapper>
+          {slots.leadingVisual}
+          <div
+            className={cx(
+              (slots.description?.props.variant === "block" && "flex-col items-start") ||
+                "items-center",
+              "flex",
+            )}
+          >
+            {childrenWithoutSlots}
+            {slots.description}
+          </div>
+          {slots.trailingVisual}
+        </ItemWrapper>
       </li>
     );
   },

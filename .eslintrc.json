@@ -18,7 +18,6 @@
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "prettier",
     "plugin:storybook/recommended",
-    "plugin:sonarjs/recommended",
     "plugin:unicorn/recommended",
     "@unocss"
   ],
@@ -34,8 +33,8 @@
     "@typescript-eslint",
     "effector",
     "prettier",
-    "sonarjs",
-    "unicorn"
+    "unicorn",
+    "string-to-lingui"
   ],
   "settings": {
     "import/resolver": {
@@ -50,22 +49,17 @@
   "rules": {
     "import/order": "off",
     "import/no-unresolved": "off",
-    "sonarjs/no-duplicate-string": "off",
-    "no-console": "off",
+    "no-console": 2,
     "@typescript-eslint/ban-types": "off",
-    "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unnecessary-condition": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/no-empty-interface": "off",
-    "@typescript-eslint/no-explicit-any:": "off",
-    "@typescript-eslint/no-unused-expressions": "off",
     "@typescript-eslint/naming-convention": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-floating-promises": "off",
-    "unicorn/prefer-module": "off",
+    "unicorn/no-null": "off",
     "unicorn/filename-case": [
       "error",
       {
@@ -79,21 +73,25 @@
         "extendDefaultWhitelist": true
       }
     ],
-    "unicorn/no-null": "off",
     "@typescript-eslint/restrict-template-expressions": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
-    "unicorn/prefer-logical-operation-over-ternary": "off",
     "@typescript-eslint/no-var-requires": "off",
     "react/display-name": "off",
     "@typescript-eslint/triple-slash-reference": "off",
-    "@typescript-eslint/array-type": "off"
+    "@typescript-eslint/array-type": "off",
+    "string-to-lingui/missing-lingui-transformation": [2, {
+      "ignoreAttribute": ["style", "className", "sx", "to", "href"],
+      "ignoreFunction": ["cva", "trackMediaQuery"]
+    }],
+    "string-to-lingui/no-tags-in-trans": 2
   },
   "overrides": [
     {
-      "files": ["*.stories.tsx"],
+      "files": ["*.stories.tsx", "*.test.ts", "*.test.tsx"],
       "rules": {
-        "import/no-default-export": "off"
+        "import/no-default-export": "off",
+        "string-to-lingui/missing-lingui-transformation": 0
       }
     }
   ]

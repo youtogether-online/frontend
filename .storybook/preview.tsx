@@ -7,16 +7,7 @@ import 'uno.css';
 import React from "react";
 
 const withBackground = (StoryFn: StoryFn) => {
-  return <div style={{
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    background: "rgba(var(--un-preset-theme-colors-canvas-default), 1)",
-    height: "100vh",
-    width: "100vw",
-    padding: "12px",
-    overflow: "auto"
-  }}>
+  return <div className="absolute top-0 left-0 bg-canvas-default h-screen w-screen p-3 overflow-auto">
     <StoryFn />
   </div>
 };

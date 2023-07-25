@@ -6,9 +6,15 @@ import { appStarted } from "./config/init";
 
 export const routes = {
   home: createRoute(),
-  profile: createRoute<{ username: string }>(),
+  profile: createRoute<{ name: string }>(),
   auth: createRoute(),
-  settings: createRoute(),
+  settings: {
+    root: createRoute(),
+    profile: createRoute(),
+    account: createRoute(),
+    appearance: createRoute(),
+    language: createRoute(),
+  },
 };
 
 export const controls = createRouterControls();
@@ -20,7 +26,7 @@ export const router = createHistoryRouter({
       route: routes.home,
     },
     {
-      path: "/:id",
+      path: "/:name",
       route: routes.profile,
     },
     {
@@ -28,8 +34,20 @@ export const router = createHistoryRouter({
       route: routes.auth,
     },
     {
-      path: "/settings",
-      route: routes.settings,
+      path: "/settings/profile",
+      route: [routes.settings.root, routes.settings.profile],
+    },
+    {
+      path: "/settings/account",
+      route: [routes.settings.root, routes.settings.account],
+    },
+    {
+      path: "/settings/appearance",
+      route: [routes.settings.root, routes.settings.appearance],
+    },
+    {
+      path: "/settings/language",
+      route: [routes.settings.root, routes.settings.language],
     },
   ],
   controls,

@@ -1,6 +1,8 @@
-export const languages = {
+// Languages doesnt need localization
+/* eslint-disable string-to-lingui/missing-lingui-transformation */
+export const languagesMap = {
   ru: "Русский",
   en: "English",
 };
 
-export const DEFAULT_LANGUAGE = "en";
+export const defaultLanguage = "en";

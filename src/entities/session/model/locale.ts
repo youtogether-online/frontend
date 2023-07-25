@@ -1,9 +1,12 @@
+import { createJsonMutation, declareParams } from "@farfetched/core";
+import { zodContract } from "@farfetched/zod";
 import { trackPreferredLanguages } from "@withease/web-api";
 import { createEvent, createStore, sample } from "effector";
 import { persist } from "effector-storage/local";
 import { and, empty, not } from "patronum";
 
-import { DEFAULT_LANGUAGE, languages } from "@/shared/config/i18n/languages";
+import { getUserPatchUrl, patchUserResponse } from "@/shared/api";
+import { defaultLanguage, languagesMap } from "@/shared/config/i18n/languages";
 import { loadLocaleFx } from "@/shared/config/i18n/load-locale";
 import { appStarted } from "@/shared/config/init";
 
@@ -15,26 +18,42 @@ const { $language: $prefferedLanguage } = trackPreferredLanguages({
 
 type Language = "en" | "ru";
 
-const $language = createStore<Language | null>(null);
+export const $language = createStore<Language | null>(null);
+
+export const setLanguageMutation = createJsonMutation({
+  params: declareParams<{ language: Language }>(),
+  request: {
+    method: "PATCH",
+    url: getUserPatchUrl(),
+    body: (payload) => payload,
+  },
+  response: {
+    contract: zodContract(patchUserResponse),
+  },
+});
 
 persist({
   store: $language,
   key: "language",
 });
 
-const languageSet = createEvent<Language>();
+export const languageChanged = createEvent<Language>();
+
+sample({
+  clock: languageChanged,
+  fn: (language) => ({ language }),
+  target: setLanguageMutation.start,
+});
+
+sample({
+  clock: setLanguageMutation.finished.success,
+  target: getSessionQuery.refresh,
+});
 
 sample({
   clock: getSessionQuery.finished.success,
   fn: (session) => session.result.language,
-  target: languageSet,
-});
-
-sample({
-  clock: getSessionQuery.finished.failure,
-  source: $language,
-  filter: Boolean,
-  target: languageSet,
+  target: $language,
 });
 
 sample({
@@ -44,14 +63,16 @@ sample({
   fn: (language) => {
     const primaryLanguage = language!.split("-")[0];
 
-    return Object.keys(languages).includes(primaryLanguage)
+    return Object.keys(languagesMap).includes(primaryLanguage)
       ? (primaryLanguage as Language)
-      : DEFAULT_LANGUAGE;
+      : defaultLanguage;
   },
-  target: languageSet,
+  target: $language,
 });
 
 sample({
-  clock: languageSet,
-  target: [loadLocaleFx, $language],
+  clock: getSessionQuery.finished.finally,
+  source: $language,
+  filter: Boolean,
+  target: loadLocaleFx,
 });

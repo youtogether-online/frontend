@@ -14,9 +14,7 @@ import { z as zod } from "zod";
  */
 export const getAuthSessionResponseNameMin = 5;
 export const getAuthSessionResponseNameMax = 20;
-export const getAuthSessionResponseNameRegExp = new RegExp(
-  "^[a-zA-Z][a-zA-Z0-9_]{3,18}([a-zA-Z0-9])$",
-);
+export const getAuthSessionResponseNameRegExp = new RegExp("^[a-z][a-z0-9_]{3,18}([a-z0-9])$");
 export const getAuthSessionResponseFirstNameMin = 3;
 export const getAuthSessionResponseFirstNameMax = 32;
 export const getAuthSessionResponseLastNameMin = 3;
@@ -52,6 +50,7 @@ export const getAuthSessionResponse = zod.object({
     .optional(),
   createTime: zod.string().datetime(),
   isEmailVerified: zod.boolean(),
+  avatar: zod.string().url(),
 });
 
 /**
@@ -95,7 +94,7 @@ export const postEmailSendCodeBody = zod.object({
  */
 export const getUserNamePathNameMin = 5;
 export const getUserNamePathNameMax = 20;
-export const getUserNamePathNameRegExp = new RegExp("^[a-zA-Z][a-zA-Z0-9_]{3,18}([a-zA-Z0-9])$");
+export const getUserNamePathNameRegExp = new RegExp("^[a-z][a-z0-9_]{3,18}([a-z0-9])$");
 
 export const getUserNameParams = zod.object({
   name: zod
@@ -107,9 +106,7 @@ export const getUserNameParams = zod.object({
 
 export const getUserNameResponseNameMin = 5;
 export const getUserNameResponseNameMax = 20;
-export const getUserNameResponseNameRegExp = new RegExp(
-  "^[a-zA-Z][a-zA-Z0-9_]{3,18}([a-zA-Z0-9])$",
-);
+export const getUserNameResponseNameRegExp = new RegExp("^[a-z][a-z0-9_]{3,18}([a-z0-9])$");
 export const getUserNameResponseBiographyMin = 1;
 export const getUserNameResponseBiographyMax = 140;
 export const getUserNameResponseFirstNameMin = 3;
@@ -141,6 +138,7 @@ export const getUserNameResponse = zod.object({
     .max(getUserNameResponseLastNameMax)
     .optional(),
   createTime: zod.string().datetime(),
+  avatar: zod.string().url(),
 });
 
 /**
@@ -149,9 +147,7 @@ export const getUserNameResponse = zod.object({
  */
 export const getUserCheckNameNamePathNameMin = 5;
 export const getUserCheckNameNamePathNameMax = 20;
-export const getUserCheckNameNamePathNameRegExp = new RegExp(
-  "^[a-zA-Z][a-zA-Z0-9_]{3,18}([a-zA-Z0-9])$",
-);
+export const getUserCheckNameNamePathNameRegExp = new RegExp("^[a-z][a-z0-9_]{3,18}([a-z0-9])$");
 
 export const getUserCheckNameNameParams = zod.object({
   name: zod
@@ -159,6 +155,66 @@ export const getUserCheckNameNameParams = zod.object({
     .min(getUserCheckNameNamePathNameMin)
     .max(getUserCheckNameNamePathNameMax)
     .regex(getUserCheckNameNamePathNameRegExp),
+});
+
+/**
+ * Updates some user's main data
+ * @summary Update user's main data
+ */
+export const patchUserBodyFirstNameMin = 3;
+export const patchUserBodyFirstNameMax = 32;
+export const patchUserBodyLastNameMin = 3;
+export const patchUserBodyLastNameMax = 32;
+export const patchUserBodyBiographyMin = 1;
+export const patchUserBodyBiographyMax = 140;
+
+export const patchUserBody = zod.object({
+  firstName: zod.string().min(patchUserBodyFirstNameMin).max(patchUserBodyFirstNameMax).optional(),
+  lastName: zod.string().min(patchUserBodyLastNameMin).max(patchUserBodyLastNameMax).optional(),
+  biography: zod.string().min(patchUserBodyBiographyMin).max(patchUserBodyBiographyMax).optional(),
+  theme: zod.enum(["dark", "light", "system"]).optional(),
+  language: zod.enum(["en", "ru"]).optional(),
+});
+
+export const patchUserResponseNameMin = 5;
+export const patchUserResponseNameMax = 20;
+export const patchUserResponseNameRegExp = new RegExp("^[a-z][a-z0-9_]{3,18}([a-z0-9])$");
+export const patchUserResponseFirstNameMin = 3;
+export const patchUserResponseFirstNameMax = 32;
+export const patchUserResponseLastNameMin = 3;
+export const patchUserResponseLastNameMax = 32;
+export const patchUserResponseBiographyMin = 1;
+export const patchUserResponseBiographyMax = 140;
+
+export const patchUserResponse = zod.object({
+  name: zod
+    .string()
+    .min(patchUserResponseNameMin)
+    .max(patchUserResponseNameMax)
+    .regex(patchUserResponseNameRegExp),
+  email: zod.string().email(),
+  role: zod.enum(["user", "admin"]),
+  friendsIds: zod.array(zod.number()).optional(),
+  language: zod.enum(["en", "ru"]),
+  theme: zod.enum(["dark", "light", "system"]),
+  firstName: zod
+    .string()
+    .min(patchUserResponseFirstNameMin)
+    .max(patchUserResponseFirstNameMax)
+    .optional(),
+  lastName: zod
+    .string()
+    .min(patchUserResponseLastNameMin)
+    .max(patchUserResponseLastNameMax)
+    .optional(),
+  biography: zod
+    .string()
+    .min(patchUserResponseBiographyMin)
+    .max(patchUserResponseBiographyMax)
+    .optional(),
+  createTime: zod.string().datetime(),
+  isEmailVerified: zod.boolean(),
+  avatar: zod.string().url(),
 });
 
 /**
@@ -184,13 +240,54 @@ export const patchUserEmailBody = zod.object({
   password: zod.string().regex(patchUserEmailBodyPasswordRegExp),
 });
 
+export const patchUserEmailResponseNameMin = 5;
+export const patchUserEmailResponseNameMax = 20;
+export const patchUserEmailResponseNameRegExp = new RegExp("^[a-z][a-z0-9_]{3,18}([a-z0-9])$");
+export const patchUserEmailResponseFirstNameMin = 3;
+export const patchUserEmailResponseFirstNameMax = 32;
+export const patchUserEmailResponseLastNameMin = 3;
+export const patchUserEmailResponseLastNameMax = 32;
+export const patchUserEmailResponseBiographyMin = 1;
+export const patchUserEmailResponseBiographyMax = 140;
+
+export const patchUserEmailResponse = zod.object({
+  name: zod
+    .string()
+    .min(patchUserEmailResponseNameMin)
+    .max(patchUserEmailResponseNameMax)
+    .regex(patchUserEmailResponseNameRegExp),
+  email: zod.string().email(),
+  role: zod.enum(["user", "admin"]),
+  friendsIds: zod.array(zod.number()).optional(),
+  language: zod.enum(["en", "ru"]),
+  theme: zod.enum(["dark", "light", "system"]),
+  firstName: zod
+    .string()
+    .min(patchUserEmailResponseFirstNameMin)
+    .max(patchUserEmailResponseFirstNameMax)
+    .optional(),
+  lastName: zod
+    .string()
+    .min(patchUserEmailResponseLastNameMin)
+    .max(patchUserEmailResponseLastNameMax)
+    .optional(),
+  biography: zod
+    .string()
+    .min(patchUserEmailResponseBiographyMin)
+    .max(patchUserEmailResponseBiographyMax)
+    .optional(),
+  createTime: zod.string().datetime(),
+  isEmailVerified: zod.boolean(),
+  avatar: zod.string().url(),
+});
+
 /**
  * Updates user name
  * @summary Update user name
  */
 export const patchUserNameBodyNameMin = 5;
 export const patchUserNameBodyNameMax = 20;
-export const patchUserNameBodyNameRegExp = new RegExp("^[a-zA-Z][a-zA-Z0-9_]{3,18}([a-zA-Z0-9])$");
+export const patchUserNameBodyNameRegExp = new RegExp("^[a-z][a-z0-9_]{3,18}([a-z0-9])$");
 
 export const patchUserNameBody = zod.object({
   name: zod
@@ -200,13 +297,54 @@ export const patchUserNameBody = zod.object({
     .regex(patchUserNameBodyNameRegExp),
 });
 
+export const patchUserNameResponseNameMin = 5;
+export const patchUserNameResponseNameMax = 20;
+export const patchUserNameResponseNameRegExp = new RegExp("^[a-z][a-z0-9_]{3,18}([a-z0-9])$");
+export const patchUserNameResponseFirstNameMin = 3;
+export const patchUserNameResponseFirstNameMax = 32;
+export const patchUserNameResponseLastNameMin = 3;
+export const patchUserNameResponseLastNameMax = 32;
+export const patchUserNameResponseBiographyMin = 1;
+export const patchUserNameResponseBiographyMax = 140;
+
+export const patchUserNameResponse = zod.object({
+  name: zod
+    .string()
+    .min(patchUserNameResponseNameMin)
+    .max(patchUserNameResponseNameMax)
+    .regex(patchUserNameResponseNameRegExp),
+  email: zod.string().email(),
+  role: zod.enum(["user", "admin"]),
+  friendsIds: zod.array(zod.number()).optional(),
+  language: zod.enum(["en", "ru"]),
+  theme: zod.enum(["dark", "light", "system"]),
+  firstName: zod
+    .string()
+    .min(patchUserNameResponseFirstNameMin)
+    .max(patchUserNameResponseFirstNameMax)
+    .optional(),
+  lastName: zod
+    .string()
+    .min(patchUserNameResponseLastNameMin)
+    .max(patchUserNameResponseLastNameMax)
+    .optional(),
+  biography: zod
+    .string()
+    .min(patchUserNameResponseBiographyMin)
+    .max(patchUserNameResponseBiographyMax)
+    .optional(),
+  createTime: zod.string().datetime(),
+  isEmailVerified: zod.boolean(),
+  avatar: zod.string().url(),
+});
+
 /**
  * Creates (or updates, if exists) the room. Room created once, after first account query.
  * @summary Upsert user's room, and connect to it
  */
 export const putRoomBodyTitleMin = 5;
 export const putRoomBodyTitleMax = 20;
-export const putRoomBodyTitleRegExp = new RegExp("^[a-zA-Z][a-zA-Z0-9_]{3,18}([a-zA-Z0-9])$");
+export const putRoomBodyTitleRegExp = new RegExp("^[a-z][a-z0-9_]{3,18}([a-z0-9])$");
 export const putRoomBodyDescriptionMin = 1;
 export const putRoomBodyDescriptionMax = 140;
 export const putRoomBodyPasswordRegExp = new RegExp("^w{4,20}$");
@@ -233,7 +371,7 @@ export const putRoomBody = zod.object({
  */
 export const getRoomNamePathNameMin = 5;
 export const getRoomNamePathNameMax = 20;
-export const getRoomNamePathNameRegExp = new RegExp("^[a-zA-Z][a-zA-Z0-9_]{3,18}([a-zA-Z0-9])$");
+export const getRoomNamePathNameRegExp = new RegExp("^[a-z][a-z0-9_]{3,18}([a-z0-9])$");
 
 export const getRoomNameParams = zod.object({
   name: zod

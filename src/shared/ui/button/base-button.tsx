@@ -53,6 +53,7 @@ export const baseButtonVariants = cva(
   },
 );
 
+// eslint-disable-next-line string-to-lingui/missing-lingui-transformation
 const buttonIcon = "h-full flex items-center h-4 w-4";
 
 export const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(

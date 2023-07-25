@@ -51,6 +51,7 @@ type TextInputProps = {
   SxProp &
   VariantProps<typeof textVariants>;
 
+// eslint-disable-next-line string-to-lingui/missing-lingui-transformation
 const icon = "self-center shrink-0 flex items-center";
 
 export const InternalTextInput = forwardRef<HTMLInputElement, TextInputProps>(

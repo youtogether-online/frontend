@@ -24,8 +24,8 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(({ name, viewBox, sx, .
         ref={ref}
         aria-hidden
         viewBox={viewBox}
-        {...props}
         className={cx("select-none inline-block text-inherit", sx)}
+        {...props}
       >
         <use xlinkHref={`/sprites/${spriteName}.svg#${iconName}`} />
       </svg>

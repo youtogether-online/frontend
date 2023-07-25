@@ -1,8 +1,6 @@
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { forwardRef, type ReactNode } from "react";
 
-import { Title as TitleTypography } from "@/shared/ui/typography";
-
 type TitleProps = {
   children: ReactNode;
 };
@@ -10,7 +8,7 @@ type TitleProps = {
 export const Title = forwardRef<HTMLHeadingElement, TitleProps>(({ children }, ref) => {
   return (
     <DialogTitle asChild ref={ref}>
-      <TitleTypography order={6}>{children}</TitleTypography>
+      <h6 className="font-500"></h6>
     </DialogTitle>
   );
 });
