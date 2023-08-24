@@ -1,5 +1,38 @@
 # Changelog
 
+## [1.3.0](https://github.com/youtogether-online/frontend/compare/v1.2.0...v1.3.0) (2023-07-25)
+
+
+### Features
+
+* add announcment bar ([180ff77](https://github.com/youtogether-online/frontend/commit/180ff772dffe6ef769f221a0c6353c80b832a3c6))
+* add avatar to header ([25e3ee8](https://github.com/youtogether-online/frontend/commit/25e3ee863aed7246bd79e50683bd01ba93cf0823))
+* add button to go prev step to by-email authentication ([adad9b3](https://github.com/youtogether-online/frontend/commit/adad9b312e7716a146670cd4ff6c7c50d20b22bf))
+* add error handling to auth forms ([ca15612](https://github.com/youtogether-online/frontend/commit/ca1561207d99ddc0462ece6c7b52cd2e2d7cadfa))
+* add flash component, add server error handling to sign in form ([9d19403](https://github.com/youtogether-online/frontend/commit/9d1940372ed18d0bdf4f5efe4434a9284ad4614a))
+* add locale auto-detect from navigator and user session ([4c44675](https://github.com/youtogether-online/frontend/commit/4c44675b5bf30ef2e8f44d2985e1259eaee300a8))
+* add mocks ([227b9d2](https://github.com/youtogether-online/frontend/commit/227b9d2f89561a76f626974698c1a900bd518555))
+* add settings page ([eb727da](https://github.com/youtogether-online/frontend/commit/eb727dac696626794181eca194246f894b994ad0))
+* add theme syncing with system and account ([6ab2148](https://github.com/youtogether-online/frontend/commit/6ab2148d6ce4886c6f296e9c877d0c6181baf925))
+* make error flashs clossable ([63ceb54](https://github.com/youtogether-online/frontend/commit/63ceb548900a75c7e27b500389d05fcae1045870))
+* store language in localstorage ([1c5b122](https://github.com/youtogether-online/frontend/commit/1c5b122ca63a4449d0fc463b017f1c17f98eee9e))
+* **ui-kit:** add action-list component ([1b92b4e](https://github.com/youtogether-online/frontend/commit/1b92b4ef9affad70c08bf46518afe04e9869a34d))
+* **ui-kit:** add action-list component ([698cdbe](https://github.com/youtogether-online/frontend/commit/698cdbefdde1fdb1dc0125b866a5783efb3bdc4d))
+* **ui-kit:** add pagehead component ([bf09a7a](https://github.com/youtogether-online/frontend/commit/bf09a7aba23382af2eb4751ded50086670d83248))
+* **ui-kit:** add select component ([cdc8f98](https://github.com/youtogether-online/frontend/commit/cdc8f987f45ad0fc241ec8d883bcc4b80c4becea))
+
+
+### Bug Fixes
+
+* add support to change env variables in runtime, close [#5](https://github.com/youtogether-online/frontend/issues/5) ([122aaa4](https://github.com/youtogether-online/frontend/commit/122aaa490017f60dcdb40e6b02f5c3acdd0f015c))
+* delete incorrect import ([7e3ddd8](https://github.com/youtogether-online/frontend/commit/7e3ddd8a35cb7e6b3821b3f3fa53406f4ba4bd31))
+* delete locales folder from storybook staticdirs ([3040435](https://github.com/youtogether-online/frontend/commit/30404354b10d599eec6445cab14dee542c6fb581))
+* fix incorrect language using ([18c0fb5](https://github.com/youtogether-online/frontend/commit/18c0fb5276128985059f6ff177ed77abc0a98af8))
+* fix logo size on auth page ([d65b895](https://github.com/youtogether-online/frontend/commit/d65b895ffab83aa20b6deae063150f43b66d157c))
+* set correct size to icon button ([f418142](https://github.com/youtogether-online/frontend/commit/f4181421f2145e5be2932a596a1e58f59fa7ada2))
+* set correct size to logo ([95e6a0f](https://github.com/youtogether-online/frontend/commit/95e6a0fbdb0b4b4b979e7424272eb89349e8dd7c))
+* **ui-kit:** fix icon-button ([2fa4de7](https://github.com/youtogether-online/frontend/commit/2fa4de77ca0d5693bb2e269bf19964ca6e80eb49))
+
 ## [1.2.0](https://github.com/youtogether-online/frontend/compare/v1.1.2...v1.2.0) (2023-06-05)
 
 
